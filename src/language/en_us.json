@@ -1,0 +1,31 @@
+{
+  "task": {
+    "name": "Effort Task",
+    "end": "This experiment has ended."
+  },
+  "prompt": {
+    "continue": {
+      "press": "Press any key to continue.",
+      "button": "Continue"
+    },
+    "focus": "Make sure the photodiode is aligned and the EEG recording has begun before continuing.",
+    "fullscreen": "Press 'cmd + ctrl + F' to toggle Fullscreen.",
+    "zoom": "Zoom in to enlarge the screen.",
+    "setting_up": "Setting up task..."
+  },
+  "welcome": {
+    "large_window": "Please make this window as large as possible.",
+    "message": "Instructions"
+  },
+  "userid": {
+    "set": "Please enter patient ID."
+  },
+  "eventMarker" : {
+    "found": "Hold the USB event marker in front of the camera.",
+    "not_found": "Note: no USB event marker found."
+  },
+  "countdown": {
+    "message1": "Countdown for the first block",
+    "message2": "Countdown for the second block"
+  }
+}
