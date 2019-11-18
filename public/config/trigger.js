@@ -6,7 +6,10 @@ const productId = '0487'
 // NOTE - these event codes must match what is in public/config/trigger.js
 const eventCodes = {
 	fixation: 1,
-	evidence: 5,
+	rewardProbability: 5,
+	frameSpike: 6,
+	costBenefits: 8,
+	choice: 9,
 	show_earnings: 7,
 	test_connect: 32,
 	open_task: 18

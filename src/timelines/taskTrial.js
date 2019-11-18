@@ -1,8 +1,10 @@
 // import trials
 import fixation from '../trials/fixation'
-import showCondition from '../trials/showCondition'
+import rewardProbability from '../trials/rewardProbability'
+import frameSpike from '../trials/frameSpike'
+import choice from '../trials/choice'
+import costBenefits from '../trials/costBenefits'
 import taskEnd from '../trials/taskEnd'
-
 
 const taskTrial = (blockSettings, blockDetails, condition) => {
   // initialize trial details
@@ -15,8 +17,12 @@ const taskTrial = (blockSettings, blockDetails, condition) => {
   // timeline
   let timeline = [
     // show condition
-    showCondition(condition, 1000, 500),
-    fixation(650),
+    fixation(500), // need ITI of ~500 btwn trials
+    rewardProbability(500),
+    frameSpike(300),
+    costBenefits(700),
+    choice(5000),
+    fixation(500),
     // end the trial
     taskEnd(trialDetails, 500)
   ]
