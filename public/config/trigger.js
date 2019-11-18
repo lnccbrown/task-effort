@@ -10,6 +10,9 @@ const eventCodes = {
 	frameSpike: 6,
 	costBenefits: 8,
 	choice: 9,
+	pressBalloon: 10,
+	cumulativeRewards: 11,
+	rewardFeedback: 12,
 	show_earnings: 7,
 	test_connect: 32,
 	open_task: 18
