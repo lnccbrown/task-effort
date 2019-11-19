@@ -4,12 +4,13 @@ import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
 const frameSpike = (duration) => {
-  const code = eventCodes.rewardProbability
+  const code = eventCodes.frameSpike
   return {
     type: 'html_keyboard_response',
     stimulus: '',
-    response_ends_trial: false,
-    trial_duration: duration,
+    prompt:  lang.prompt.continue.press,
+    response_ends_trial: true,
+    //trial_duration: duration,
     on_start: (trial) => {
       trial.stimulus = baseStimulus(`<h1>frameSpike</h1>`, true) +
       photodiodeGhostBox()

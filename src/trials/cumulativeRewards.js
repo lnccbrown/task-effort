@@ -8,8 +8,9 @@ const cumulativeRewards = (duration) => {
   return {
     type: 'html_keyboard_response',
     stimulus: '',
-    response_ends_trial: false,
-    trial_duration: duration,
+    prompt:  lang.prompt.continue.press,
+    response_ends_trial: true,
+    //trial_duration: duration,
     on_start: (trial) => {
       trial.stimulus = baseStimulus(`<h1>Cumulative Rewards</h1>`, true) +
       photodiodeGhostBox()
