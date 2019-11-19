@@ -18,7 +18,7 @@
     "message": "Instructions"
   },
   "userid": {
-    "set": "Please enter patient ID."
+    "set": "Please enter user ID."
   },
   "eventMarker" : {
     "found": "Hold the USB event marker in front of the camera.",
