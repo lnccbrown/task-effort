@@ -28,12 +28,12 @@ if (process.env.MTURK) { // if this is mturk, merge in the mturk specific langua
 }
 
 const defaultBlockSettings = {
-	probs: '100%',
+	probs: ["100%"],
 	counterbalance: false,
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
 	is_tutorial: false,
-	photodiode_active: false
+	photodiode_active: false,
 }
 
 export {
