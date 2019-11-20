@@ -13,18 +13,14 @@ git clone https://github.com/brown-ccv/task-effort.git
 ```
 npm install
 ```
-3. Build the package
-```
-npm run build
-```
-4. Run the task in dev mode - this should launch an electron window with the task with the inspector open to the console and will hot-reload when changes are made to the app
+3. Run the task in dev mode - this should launch an electron window with the task with the inspector open to the console and will hot-reload when changes are made to the app
 ```
 npm run dev
 
 #to run the at home version of the app:
 npm run dev:home
 ```
-5. Check out the data - the data is saved throughout the task to the users's app directory.  This is logged at the beginning of the task wherever you ran `npm run dev`
+4. Check out the data - the data is saved throughout the task to the users's app directory.  This is logged at the beginning of the task wherever you ran `npm run dev`
 
 ## Contributing
 
