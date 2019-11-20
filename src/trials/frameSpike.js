@@ -2,7 +2,7 @@ import { lang } from '../config/main'
 import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
-
+import { startGame } from '../lib/balloon'
 const frameSpike = (duration) => {
   const code = eventCodes.frameSpike
   return {
@@ -12,10 +12,9 @@ const frameSpike = (duration) => {
     response_ends_trial: true,
     //trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h1>frameSpike</h1>`, true) +
-      photodiodeGhostBox()
+      trial.stimulus =  photodiodeGhostBox()
     },
-    on_load: () => pdSpotEncode(code),
+    on_load: () => startGame([1, 3], [0, 1], [100, 5], [15, -1], [true, false], [true, true], function(data = 'data') {console.log('data')}) + pdSpotEncode(code),
     on_finish: (data) => data.code = code
   }
 }
