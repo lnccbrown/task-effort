@@ -3,16 +3,14 @@ var canvasWidth = window.innerWidth;
 var canvasHeight = window.innerHeight / 1.5;
 
 // 0.2 declare variables to help us position the elements on the canvas
-var x75 = canvasWidth - canvasWidth / 1.25;
-var x50 = canvasWidth - canvasWidth / 1.5; // 50%
-var x33 = canvasWidth - canvasWidth / 3; // 33%
-var x20 = canvasWidth - canvasWidth / 5; // 20%
-var x10 = canvasWidth - canvasWidth / 10; // 10%
+var x25 = canvasWidth * 0.25;
+var x12 = canvasWidth * 0.126;
+var x38 = canvasWidth * 0.38;
 
 
 // Main class for drawing and inflating a single balloon
 class Balloon {
-    constructor(highEffort, highEffortTime, reward, pumpsRequired, color, radius, x, y, points, side, myGame, onTrialFinish) {
+    constructor(highEffort, highEffortTime, reward, pumpsRequired, color, radius, x, xframe, y, points, side, myGame, onTrialFinish) {
         this.highEffort = highEffort; // is this a high effort balloon?
         this.highEffortTime = highEffortTime; // how long until the balloon pops in secs
         this.reward = reward; // whether a reward is received for popping this balloon
@@ -20,12 +18,16 @@ class Balloon {
         this.color = color; // balloon color
         this.radius = radius; // starting size of the balloon
         this.x = x; // x-coord
+        this.xframe = xframe; // x-coord
         this.y = y; // y-coord
+        this.xframe = xframe; // x-coord
         this.text = ""; // text display on top of balloon (used for displaying reward info)
         this.countPumps = 0; // current number of pumps
         this.timeWhenStarted = 0; // time when first pump was done
         this.popped = false; // is this balloon popped?
         this.spikeWidth = 30;
+        this.frameWidth = 200;       
+        this.frameHeight = 440;
         this.points = points; // number of points rewarded for popping this balloon
         this.side = side; // left or right
         this.myGame = myGame; // canvas to draw on
@@ -52,41 +54,26 @@ class Balloon {
         //this.inflateBy = this.inflateBy * 5;
     }
 
-    update() {
+    updateSpike() {
         var ctx = this.myGame.context;
 
         // Draw text
         ctx.font = '30px Consolas';
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#000000';
         ctx.fillText(this.text, this.x - 100, this.y);
-
-        // Draw balloon
-        if (!this.popped) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.scale(0.75, 1);
-            ctx.arc(this.x * 1 / 0.75, this.y - this.baseHeight, this.radius, 0, 2 * Math.PI);
-            ctx.fillStyle = this.color;
-            ctx.strokeStyle = this.color;
-            ctx.fill();
-            ctx.lineWidth = 1;
-            ctx.restore();
-        }
-
-        // Draw bottom of balloon
-        ctx.fillStyle = this.color;
-        ctx.strokeStyle = this.color;
-        ctx.fillRect(this.x - 5, canvasHeight - this.baseHeight, this.baseHeight / 2,
-                     canvasHeight - this.spikeHeight);
 
         // Draw spike
         drawEqTriangle(ctx,
                        this.spikeWidth,
                        this.spikeHeight,
                        this.x, 0,
-                       '#ffffff',
+                       '#000000',
                        '#000000', false);
+        
+        // Draw Frame
+        drawRect(ctx, this.frameWidth, this.frameHeight, this.xframe, 0, '#ffffff', '#000000', false)
     }
+
 
     inflate() {
         // inflate balloon once, called by the keyboard-listeners
@@ -110,7 +97,7 @@ class Balloon {
         this.y -= this.inflateBy;
 
         // redraw
-        this.update();
+        this.updateSpike();
 
         if (this.hitSpike() && !this.highEffort) {
             this.pop();
@@ -122,15 +109,15 @@ class Balloon {
                            this.spikeWidth,
                            this.spikeHeight,
                            this.x, 0,
-                           '#080808',
-                           '#080808', true);
+                           '#000000',
+                           '#000000', true);
 
             // Spike retracts
             var targetDist = 2 * this.inflateBy * (this.pumpsRequired - this.countPumps - 1);
             var balloonHeight = 2 * this.radius + this.baseHeight;
             // distance of the spike from the top
             this.spikeHeight = canvasHeight - balloonHeight;
-            this.update();
+            this.updateSpike();
         }
     }
 
@@ -156,7 +143,7 @@ class Balloon {
     //     else {
     //         this.text = "You win " + reward + " points.";
     //     }
-    //     this.update();
+    //     this.updateSpike();
     //     this.timeWhenPopped = (new Date()).getTime();
 
     //     var data = {
@@ -235,7 +222,7 @@ class Balloon {
                 lTime = l + lightLeft * percTimePassed;
                 hslColor = 'hsl(' + h + ', ' + s + '%, ' + lTime + '%)';
                 self.color = hslColor;
-                self.update();
+                self.updateSpike();
             }
 
             if ((percTimePassed >= 1.) & (self.countPumps > 0)) {
@@ -274,11 +261,32 @@ function drawEqTriangle(ctx, w, h, cx, cy, fillColor, lineColor, clear){
     ctx.save();
 }
 
+function drawRect(ctx, w, h, cx, cy, fillColor, lineColor, clear){
+    ctx.save();
+    ctx.fillStyle = fillColor;
+    ctx.strokeStyle = lineColor;
+    ctx.beginPath();
+    if (clear) {
+        ctx.clearRect(cx - w / 2,
+                      cy,
+                      cx,
+                      cy + h);
+    }
+    else {
+        ctx.rect(cx, cy, w, h);
+        ctx.stroke();
+    }
+    ctx.closePath();
+    ctx.save();
+}
+
 var GREEN = '#00ff00';
 var BLUE = '#0000ff';
 // value, reward, effort, time, high_effort, display
 function startGame(value, reward, effort, time, high_effort, display, onTrialFinish) {
-    var xPos = [x75, canvasWidth - x75];
+    var xPos = [x25, canvasWidth-x25];
+    console.log(canvasWidth);
+    var xPosFrame = [x12, canvasWidth - x38];
     var sides = ['left', 'right'];
     var balloons = [null, null];
     var radius = 20;
@@ -293,10 +301,10 @@ function startGame(value, reward, effort, time, high_effort, display, onTrialFin
             this.timeWhenStarted = (new Date()).getTime();
 
             if (display[0]) {
-                balloons[0].update();
+                balloons[0].updateSpike();
             }
             if (display[1]){
-                balloons[1].update();
+                balloons[1].updateSpike();
             }
         },
         clear: function() {
@@ -319,6 +327,7 @@ function startGame(value, reward, effort, time, high_effort, display, onTrialFin
                                       color,
                                       radius,
                                       xPos[i],
+                                      xPosFrame[i],
                                       canvasHeight - radius,
                                       value[i],
                                       sides[i],
@@ -349,8 +358,8 @@ function hexToRgb(hex) {
 }
 
 function rgbToHsl(r, g, b) {
-    r /= 255;
-    g /= 255;
+    r /= 255; 
+    g /= 255; 
     b /= 255;
     var max = Math.max(r, g, b),
         min = Math.min(r, g, b);
@@ -379,6 +388,6 @@ function rgbToHsl(r, g, b) {
 
 // start game, now updated with parameters
 //document.addEventListener('load', startGame([1, 3], [0, 1], [100, 5], [15, -1], [true, false], [true, true], function(data) {console.log(data)}));
-export {
+export{
     startGame
-  }
+}

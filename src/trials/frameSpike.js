@@ -12,7 +12,7 @@ const frameSpike = (duration) => {
     response_ends_trial: true,
     //trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus =  photodiodeGhostBox()
+      trial.stimulus = baseStimulus(`<canvas id="myCanvas"></canvas>`, true) + photodiodeGhostBox()
     },
     on_load: () => startGame([1, 3], [0, 1], [100, 5], [15, -1], [true, false], [true, true], function(data = 'data') {console.log('data')}) + pdSpotEncode(code),
     on_finish: (data) => data.code = code

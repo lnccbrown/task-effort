@@ -9,7 +9,7 @@ import cumulativeRewards from '../trials/cumulativeRewards'
 import rewardFeedback from '../trials/rewardFeedback'
 import taskEnd from '../trials/taskEnd'
 
-const taskTrial = (blockSettings, blockDetails) => {
+const taskTrial = (blockSettings, blockDetails, probs) => {
   // initialize trial details
   let trialDetails = {
     trial_earnings: 0,
@@ -21,7 +21,7 @@ const taskTrial = (blockSettings, blockDetails) => {
   let timeline = [
     // show condition
     fixation(500), // need ITI of ~500 btwn trials
-    rewardProbability(500, blockSettings.probs),
+    rewardProbability(500, probs),
     frameSpike(300),
     costBenefits(700),
     choice(5000),
