@@ -13,9 +13,13 @@ practiceBlock1.is_practice = true
 
 practiceBlock2.probs = ["100%"]
 practiceBlock2.is_practice = true
+practiceBlock2.value = [0, 5]
+practiceBlock2.effort = [0, 100]
 
 practiceBlock3.probs = ["50%"]
 practiceBlock3.is_practice = true
+practiceBlock3.value = [1, 5]
+practiceBlock3.effort = [20, 100]
 
 
 // export the settings

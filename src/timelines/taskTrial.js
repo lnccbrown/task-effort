@@ -16,14 +16,13 @@ const taskTrial = (blockSettings, blockDetails, probs) => {
     start_time: Date.now()
   }
 
-
   // timeline
   let timeline = [
     // show condition
     fixation(500), // need ITI of ~500 btwn trials
     rewardProbability(500, probs),
-    frameSpike(300),
-    costBenefits(700),
+    frameSpike(300, blockSettings.value, blockSettings.effort),
+    costBenefits(700, blockSettings.value, blockSettings.effort),
     choice(5000),
     fixation(200),
     pressBalloon(2500),

@@ -10,7 +10,7 @@ var x38 = canvasWidth * 0.38;
 
 // Main class for drawing and inflating a single balloon
 class Balloon {
-    constructor(highEffort, highEffortTime, reward, pumpsRequired, color, radius, x, xframe, y, points, side, myGame, onTrialFinish) {
+    constructor(highEffort, highEffortTime, reward, pumpsRequired, color, radius, x, xframe, y, points, side, myGame, onTrialFinish, type) {
         this.highEffort = highEffort; // is this a high effort balloon?
         this.highEffortTime = highEffortTime; // how long until the balloon pops in secs
         this.reward = reward; // whether a reward is received for popping this balloon
@@ -35,6 +35,7 @@ class Balloon {
         this.baseHeight = 20; // height of bottom of the balloon
         this.timer = null; // used for changing the color
         this.rts = [];
+        this.type = type;
         // compute how much in screen-space the balloon inflates each step
         if (this.highEffort) {
             this.inflateBy = canvasHeight / 800.
@@ -58,9 +59,13 @@ class Balloon {
         var ctx = this.myGame.context;
 
         // Draw text
-        ctx.font = '30px Consolas';
-        ctx.fillStyle = '#000000';
-        ctx.fillText(this.text, this.x - 100, this.y);
+        if(this.type == 'costBenefits'){
+            ctx.font = '20px Consolas';
+            ctx.fillStyle = '#000000';
+            this.text = `${this.points} pts ${this.pumpsRequired} pumps`
+            ctx.fillText(this.text, this.x -100, this.y-10);
+        }
+        
 
         // Draw spike
         drawEqTriangle(ctx,
@@ -283,9 +288,8 @@ function drawRect(ctx, w, h, cx, cy, fillColor, lineColor, clear){
 var GREEN = '#00ff00';
 var BLUE = '#0000ff';
 // value, reward, effort, time, high_effort, display
-function startGame(value, reward, effort, time, high_effort, display, onTrialFinish) {
+function startGame(value=[], reward=[], effort=[], time=[], high_effort=[], display=[], onTrialFinish, type) {
     var xPos = [x25, canvasWidth-x25];
-    console.log(canvasWidth);
     var xPosFrame = [x12, canvasWidth - x38];
     var sides = ['left', 'right'];
     var balloons = [null, null];
@@ -332,7 +336,8 @@ function startGame(value, reward, effort, time, high_effort, display, onTrialFin
                                       value[i],
                                       sides[i],
                                       myGame,
-                                      onTrialFinish
+                                      onTrialFinish,
+                                      type
                                      );
         }
     }
