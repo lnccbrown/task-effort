@@ -43,6 +43,19 @@
     "p15": "Once you have chosen a balloon, you can only pump that balloon.",
     "p16": "The experiment will start now.<br>Press next when ready!"
   },
+  "quiz": {
+    "respond_correctly": "Answer all of the questions below correctly to continue.",
+    "incorrect_response": "You have answered incorrectly!",
+    "retake": "You didn't answer the questions correctly, please retake the quiz.",
+    "prompt": {
+      "q1": "The green balloon requires more pumps.",
+      "q2": "You will always get the points once you reach the pin."
+    },
+    "answer_opts": {
+      "yes": "YES",
+      "no": "NO"
+    }
+  },
   "countdown": {
     "practice1": "You will begin the <b>Practice Block</b> in",
     "expt1": "You will begin <b>Main Block 1/4</b> in",

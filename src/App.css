@@ -55,6 +55,13 @@ html, body, #root, .App {
   margin-bottom: -20%;
 }
 
+.quiz_container {
+  padding-top: 5rem;
+}
+.quiz_container > div >.task_container {
+    height: 25rem !important;
+}
+
 .image {
   display: block;
   position: fixed;

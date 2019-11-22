@@ -1,6 +1,5 @@
 import { lang } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
-import { formatDollars } from '../lib/utils'
 
 const screenOne = baseStimulus(`
     <div class='instructions'>
@@ -59,9 +58,6 @@ const instructions = (blockSettings, key) => {
     screenFour,
     screenFive,
     screenSix
-    // screenSeven,
-    // screenEight,
-    // screenNine(blockSettings)
   ]
 
   return(

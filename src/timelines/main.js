@@ -4,10 +4,9 @@ import experimentEnd from '../trials/experimentEnd'
 import { buildCountdown, pracBlockCountdown1, exptBlockCountdown1, exptBlockCountdown2, exptBlockCountdown3, exptBlockCountdown4} from '../trials/countdown'
 import taskBlock from './taskBlock'
 import userId from '../trials/userId'
-import { MTURK, lang, countdownWait } from '../config/main'
+import { MTURK, countdownWait } from '../config/main'
 import { practiceBlock1 } from '../config/practice'
 import { exptBlock1, exptBlock2, exptBlock3, exptBlock4 } from '../config/experiment'
-
 import startCode from '../trials/startCode'
 
 
