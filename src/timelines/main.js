@@ -13,9 +13,7 @@ import startCode from '../trials/startCode'
 
 
 const primaryTimeline = [
-        preamble,
-        buildCountdown(lang.countdown.message1, 3),
-        taskBlock(practiceBlock1),
+        preamble, // practice is in preamble
         buildCountdown(lang.countdown.message4, 3),
         taskBlock(exptBlock1),
         buildCountdown(lang.countdown.message5, 3),

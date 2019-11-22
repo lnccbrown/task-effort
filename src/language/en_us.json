@@ -24,6 +24,25 @@
     "found": "Hold the USB event marker in front of the camera.",
     "not_found": "Note: no USB event marker found."
   },
+  "instructions": {
+    "welcome": "Welcome!",
+    "p1": "In this experiment, you will be making a choice between inflating one of 2 balloons<br>by pressing corresponding keys on the keyboard.",
+    "p2": "Once the balloon pops you may win some money.",
+    "p3": "For every <b>20 points</b> that you win in the game,<br>you will get <b>$1 bonus</b> at the end of the experiment.",
+    "p4": "There are 2 kinds of balloons: <br><span class='text-success'><b>GREEN</b></span> and <span style='color:blue'><b>BLUE</b></span> balloons.",
+    "p5": "<span style='color:blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <b>pump 20 times</b> and <u>may</u> win you <b>1 point</b>.",
+    "p6": "<span class='text-success'><b>GREEN</b></span> balloons may win you more points, but will require more pumps.",
+    "p7": "<span class='text-success'><b>GREEN</b></span> balloons will always pop when they become completely <b>white</b>, after <b>25 seconds</b>.",
+    "p8": "The more you pump the <span class='text-success'><b>GREEN</b></span> balloon before it turns <b>white</b> and pops<br>the bigger the balloon will get and you will win more points.",
+    "p9": "For the <span class='text-success'><b>GREEN</b></span> balloon, the number of pumps needed<br>and the number of points you could win will always be shown on the screen.<br>They can change on each round.",
+    "p10": "For the <span style='color:blue'><b>BLUE</b></span> balloon, the potential win <u>will always stay the same</u> (<b>1 point</b>),<br>and it always requires <b>20 pumps</b>.",
+    "p11": "For some rounds, the chances that you will win points are 50%<br>(even after popping the balloon, and for either balloon).",
+    "p12": "In other rounds the chances of winning will be 100% as long as you pop one of the balloons.",
+    "p13": "The chances that you will win on that round, and also the potential amount to win,<br>will be shown to you before you choose which balloon to inflate.",
+    "p14": "Press the    <b>q</b>    key to pump the balloon on the left and the    <b>p</b>    key to pump the balloon on the right.",
+    "p15": "Once you have chosen a balloon, you can only pump that balloon.",
+    "p16": "The experiment will start now.<br>Press next when ready!"
+  },
   "countdown": {
     "message1": "Countdown for the first block",
     "message2": "Countdown for the second block",
