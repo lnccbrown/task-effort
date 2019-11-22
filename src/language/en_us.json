@@ -49,7 +49,9 @@
     "retake": "You didn't answer the questions correctly, please retake the quiz.",
     "prompt": {
       "q1": "The green balloon requires more pumps.",
-      "q2": "You will always get the points once you reach the pin."
+      "q2": "You will always get the points once you reach the pin.",
+      "q3": "For the green balloon, you can keep pressing once you reach the pin to get bonus points.",
+      "q4" : "Your accumulated points will be converted into $ bonus."
     },
     "answer_opts": {
       "yes": "YES",

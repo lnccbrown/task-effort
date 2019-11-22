@@ -61,6 +61,9 @@ html, body, #root, .App {
 .quiz_container > div >.task_container {
     height: 25rem !important;
 }
+.jspsych-survey-multi-choice-question {
+  padding-left: 8rem;
+}
 
 .image {
   display: block;

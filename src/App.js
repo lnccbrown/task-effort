@@ -6,7 +6,6 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import { getTurkUniqueId, sleep } from './lib/utils'
-import { survey_multi_select_feedback } from './lib/survey-multi-select-feedback'
 
 const isElectron = !MTURK
 let ipcRenderer = false;
@@ -25,7 +24,6 @@ class App extends React.Component {
   render() {
     console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk)
     console.log("Turk:", MTURK)
-    jsPsych.plugins['survey_multi_select_feedback'] = survey_multi_select_feedback();
 
     return (
       <div className="App">
