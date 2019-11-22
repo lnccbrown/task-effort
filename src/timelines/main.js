@@ -23,6 +23,8 @@ const primaryTimeline = [
         ]
 
 const mturkTimeline = [
+        experimentStart(),
+        userId(),
         preamble,
         buildCountdown(pracBlockCountdown1, countdownWait),
         taskBlock(practiceBlock1),
