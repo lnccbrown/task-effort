@@ -12,10 +12,10 @@ const quizOptions = (blockSettings) => {
 }
 
 const quizPrompts = [
-  `${lang.quiz.prompt.q1}`,
-  `${lang.quiz.prompt.q2}`,
-  `${lang.quiz.prompt.q3}`,
-  `${lang.quiz.prompt.q4}`,
+  `${lang.quiz.prompt.green_balloon_high_effort}`,
+  `${lang.quiz.prompt.reward_certainty}`,
+  `${lang.quiz.prompt.green_balloon_bonus}`,
+  `${lang.quiz.prompt.bonus}`,
 ]
 
 // Quiz Trial
