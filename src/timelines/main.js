@@ -17,8 +17,9 @@ const primaryTimeline = [
         userId(),
         preamble,
         buildCountdown(pracBlockCountdown1, countdownWait),
-        taskBlock(exptBlock1),
+        taskBlock(practiceBlock1),
         buildCountdown(exptBlockCountdown1, countdownWait),
+        taskBlock(exptBlock1),
         experimentEnd(3000)
         ]
 
