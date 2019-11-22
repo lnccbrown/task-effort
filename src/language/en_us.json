@@ -44,12 +44,10 @@
     "p16": "The experiment will start now.<br>Press next when ready!"
   },
   "countdown": {
-    "message1": "Countdown for the first block",
-    "message2": "Countdown for the second block",
-    "message3": "Countdown for the third block",
-    "message4": "Countdown for the fourth block",
-    "message5": "Countdown for the five block",
-    "message6": "Countdown for the six block",
-    "message7": "Countdown for the seven block"
+    "practice1": "You will begin the <b>Practice Block</b> in",
+    "expt1": "You will begin <b>Main Block 1/4</b> in",
+    "expt2": "You will begin <b>Main Block 2/4</b> in",
+    "expt3": "You will begin <b>Main Block 3/4</b> in",
+    "expt4": "You will begin <b>Main Block 4/4</b> in"
   }
 }

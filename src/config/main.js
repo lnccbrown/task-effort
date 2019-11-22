@@ -38,10 +38,14 @@ const defaultBlockSettings = {
 	photodiode_active: false,
 }
 
+// how long to countdown
+const countdownWait = 3
+
 export {
 	keys,
 	defaultBlockSettings,
 	lang,
+	countdownWait,
 	eventCodes,
 	MTURK,
 	AT_HOME

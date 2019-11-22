@@ -2,6 +2,10 @@ p, li {
   font-size: 1.5rem;
 }
 
+.nocursor {
+  cursor: none;
+}
+
 html, body, #root, .App {
   text-align: center;
   background-color: black;
@@ -10,6 +14,10 @@ html, body, #root, .App {
   min-height: 100vh;
   height: 100% !important;
   width: 100vw !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center !important;
 }
 
 .photodiode-box {
@@ -32,7 +40,7 @@ html, body, #root, .App {
   display: visible;
 }
 
-.main-prompt, .task-container {
+.main-prompt, .task_container {
   height: 100vh;
   width: 85vw;
   margin: auto;
@@ -55,6 +63,10 @@ html, body, #root, .App {
   transform: translate(-50%, -50%);
 }
 
+.text-blue {
+  color: blue;
+}
+
 .color-green {
   background-color: green;
 }
@@ -64,10 +76,23 @@ html, body, #root, .App {
 }
 
 #fixation-dot {
+  background-color: white;
   height: 15px;
   width: 15px;
   border-radius: 50%;
   margin: auto;
+}
+
+.instructions {
+  padding: 0 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.earnings h1 {
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 .jspsych-btn {
