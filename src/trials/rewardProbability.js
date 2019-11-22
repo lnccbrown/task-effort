@@ -3,7 +3,7 @@ import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
-const rewardProbability = (duration) => {
+const rewardProbability = (duration, probability) => {
   const code = eventCodes.rewardProbability
   return {
     type: 'html_keyboard_response',
@@ -12,7 +12,7 @@ const rewardProbability = (duration) => {
     response_ends_trial: true,
     //trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h1>Reward Probability</h1>`, true) +
+      trial.stimulus = baseStimulus(`<h1>Reward Probability</h1><br><h3>${probability}</h3>`, true) +
       photodiodeGhostBox()
     },
     on_load: () => pdSpotEncode(code),

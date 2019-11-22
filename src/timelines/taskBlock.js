@@ -12,7 +12,8 @@ const taskBlock = (blockSettings) => {
 	}
 
 	// timeline = loop through trials
-	let timeline = startingOpts.map( (condition) => taskTrial(blockSettings, blockDetails, condition))
+	let timeline =  startingOpts.map( (probs) => taskTrial(blockSettings, blockDetails, probs))
+	//let timeline = taskTrial(blockSettings, blockDetails)
 
   return {
 		type: 'html_keyboard_response',

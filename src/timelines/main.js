@@ -7,6 +7,7 @@ import userId from '../trials/userId'
 import { MTURK, lang } from '../config/main'
 import { practiceBlock1, practiceBlock2, practiceBlock3 } from '../config/practice'
 import { exptBlock1 } from '../config/experiment'
+import { tutorialBlock } from '../config/tutorial'
 
 import startCode from '../trials/startCode'
 

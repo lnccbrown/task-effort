@@ -1,8 +1,15 @@
 p, li {
   font-size: 1.5rem;
 }
-.App {
+
+html, body, #root, .App {
   text-align: center;
+  background-color: black;
+  color: white;
+  margin: 0;
+  min-height: 100vh;
+  height: 100% !important;
+  width: 100vw !important;
 }
 
 .photodiode-box {
@@ -22,10 +29,13 @@ p, li {
   background-color: black;
   border-radius: 50%;
   position: absolute;
+  display: visible;
 }
 
-.main-prompt, .beads_container {
+.main-prompt, .task-container {
   height: 100vh;
+  width: 85vw;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -34,21 +44,36 @@ p, li {
 
 .main-prompt {
   margin-top: -10%;
-  margin-bottom: -5%;
+  margin-bottom: -20%;
+}
+
+.image {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.color-green {
+  background-color: green;
+}
+
+.color-white {
+  background-color: white;
 }
 
 #fixation-dot {
-  background-color: black;
   height: 15px;
   width: 15px;
   border-radius: 50%;
+  margin: auto;
 }
 
 .jspsych-btn {
   padding: 0.5rem 1rem;
   font-weight: bold;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px #efefef;
   background-color: #d3d3d3;
   margin: 1rem;
   width: 10rem !important;
