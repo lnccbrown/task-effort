@@ -7,7 +7,15 @@ import _ from 'lodash'
 import { eventCodes } from './trigger'
 
 const canvasSettings = {
-	canvasSize: 600 // canvas is a square
+	canvasSize: 600, // canvas is a square
+	frameDimensions: [200, 450],
+	frameXpos: [50, 350],
+	Ypos: 50,
+	frameLinecolor: '#ffffff',
+	spikeWidth: 50,
+	spikeXpos: [150, 450],
+	textXpos: [70, 370],
+	textYpos: [550]
 }
 // mapping of letters to key codes
 const keys = {
