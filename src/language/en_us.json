@@ -6,7 +6,8 @@
   "prompt": {
     "continue": {
       "press": "Press any key to continue.",
-      "button": "Continue"
+      "button": "Continue",
+      "post_instructions": "You will now complete a short quiz to confirm your understanding of the task."
     },
     "focus": "Make sure the photodiode is aligned and the EEG recording has begun before continuing.",
     "fullscreen": "Press 'cmd + ctrl + F' to toggle Fullscreen.",
@@ -24,13 +25,44 @@
     "found": "Hold the USB event marker in front of the camera.",
     "not_found": "Note: no USB event marker found."
   },
+  "instructions": {
+    "welcome": "Welcome!",
+    "choose_btwn_two_balloons": "In this experiment, you will be making a choice between inflating one of 2 balloons<br>by pressing corresponding keys on the keyboard.",
+    "pop_balloon_earn_money": "Once the balloon pops you may win some money.",
+    "points_to_bonus_conversion": "For every <b>20 points</b> that you win in the game,<br>you will get <b>$1 bonus</b> at the end of the experiment.",
+    "two_balloons": "There are 2 kinds of balloons: <br><span class='text-success'><b>GREEN</b></span> and <span style='color:blue'><b>BLUE</b></span> balloons.",
+    "blue_balloon_points": "<span style='color:blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <b>pump 20 times</b> and <u>may</u> win you <b>1 point</b>.",
+    "green_balloon_points": "<span class='text-success'><b>GREEN</b></span> balloons may win you more points, but will require more pumps.",
+    "green_balloon_pop_time": "<span class='text-success'><b>GREEN</b></span> balloons will always pop when they become completely <b>white</b>, after <b>25 seconds</b>.",
+    "green_balloon_pump_bonus": "The more you pump the <span class='text-success'><b>GREEN</b></span> balloon before it turns <b>white</b> and pops<br>the bigger the balloon will get and you will win more points.",
+    "green_balloon_variable_points_pumps": "For the <span class='text-success'><b>GREEN</b></span> balloon, the number of pumps needed<br>and the number of points you could win can change on each round.",
+    "blue_balloon_constant_points_pumps": "For the <span style='color:blue'><b>BLUE</b></span> balloon, the potential win <u>will always stay the same</u> (<b>1 point</b>),<br>and it always requires <b>20 pumps</b>.",
+    "reward_prob_variable": "For some rounds, the chances that you will win points are 50%<br>(even after popping the balloon, and for either balloon).",
+    "reward_prob_certain": "In other rounds the chances of winning will be 100% as long as you pop one of the balloons.",
+    "reward_prob_display_event": "The chances that you will win on that round, and also the potential amount to win,<br>will be shown to you before you choose which balloon to inflate.",
+    "pump_keys": "Press the    <b>q</b>    key to pump the balloon on the left and the    <b>p</b>    key to pump the balloon on the right.",
+    "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
+    "ready": "The experiment will start now.<br>Press next when ready!",
+    "blue_practice_pump": "On the next screen, try popping the <span style='color:blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <b>q</b>    key with your left index finger.</p>",
+    "green_practice_pump": "On the next screen, try popping the <span class='text-success'><b>GREEN</b></span> balloon:<br>To pump it, press the    <b>p</b>    key with your right index finger."
+  },
+  "quiz": {
+    "respond_correctly": "Answer all of the questions below correctly to continue.",
+    "incorrect_response": "You have answered incorrectly!",
+    "retake": "You didn't answer the questions correctly, please retake the quiz.",
+    "prompt": {
+      "green_balloon_high_effort": "The green balloon requires more pumps.",
+      "reward_certainty": "You will always get the points once you reach the pin.",
+      "green_balloon_bonus": "For the green balloon, you can keep pressing once you reach the pin to get bonus points.",
+      "bonus" : "Your accumulated points will be converted into $ bonus."
+    },
+    "answer_opts": {
+      "yes": "YES",
+      "no": "NO"
+    }
+  },
   "countdown": {
-    "message1": "Countdown for the first block",
-    "message2": "Countdown for the second block",
-    "message3": "Countdown for the third block",
-    "message4": "Countdown for the fourth block",
-    "message5": "Countdown for the five block",
-    "message6": "Countdown for the six block",
-    "message7": "Countdown for the seven block"
+    "practice1": "You will begin the <b>Practice Block</b> in",
+    "expt1": "You will begin <b>Main Block </b> in"
   }
 }
