@@ -34,13 +34,13 @@ const costBenefits = (duration, value, effort) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         var spikeRefHeight = canvasSettings.spikeRefHeight
         var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0]
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.Ypos, canvasSettings.frameLinecolor, false)
+        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos)
-        drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.Ypos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+        drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
         
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.Ypos, canvasSettings.frameLinecolor, false)
+        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos)
-        drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.Ypos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+        drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
       }
 
       canvasDraw()
@@ -49,7 +49,7 @@ const costBenefits = (duration, value, effort) => {
         () => {
           done()
         },
-        duration)
+        10000)
     }
   }
 }
