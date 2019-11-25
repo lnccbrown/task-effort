@@ -61,9 +61,6 @@
   },
   "countdown": {
     "practice1": "You will begin the <b>Practice Block</b> in",
-    "expt1": "You will begin <b>Main Block 1/4</b> in",
-    "expt2": "You will begin <b>Main Block 2/4</b> in",
-    "expt3": "You will begin <b>Main Block 3/4</b> in",
-    "expt4": "You will begin <b>Main Block 4/4</b> in"
+    "expt1": "You will begin <b>Main Block </b> in"
   }
 }

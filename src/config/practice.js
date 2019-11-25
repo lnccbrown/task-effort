@@ -27,6 +27,4 @@ practiceBlock1.effort = [
 practiceBlock1.is_practice = true
 
 // export the settings
-export {
-	practiceBlock1
-}
+export default practiceBlock1

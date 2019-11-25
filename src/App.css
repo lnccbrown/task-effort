@@ -58,7 +58,7 @@ html, body, #root, .App {
 .quiz_container {
   padding-top: 5rem;
 }
-.quiz_container > div >.task_container {
+.quiz_container > div >.effort-container {
     height: 25rem !important;
 }
 .jspsych-survey-multi-choice-question {

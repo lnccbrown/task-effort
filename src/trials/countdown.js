@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 const buildCountdown = (text, time) => {
   const times = _.range(time, 0 , -1)
   const timeline = times.map( (val) => {return({ prompt: `
-		  	<div class='task_container'>
+		  	<div class='effort-container'>
 	  	    <h1>${text}<br><br>
 		  	${val}</h1></div>` })})
 
@@ -18,18 +18,4 @@ const buildCountdown = (text, time) => {
   })
 }
 
-// specify possible texts to go into buildCountdown
-const pracBlockCountdown1 = lang.countdown.practice1
-const exptBlockCountdown1 = lang.countdown.expt1
-const exptBlockCountdown2 = lang.countdown.expt2
-const exptBlockCountdown3 = lang.countdown.expt3
-const exptBlockCountdown4 = lang.countdown.expt4
-
-export {
-  buildCountdown,
-  pracBlockCountdown1,
-  exptBlockCountdown1,
-  exptBlockCountdown2,
-  exptBlockCountdown3,
-  exptBlockCountdown4,
-}
+export default buildCountdown
