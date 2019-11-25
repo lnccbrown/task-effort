@@ -5,7 +5,7 @@ import taskBlock from './taskBlock'
 import userId from '../trials/userId'
 
 import { MTURK, lang } from '../config/main'
-import { practiceBlock1 } from '../config/practice'
+import practiceBlock1 from '../config/practice'
 import { exptBlock1 } from '../config/experiment'
 import { tutorialBlock } from '../config/tutorial'
 

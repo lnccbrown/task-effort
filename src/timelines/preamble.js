@@ -5,7 +5,7 @@ import startCode from '../trials/startCode'
 import userId from '../trials/userId'
 import holdUpMarker from '../trials/holdUpMarker'
 import { AT_HOME } from '../config/main'
-import { practiceBlock1 } from '../config/practice'
+import practiceBlock1 from '../config/practice'
 import quizTimeline from '../trials/quizTrials'
 
 console.log('at_home', AT_HOME)
