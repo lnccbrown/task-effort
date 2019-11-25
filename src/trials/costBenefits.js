@@ -15,7 +15,7 @@ const costBenefits = (duration, value, effort) => {
     on_start: (trial) => {
       trial.stimulus = baseStimulus(`<canvas id="myCanvas"></canvas>`, true) + photodiodeGhostBox()
     },
-    on_load: () => startGame(value, [0, 1], effort, [15, -1], [true, false], [true, true], function(data = 'data') {console.log('data')}, 'costBenefits') + pdSpotEncode(code),
+    on_load: () => pdSpotEncode(code),
     on_finish: (data) => data.code = code
   }
 }

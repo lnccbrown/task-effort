@@ -40,7 +40,8 @@ html, body, #root, .App {
   display: visible;
 }
 
-.main-prompt, .task_container {
+
+.main-prompt, .effort-container {
   height: 100vh;
   width: 85vw;
   margin: auto;
@@ -51,7 +52,6 @@ html, body, #root, .App {
 }
 
 .main-prompt {
-  margin-top: -10%;
   margin-bottom: -20%;
 }
 

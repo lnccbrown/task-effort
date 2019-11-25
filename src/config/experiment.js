@@ -6,19 +6,13 @@ import { deepCopy } from '../lib/utils'
 // create copy of default settings
 let exptBlock1 = deepCopy(defaultBlockSettings)
 
-exptBlock1.probs = ["100%"]
+exptBlock1.probs = ["100%", "100%", "50%", "50%"]
 exptBlock1.counterbalance = true
-exptBlock1.value = [3, 1]
-exptBlock1.effort = [100, 20]
+exptBlock1.value = [3, 5, 7]
+exptBlock1.effort = [100, 120, 150]
 
-let exptBlock2 = deepCopy(defaultBlockSettings)
-let exptBlock3 = deepCopy(defaultBlockSettings)
-let exptBlock4 = deepCopy(defaultBlockSettings)
 
 
 export {
-  exptBlock1,
-  exptBlock2,
-  exptBlock3,
-  exptBlock4
+  exptBlock1
 }

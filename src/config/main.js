@@ -6,6 +6,11 @@ import { jsPsych } from 'jspsych-react'
 import _ from 'lodash'
 import { eventCodes } from './trigger'
 
+const canvasSettings = {
+	canvasSize: 600 // canvas is a square
+}
+
+
 // mapping of letters to key codes
 const keys = {
 	"A": 65,
@@ -48,5 +53,6 @@ export {
 	countdownWait,
 	eventCodes,
 	MTURK,
-	AT_HOME
+	AT_HOME,
+	canvasSettings
 }

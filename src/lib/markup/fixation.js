@@ -1,1 +1,1 @@
-export const fixationHTML = '<div class="task_container"><div id="fixation-dot"> </div></div>'
+export const fixationHTML = '<div class="effort-container"><div id="fixation-dot" class="color-white"> </div></div>'
