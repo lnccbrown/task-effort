@@ -42,7 +42,9 @@
     "reward_prob_display_event": "The chances that you will win on that round, and also the potential amount to win,<br>will be shown to you before you choose which balloon to inflate.",
     "pump_keys": "Press the    <b>q</b>    key to pump the balloon on the left and the    <b>p</b>    key to pump the balloon on the right.",
     "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
-    "ready": "The experiment will start now.<br>Press next when ready!"
+    "ready": "The experiment will start now.<br>Press next when ready!",
+    "blue_practice_pump": "On the next screen, try popping the <span style='color:blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <b>q</b>    key with your left index finger.</p>",
+    "green_practice_pump": "On the next screen, try popping the <span class='text-success'><b>GREEN</b></span> balloon:<br>To pump it, press the    <b>p</b>    key with your right index finger."
   },
   "quiz": {
     "respond_correctly": "Answer all of the questions below correctly to continue.",
