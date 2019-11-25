@@ -6,6 +6,18 @@ import { jsPsych } from 'jspsych-react'
 import _ from 'lodash'
 import { eventCodes } from './trigger'
 
+const canvasSettings = {
+	canvasSize: 600, // canvas is a square
+	frameDimensions: [200, 450],
+	frameXpos: [50, 350],
+	Ypos: 50,
+	frameLinecolor: '#ffffff',
+	spikeWidth: 50,
+	spikeRefHeight: 250,
+	spikeXpos: [150, 450],
+	textXpos: [70, 370],
+	textYpos: [550]
+}
 // mapping of letters to key codes
 const keys = {
 	"A": 65,
@@ -28,19 +40,26 @@ if (process.env.MTURK) { // if this is mturk, merge in the mturk specific langua
 }
 
 const defaultBlockSettings = {
-	probs: '100%',
+	probs: ["100%"],
+	value: [1, 0],
+	effort: [20, 0],
 	counterbalance: false,
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
 	is_tutorial: false,
-	photodiode_active: false
+	photodiode_active: false,
 }
+
+// how long to countdown
+const countdownWait = 3
 
 export {
 	keys,
 	defaultBlockSettings,
 	lang,
+	countdownWait,
 	eventCodes,
 	MTURK,
-	AT_HOME
+	AT_HOME,
+	canvasSettings
 }

@@ -9,44 +9,29 @@ import cumulativeRewards from '../trials/cumulativeRewards'
 import rewardFeedback from '../trials/rewardFeedback'
 import taskEnd from '../trials/taskEnd'
 
-const taskTrial = (blockSettings, blockDetails, condition) => {
+const taskTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
   let trialDetails = {
-    condition: condition,
     trial_earnings: 0,
     start_time: Date.now()
   }
-
-
-  let coreLoop = [
-    rewardProbability(500),
-    frameSpike(300),
-    costBenefits(700),
+  // timeline
+  let timeline = [
+    // show condition
+    fixation(500), // need ITI of ~500 btwn trials
+    rewardProbability(500, blockSettings.is_practice?opts:opts.prob),
+    frameSpike(300, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort),
+    costBenefits(700, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort),
     choice(5000),
     fixation(200),
     pressBalloon(2500),
     cumulativeRewards(800),
     fixation(500),
-    rewardFeedback(800)
-  ]
-
-  // loop function is if button pressed was a draw button (https://www.jspsych.org/overview/timeline/#looping-timelines)
-  let loopNode = {
-    timeline: coreLoop,
-    type: 'html_keyboard_response'
-  }
-
-
-  // timeline
-  let timeline = [
-    // show condition
-    fixation(500), // need ITI of ~500 btwn trials
-    loopNode,
+    rewardFeedback(800),
     fixation(500),
     // end the trial
     taskEnd(trialDetails, 500)
   ]
-
     return {
   		type: 'html_keyboard_response',
   		timeline: timeline
