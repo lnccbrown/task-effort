@@ -1,5 +1,6 @@
 import buildCountdown from '../trials/countdown'
 import preamble from './preamble'
+import experimentStart from '../trials/experimentStart'
 import experimentEnd from '../trials/experimentEnd'
 import taskBlock from './taskBlock'
 import userId from '../trials/userId'
@@ -13,13 +14,17 @@ import quizTimeline from '../trials/quizTrials'
 import startCode from '../trials/startCode'
 
 const primaryTimeline = [
+        experimentStart(),
+        userId(),
         preamble,
-        buildCountdown(lang.countdown.practice1, 3),
         bluePracticeInstructions(),
+        buildCountdown(lang.countdown.practice1, 3),
         taskBlock(practiceBlock1),
         greenPracticeInstructions(),
+        buildCountdown(lang.countdown.practice2, 3),
         taskBlock(practiceBlock2),
         realPracticeInstructions(),
+        buildCountdown(lang.countdown.practice3, 3),
         taskBlock(practiceBlock3),
         quizTimeline(practiceBlock1),
         postPracticeInstructions(),
@@ -29,6 +34,8 @@ const primaryTimeline = [
         ]
 
 const mturkTimeline = [
+        experimentStart(),
+        userId(),
         preamble,
         buildCountdown(lang.countdown.practice1, 3),
         bluePracticeInstructions(),

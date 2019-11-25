@@ -1,17 +1,22 @@
 import { lang } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 
-const screenOne = baseStimulus(`
+const welcomeScreenOne = baseStimulus(`
     <div class='instructions'>
     <h1>${lang.instructions.welcome}</h1>
     <br></br>
     <p>${lang.instructions.choose_btwn_two_balloons}</p>
+    </div>
+    `, true)
+
+const welcomeScreenTwo = baseStimulus(`
+    <div class='instructions'>
     <p>${lang.instructions.pop_balloon_earn_money}</p>
     <p>${lang.instructions.points_to_bonus_conversion}</p>
     </div>
     `, true)
 
-const screenTwo = baseStimulus(`
+const bluePracticeScreen = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.two_balloons}</p>
     <p>${lang.instructions.blue_balloon_points}</p>
@@ -19,38 +24,53 @@ const screenTwo = baseStimulus(`
     </div>
     `, true)
 
-const screenThree = baseStimulus(`
+const greenPracticeScreenOne = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.green_balloon_points}</p>
     <p>${lang.instructions.green_balloon_pop_time}</p>
+    </div>
+    `, true)
+
+const greenPracticeScreenTwo = baseStimulus(`
+    <div class='instructions'>
     <p>${lang.instructions.green_balloon_pump_bonus}</p>
+    </div>
+    `, true)
+
+const greenPracticeScreenThree = baseStimulus(`
+    <div class='instructions'>
     <p>${lang.instructions.green_practice_pump}</p>
     </div>
     `, true)
 
-const screenFour = baseStimulus(`
+const realPracticeScreenOne = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.green_balloon_variable_points_pumps}</p>
     <p>${lang.instructions.blue_balloon_constant_points_pumps}</p>
     </div>
     `, true)
 
-const screenFive = baseStimulus(`
+const realPracticeScreenTwo = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.reward_prob_variable}</p>
     <p>${lang.instructions.reward_prob_certain}</p>
+    </div>
+    `, true)
+
+const realPracticeScreenThree = baseStimulus(`
+    <div class='instructions'>
     <p>${lang.instructions.reward_prob_display_event}</p>
     </div>
     `, true)
 
-const screenSix = baseStimulus(`
+const realPracticeScreenFour = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.pump_keys}</p>
     <p>${lang.instructions.choice_locked_in}</p>
     </div>
     `, true)
 
-const screenSeven= baseStimulus(`
+const readyScreen = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.ready}</p>
     </div>
@@ -60,7 +80,8 @@ const screenSeven= baseStimulus(`
 const prePracticeInstructions = () => {
 
   let instructionsArray = [
-    screenOne
+    welcomeScreenOne,
+    welcomeScreenTwo
   ]
 
   return(
@@ -76,7 +97,7 @@ const prePracticeInstructions = () => {
 const bluePracticeInstructions = () => {
 
   let bluePracticeInstructionsArray = [
-    screenTwo
+    bluePracticeScreen
   ]
 
   return(
@@ -89,20 +110,12 @@ const bluePracticeInstructions = () => {
 }
 
 // Instruction screens re: green balloon
-const greenPractice = baseStimulus(`
-    <div class='instructions'>
-    <p>${lang.instructions.green_balloon_points}</p>
-    <p>${lang.instructions.green_balloon_pop_time}</p>
-    <p>${lang.instructions.green_balloon_pump_bonus}</p>
-    <p>${lang.instructions.green_balloon_variable_points_pumps}</p>
-    <p>${lang.instructions.green_practice_pump}</p>
-    </div>
-    `, true)
-
 const greenPracticeInstructions = () => {
 
   let greenPracticeInstructionsArray = [
-    screenThree
+    greenPracticeScreenOne,
+    greenPracticeScreenTwo,
+    greenPracticeScreenThree
   ]
 
   return(
@@ -119,9 +132,10 @@ const greenPracticeInstructions = () => {
 const realPracticeInstructions = () => {
 
   let realPracticeInstructionsArray = [
-    screenFour,
-    screenFive,
-    screenSix
+    realPracticeScreenOne,
+    realPracticeScreenTwo,
+    realPracticeScreenThree,
+    realPracticeScreenFour
   ]
 
   return(
@@ -137,7 +151,7 @@ const realPracticeInstructions = () => {
 const postPracticeInstructions = () => {
 
   let postPracticeInstructionsArray = [
-    screenSeven
+    readyScreen
   ]
 
   return(
