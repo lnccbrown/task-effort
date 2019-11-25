@@ -47,7 +47,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
           () => {
             done()
           },
-          10000)
+          2000)
       }
     }
 }
