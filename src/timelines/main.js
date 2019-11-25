@@ -13,8 +13,8 @@ import quizTimeline from '../trials/quizTrials'
 import startCode from '../trials/startCode'
 
 const primaryTimeline = [
-        preamble,
-        buildCountdown(lang.countdown.practice1, 3),
+        // preamble,
+        // buildCountdown(lang.countdown.practice1, 3),
         bluePracticeInstructions(),
         taskBlock(practiceBlock1),
         greenPracticeInstructions(),

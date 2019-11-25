@@ -1,10 +1,10 @@
 import { canvasSettings } from '../config/main'
 
-function drawText(ctx, points, pumpsRequired){
+function drawText(ctx, points, pumpsRequired, cx, cy){
     ctx.font = '20px Consolas';
     ctx.fillStyle = '#ffffff';
     let text = `${points} pts ${pumpsRequired} pumps`
-    ctx.fillText(text, 100, 100);
+    ctx.fillText(text, cx, cy);
 }
 
 function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
@@ -29,9 +29,8 @@ function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
     ctx.save();
 }
 
-function drawFrame(ctx, w, h, cx, cy, fillColor, lineColor, clear){
+function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
-    ctx.fillStyle = fillColor;
     ctx.strokeStyle = lineColor;
     ctx.beginPath();
     if (clear) {

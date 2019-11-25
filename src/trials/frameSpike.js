@@ -32,10 +32,14 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
         const canvasDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-          drawText(ctx, value[0], effort[0])
-          drawSpike(ctx, 2, 100, 50, 0, '#ffffff', '#ffffff', false)
-          drawFrame(ctx, 200, 200, 50, 0, '#000111', '#ffffff', false)
+          var spikeHeight = [effort[0]?effort[0]:0, effort[1]?effort[1]:0]
+          drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.Ypos, canvasSettings.frameLinecolor, false)
+          drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos)
+          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.Ypos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+          
+          drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.Ypos, canvasSettings.frameLinecolor, false)
+          drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos)
+          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.Ypos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
         }
 
         canvasDraw()
