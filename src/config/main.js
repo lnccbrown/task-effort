@@ -7,7 +7,8 @@ import _ from 'lodash'
 import { eventCodes } from './trigger'
 
 const canvasSettings = {
-	canvasSize: 600 // canvas is a square
+	canvasSize: 600, // canvas is a square
+	
 }
 
 
