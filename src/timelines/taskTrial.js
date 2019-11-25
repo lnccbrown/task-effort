@@ -9,20 +9,19 @@ import cumulativeRewards from '../trials/cumulativeRewards'
 import rewardFeedback from '../trials/rewardFeedback'
 import taskEnd from '../trials/taskEnd'
 
-const taskTrial = (blockSettings, blockDetails, probs) => {
+const taskTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
   let trialDetails = {
     trial_earnings: 0,
     start_time: Date.now()
   }
-
   // timeline
   let timeline = [
     // show condition
     fixation(500), // need ITI of ~500 btwn trials
-    rewardProbability(500, probs),
-    frameSpike(300, blockSettings.value, blockSettings.effort),
-    costBenefits(700, blockSettings.value, blockSettings.effort),
+    rewardProbability(500, blockSettings.is_practice?opts:opts.prob),
+    frameSpike(300, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort),
+    costBenefits(700, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort),
     choice(5000),
     fixation(200),
     pressBalloon(2500),
@@ -33,7 +32,6 @@ const taskTrial = (blockSettings, blockDetails, probs) => {
     // end the trial
     taskEnd(trialDetails, 500)
   ]
-
     return {
   		type: 'html_keyboard_response',
   		timeline: timeline

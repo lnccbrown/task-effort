@@ -61,7 +61,7 @@ class Balloon {
         // Draw text
         if(this.type == 'costBenefits'){
             ctx.font = '20px Consolas';
-            ctx.fillStyle = '#000000';
+            ctx.fillStyle = '#ffffff';
             this.text = `${this.points} pts ${this.pumpsRequired} pumps`
             ctx.fillText(this.text, this.x -100, this.y-10);
         }
@@ -72,11 +72,11 @@ class Balloon {
                        this.spikeWidth,
                        this.spikeHeight,
                        this.x, 0,
-                       '#000000',
-                       '#000000', false);
+                       '#ffffff',
+                       '#ffffff', false);
         
         // Draw Frame
-        drawRect(ctx, this.frameWidth, this.frameHeight, this.xframe, 0, '#ffffff', '#000000', false)
+        drawRect(ctx, this.frameWidth, this.frameHeight, this.xframe, 0, '#ffffff', '#ffffff', false)
     }
 
 
@@ -114,8 +114,8 @@ class Balloon {
                            this.spikeWidth,
                            this.spikeHeight,
                            this.x, 0,
-                           '#000000',
-                           '#000000', true);
+                           '#ffffff',
+                           '#ffffff', true);
 
             // Spike retracts
             var targetDist = 2 * this.inflateBy * (this.pumpsRequired - this.countPumps - 1);

@@ -13,14 +13,14 @@ import startCode from '../trials/startCode'
 
 
 const primaryTimeline = [
-        preamble,
-        buildCountdown(lang.countdown.message1, 3),
-        taskBlock(practiceBlock1),
-        buildCountdown(lang.countdown.message2, 3),
-        taskBlock(practiceBlock2),
-        buildCountdown(lang.countdown.message3, 3),
-        taskBlock(practiceBlock3),
-        buildCountdown(lang.countdown.message4, 3),
+        //preamble,
+        //buildCountdown(lang.countdown.message1, 3),
+        //taskBlock(practiceBlock1),
+        //buildCountdown(lang.countdown.message2, 3),
+        //taskBlock(practiceBlock2),
+        //buildCountdown(lang.countdown.message3, 3),
+        //taskBlock(practiceBlock3),
+        //buildCountdown(lang.countdown.message4, 3),
         taskBlock(exptBlock1),
         experimentEnd(5000)
         ]
