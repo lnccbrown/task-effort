@@ -13,6 +13,7 @@ const canvasSettings = {
 	Ypos: 50,
 	frameLinecolor: '#ffffff',
 	spikeWidth: 50,
+	spikeRefHeight: 250,
 	spikeXpos: [150, 450],
 	textXpos: [70, 370],
 	textYpos: [550]
