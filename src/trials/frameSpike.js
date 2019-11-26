@@ -36,7 +36,7 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
           for (let i =0 ; i < 2; i++)
           {
             if (high_effort[i]) {
-                inflateBy = canvasSettings.frameDimensions[1] / 800
+                inflateBy = canvasSettings.frameDimensions[1] / 10000
             }
             else {
                 inflateBy = canvasSettings.frameDimensions[1] / 100
@@ -46,7 +46,7 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
             var targetDist = 2 * inflateBy * (effort[i] - 1);
             var balloonHeight = canvasSettings.balloonHeight;
             // distance of the spike from the top
-            spikeHeight[i] = canvasSize - balloonHeight - targetDist;
+            spikeHeight[i] = effort[i]?(canvasSize - balloonHeight - targetDist):0;
           }
           // var spikeRefHeight = canvasSettings.spikeRefHeight;
           // var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0];
