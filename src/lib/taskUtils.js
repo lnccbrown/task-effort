@@ -19,9 +19,9 @@ const generateStartingOpts = (blockSettings) => {
 		for (let i = 0; i < blockSettings.probs.length; i++){
 			for (let val in blockSettings.value){
 				for (let eff in blockSettings.effort){
-					opts.push({prob: blockSettings.probs[i], effort: [blockSettings.effort[eff],20], value: [blockSettings.value[val], 1]})
+					opts.push({prob: blockSettings.probs[i], effort: [blockSettings.effort[eff],20], value: [blockSettings.value[val], 1], high_effort: [true, false]})
 					if (blockSettings.counterbalance){
-						opts.push({prob: blockSettings.probs[i], effort: [20, blockSettings.effort[eff]], value: [1, blockSettings.value[val]]});
+						opts.push({prob: blockSettings.probs[i], effort: [20, blockSettings.effort[eff]], value: [1, blockSettings.value[val]], high_effort: [false, true]});
 					}
 				}
 			}

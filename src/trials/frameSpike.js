@@ -11,7 +11,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-  const frameSpike = (duration, value, effort) => {
+  const frameSpike = (duration, effort, high_effort) => {
     let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
     return {
@@ -20,7 +20,6 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
       func: (done) => {
         // send trigger events
         const code = eventCodes.frameSpike
-
         // add stimulus to the DOM
         document.getElementById('jspsych-content').innerHTML = stimulus
         // $('#jspsych-content').addClass('task-container')
@@ -32,9 +31,26 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
         const canvasDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          var spikeRefHeight = canvasSettings.spikeRefHeight;
-          var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0];
-          
+          var inflateBy;
+          var spikeHeight = [0, 0]
+          for (let i =0 ; i < 2; i++)
+          {
+            if (high_effort[i]) {
+                inflateBy = canvasSettings.frameDimensions[1] / 800
+            }
+            else {
+                inflateBy = canvasSettings.frameDimensions[1] / 100
+            }
+
+            // how far should the spike be
+            var targetDist = 2 * inflateBy * (effort[i] - 1);
+            var balloonHeight = canvasSettings.balloonHeight;
+            // distance of the spike from the top
+            spikeHeight[i] = canvasSize - balloonHeight - targetDist;
+          }
+          // var spikeRefHeight = canvasSettings.spikeRefHeight;
+          // var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0];
+          console.log(spikeHeight)
           drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
           drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
           

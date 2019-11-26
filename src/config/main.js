@@ -28,7 +28,9 @@ const canvasSettings = {
 	spikeYpos: x17,
 	textXpos: [x20, x70],
 	textYpos: x67,
-	lineHeight: x2
+	lineHeight: x2,
+	balloonRadius: 20,
+	balloonHeight: x75+x8-x17
 }
 // mapping of letters to key codes
 const keys = {
@@ -55,10 +57,10 @@ const defaultBlockSettings = {
 	probs: ["100%"],
 	value: [1, 0],
 	effort: [20, 0],
+	high_effort: [],
 	counterbalance: false,
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
-	is_tutorial: false,
 	photodiode_active: false,
 }
 
