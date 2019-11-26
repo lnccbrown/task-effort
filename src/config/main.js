@@ -18,6 +18,8 @@ const canvasSettings = {
 	spikeYpos: 100,
 	textXpos: [120, 420],
 	textYpos: 400,
+	balloonXpos: [150, 450],
+	balloonYpos: 500,
 	lineHeight: 10
 }
 // mapping of letters to key codes
