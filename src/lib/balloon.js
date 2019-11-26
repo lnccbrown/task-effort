@@ -3,8 +3,12 @@ import { canvasSettings } from '../config/main'
 function drawText(ctx, points, pumpsRequired, cx, cy){
     ctx.font = '20px Consolas';
     ctx.fillStyle = '#ffffff';
-    let text = `${points} pts ${pumpsRequired} pumps`
-    ctx.fillText(text, cx, cy);
+    var lineHeight = canvasSettings.lineHeight;
+    ctx.lineHeight = lineHeight;
+    let text = `${points} pts` 
+    let text2 = `${pumpsRequired} pumps`
+    ctx.fillText(text, cx+lineHeight, cy);
+    ctx.fillText(text2, cx-lineHeight, cy+(lineHeight*2));
 }
 
 function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){

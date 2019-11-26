@@ -10,13 +10,15 @@ const canvasSettings = {
 	canvasSize: 600, // canvas is a square
 	frameDimensions: [200, 450],
 	frameXpos: [50, 350],
-	Ypos: 50,
+	frameYpos: 50,
 	frameLinecolor: '#ffffff',
 	spikeWidth: 50,
 	spikeRefHeight: 250,
 	spikeXpos: [150, 450],
-	textXpos: [70, 370],
-	textYpos: [550]
+	spikeYpos: 100,
+	textXpos: [120, 420],
+	textYpos: 400,
+	lineHeight: 10
 }
 // mapping of letters to key codes
 const keys = {
