@@ -2,10 +2,10 @@
 import fixation from '../trials/fixation'
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
-import { canvasSettings } from '../config/main'
+import { canvasSize, canvasSettings } from '../config/main'
 import { drawSpike, drawFrame } from '../lib/balloon'
 
-const CANVAS_SIZE = canvasSettings.canvasSize
+const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
     Your browser does not support HTML5 canvas
   </canvas>`
