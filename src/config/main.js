@@ -43,10 +43,10 @@ const defaultBlockSettings = {
 	probs: ["100%"],
 	value: [1, 0],
 	effort: [20, 0],
+	high_effort: [],
 	counterbalance: false,
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
-	is_tutorial: false,
 	photodiode_active: false,
 }
 

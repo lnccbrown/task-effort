@@ -47,8 +47,23 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
 }
 
+function drawBalloon(){
+    // if (!this.popped) {
+    //     ctx.save();
+    //     ctx.beginPath();
+    //     ctx.scale(0.75, 1);
+    //     ctx.arc(this.x * 1 / 0.75, this.y - this.baseHeight, this.radius, 0, 2 * Math.PI);
+    //     ctx.fillStyle = this.color;
+    //     ctx.strokeStyle = this.color;
+    //     ctx.fill();
+    //     ctx.lineWidth = 1;
+    //     ctx.restore();
+    // }
+}
+
 export{
     drawText,
     drawSpike,
-    drawFrame
+    drawFrame,
+    drawBalloon
 }

@@ -3,7 +3,7 @@ import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSettings } from '../config/main'
-import { drawText, drawSpike, drawFrame } from '../lib/balloon'
+import { drawText, drawSpike, drawFrame } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSettings.canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
