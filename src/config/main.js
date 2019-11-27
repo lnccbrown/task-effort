@@ -5,20 +5,32 @@
 import { jsPsych } from 'jspsych-react'
 import _ from 'lodash'
 import { eventCodes } from './trigger'
-
+const canvasSize = 600
+const x25 = canvasSize * 0.25
+const x20 = canvasSize * 0.2
+const x33 = canvasSize * 0.33
+const x75 = canvasSize * 0.75
+const x8 = canvasSize * 0.0833
+const x58 = canvasSize * 0.5833
+const x42 = canvasSize * 0.4166
+const x17 = canvasSize * 0.1667
+const x70 = canvasSize * 0.7
+const x67 = canvasSize * 0.6667
+const x2 = canvasSize * 0.01667
 const canvasSettings = {
-	canvasSize: 600, // canvas is a square
-	frameDimensions: [200, 450],
-	frameXpos: [50, 350],
-	frameYpos: 50,
+	frameDimensions: [x33, x75],
+	frameXpos: [x8, x58],
+	frameYpos: x8,
 	frameLinecolor: '#ffffff',
-	spikeWidth: 50,
-	spikeRefHeight: 250,
-	spikeXpos: [150, 450],
-	spikeYpos: 100,
-	textXpos: [120, 420],
-	textYpos: 400,
-	lineHeight: 10
+	spikeWidth: x8,
+	spikeRefHeight: x42,
+	spikeXpos: [x25, x75],
+	spikeYpos: x17,
+	textXpos: [x20, x70],
+	textYpos: x67,
+	lineHeight: x2,
+	balloonRadius: 20,
+	balloonHeight: x75+x8-x17
 }
 // mapping of letters to key codes
 const keys = {
@@ -45,10 +57,10 @@ const defaultBlockSettings = {
 	probs: ["100%"],
 	value: [1, 0],
 	effort: [20, 0],
+	high_effort: [],
 	counterbalance: false,
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
-	is_tutorial: false,
 	photodiode_active: false,
 }
 
@@ -63,5 +75,6 @@ export {
 	eventCodes,
 	MTURK,
 	AT_HOME,
+	canvasSize,
 	canvasSettings
 }
