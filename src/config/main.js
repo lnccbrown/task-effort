@@ -22,6 +22,8 @@ const canvasSettings = {
 	frameXpos: [x8, x58],
 	frameYpos: x8,
 	frameLinecolor: '#ffffff',
+	balloonXpos: [150, 450],
+	balloonYpos: 500,
 	spikeWidth: x8,
 	spikeRefHeight: x42,
 	spikeXpos: [x25, x75],
@@ -39,6 +41,8 @@ const keys = {
 	"C": 67,
 	"F": 70,
 	"J": 74,
+	"P": 80,
+	"Q": 81,
 	"space": 32
 }
 

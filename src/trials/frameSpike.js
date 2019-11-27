@@ -1,9 +1,8 @@
 // imports
-import fixation from '../trials/fixation'
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
-import { drawSpike, drawFrame } from '../lib/balloon'
+import { drawSpike, drawFrame } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -24,9 +23,9 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
         document.getElementById('jspsych-content').innerHTML = stimulus
         // $('#jspsych-content').addClass('task-container')
 
-        // set up canvas
-        let canvas = document.querySelector('#jspsych-canvas');
-        let ctx = canvas.getContext('2d');
+      // set up canvas
+      let canvas = document.querySelector('#jspsych-canvas');
+      let ctx = canvas.getContext('2d');
 
         const canvasDraw = () => {
           // transparent background
@@ -56,17 +55,16 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
           
           drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
           drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
-        
-        }
-
-        canvasDraw()
-        pdSpotEncode(code)
-        setTimeout(
-          () => {
-            done()
-          },
-          duration)
       }
+
+      canvasDraw()
+      pdSpotEncode(code)
+      setTimeout(
+        () => {
+          done()
+        },
+        duration)
     }
+  }
 }
 export default frameSpike

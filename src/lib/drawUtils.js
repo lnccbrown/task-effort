@@ -1,8 +1,18 @@
 import { canvasSettings } from '../config/main'
 
-function drawText(ctx, points, pumpsRequired, cx, cy){
+function drawText(ctx, points, pumpsRequired, cx, cy, high_effort){
+    var color;
+    if (high_effort){
+        color = 'green'
+    }
+    else if(pumpsRequired==0){
+        color = 'black'
+    }
+    else{
+        color = 'blue'
+    }
     ctx.font = '20px Consolas';
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = color;
     var lineHeight = canvasSettings.lineHeight;
     ctx.lineHeight = lineHeight;
     let text = `${points} pts` 
@@ -35,6 +45,7 @@ function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
 
 function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
+    ctx.lineWidth = 1.5;
     ctx.strokeStyle = lineColor;
     ctx.beginPath();
     if (clear) {
@@ -51,8 +62,31 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
 }
 
+function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy){
+    var color;
+    if (high_effort){
+        color = 'green'
+    }
+    else if(pumpsRequired==0){
+        color = 'black'
+    }
+    else{
+        color = 'blue'
+    }
+    ctx.save();
+    ctx.beginPath();
+    ctx.scale(0.75, 1);
+    ctx.arc(cx * 1 / 0.75, cy - 100, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.restore();
+}
+
 export{
     drawText,
     drawSpike,
-    drawFrame
+    drawFrame,
+    drawBalloon
 }

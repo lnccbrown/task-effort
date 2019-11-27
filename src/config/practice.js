@@ -15,6 +15,7 @@ practiceBlock1.high_effort = [false, false]
 
 // Practice Block 1 -- greenPractice
 let practiceBlock2 = deepCopy(defaultBlockSettings)
+
 practiceBlock2.is_practice = true
 practiceBlock2.probs = ["100%"]
 practiceBlock2.value = [0, 5]
@@ -23,6 +24,7 @@ practiceBlock2.high_effort = [false, true]
 
 // Practice Block 1 -- realPractice
 let practiceBlock3 = deepCopy(defaultBlockSettings)
+
 practiceBlock3.is_practice = true
 practiceBlock3.probs = ["50%"]
 practiceBlock3.value = [1, 5]

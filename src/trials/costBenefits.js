@@ -2,7 +2,7 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
-import { drawText, drawSpike, drawFrame } from '../lib/balloon'
+import { drawText, drawSpike, drawFrame } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -50,11 +50,11 @@ const costBenefits = (duration, value, effort, high_effort) => {
         }
         
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos)
+        drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
         
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos)
+        drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
         
       }

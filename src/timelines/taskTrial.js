@@ -24,7 +24,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     costBenefits(3000, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     choice(5000, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     fixation(200),
-    pressBalloon(2500),
+    pressBalloon(2500, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     cumulativeRewards(800),
     fixation(500),
     rewardFeedback(800),
