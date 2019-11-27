@@ -1,10 +1,10 @@
 // imports
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
-import { canvasSettings } from '../config/main'
+import { canvasSize, canvasSettings } from '../config/main'
 import { drawText, drawSpike, drawFrame } from '../lib/drawUtils'
 
-const CANVAS_SIZE = canvasSettings.canvasSize
+const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
     Your browser does not support HTML5 canvas
   </canvas>`
@@ -31,9 +31,23 @@ const costBenefits = (duration, value, effort, high_effort) => {
       const canvasDraw = () => {
         // transparent background
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        var spikeRefHeight = canvasSettings.spikeRefHeight;
-        var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0];
+        var inflateBy;
+        var spikeHeight = [0, 0]
+        for (let i =0 ; i < 2; i++)
+        {
+          if (high_effort[i]) {
+              inflateBy = canvasSettings.frameDimensions[1] / 10000
+          }
+          else {
+              inflateBy = canvasSettings.frameDimensions[1] / 100
+          }
 
+          // how far should the spike be
+          var targetDist = 2 * inflateBy * (effort[i] - 1);
+          var balloonHeight = canvasSettings.balloonHeight;
+          // distance of the spike from the top
+          spikeHeight[i] = effort[i]?(canvasSize - balloonHeight - targetDist):0;
+        }
         
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
