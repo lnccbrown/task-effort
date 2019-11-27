@@ -45,6 +45,7 @@ function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
 
 function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
+    ctx.lineWidth = 1.5;
     ctx.strokeStyle = lineColor;
     ctx.beginPath();
     if (clear) {
