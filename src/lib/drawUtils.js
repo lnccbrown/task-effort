@@ -62,7 +62,7 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
     ctx.save();
 }
 
-function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy){
+function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy, radius){
     var color;
     if (high_effort){
         color = 'green'
@@ -76,7 +76,7 @@ function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy){
     ctx.save();
     ctx.beginPath();
     ctx.scale(0.75, 1);
-    ctx.arc(cx * 1 / 0.75, cy - 100, 20, 0, 2 * Math.PI);
+    ctx.arc(cx * 1 / 0.75, cy - 100, radius, 0, 2 * Math.PI);
     ctx.fillStyle = color;
     ctx.strokeStyle = color;
     ctx.fill();
