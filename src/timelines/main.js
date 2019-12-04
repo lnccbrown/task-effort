@@ -14,11 +14,11 @@ import quizTimeline from '../trials/quizTrials'
 import startCode from '../trials/startCode'
 
 const primaryTimeline = [
-        // experimentStart(),
-        // userId(),
-        // preamble,
-        // bluePracticeInstructions(),
-        // buildCountdown(lang.countdown.practice1, 3),
+        experimentStart(),
+        userId(),
+        preamble,
+        bluePracticeInstructions(),
+        buildCountdown(lang.countdown.practice1, 3),
         taskBlock(practiceBlock1),
         greenPracticeInstructions(),
         buildCountdown(lang.countdown.practice2, 3),
