@@ -91,7 +91,7 @@ const pressBalloon = (duration) => {
         var balloonHeight = (balloonBase + 2 * radius);
         var remaining = canvasSettings.frameDimensions[1] - balloonHeight - canvasSettings.spiketopHeight
         var crash = false;
-        console.log(spikeHeight, remaining)
+        // console.log(spikeHeight, remaining)
         if (spikeHeight > remaining) {
             crash = true;
         }
@@ -113,9 +113,9 @@ const pressBalloon = (duration) => {
             timeWhenStarted = (new Date()).getTime();
         }
         countPumps++;
-
+        console.log(countPumps)
         // inflate balloon
-        console.log(inflateBy)
+        // console.log(inflateBy)
         radius += inflateBy;
         balloonYpos -= inflateBy;
 
@@ -126,42 +126,47 @@ const pressBalloon = (duration) => {
         if (choice.key == keys['P']){
           drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], balloonYpos, radius) 
         }
-
-        // if (hitSpike() && highEffort) {
-        //     // Remove current spike
-        //     drawEqTriangle(this.myGame.context,
-        //                    this.spikeWidth,
-        //                    this.spikeHeight,
-        //                    this.x, 0,
-        //                    '#080808',
-        //                    '#080808', true);
-
-        //     // Spike retracts
-        //     var targetDist = 2 * this.inflateBy * (this.pumpsRequired - this.countPumps - 1);
-        //     var balloonHeight = 2 * this.radius + this.baseHeight;
-        //     // distance of the spike from the top
-        //     this.spikeHeight = canvasHeight - balloonHeight;
-        //     this.updateSpike();
-        // }
+        if (hitSpike() && !choice.high_effort){
+          pop()
+        }
+        if (hitSpike() && choice.high_effort)
+        {
+          if (choice.key == keys['Q'])
+          {
+            drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, true)
+            drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], balloonYpos, radius)  
+          }
+          if (choice.key == keys['P'])
+          {
+            drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, true)
+            drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], balloonYpos, radius)  
+          }
+          var balloonBase = canvasSettings.balloonBaseHeight
+          var balloonHeight = (balloonBase + (2* radius));
+          spikeHeight = canvasSettings.frameDimensions[1] - balloonHeight - canvasSettings.spiketopHeight
+          if (choice.key == keys['Q'])
+          {
+            drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false) 
+          }
+          if (choice.key == keys['P'])
+          {
+            drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false) 
+          }
+          if (countPumps > choice.effort+10){
+            pop()
+            return
+          }
+        }
       }
       function after_response(info) {
         let keys_pressed = jsPsych.data.get().select('value').values
         let choice = keys_pressed[keys_pressed.length - 1]
         if (info.key == choice.key){
           inflate(choice)
-          if (hitSpike())
-          {
+          if (popped){
             jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
             done()
           }
-        }
-        else{
-          inflate(choice)
-          if (hitSpike())
-          {
-            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
-            done()
-          }  
         }
       }
 
