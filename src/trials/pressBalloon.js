@@ -13,9 +13,9 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 // const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration) => {
+const pressBalloon = (duration, valid_keys) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
-
+  
   return {
     type: 'call_function',
     async: true,
@@ -113,7 +113,6 @@ const pressBalloon = (duration) => {
             timeWhenStarted = (new Date()).getTime();
         }
         countPumps++;
-        console.log(countPumps)
         // inflate balloon
         // console.log(inflateBy)
         radius += inflateBy;
@@ -173,7 +172,7 @@ const pressBalloon = (duration) => {
       // start the response listener
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: after_response,
-          valid_responses: ['q', 'p'],
+          valid_responses: valid_keys,
           rt_method: 'date',
           persist: true,
           allow_held_key: false

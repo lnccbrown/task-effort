@@ -8,7 +8,7 @@ const rewardProbability = (duration, probability) => {
   return {
     type: 'html_keyboard_response',
     stimulus: '',
-    prompt:  lang.prompt.continue.press,
+    // prompt:  lang.prompt.continue.press,
     response_ends_trial: false,
     trial_duration: duration,
     on_start: (trial) => {

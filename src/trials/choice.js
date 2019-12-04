@@ -10,9 +10,9 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const choice = (duration, effort, high_effort) => {
+const choice = (duration, effort, high_effort, valid_keys) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
-
+  // console.log(valid_keys)
   return {
     type: 'call_function',
     async: true,
@@ -31,6 +31,7 @@ const choice = (duration, effort, high_effort) => {
       const canvasDraw = () => {
         // transparent background
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        console.log(valid_keys)
         var inflateBy;
         var spikeHeight = [0, 0]
         for (let i =0 ; i < 2; i++)
@@ -79,10 +80,9 @@ const choice = (duration, effort, high_effort) => {
         }
       }
 
-      // start the response listener
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
           callback_function: after_response,
-          valid_responses: ['q', 'p'],
+          valid_responses: valid_keys,
           rt_method: 'date',
           persist: true,
           allow_held_key: false
