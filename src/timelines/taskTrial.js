@@ -21,10 +21,10 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500), // need ITI of ~500 btwn trials
     rewardProbability(500, blockSettings.is_practice?opts:opts.prob),
     frameSpike(700, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
-    costBenefits(3000, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
-    choice(5000, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
+    costBenefits(1500, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
+    choice(5000, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys),
     fixation(200),
-    pressBalloon(2500, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
+    pressBalloon(2500, blockSettings.keys),
     cumulativeRewards(800),
     fixation(500),
     rewardFeedback(800),

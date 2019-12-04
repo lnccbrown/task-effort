@@ -8,11 +8,11 @@ const rewardProbability = (duration, probability) => {
   return {
     type: 'html_keyboard_response',
     stimulus: '',
-    prompt:  lang.prompt.continue.press,
-    response_ends_trial: true,
-    //trial_duration: duration,
+    // prompt:  lang.prompt.continue.press,
+    response_ends_trial: false,
+    trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h1>Reward Probability</h1><br><h3>${probability}</h3>`, true) +
+      trial.stimulus = baseStimulus(`<h1>${probability}</h1>`, true) +
       photodiodeGhostBox()
     },
     on_load: () => pdSpotEncode(code),
