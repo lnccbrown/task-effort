@@ -36,17 +36,17 @@ const choice = (duration, effort, high_effort) => {
         for (let i =0 ; i < 2; i++)
         {
           if (high_effort[i]) {
-              inflateBy = canvasSettings.frameDimensions[1] / 10000
+              inflateBy = canvasSettings.inflateByHE
           }
           else {
-              inflateBy = canvasSettings.frameDimensions[1] / 100
+              inflateBy = canvasSettings.inflateByNHE
           }
 
           // how far should the spike be
           var targetDist = 2 * inflateBy * (effort[i] - 1);
-          var balloonHeight = canvasSettings.balloonHeight;
+          var balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
           // distance of the spike from the top
-          spikeHeight[i] = effort[i]?(canvasSize - balloonHeight - targetDist):0;
+          spikeHeight[i] = effort[i]?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
         }
         
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
@@ -60,11 +60,22 @@ const choice = (duration, effort, high_effort) => {
 
       canvasDraw()
       function after_response(info) {
+        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
         if (info.key == keys["Q"]) { // 1 key
-          done('q')
+          var returnObj ={
+            "key": info.key,
+            "effort": effort[0],
+            "high_effort": high_effort[0]
+          }
+          done(returnObj)
         }
-        if (info.key == keys["P"]) { // 0 key
-          done('p')
+        else if (info.key == keys["P"]) { // 0 key
+          var returnObj ={
+            "key": info.key,
+            "effort": effort[1],
+            "high_effort": high_effort[1]
+          }
+          done(returnObj)
         }
       }
 
@@ -76,7 +87,6 @@ const choice = (duration, effort, high_effort) => {
           persist: true,
           allow_held_key: false
       });
-      document.removeEventListener('keydown', keyboardListener);
       pdSpotEncode(code)
     }
   }

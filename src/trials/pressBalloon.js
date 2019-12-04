@@ -13,7 +13,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 // const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration, effort, high_effort) => {
+const pressBalloon = (duration) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
 
   return {
@@ -31,43 +31,73 @@ const pressBalloon = (duration, effort, high_effort) => {
       let canvas = document.querySelector('#jspsych-canvas');
       let ctx = canvas.getContext('2d');
       let timeWhenStarted = (new Date()).getTime()
-      var inflateBy, popped=0, countPumps=0, radius=canvasSettings.balloonRadius;
-
+      let inflateBy, popped=0, countPumps=0, radius=canvasSettings.balloonRadius, spikeHeight;
+      let balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
+      let balloonYpos = canvasSettings.balloonYpos;
+      
+      let keys_pressed = jsPsych.data.get().select('value').values
+      let choice = keys_pressed[keys_pressed.length - 1]
+      if (choice.high_effort) {
+        inflateBy = canvasSettings.inflateByHE
+      }
+      else {
+          inflateBy = canvasSettings.inflateByNHE
+      }
       const canvasDraw = () => {
         // transparent background
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        var spikeHeight = [0, 0]
-        for (let i =0 ; i < 2; i++)
-        {
-          if (high_effort[i]) {
-              inflateBy = canvasSettings.frameDimensions[1] / 10000
-          }
-          else {
-              inflateBy = canvasSettings.frameDimensions[1] / 100
-          }
-
-          // how far should the spike be
-          var targetDist = 2 * inflateBy * (effort[i] - 1);
-          var balloonHeight = canvasSettings.balloonHeight;
-          // distance of the spike from the top
-          spikeHeight[i] = effort[i]?(canvasSize - balloonHeight - targetDist):0;
-        }
-        if (jsPsych.data.get().select('value').values[0] == 'q')
-        {
-          drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
-          drawBalloon(ctx, effort[0], high_effort[0], canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, radius)
+        var targetDist = 2 * inflateBy * (choice.effort - 1);
+        spikeHeight = choice.effort?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
+        if (choice.key == keys['Q']){
+          // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+          drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, radius)
         }
         else{
-          drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
-          drawBalloon(ctx, effort[1], high_effort[1], canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, radius)
+          // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+          drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+          drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, radius)
         }
       }
 
       canvasDraw()
+      function pop() {
+        // pop balloon
+        popped = true;
+        // this.deleteCircle();
 
-      function inflate(radius){
+        // var reward = this.computeReward()
+        // if (reward == 1) {
+        //     this.text = "You win " + reward + " point.";
+        // }
+        // else {
+        //     this.text = "You win " + reward + " points.";
+        // }
+        // this.updateSpike();
+        // this.timeWhenPopped = (new Date()).getTime();
+
+        // var data = {
+        //     balloon: this.side,
+        //     pumps: this.countPumps,
+        //     timeWhenPopped: this.timeWhenPopped,
+        //     timeWhenStarted: this.myGame.timeWhenStarted,
+        //     points: reward,
+        //     firstPress: this.rts[0],
+        //     lastPress: this.rts[this.rts.length - 1],
+        //     RTs: this.rts,
+        };
+      function hitSpike() {
+        var balloonBase = canvasSettings.balloonBaseHeight
+        var balloonHeight = (balloonBase + 2 * radius);
+        var remaining = canvasSettings.frameDimensions[1] - balloonHeight - canvasSettings.spiketopHeight
+        var crash = false;
+        console.log(spikeHeight, remaining)
+        if (spikeHeight > remaining) {
+            crash = true;
+        }
+        return crash;
+      }
+      function inflate(choice){
         // if (popped){
         //   return
         // }
@@ -85,15 +115,17 @@ const pressBalloon = (duration, effort, high_effort) => {
         countPumps++;
 
         // inflate balloon
+        console.log(inflateBy)
         radius += inflateBy;
-        // y -= inflateBy;
+        balloonYpos -= inflateBy;
 
         // redraw
-        drawBalloon(ctx, effort[0], high_effort[0], canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, 40)
-
-        // if (hitSpike() && !highEffort) {
-        //     pop();
-        // }
+        if (choice.key == keys['Q']){
+          drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], balloonYpos, radius) 
+        }
+        if (choice.key == keys['P']){
+          drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], balloonYpos, radius) 
+        }
 
         // if (hitSpike() && highEffort) {
         //     // Remove current spike
@@ -112,32 +144,35 @@ const pressBalloon = (duration, effort, high_effort) => {
         //     this.updateSpike();
         // }
       }
-      let key;
-      const handleEventListener = (event) => {
-        // get event key and record time
-        key = event.keyCode
-
-        if (key == keys[jsPsych.data.get().select('value').values[0]]) {
-            pdSpotEncode(code)
-
-            inflate(radius)
-            // and unbind the event listener to stop recording keys
-            $(document).unbind('keydown', handleEventListener)
-            // finish trial
-            done(key)
+      function after_response(info) {
+        let keys_pressed = jsPsych.data.get().select('value').values
+        let choice = keys_pressed[keys_pressed.length - 1]
+        if (info.key == choice.key){
+          inflate(choice)
+          if (hitSpike())
+          {
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
+            done()
+          }
         }
-        else {
-            pdSpotEncode(code)
-
-            inflate(radius)
-            // and unbind the event listener to stop recording keys
-            $(document).unbind('keydown', handleEventListener)
-            // finish trial
-            done(key)
+        else{
+          inflate(choice)
+          if (hitSpike())
+          {
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
+            done()
+          }  
         }
       }
-      // Bind event listener to document
-      $(document).bind('keydown', handleEventListener)
+
+      // start the response listener
+      var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
+          callback_function: after_response,
+          valid_responses: ['q', 'p'],
+          rt_method: 'date',
+          persist: true,
+          allow_held_key: false
+      });
       pdSpotEncode(code)
     }
   }

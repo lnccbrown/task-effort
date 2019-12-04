@@ -17,13 +17,15 @@ const x17 = canvasSize * 0.1667
 const x70 = canvasSize * 0.7
 const x67 = canvasSize * 0.6667
 const x2 = canvasSize * 0.01667
+const x3 = canvasSize * 0.033333
+const x68 = canvasSize * 0.683333
 const canvasSettings = {
 	frameDimensions: [x33, x75],
 	frameXpos: [x8, x58],
 	frameYpos: x8,
 	frameLinecolor: '#ffffff',
-	balloonXpos: [150, 450],
-	balloonYpos: 500,
+	balloonXpos: [x25, x75],
+	balloonYpos: x68,
 	spikeWidth: x8,
 	spikeRefHeight: x42,
 	spikeXpos: [x25, x75],
@@ -31,8 +33,11 @@ const canvasSettings = {
 	textXpos: [x20, x70],
 	textYpos: x67,
 	lineHeight: x2,
-	balloonRadius: 20,
-	balloonHeight: x75+x8-x17
+	balloonRadius: x2,
+	balloonBaseHeight: x8 + x75 - x68 - x2, // Balloon base height
+	spiketopHeight: x17 - x8, // top height left from frame to spike
+	inflateByHE: x75 / 800,
+	inflateByNHE: x75 / 65
 }
 // mapping of letters to key codes
 const keys = {

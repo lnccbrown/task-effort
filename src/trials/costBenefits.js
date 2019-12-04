@@ -36,17 +36,17 @@ const costBenefits = (duration, value, effort, high_effort) => {
         for (let i =0 ; i < 2; i++)
         {
           if (high_effort[i]) {
-              inflateBy = canvasSettings.frameDimensions[1] / 10000
+              inflateBy = canvasSettings.inflateByHE
           }
           else {
-              inflateBy = canvasSettings.frameDimensions[1] / 100
+              inflateBy = canvasSettings.inflateByNHE
           }
 
           // how far should the spike be
           var targetDist = 2 * inflateBy * (effort[i] - 1);
-          var balloonHeight = canvasSettings.balloonHeight;
+          var balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
           // distance of the spike from the top
-          spikeHeight[i] = effort[i]?(canvasSize - balloonHeight - targetDist):0;
+          spikeHeight[i] = effort[i]?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
         }
         
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
