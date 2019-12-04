@@ -12,7 +12,7 @@ const rewardProbability = (duration, probability) => {
     response_ends_trial: true,
     //trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h3>${probability}</h3>`, true) +
+      trial.stimulus = baseStimulus(`<h1>${probability}</h1>`, true) +
       photodiodeGhostBox()
     },
     on_load: () => pdSpotEncode(code),
