@@ -1,6 +1,6 @@
-// src/config/main.js
+// config/main.js
 // This is the main configuration file where universal and default settings should be placed.
-// These settings can then be imported anywhere in the app as they are exported at the botom of the file.
+// These settins can then be imported anywhere in the app as they are exported at the botom of the file.
 
 import { jsPsych } from 'jspsych-react'
 import _ from 'lodash'
@@ -41,6 +41,11 @@ const canvasSettings = {
 }
 // mapping of letters to key codes
 const keys = {
+	"A": 65,
+	"B": 66,
+	"C": 67,
+	"F": 70,
+	"J": 74,
 	"P": 80,
 	"Q": 81,
 	"space": 32
