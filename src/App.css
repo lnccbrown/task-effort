@@ -74,12 +74,21 @@ html, body, #root, .App {
 }
 
 .text-blue {
-  color: blue;
+  color: #00FFFF;
+}
+
+.text-green {
+  color: #7FFF00;
 }
 
 .color-green {
-  background-color: green;
+  background-color: #7FFF00;
 }
+
+.color-blue {
+  background-color: #00FFFF;
+}
+
 
 .color-white {
   background-color: white;
@@ -99,6 +108,10 @@ html, body, #root, .App {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.text-large {
+  font-size: 24pt;
 }
 
 .earnings h1 {
