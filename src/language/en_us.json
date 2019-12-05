@@ -22,29 +22,29 @@
     "set": "Please enter user ID."
   },
   "eventMarker" : {
-    "found": "Hold the USB event marker in front of the camera.",
-    "not_found": "Note: no USB event marker found."
+    "found": "<span class='text-green'>Hold the USB event marker in front of the camera.</span>",
+    "not_found": "<span class='text-danger'>Note: no USB event marker found.</span>"
   },
   "instructions": {
     "welcome": "Welcome!",
     "choose_btwn_two_balloons": "In this experiment, you will be making a choice between inflating one of 2 balloons by pressing corresponding keys on the keyboard.",
     "pop_balloon_earn_money": "Once the balloon pops you may win some money.",
-    "points_to_bonus_conversion": "For every <b>20 points</b> that you win in the game, you will get <b>$1 bonus</b> at the end of the experiment.",
-    "two_balloons": "There are 2 kinds of balloons: <br><span class='text-success'><b>GREEN</b></span> and <span style='color:blue'><b>BLUE</b></span> balloons.",
-    "blue_balloon_points": "<span style='color:blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <span style='color:blue'><b>pump 20 times</b></span> and <span style='color:blue'><b><u>may</u> win you 1 point</b></span>.",
-    "green_balloon_points": "<span class='text-success'><b>GREEN</b></span> balloons <span class='text-success'><b>may win you more points</b></span>, but will <span class='text-success'><b>require more pumps</b></span>.",
-    "green_balloon_pop_time": "<span class='text-success'><b>GREEN</b></span> balloons will always pop when they become completely <b>white</b>, after <span class='text-success'><b>25 seconds</b></span>.",
-    "green_balloon_pump_bonus": "The more you pump the <span class='text-success'><b>GREEN</b></span> balloon before it turns <b>white</b> and pops the bigger the balloon will get and you will win more points.",
-    "green_balloon_variable_points_pumps": "For the <span class='text-success'><b>GREEN</b></span> balloon, the number of pumps needed and the number of points you could win <span class='text-success'><b><u>can change on each round</u></b></span>.",
-    "blue_balloon_constant_points_pumps": "For the <span style='color:blue'><b>BLUE</b></span> balloon, the potential win <span style='color:blue'><b><u>will always stay the same</u></b></span> (<span style='color:blue'><b>1 point</b></span>),<br>and it always requires <span style='color:blue'><b>20 pumps</b></span>.",
+    "points_to_bonus_conversion": "For every <span class='text-large'><b>20 points</b></span> that you win in the game, you will get <span class='text-large'><b>$1 bonus</b></span> at the end of the experiment.",
+    "two_balloons": "There are 2 kinds of balloons: <br><span class='text-green'><b>GREEN</b></span> and <span class='text-blue'><b>BLUE</b></span> balloons.",
+    "blue_balloon_points": "<span class='text-blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <span class='text-blue'><b>pump 20 times</b></span> and <span class='text-blue'><b><u>may</u> win you 1 point</b></span>.",
+    "green_balloon_points": "<span class='text-green'><b>GREEN</b></span> balloons <span class='text-green'><b>may win you more points</b></span>, but will <span class='text-green'><b>require more pumps</b></span>.",
+    "green_balloon_pop_time": "<span class='text-green'><b>GREEN</b></span> balloons will always pop when they become completely <b>white</b>, after <span class='text-green'><b>25 seconds</b></span>.",
+    "green_balloon_pump_bonus": "The more you pump the <span class='text-green'><b>GREEN</b></span> balloon before it turns <b>white</b> and pops the bigger the balloon will get and you will win more points.",
+    "green_balloon_variable_points_pumps": "For the <span class='text-green'><b>GREEN</b></span> balloon, the number of pumps needed and the number of points you could win <span class='text-green'><b><u>can change on each round</u></b></span>.",
+    "blue_balloon_constant_points_pumps": "For the <span class='text-blue'><b>BLUE</b></span> balloon, the potential win <span class='text-blue'><b><u>will always stay the same</u></b></span> (<span class='text-blue'><b>1 point</b></span>),<br>and it always requires <span class='text-blue'><b>20 pumps</b></span>.",
     "reward_prob_variable": "For some rounds, the chances that you will win points are 50%<br>(even after popping the balloon, and for either balloon).",
     "reward_prob_certain": "In other rounds the chances of winning will be 100% as long as you pop one of the balloons.",
     "reward_prob_display_event": "The chances that you will win on that round, and also the potential amount to win, will be shown to you before you choose which balloon to inflate.",
-    "pump_keys": "Press the    <span style='color:blue'><b>q</b></span>    key to pump the balloon on the left and the    <span class='text-success'><b>p</b></span>   key to pump the balloon on the right.",
+    "pump_keys": "Press the    <span class='text-large'><b>q</b></span>    key to pump the balloon on the left and the    <span class='text-large'><b>p</b></span>   key to pump the balloon on the right.",
     "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
     "ready": "The experiment will start now.<br>Press next when ready!",
-    "blue_practice_pump": "In the next trial, try popping the <span style='color:blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <b>q</b>   key with your left index finger.",
-    "green_practice_pump": "In the next trial, try popping the <span class='text-success'><b>GREEN</b></span> balloon:<br>To pump it, press the    <b>p</b>    key with your right index finger."
+    "blue_practice_pump": "In the next trial, try popping the <span class='text-blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>q</b></span>   key with your left index finger.",
+    "green_practice_pump": "In the next trial, try popping the <span class='text-green'><b>GREEN</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>p</b></span>    key with your right index finger."
   },
   "quiz": {
     "respond_correctly": "Answer all of the questions below correctly to continue.",
