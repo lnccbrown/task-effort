@@ -3,19 +3,19 @@ import { canvasSettings } from '../config/main'
 function drawText(ctx, points, pumpsRequired, cx, cy, high_effort){
     var color;
     if (high_effort){
-        color = 'green'
+        color = '#7FFF00' // green
     }
     else if(pumpsRequired==0){
         color = 'black'
     }
     else{
-        color = 'blue'
+        color = '#00FFFF' // blue
     }
-    ctx.font = '20px Consolas';
+    ctx.font = '20px Helvetica';
     ctx.fillStyle = color;
     var lineHeight = canvasSettings.lineHeight;
     ctx.lineHeight = lineHeight;
-    let text = `${points} pts` 
+    let text = `${points} pts`
     let text2 = `${pumpsRequired} pumps`
     ctx.fillText(text, cx+lineHeight, cy);
     ctx.fillText(text2, cx-lineHeight, cy+(lineHeight*2));
@@ -65,13 +65,13 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
 function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy, radius){
     var color;
     if (high_effort){
-        color = 'green'
+        color = '#7FFF00'
     }
     else if(pumpsRequired==0){
         color = 'black'
     }
     else{
-        color = 'blue'
+        color = '#00FFFF'
     }
     ctx.save();
     ctx.beginPath();
