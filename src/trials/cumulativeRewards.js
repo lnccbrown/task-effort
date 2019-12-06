@@ -13,7 +13,7 @@ const cumulativeRewards = (duration) => {
     response_ends_trial: false,
     trial_duration: duration,
     on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h1>${jsPsych.data.get().select('value').values[(jsPsych.data.get().select('value').values).length -1]}</h1>`, true) +
+      trial.stimulus = baseStimulus(`<h1>${(jsPsych.data.get().select('value').values[(jsPsych.data.get().select('value').values).length -1]).reward}</h1>`, true) +
       photodiodeGhostBox()
     },
     on_load: () => pdSpotEncode(code),

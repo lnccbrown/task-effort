@@ -24,10 +24,10 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     costBenefits(1500, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     choice(5000, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys, blockSettings.is_practice?blockSettings.get_reward:opts.get_reward),
     fixation(200),
-    pressBalloon(2500, blockSettings.keys),
+    pressBalloon(2500, blockSettings.keys, blockSettings.is_practice),
     cumulativeRewards(800),
     fixation(500),
-    rewardFeedback(800),
+    rewardFeedback(800, blockSettings.is_practice),
     fixation(500),
     // end the trial
     taskEnd(trialDetails, 500)

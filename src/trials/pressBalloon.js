@@ -12,7 +12,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 // const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration, valid_keys) => {
+const pressBalloon = (duration, valid_keys, is_practice) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
   
   return {
@@ -33,7 +33,7 @@ const pressBalloon = (duration, valid_keys) => {
       let inflateBy, popped=0, countPumps=0, radius=canvasSettings.balloonRadius, spikeHeight, reward;
       let balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
       let balloonYpos = canvasSettings.balloonYpos;
-      let points;
+      let points, data ={};
       let keys_pressed = jsPsych.data.get().select('value').values
       let choice = keys_pressed[keys_pressed.length - 1]
       if (choice.high_effort) {
@@ -81,25 +81,11 @@ const pressBalloon = (duration, valid_keys) => {
         // this.deleteCircle();
 
         reward = computeReward()
-        // if (reward == 1) {
-        //     this.text = "You win " + reward + " point.";
-        // }
-        // else {
-        //     this.text = "You win " + reward + " points.";
-        // }
-        // this.updateSpike();
-        // this.timeWhenPopped = (new Date()).getTime();
-
-        // var data = {
-        //     balloon: this.side,
-        //     pumps: this.countPumps,
-        //     timeWhenPopped: this.timeWhenPopped,
-        //     timeWhenStarted: this.myGame.timeWhenStarted,
-        //     points: reward,
-        //     firstPress: this.rts[0],
-        //     lastPress: this.rts[this.rts.length - 1],
-        //     RTs: this.rts,
-        };
+        data ={
+          "reward": reward,
+          "is_practice": is_practice
+        }
+      };
       function hitSpike() {
         var balloonBase = canvasSettings.balloonBaseHeight
         var balloonHeight = (balloonBase + 2 * radius);
@@ -175,7 +161,7 @@ const pressBalloon = (duration, valid_keys) => {
           inflate(choice)
           if (popped){
             jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
-            done(reward)
+            done(data)
           }
         }
       }
