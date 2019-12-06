@@ -11,6 +11,7 @@ exptBlock1.counterbalance = true
 exptBlock1.value = [3, 5, 7]
 exptBlock1.effort = [100, 120, 150]
 exptBlock1.keys = ['q', 'p']
+exptBlock1.get_reward = [true, true, true, false]
 
 
 

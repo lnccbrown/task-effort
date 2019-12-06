@@ -5,7 +5,6 @@ import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings } from '../config/main'
 import { drawBalloon, drawSpike, drawFrame } from '../lib/drawUtils'
 import { jsPsych } from 'jspsych-react'
-import $ from 'jquery'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -31,10 +30,10 @@ const pressBalloon = (duration, valid_keys) => {
       let canvas = document.querySelector('#jspsych-canvas');
       let ctx = canvas.getContext('2d');
       let timeWhenStarted = (new Date()).getTime()
-      let inflateBy, popped=0, countPumps=0, radius=canvasSettings.balloonRadius, spikeHeight;
+      let inflateBy, popped=0, countPumps=0, radius=canvasSettings.balloonRadius, spikeHeight, reward;
       let balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
       let balloonYpos = canvasSettings.balloonYpos;
-      
+      let points;
       let keys_pressed = jsPsych.data.get().select('value').values
       let choice = keys_pressed[keys_pressed.length - 1]
       if (choice.high_effort) {
@@ -61,12 +60,27 @@ const pressBalloon = (duration, valid_keys) => {
       }
 
       canvasDraw()
+      
+      function computeReward() {
+        if (choice.high_effort && choice.get_reward) {
+            points = choice.value * (countPumps / choice.effort);
+            points = Math.round(points * 100) / 100;
+        }
+        else if (!choice.get_reward){
+            points = 0;
+        }
+        else {
+            points = choice.value;
+        }
+
+        return points;
+      }
       function pop() {
         // pop balloon
         popped = true;
         // this.deleteCircle();
 
-        // var reward = this.computeReward()
+        reward = computeReward()
         // if (reward == 1) {
         //     this.text = "You win " + reward + " point.";
         // }
@@ -91,7 +105,6 @@ const pressBalloon = (duration, valid_keys) => {
         var balloonHeight = (balloonBase + 2 * radius);
         var remaining = canvasSettings.frameDimensions[1] - balloonHeight - canvasSettings.spiketopHeight
         var crash = false;
-        // console.log(spikeHeight, remaining)
         if (spikeHeight > remaining) {
             crash = true;
         }
@@ -113,8 +126,6 @@ const pressBalloon = (duration, valid_keys) => {
             timeWhenStarted = (new Date()).getTime();
         }
         countPumps++;
-        // inflate balloon
-        // console.log(inflateBy)
         radius += inflateBy;
         balloonYpos -= inflateBy;
 
@@ -164,7 +175,7 @@ const pressBalloon = (duration, valid_keys) => {
           inflate(choice)
           if (popped){
             jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
-            done()
+            done(reward)
           }
         }
       }

@@ -22,7 +22,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     rewardProbability(500, blockSettings.is_practice?opts:opts.prob),
     frameSpike(700, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     costBenefits(1500, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
-    choice(5000, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys),
+    choice(5000, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys, blockSettings.is_practice?blockSettings.get_reward:opts.get_reward),
     fixation(200),
     pressBalloon(2500, blockSettings.keys),
     cumulativeRewards(800),
