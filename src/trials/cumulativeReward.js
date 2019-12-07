@@ -16,12 +16,14 @@ const cumulativeReward = (duration, is_practice) => {
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
       // console.log(rewards)
-      if (is_practice){
-        cumulative_reward = last['reward']
-      }
-      else{
-        for(let i = 0; i < rewards.length; i++){
-          let reward = rewards[i]
+      for(let i = 0; i < rewards.length; i++){
+        let reward = rewards[i]
+        if (is_practice){
+          if(reward['is_practice'] == true){
+            cumulative_reward += reward['reward']
+          }
+        }
+        else{
           if(reward['is_practice'] == false){
             cumulative_reward += reward['reward']
           }
