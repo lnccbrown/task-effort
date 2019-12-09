@@ -10,9 +10,9 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const choice = (duration, effort, high_effort, valid_keys) => {
+const choice = (duration, value, effort, high_effort, valid_keys, get_reward) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
-  // console.log(valid_keys)
+  
   return {
     type: 'call_function',
     async: true,
@@ -31,7 +31,6 @@ const choice = (duration, effort, high_effort, valid_keys) => {
       const canvasDraw = () => {
         // transparent background
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        console.log(valid_keys)
         var inflateBy;
         var spikeHeight = [0, 0]
         for (let i =0 ; i < 2; i++)
@@ -66,7 +65,9 @@ const choice = (duration, effort, high_effort, valid_keys) => {
           var returnObj ={
             "key": info.key,
             "effort": effort[0],
-            "high_effort": high_effort[0]
+            "value": value[0],
+            "high_effort": high_effort[0],
+            "get_reward": get_reward[0]
           }
           done(returnObj)
         }
@@ -74,7 +75,9 @@ const choice = (duration, effort, high_effort, valid_keys) => {
           var returnObj ={
             "key": info.key,
             "effort": effort[1],
-            "high_effort": high_effort[1]
+            "value": value[1],
+            "high_effort": high_effort[1],
+            "get_reward": get_reward[1]
           }
           done(returnObj)
         }

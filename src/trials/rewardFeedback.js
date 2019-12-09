@@ -2,21 +2,26 @@ import { lang } from '../config/main'
 import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
+import { jsPsych } from 'jspsych-react'
 
 const rewardFeedback = (duration) => {
-  const code = eventCodes.rewardFeedback
   return {
-    type: 'html_keyboard_response',
-    stimulus: '',
-    prompt:  lang.prompt.continue.press,
-    response_ends_trial: true,
-    //trial_duration: duration,
-    on_start: (trial) => {
-      trial.stimulus = baseStimulus(`<h1>Reward Feedback</h1>`, true) +
-      photodiodeGhostBox()
-    },
-    on_load: () => pdSpotEncode(code),
-    on_finish: (data) => data.code = code
+    type: 'call_function',
+    async: true,
+    func: (done) => {
+      // send trigger events
+      const code = eventCodes.rewardFeedback
+      let rewards = jsPsych.data.get().select('value').values
+      let last = rewards[rewards.length - 1]
+      console.log(last.reward)
+      let stimulus = `<div class="effort-container">` + `<h1>${last.reward}</h1>` + photodiodeGhostBox() + `</div>`
+      document.getElementById('jspsych-content').innerHTML = stimulus
+      setTimeout(() => {
+        done()
+      }, duration);
+
+      pdSpotEncode(code)
+    }
   }
 }
 

@@ -5,7 +5,7 @@ import frameSpike from '../trials/frameSpike'
 import choice from '../trials/choice'
 import costBenefits from '../trials/costBenefits'
 import pressBalloon from '../trials/pressBalloon'
-import cumulativeRewards from '../trials/cumulativeRewards'
+import cumulativeReward from '../trials/cumulativeReward'
 import rewardFeedback from '../trials/rewardFeedback'
 import taskEnd from '../trials/taskEnd'
 
@@ -22,13 +22,13 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     rewardProbability(500, blockSettings.is_practice?opts:opts.prob),
     frameSpike(700, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
     costBenefits(1500, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort),
-    choice(5000, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys),
+    choice(5000, blockSettings.is_practice?blockSettings.value:opts.value, blockSettings.is_practice?blockSettings.effort:opts.effort, blockSettings.is_practice?blockSettings.high_effort:opts.high_effort, blockSettings.keys, blockSettings.is_practice?blockSettings.get_reward:opts.get_reward),
     fixation(200),
-    pressBalloon(2500, blockSettings.keys),
-    cumulativeRewards(800),
+    pressBalloon(2500, blockSettings.keys, blockSettings.is_practice),
     fixation(500),
     rewardFeedback(800),
     fixation(500),
+    cumulativeReward(800, blockSettings.is_practice),
     // end the trial
     taskEnd(trialDetails, 500)
   ]
