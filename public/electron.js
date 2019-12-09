@@ -15,7 +15,7 @@ const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 const { eventCodes, comName } = require('./config/trigger')
 const { isPort, getPort, sendToPort } = require('event-marker')
 
-// Override product ID if environment variable set
+// Override comName if environment variable set
 const activeComName = process.env.COMNAME || comName
 log.info("Trigger Box comName", activeComName)
 
