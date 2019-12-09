@@ -18,6 +18,6 @@ const eventCodes = {
 
 // this is module.exports isntead of just exports as it is also imported into the electron app
 module.exports = {
-	comName
+	comName,
 	eventCodes
 }
