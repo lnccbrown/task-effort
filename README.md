@@ -9,7 +9,7 @@ This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) 
 ```
 git clone https://github.com/brown-ccv/task-effort.git
 ```
-2. Install the dependencies
+2. Navigate to the task-effort directory and then install the dependencies
 ```
 npm install
 ```
@@ -18,12 +18,25 @@ npm install
 npm run build
 ```
 4. Run the task in dev mode - this should launch an electron window with the task with the inspector open to the console and will hot-reload when changes are made to the app
+
+For Mac and Linux:
 ```
 npm run dev
 
 #to run the at home version of the app:
 npm run dev:home
 ```
+
+For Windows:
+You will need to open 2 terminals. In the first, run the command:
+```
+npm start
+```
+In the second terminal, run:
+```
+npm run electron-dev
+```
+
 5. Check out the data - the data is saved throughout the task to the users's app directory.  This is logged at the beginning of the task wherever you ran `npm run dev`
 
 ## Contributing
