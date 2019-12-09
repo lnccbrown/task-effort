@@ -1,6 +1,7 @@
 // NOTE - these event codes must match what is in public/config/trigger.js
 const eventCodes = {
-	fixation: 1,
+	fixationStart: 1,
+	fixationEnd: 2,
 	rewardProbability: 5,
 	frameSpike: 6,
 	costBenefits: 8,
