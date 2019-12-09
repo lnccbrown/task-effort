@@ -12,12 +12,12 @@ const log = require('electron-log');
 
 const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 // Event Trigger
-const { eventCodes, manufacturer, vendorId, productId } = require('./config/trigger')
+const { eventCodes, comName } = require('./config/trigger')
 const { isPort, getPort, sendToPort } = require('event-marker')
 
-// Override product ID if environment variable set
-const activeProductId = process.env.EVENT_MARKER_PRODUCT_ID || productId
-log.info("Active product ID", activeProductId)
+// Override comName if environment variable set
+const activeComName = process.env.COMNAME || comName
+log.info("Trigger Box comName", activeComName)
 
 // Data Saving
 const { dataDir } = require('./config/saveData')
@@ -83,7 +83,7 @@ let portAvailable
 let SKIP_SENDING_DEV = false
 
 const setUpPort = async () => {
-  p = await getPort(vendorId, activeProductId)
+  p = await getPort(activeComName)
   if (p) {
     triggerPort = p
     portAvailable = true
