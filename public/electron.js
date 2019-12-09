@@ -15,6 +15,9 @@ const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 const { eventCodes, comName } = require('./config/trigger')
 const { isPort, getPort, sendToPort } = require('event-marker')
 
+// Override product ID if environment variable set
+const activeComName = process.env.COMNAME || comName
+log.info("Trigger Box comName", activeComName)
 
 // Data Saving
 const { dataDir } = require('./config/saveData')
@@ -80,7 +83,7 @@ let portAvailable
 let SKIP_SENDING_DEV = false
 
 const setUpPort = async () => {
-  p = await getPort(comName)
+  p = await getPort(activeComName)
   if (p) {
     triggerPort = p
     portAvailable = true
