@@ -3,7 +3,6 @@ import welcome from '../trials/welcome'
 import experimentStart from '../trials/experimentStart'
 import startCode from '../trials/startCode'
 import userId from '../trials/userId'
-import holdUpMarker from '../trials/holdUpMarker'
 import { AT_HOME } from '../config/main'
 import { practiceBlock1 } from '../config/practice'
 
@@ -16,8 +15,7 @@ const preamble = {
     (AT_HOME) ?
     [welcome,
       prePracticeInstructions(practiceBlock1)] :
-    [holdUpMarker(),
-      startCode(),
+    [startCode(),
       welcome,
       prePracticeInstructions(practiceBlock1)
     ]

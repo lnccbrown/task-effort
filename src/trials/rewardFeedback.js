@@ -1,6 +1,4 @@
-import { lang } from '../config/main'
 import { eventCodes } from '../config/main'
-import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { jsPsych } from 'jspsych-react'
 

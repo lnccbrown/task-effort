@@ -4,14 +4,11 @@ import experimentStart from '../trials/experimentStart'
 import experimentEnd from '../trials/experimentEnd'
 import taskBlock from './taskBlock'
 import userId from '../trials/userId'
-
 import { MTURK, lang } from '../config/main'
 import { practiceBlock1, practiceBlock2, practiceBlock3 } from '../config/practice'
 import { exptBlock1 } from '../config/experiment'
 import { bluePracticeInstructions, greenPracticeInstructions, realPracticeInstructions, postPracticeInstructions } from '../trials/instructions'
 import quizTimeline from '../trials/quizTrials'
-
-import startCode from '../trials/startCode'
 
 const primaryTimeline = [
         experimentStart(),
