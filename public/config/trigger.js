@@ -1,7 +1,7 @@
 // Event trigger settings - used in both the react app (renderer) and the electron app (main)
 const comName = 'COM7'
 
-// NOTE - these event codes must match what is in public/config/trigger.js
+// NOTE - these event codes must match what is in src/config/trigger.js
 const eventCodes = {
 	fixation: 1,
 	rewardProbability: 5,
