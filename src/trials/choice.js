@@ -70,7 +70,7 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
           }
           done(returnObj)
         } else if (info.key === keys["P"]) { // 0 key
-          var returnObj = {
+          returnObj = {
             "key": info.key,
             "effort": effort[1],
             "value": value[1],
