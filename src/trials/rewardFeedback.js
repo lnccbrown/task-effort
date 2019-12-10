@@ -11,8 +11,9 @@ const rewardFeedback = (duration) => {
       const code = eventCodes.rewardFeedback
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
-      
-      let stimulus = `<div class="effort-container"><h1>+${last.reward}</h1>` + photodiodeGhostBox() + `</div>`
+
+      let stimulus = `<div class="effort-container"><h1>+${(last.reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
+
       document.getElementById('jspsych-content').innerHTML = stimulus
       setTimeout(() => {
         done()
