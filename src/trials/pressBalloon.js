@@ -2,7 +2,7 @@ import { lang } from '../config/main'
 import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
-import { keys, canvasSize, canvasSettings } from '../config/main'
+import { keys, canvasSize, canvasSettings, high_effort_time } from '../config/main'
 import { drawBalloon, drawSpike, drawFrame } from '../lib/drawUtils'
 import { jsPsych } from 'jspsych-react'
 
@@ -60,7 +60,18 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
       }
 
       canvasDraw()
-      
+      var timer = setInterval(function() {
+        var now = (new Date()).getTime();
+        var percTimePassed = (now - timeWhenStarted) / 1000 / high_effort_time;
+
+        if ((percTimePassed >= 1.) & (countPumps > 0)) {
+            if (!choice.high_effort) {
+                points = 0;
+            }
+            popTimeout();
+
+        }
+    }, 50)
       function computeReward() {
         if (choice.high_effort && choice.get_reward) {
             points = choice.value * (countPumps / choice.effort);
@@ -76,11 +87,28 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
         return points;
       }
       function pop() {
+        clearInterval(timer);
         // pop balloon
         popped = true;
         // this.deleteCircle();
 
         reward = computeReward()
+        data ={
+          "reward": reward,
+          "is_practice": is_practice
+        }
+      };
+      function popTimeout() {
+        clearInterval(timer);
+        // pop balloon
+        popped = true;
+        // this.deleteCircle();
+        if (choice.high_effort){
+          reward = computeReward()
+        }
+        else{
+          reward = 0
+        }
         data ={
           "reward": reward,
           "is_practice": is_practice
