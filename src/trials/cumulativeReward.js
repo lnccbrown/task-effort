@@ -30,7 +30,7 @@ const cumulativeReward = (duration, is_practice) => {
         }
       }
 
-      let stimulus = `<div class="effort-container">` + `<h1>${cumulative_reward}</h1>` + photodiodeGhostBox() + `</div>`
+      let stimulus = `<div class="effort-container">` + `<h1>${(cumulative_reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
       document.getElementById('jspsych-content').innerHTML = stimulus
       setTimeout(() => {
         done()
