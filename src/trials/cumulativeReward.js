@@ -12,7 +12,7 @@ const cumulativeReward = (duration, is_practice) => {
       const code = eventCodes.cumulativeReward
       let cumulative_reward = 0;
       let rewards = jsPsych.data.get().select('value').values
-      // console.log(rewards)
+      
       for(let i = 0; i < rewards.length; i++){
         let reward = rewards[i]
         if (is_practice){
