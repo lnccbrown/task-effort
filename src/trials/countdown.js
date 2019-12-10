@@ -1,4 +1,3 @@
-import { lang } from '../config/main'
 import * as _ from 'lodash'
 
 // build a countdown transition with the given text and number of seconds
