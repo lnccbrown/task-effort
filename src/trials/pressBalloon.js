@@ -69,7 +69,8 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
                 points = 0;
             }
             popTimeout();
-
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
+            done(data)
         }
     }, 50)
       function computeReward() {
