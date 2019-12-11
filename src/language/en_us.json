@@ -66,5 +66,8 @@
     "practice2": "You will begin <b>Practice Trial 2/3</b> in",
     "practice3": "You will begin <b>Practice Trial 3/3</b> in",
     "expt1": "You will begin <b>Main Block </b> in"
+  },
+  "cumulative_rew": {
+    "total": "Total:<br>"
   }
 }
