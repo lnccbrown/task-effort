@@ -69,6 +69,9 @@ const defaultBlockSettings = {
 	photodiode_active: false,
 }
 
+// high effort timeout
+const high_effort_time = 25
+
 // how long to countdown
 const countdownWait = 3
 
@@ -81,5 +84,6 @@ export {
 	MTURK,
 	AT_HOME,
 	canvasSize,
-	canvasSettings
+	canvasSettings,
+	high_effort_time
 }
