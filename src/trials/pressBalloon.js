@@ -13,16 +13,15 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
 const pressBalloon = (duration, valid_keys, is_practice) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
 
+  const startCode = eventCodes.pressBalloonStart
+  const endCode = eventCodes.pressBalloonEnd
+
   return {
     type: 'call_function',
     async: true,
     func: (done) => {
-      // send trigger events
-      const code = eventCodes.pressBalloon
-
       // add stimulus to the DOM
       document.getElementById('jspsych-content').innerHTML = stimulus
-      // $('#jspsych-content').addClass('task-container')
 
       // set up canvas
       let canvas = document.querySelector('#jspsych-canvas');
@@ -34,12 +33,14 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
       let points, data = {};
       let keys_pressed = jsPsych.data.get().select('value').values
       let choice = keys_pressed[keys_pressed.length - 1]
+
       if (choice.high_effort) {
         inflateBy = canvasSettings.inflateByHE
       }
       else {
           inflateBy = canvasSettings.inflateByNHE
       }
+
       const canvasDraw = () => {
         // transparent background
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -201,7 +202,13 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           persist: true,
           allow_held_key: false
       });
-      pdSpotEncode(code)
+
+    },
+    on_load: () => {
+      pdSpotEncode(startCode)
+    },
+    on_finish: (data) => {
+      pdSpotEncode(endCode)
     }
   }
 }
