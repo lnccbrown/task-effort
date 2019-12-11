@@ -1,5 +1,4 @@
 import { eventCodes, MTURK } from '../config/main'
-import { earningsDisplay } from '../lib/markup/earnings'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
 const beadEnd = (trialDetails, duration) => {

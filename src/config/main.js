@@ -17,7 +17,6 @@ const x17 = canvasSize * 0.1667
 const x70 = canvasSize * 0.7
 const x67 = canvasSize * 0.6667
 const x2 = canvasSize * 0.01667
-const x3 = canvasSize * 0.033333
 const x68 = canvasSize * 0.683333
 const canvasSettings = {
 	frameDimensions: [x33, x75],
@@ -70,6 +69,9 @@ const defaultBlockSettings = {
 	photodiode_active: false,
 }
 
+// high effort timeout
+const high_effort_time = 25
+
 // how long to countdown
 const countdownWait = 3
 
@@ -82,5 +84,6 @@ export {
 	MTURK,
 	AT_HOME,
 	canvasSize,
-	canvasSettings
+	canvasSettings,
+	high_effort_time
 }

@@ -2,13 +2,11 @@ import { canvasSettings } from '../config/main'
 
 function drawText(ctx, points, pumpsRequired, cx, cy, high_effort){
     var color;
-    if (high_effort){
+    if (high_effort) {
         color = '#7FFF00' // green
-    }
-    else if(pumpsRequired==0){
+    } else if (pumpsRequired === 0) {
         color = 'black'
-    }
-    else{
+    } else {
         color = '#00FFFF' // blue
     }
     ctx.font = '20px Helvetica';
@@ -17,8 +15,8 @@ function drawText(ctx, points, pumpsRequired, cx, cy, high_effort){
     ctx.lineHeight = lineHeight;
     let text = `${points} pts`
     let text2 = `${pumpsRequired} pumps`
-    ctx.fillText(text, cx+lineHeight, cy);
-    ctx.fillText(text2, cx-lineHeight, cy+(lineHeight*2));
+    ctx.fillText(text, cx + lineHeight, cy);
+    ctx.fillText(text2, cx - lineHeight, cy + (lineHeight * 2));
 }
 
 function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
@@ -31,8 +29,7 @@ function drawSpike(ctx, w, h, cx, cy, fillColor, lineColor, clear){
                       cy,
                       cx,
                       cy + h);
-    }
-    else {
+    } else {
         ctx.moveTo(cx - w / 2, cy);
         ctx.lineTo(cx + w / 2, cy);
         ctx.lineTo(cx, cy + h);
@@ -53,8 +50,7 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
                       cy,
                       cx,
                       cy + h);
-    }
-    else {
+    } else {
         ctx.rect(cx, cy, w, h);
         ctx.stroke();
     }
@@ -64,13 +60,12 @@ function drawFrame(ctx, w, h, cx, cy, lineColor, clear){
 
 function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy, radius){
     var color;
-    if (high_effort){
+    if (high_effort) {
         color = '#7FFF00'
     }
-    else if(pumpsRequired==0){
+    else if (pumpsRequired === 0) {
         color = 'black'
-    }
-    else{
+    } else {
         color = '#00FFFF'
     }
     ctx.save();

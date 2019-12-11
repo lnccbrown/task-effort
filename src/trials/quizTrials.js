@@ -1,5 +1,4 @@
 import { lang,  MTURK } from '../config/main'
-import { generateWaitSet } from '../lib/utils'
 import { jsPsych } from 'jspsych-react'
 
 // quiz helper functions
@@ -84,25 +83,25 @@ const passedQuiz = (blockSettings, prevData) => {
   return !(passed_quiz)
 }
 
-const quizCheck = (blockSettings) => {
-  return(
-    {
-      type: "html_keyboard_response",
-      timeline: () => {
-        const transition = {
-          stimulus: [
-          `<h2>${lang.quiz.answer.incorrect}</h2>` +
-          `<p>${lang.quiz.direction.retake}</p>`
-          ],
-          prompt: lang.prompt.continue.press,
-          data: { 'passed_quiz': false }
-        }
-        return generateWaitSet(transition, 1000)
-      },
-      conditional_function: () => !blockSettings.quiz.first_attempt
-    }
-  )
-}
+// const quizCheck = (blockSettings) => {
+//   return(
+//     {
+//       type: "html_keyboard_response",
+//       timeline: () => {
+//         const transition = {
+//           stimulus: [
+//           `<h2>${lang.quiz.answer.incorrect}</h2>` +
+//           `<p>${lang.quiz.direction.retake}</p>`
+//           ],
+//           prompt: lang.prompt.continue.press,
+//           data: { 'passed_quiz': false }
+//         }
+//         return generateWaitSet(transition, 1000)
+//       },
+//       conditional_function: () => !blockSettings.quiz.first_attempt
+//     }
+//   )
+// }
 
 // loop function is if button pressed was a draw button (https://www.jspsych.org/overview/timeline/#looping-timelines)
 let quizTimeline = (blockSettings) => {

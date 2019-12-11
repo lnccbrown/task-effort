@@ -12,7 +12,7 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
 const choice = (duration, value, effort, high_effort, valid_keys, get_reward) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
-  
+
   return {
     type: 'call_function',
     async: true,
@@ -37,18 +37,17 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
         {
           if (high_effort[i]) {
               inflateBy = canvasSettings.inflateByHE
-          }
-          else {
+          } else {
               inflateBy = canvasSettings.inflateByNHE
           }
 
           // how far should the spike be
           var targetDist = 2 * inflateBy * (effort[i] - 1);
-          var balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
+          var balloonBaseHeight = canvasSettings.balloonBaseHeight + (2 * canvasSettings.balloonRadius);
           // distance of the spike from the top
-          spikeHeight[i] = effort[i]?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
+          spikeHeight[i] = effort[i] ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight) : 0;
         }
-        
+
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
         drawBalloon(ctx, effort[0], high_effort[0], canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, canvasSettings.balloonRadius)
@@ -61,8 +60,8 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
       canvasDraw()
       function after_response(info) {
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
-        if (info.key == keys["Q"]) { // 1 key
-          var returnObj ={
+        if (info.key === keys["Q"]) { // 1 key
+          var returnObj = {
             "key": info.key,
             "effort": effort[0],
             "value": value[0],
@@ -70,9 +69,8 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
             "get_reward": get_reward[0]
           }
           done(returnObj)
-        }
-        else if (info.key == keys["P"]) { // 0 key
-          var returnObj ={
+        } else if (info.key === keys["P"]) { // 0 key
+          returnObj = {
             "key": info.key,
             "effort": effort[1],
             "value": value[1],
