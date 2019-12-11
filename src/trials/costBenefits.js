@@ -13,13 +13,13 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 const costBenefits = (duration, value, effort, high_effort) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
+  const startCode = eventCodes.costBenefitsStart
+  const endCode = eventCodes.costBenefitsEnd
+
   return {
     type: 'call_function',
     async: true,
     func: (done) => {
-      // send trigger events
-      const code = eventCodes.costBenefits
-
       // add stimulus to the DOM
       document.getElementById('jspsych-content').innerHTML = stimulus
       // $('#jspsych-content').addClass('task-container')
@@ -48,24 +48,30 @@ const costBenefits = (duration, value, effort, high_effort) => {
           // distance of the spike from the top
           spikeHeight[i] = effort[i]?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
         }
-        
+
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
-        
+
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
-        
+
       }
 
       canvasDraw()
-      pdSpotEncode(code)
       setTimeout(
         () => {
           done()
         },
         duration)
+    },
+    on_load: () => {
+      pdSpotEncode(startCode)
+    },
+    on_finish: (data) => {
+      pdSpotEncode(endCode)
+      data.code = [startCode, endCode]
     }
   }
 }
