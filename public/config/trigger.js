@@ -19,7 +19,8 @@ const eventCodes = {
 	cumulativeRewardsEnd: 61,
 	rewardFeedbackStart: 70,
 	rewardFeedbackEnd: 71,
-	show_earnings: 3,
+	trialFinishStart: 80,
+	trialFinishEnd: 81,
 	test_connect: 4,
 	open_task: 5
 }
