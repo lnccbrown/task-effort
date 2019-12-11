@@ -209,6 +209,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
     },
     on_finish: (data) => {
       pdSpotEncode(endCode)
+      data.code = [startCode, endCode]
     }
   }
 }
