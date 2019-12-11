@@ -61,10 +61,9 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
       pdSpotEncode(startCode)
       setTimeout(
         () => {
-          done()
+          done(pdSpotEncode(endCode))
         },
         duration)
-      pdSpotEncode(endCode)
     }
   }
 }

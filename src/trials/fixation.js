@@ -21,7 +21,7 @@ const fixation = (duration) => {
       // removeCursor('experiment')
       pdSpotEncode(startCode)
     },
-    on_finish: (data) => { 
+    on_finish: (data) => {
       pdSpotEncode(endCode)
       data.code = [startCode, endCode]
     }
