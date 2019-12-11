@@ -13,13 +13,13 @@ const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 const choice = (duration, value, effort, high_effort, valid_keys, get_reward) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
+  const startCode = eventCodes.choiceStart
+  const endCode = eventCodes.choiceEnd
+
   return {
     type: 'call_function',
     async: true,
     func: (done) => {
-      // send trigger events
-      const code = eventCodes.choice
-
       // add stimulus to the DOM
       document.getElementById('jspsych-content').innerHTML = stimulus
       // $('#jspsych-content').addClass('task-container')
@@ -88,7 +88,14 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
           persist: true,
           allow_held_key: false
       });
-      pdSpotEncode(code)
+
+    },
+    on_load: () => {
+      pdSpotEncode(startCode)
+    },
+    on_finish: (data) => {
+      pdSpotEncode(endCode)
+      data.code = [startCode, endCode]
     }
   }
 }
