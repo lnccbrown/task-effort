@@ -14,9 +14,15 @@ const rewardFeedback = (duration) => {
       // send trigger events
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
-
-      let stimulus = `<div class="effort-container"><h1>+${(last.reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
-
+      let stimulus
+      if (last)
+      {
+        stimulus = `<div class="effort-container"><h1>+${(last.reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
+      }
+      else
+      {
+        stimulus = `<div class="effort-container"><h1>+${0}</h1>` + photodiodeGhostBox() + `</div>`
+      }
       document.getElementById('jspsych-content').innerHTML = stimulus
       setTimeout(() => {
         done()
