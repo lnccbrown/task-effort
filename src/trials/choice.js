@@ -27,6 +27,7 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
       // set up canvas
       let canvas = document.querySelector('#jspsych-canvas');
       let ctx = canvas.getContext('2d');
+      let timeWhenStarted = (new Date()).getTime()
 
       const canvasDraw = () => {
         // transparent background
@@ -58,6 +59,23 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
       }
 
       canvasDraw()
+      var timer = setInterval(function() {
+        var now = (new Date()).getTime();
+        var percTimePassed = (now - timeWhenStarted) / 1000 / (duration/1000);
+
+        if (percTimePassed >= 1.) {
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
+            clearInterval(timer);
+            var returnObj = {
+              "key": 0,
+              "effort": 0,
+              "value": 0,
+              "high_effort": 0,
+              "get_reward": 0
+            }
+            done(returnObj)
+        }
+    }, 50)
       function after_response(info) {
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
         if (info.key === keys["Q"]) { // 1 key
