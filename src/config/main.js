@@ -49,6 +49,9 @@ const keys = {
 const MTURK = (!jsPsych.turk.turkInfo().outsideTurk)
 const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 
+// set whether photodiode visible or not
+const PHOTODIODE_ON = false
+
 // get language file
 const lang = require('../language/en_us.json')
 if (process.env.MTURK) { // if this is mturk, merge in the mturk specific language
@@ -83,6 +86,7 @@ export {
 	eventCodes,
 	MTURK,
 	AT_HOME,
+	PHOTODIODE_ON,
 	canvasSize,
 	canvasSettings,
 	high_effort_time
