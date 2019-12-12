@@ -22,7 +22,8 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
       // add stimulus to the DOM
       document.getElementById('jspsych-content').innerHTML = stimulus
       let values = jsPsych.data.get().select('value').values
-      if (values.key)
+      let last = values[values.length - 1]
+      if (last.key)
       {
         // set up canvas
         let canvas = document.querySelector('#jspsych-canvas');

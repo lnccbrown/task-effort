@@ -77,6 +77,7 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
         }
     }, 50)
       function after_response(info) {
+        clearInterval(timer);
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener)
         if (info.key === keys["Q"]) { // 1 key
           var returnObj = {
