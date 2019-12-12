@@ -15,6 +15,8 @@ const quizPrompts = [
   `${lang.quiz.prompt.reward_certainty}`,
   `${lang.quiz.prompt.green_balloon_bonus}`,
   `${lang.quiz.prompt.bonus}`,
+  `${lang.quiz.prompt.rew_feedback}`,
+  `${lang.quiz.prompt.cumulative_rew}`
 ]
 
 // Quiz Trial
@@ -40,6 +42,14 @@ const quiz = (blockSettings) => {
       required: true
     },{
       prompt: quizPrompts[3],
+      options: quizOptions(blockSettings),
+      required: true
+    },{
+      prompt: quizPrompts[4],
+      options: quizOptions(blockSettings),
+      required: true
+    },{
+      prompt: quizPrompts[5],
       options: quizOptions(blockSettings),
       required: true
     }
@@ -68,6 +78,8 @@ const passedQuiz = (blockSettings, prevData) => {
   const correctAnswer = [
     `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.no}`,
+    `${lang.quiz.answer_opts.yes}`,
+    `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.yes}`
   ]

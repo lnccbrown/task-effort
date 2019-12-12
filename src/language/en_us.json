@@ -54,7 +54,9 @@
       "green_balloon_high_effort": "The green balloon requires more pumps.",
       "reward_certainty": "You will always get the points once you reach the pin.",
       "green_balloon_bonus": "For the green balloon, you can keep pressing once you reach the pin to get bonus points.",
-      "bonus" : "Your accumulated points will be converted into $ bonus."
+      "bonus": "Your accumulated points will be converted into bonus $.",
+      "rew_feedback": "The first number you will be shown after pumping a balloon (for example, <b>+5</b>) is the number of points you just earned for pumping that balloon.",
+      "cumulative_rew": "You will be shown the <b>total number of points you have cumulatively earned</b> at the end of each trial."
     },
     "answer_opts": {
       "yes": "YES",
