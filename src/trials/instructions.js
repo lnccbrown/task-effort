@@ -13,6 +13,7 @@ const welcomeScreenTwo = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.pop_balloon_earn_money}</p>
     <p>${lang.instructions.points_to_bonus_conversion}</p>
+    <p>${lang.instructions.cumulative_rewards}</p>
     </div>
     `, true)
 
