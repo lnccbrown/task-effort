@@ -13,7 +13,6 @@ const cumulativeReward = (duration, is_practice) => {
     async: true,
     func: (done) => {
       // send trigger events
-      const code = eventCodes.cumulativeReward
       let cumulative_reward = 0;
       let rewards = jsPsych.data.get().select('value').values
 

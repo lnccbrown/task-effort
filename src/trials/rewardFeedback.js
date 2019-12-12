@@ -12,7 +12,6 @@ const rewardFeedback = (duration) => {
     async: true,
     func: (done) => {
       // send trigger events
-      const code = eventCodes.rewardFeedback
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
 
