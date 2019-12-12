@@ -7,7 +7,8 @@ import { jsPsych } from 'jspsych-react'
 const fixation = (duration) => {
   let stimulus = fixationHTML + photodiodeGhostBox()
 
-  const code = eventCodes.fixation;
+  const startCode = eventCodes.fixationStart;
+  const endCode = eventCodes.fixationEnd;
 
   return {
     type: 'html_keyboard_response',
@@ -18,9 +19,12 @@ const fixation = (duration) => {
     on_load: () => {
       // will need later but for now keep cursor -- WM
       // removeCursor('experiment')
-      pdSpotEncode(code)
+      pdSpotEncode(startCode)
     },
-    on_finish: (data) => data.code = code
+    on_finish: (data) => {
+      pdSpotEncode(endCode)
+      data.code = [startCode, endCode]
+    }
   }
 }
 

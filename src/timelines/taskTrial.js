@@ -7,7 +7,7 @@ import costBenefits from '../trials/costBenefits'
 import pressBalloon from '../trials/pressBalloon'
 import rewardFeedback from '../trials/rewardFeedback'
 import cumulativeReward from '../trials/cumulativeReward'
-import taskEnd from '../trials/taskEnd'
+import trialEnd from '../trials/trialEnd'
 
 const taskTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
@@ -30,7 +30,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500),
     cumulativeReward(800, blockSettings.is_practice),
     // end the trial
-    taskEnd(trialDetails, 500)
+    trialEnd(trialDetails, 500)
   ]
     return {
   		type: 'html_keyboard_response',

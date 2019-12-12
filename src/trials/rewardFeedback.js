@@ -3,12 +3,15 @@ import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { jsPsych } from 'jspsych-react'
 
 const rewardFeedback = (duration) => {
+
+  const startCode = eventCodes.rewardFeedbackStart
+  const endCode = eventCodes.rewardFeedbackEnd
+
   return {
     type: 'call_function',
     async: true,
     func: (done) => {
       // send trigger events
-      const code = eventCodes.rewardFeedback
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
 
@@ -18,8 +21,13 @@ const rewardFeedback = (duration) => {
       setTimeout(() => {
         done()
       }, duration);
-
-      pdSpotEncode(code)
+    },
+    on_load: () => {
+      pdSpotEncode(startCode)
+    },
+    on_finish: (data) => {
+      pdSpotEncode(endCode)
+      data.code = [startCode, endCode]
     }
   }
 }
