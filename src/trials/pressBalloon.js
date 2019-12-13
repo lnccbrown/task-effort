@@ -1,6 +1,7 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings, high_effort_time } from '../config/main'
+import { removeCursor } from '../lib/utils'
 import { drawBalloon, drawSpike } from '../lib/drawUtils'
 import { jsPsych } from 'jspsych-react'
 
@@ -35,14 +36,14 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
         let points, data = {};
         let keys_pressed = jsPsych.data.get().select('value').values
         let choice = keys_pressed[keys_pressed.length - 1]
-  
+
         if (choice.high_effort) {
           inflateBy = canvasSettings.inflateByHE
         }
         else {
             inflateBy = canvasSettings.inflateByNHE
         }
-  
+
         const canvasDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -59,12 +60,12 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, radius)
           }
         }
-  
+
         canvasDraw()
         var timer = setInterval(function() {
           var now = (new Date()).getTime();
           var percTimePassed = (now - timeWhenStarted) / 1000 / high_effort_time;
-  
+
           if ((percTimePassed >= 1.) & (countPumps > 0)) {
               if (!choice.high_effort) {
                   points = 0;
@@ -85,7 +86,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           else {
               points = choice.value;
           }
-  
+
           return points;
         }
         function pop() {
@@ -93,7 +94,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           // pop balloon
           popped = true;
           // this.deleteCircle();
-  
+
           reward = computeReward()
           data ={
             "reward": reward,
@@ -130,13 +131,13 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           // if (popped){
           //   return
           // }
-  
+
           let rts = []
           // Record RT relative to when trial started
           var timeWhenPressed = (new Date()).getTime();
           var rt = timeWhenPressed - timeWhenStarted
           rts.push(rt);
-  
+
           // record time if this is the first pump
           if (countPumps === 0) {
               timeWhenStarted = (new Date()).getTime();
@@ -144,7 +145,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           countPumps++;
           radius += inflateBy;
           balloonYpos -= inflateBy;
-  
+
           // redraw
           if (choice.key === keys['Q']){
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], balloonYpos, radius)
@@ -195,7 +196,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
             }
           }
         }
-  
+
         // start the response listener
         var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
             callback_function: after_response,
@@ -212,6 +213,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
 
     },
     on_load: () => {
+      removeCursor('experiment')
       pdSpotEncode(startCode)
     },
     on_finish: (data) => {

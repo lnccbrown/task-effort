@@ -2,6 +2,7 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
+import { removeCursor } from '../lib/utils'
 import { drawSpike, drawFrame } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
@@ -65,6 +66,7 @@ const frameSpike = (duration, effort, high_effort) => {
         duration)
       },
       on_load: () => {
+        removeCursor('experiment')
         pdSpotEncode(startCode)
       },
       on_finish: (data) => {

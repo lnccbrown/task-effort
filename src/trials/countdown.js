@@ -14,7 +14,10 @@ const buildCountdown = (text, time) => {
     trial_duration: 1000,
     response_ends_trial: false,
     timeline:  timeline
-  })
+  }),
+  on_load: () => {
+    removeCursor('experiment')
+  }
 }
 
 export default buildCountdown
