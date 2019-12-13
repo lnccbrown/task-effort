@@ -28,8 +28,9 @@
   "instructions": {
     "welcome": "Welcome!",
     "choose_btwn_two_balloons": "In this experiment, you will be making a choice between inflating one of 2 balloons by pressing corresponding keys on the keyboard.",
-    "pop_balloon_earn_money": "Once the balloon pops you may win some money.",
+    "pop_balloon_earn_money": "Once the balloon pops you may win some money.<br>The money earned from popping a balloon will be shown with a '+' sign in front of it (i.e. <span class='text-large'><b>+1</b></span>).",
     "points_to_bonus_conversion": "For every <span class='text-large'><b>20 points</b></span> that you win in the game, you will get <span class='text-large'><b>$1 bonus</b></span> at the end of the experiment.",
+    "cumulative_rewards": "You will be shown your cumulative total at the end of each trial.",
     "two_balloons": "There are 2 kinds of balloons: <br><span class='text-green'><b>GREEN</b></span> and <span class='text-blue'><b>BLUE</b></span> balloons.",
     "blue_balloon_points": "<span class='text-blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <span class='text-blue'><b>pump 20 times</b></span> and <span class='text-blue'><b><u>may</u> win you 1 point</b></span>.",
     "green_balloon_points": "<span class='text-green'><b>GREEN</b></span> balloons <span class='text-green'><b>may win you more points</b></span>, but will <span class='text-green'><b>require more pumps</b></span>.",
@@ -43,8 +44,8 @@
     "pump_keys": "Press the    <span class='text-large'><b>q</b></span>    key to pump the balloon on the left and the    <span class='text-large'><b>p</b></span>   key to pump the balloon on the right.",
     "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
     "ready": "The experiment will start now.<br>Press next when ready!",
-    "blue_practice_pump": "In the next trial, try popping the <span class='text-blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>q</b></span>   key with your left index finger.",
-    "green_practice_pump": "In the next trial, try popping the <span class='text-green'><b>GREEN</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>p</b></span>    key with your right index finger."
+    "blue_practice_pump": "In the next trial, try popping the <span class='text-blue'><b>BLUE</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>q</b></span>   key with your left index finger to first choose the <span class='text-blue'><b>blue</b></span> balloon and to then pump it.",
+    "green_practice_pump": "In the next trial, try popping the <span class='text-green'><b>GREEN</b></span> balloon:<br>To pump it, press the    <span class='text-large'><b>p</b></span>    key with your right index finger to first choose the <span class='text-green'><b>green</b></span> balloon and to then pump it."
   },
   "quiz": {
     "respond_correctly": "Answer all of the questions below correctly to continue.",
@@ -54,7 +55,9 @@
       "green_balloon_high_effort": "The green balloon requires more pumps.",
       "reward_certainty": "You will always get the points once you reach the pin.",
       "green_balloon_bonus": "For the green balloon, you can keep pressing once you reach the pin to get bonus points.",
-      "bonus" : "Your accumulated points will be converted into $ bonus."
+      "bonus": "Your accumulated points will be converted into bonus $.",
+      "rew_feedback": "The first number you will be shown after pumping a balloon (for example, <b>+5</b>) is the number of points you just earned for pumping that balloon.",
+      "cumulative_rew": "You will be shown the <b>total number of points you have cumulatively earned</b> at the end of each trial."
     },
     "answer_opts": {
       "yes": "YES",
