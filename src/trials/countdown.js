@@ -1,4 +1,5 @@
 import * as _ from 'lodash'
+import { removeCursor } from '../lib/utils'
 
 // build a countdown transition with the given text and number of seconds
 const buildCountdown = (text, time) => {
@@ -13,11 +14,11 @@ const buildCountdown = (text, time) => {
     stimulus: '',
     trial_duration: 1000,
     response_ends_trial: false,
-    timeline:  timeline
-  }),
-  on_load: () => {
-    removeCursor('experiment')
-  }
+    timeline:  timeline,
+    on_load: () => {
+      removeCursor('experiment')
+    }
+  })
 }
 
 export default buildCountdown

@@ -1,5 +1,6 @@
 import { lang } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
+import { addCursor } from '../lib/utils'
 
 const welcomeScreenOne = baseStimulus(`
     <div class='instructions'>
@@ -89,7 +90,10 @@ const prePracticeInstructions = () => {
     {
       type: 'instructions',
       show_clickable_nav: true,
-      pages: instructionsArray
+      pages: instructionsArray,
+      on_load: () => {
+        addCursor('experiment')
+      }
     }
   )
 }
@@ -105,7 +109,10 @@ const bluePracticeInstructions = () => {
     {
       type: 'instructions',
       show_clickable_nav: true,
-      pages: bluePracticeInstructionsArray
+      pages: bluePracticeInstructionsArray,
+      on_load: () => {
+        addCursor('experiment')
+      }
     }
   )
 }
@@ -123,7 +130,10 @@ const greenPracticeInstructions = () => {
     {
       type: 'instructions',
       show_clickable_nav: true,
-      pages: greenPracticeInstructionsArray
+      pages: greenPracticeInstructionsArray,
+      on_load: () => {
+        addCursor('experiment')
+      }
     }
   )
 }
@@ -143,7 +153,10 @@ const realPracticeInstructions = () => {
     {
       type: 'instructions',
       show_clickable_nav: true,
-      pages: realPracticeInstructionsArray
+      pages: realPracticeInstructionsArray,
+      on_load: () => {
+        addCursor('experiment')
+      }
     }
   )
 }
@@ -159,7 +172,10 @@ const postPracticeInstructions = () => {
     {
       type: 'instructions',
       show_clickable_nav: true,
-      pages: postPracticeInstructionsArray
+      pages: postPracticeInstructionsArray,
+      on_load: () => {
+        addCursor('experiment')
+      }
     }
   )
 }

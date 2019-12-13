@@ -1,5 +1,6 @@
 import { lang,  MTURK } from '../config/main'
 import { jsPsych } from 'jspsych-react'
+import { addCursor } from '../lib/utils'
 
 // quiz helper functions
 const quizOptions = (blockSettings) => {
@@ -59,6 +60,9 @@ const quiz = (blockSettings) => {
     type: "survey_multi_choice",
     preamble: preamble,
     questions: questions,
+    on_load: () => {
+      addCursor('experiment')
+    },
     on_finish: function(data) {
       // TODO Unique Id
       data.uniqueId = 'uniqueId'
