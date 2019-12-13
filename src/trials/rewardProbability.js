@@ -1,5 +1,6 @@
 import { eventCodes } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
+import { removeCursor } from '../lib/utils'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
 const rewardProbability = (duration, probability) => {
@@ -16,6 +17,7 @@ const rewardProbability = (duration, probability) => {
       photodiodeGhostBox()
     },
     on_load: () => {
+      removeCursor('experiment')
       pdSpotEncode(startCode)
     },
     on_finish: (data) => {

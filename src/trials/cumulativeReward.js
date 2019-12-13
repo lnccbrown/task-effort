@@ -1,5 +1,6 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
+import { removeCursor } from '../lib/utils'
 import { jsPsych } from 'jspsych-react'
 import { lang } from '../config/main'
 
@@ -37,6 +38,7 @@ const cumulativeReward = (duration, is_practice) => {
 
     },
     on_load: () => {
+      removeCursor('experiment')
       pdSpotEncode(startCode)
     },
     on_finish: (data) => {

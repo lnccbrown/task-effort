@@ -5,9 +5,16 @@ const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// hide cursor on screen
 const removeCursor = (elementId) => {
   let element = document.getElementById(elementId);
   element.classList.add("nocursor");
+}
+
+// add cursor back on screen
+const addCursor = (elementId) => {
+  let element = document.getElementById(elementId);
+  element.classList.remove("nocursor");
 }
 
 // add a random number between 0 and offset to the base number
@@ -78,6 +85,7 @@ const getUserId = (data) => {
 export {
   sleep,
   removeCursor,
+  addCursor,
   jitter,
   jitter50,
   randomTrue,

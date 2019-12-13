@@ -1,5 +1,6 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
+import { removeCursor } from '../lib/utils'
 import { jsPsych } from 'jspsych-react'
 
 const rewardFeedback = (duration) => {
@@ -29,6 +30,7 @@ const rewardFeedback = (duration) => {
       }, duration);
     },
     on_load: () => {
+      removeCursor('experiment')
       pdSpotEncode(startCode)
     },
     on_finish: (data) => {

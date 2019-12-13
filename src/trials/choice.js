@@ -1,6 +1,7 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings } from '../config/main'
+import { removeCursor } from '../lib/utils'
 import { drawBalloon, drawSpike, drawFrame } from '../lib/drawUtils'
 import { jsPsych } from 'jspsych-react'
 
@@ -110,6 +111,7 @@ const choice = (duration, value, effort, high_effort, valid_keys, get_reward) =>
 
     },
     on_load: () => {
+      removeCursor('experiment')
       pdSpotEncode(startCode)
     },
     on_finish: (data) => {
