@@ -14,9 +14,11 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
   let trialDetails = {
     trial_earnings: 0,
     trial_cumulative_earnings: 0,
+    value: [],
+    effort: [],
+    high_effort: [],
     start_time: Date.now()
   }
-
 
   // timeline
   let timeline = [
@@ -24,7 +26,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500), // need ITI of ~500 btwn trials
     rewardProbability(500, blockSettings.is_practice ? opts : opts.prob),
     frameSpike(700, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort),
-    costBenefits(1500, blockSettings.is_practice ? blockSettings.value : opts.value, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort),
+    costBenefits(1500, blockSettings, trialDetails, opts),
     choice(5000, blockSettings.is_practice ? blockSettings.value : opts.value, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, blockSettings.keys, blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward),
     fixation(200),
     pressBalloon(25000, blockSettings.keys, blockSettings.is_practice),

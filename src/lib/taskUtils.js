@@ -39,8 +39,10 @@ const addData = (trialDetails, blockSettings) => {
 		trial_earnings: trialDetails.trial_earnings, // reward feedback
 		trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
 		effort: trialDetails.effort, // how many pumps
+		points: trialDetails.value, // how many points 
 		get_reward: trialDetails.get_reward, // true or false
 		high_effort: trialDetails.high_effort, // true or false
+
 		// rt: rt
 	}
 	return data
