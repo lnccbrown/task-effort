@@ -97,7 +97,7 @@ const pressBalloon = (duration, blockSettings) => {
           // this.deleteCircle();
 
           reward = computeReward()
-          data ={
+          data = {
             "reward": reward,
             "is_practice": is_practice,
             "subtrial_type": 'inflate_balloon',
@@ -149,39 +149,34 @@ const pressBalloon = (duration, blockSettings) => {
           balloonYpos -= inflateBy;
 
           // redraw
-          if (choice.key === keys['Q']){
+          if (choice.key === keys['Q']) {
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], balloonYpos, radius)
           }
-          if (choice.key === keys['P']){
+          if (choice.key === keys['P']) {
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], balloonYpos, radius)
           }
-          if (hitSpike() && !choice.high_effort){
+          if (hitSpike() && !choice.high_effort) {
             pop()
           }
-          if (hitSpike() && choice.high_effort)
-          {
-            if (choice.key === keys['Q'])
-            {
+          if (hitSpike() && choice.high_effort) {
+            if (choice.key === keys['Q']) {
               drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, true)
               drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], balloonYpos, radius)
             }
-            if (choice.key === keys['P'])
-            {
+            if (choice.key === keys['P']) {
               drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, true)
               drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], balloonYpos, radius)
             }
             var balloonBase = canvasSettings.balloonBaseHeight
-            var balloonHeight = (balloonBase + (2* radius));
+            var balloonHeight = (balloonBase + (2 * radius));
             spikeHeight = canvasSettings.frameDimensions[1] - balloonHeight - canvasSettings.spiketopHeight
-            if (choice.key === keys['Q'])
-            {
+            if (choice.key === keys['Q']) {
               drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
             }
-            if (choice.key === keys['P'])
-            {
+            if (choice.key === keys['P']) {
               drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
             }
-            if (countPumps > choice.effort+10){
+            if (countPumps > choice.effort + 10) {
               pop()
               return
             }
