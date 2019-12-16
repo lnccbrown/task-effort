@@ -26,6 +26,7 @@ const rewardProbability = (duration, blockSettings, opts) => {
       pdSpotEncode(endCode)
       data.code = [startCode, endCode]
       data.rew_prob = probability
+      data.subtrial_type = 'reward_prob'
     }
   }
 }

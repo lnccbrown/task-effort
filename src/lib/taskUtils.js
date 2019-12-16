@@ -32,7 +32,6 @@ const generateStartingOpts = (blockSettings) => {
 
 // save data
 const addData = (trialDetails, blockSettings, opts) => {
-	console.log(trialDetails)
 
 	let data = {
 		timestamp: Date.now(),
@@ -42,9 +41,8 @@ const addData = (trialDetails, blockSettings, opts) => {
 		points: blockSettings.is_practice ? blockSettings.value : opts.value, // how many points
 		get_reward: blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward, // true or false
 		high_effort: blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, // true or false
-		keys: blockSettings.keys
-
-		// rt: rt
+		keys: blockSettings.keys,
+		subtrial_type: trialDetails.subtrial_type
 	}
 	return data
 }

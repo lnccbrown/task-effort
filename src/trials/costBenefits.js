@@ -12,7 +12,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const costBenefits = (duration, blockSettings, trialDetails, opts) => {
+const costBenefits = (duration, blockSettings, opts, trialDetails) => {
 
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
@@ -69,6 +69,7 @@ const costBenefits = (duration, blockSettings, trialDetails, opts) => {
       trialDetails.effort = effort;
       trialDetails.high_effort = high_effort;
       trialDetails.value = value;
+      trialDetails.subtrial_type = 'cost_benefits'
 
       canvasDraw()
       setTimeout(

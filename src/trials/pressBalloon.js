@@ -82,10 +82,10 @@ const pressBalloon = (duration, blockSettings) => {
               points = Math.round(points * 100) / 100;
           }
           else if (!choice.get_reward) {
-              points = 0;
+            points = 0;
           }
           else {
-              points = choice.value;
+            points = choice.value;
           }
 
           return points;
@@ -99,7 +99,8 @@ const pressBalloon = (duration, blockSettings) => {
           reward = computeReward()
           data ={
             "reward": reward,
-            "is_practice": is_practice
+            "is_practice": is_practice,
+            "subtrial_type": 'inflate_balloon',
           }
         };
         function popTimeout() {
@@ -107,15 +108,15 @@ const pressBalloon = (duration, blockSettings) => {
           // pop balloon
           popped = true;
           // this.deleteCircle();
-          if (choice.high_effort){
+          if (choice.high_effort) {
             reward = computeReward()
-          }
-          else{
+          } else {
             reward = 0
           }
-          data ={
+          data = {
             "reward": reward,
-            "is_practice": is_practice
+            "is_practice": is_practice,
+            "subtrial_type": 'inflate_balloon',
           }
         };
         function hitSpike() {

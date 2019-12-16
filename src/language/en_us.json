@@ -72,5 +72,9 @@
   },
   "cumulative_rew": {
     "total": "Total:<br>"
+  },
+  "payment": {
+    "earned": "You you have earned",
+    "experimenter": "Please inform the experimenter."
   }
 }

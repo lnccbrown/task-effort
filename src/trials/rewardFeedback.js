@@ -4,7 +4,7 @@ import { removeCursor } from '../lib/utils'
 import { addData } from '../lib/taskUtils'
 import { jsPsych } from 'jspsych-react'
 
-const rewardFeedback = (duration, trialDetails) => {
+const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
 
   const startCode = eventCodes.rewardFeedbackStart
   const endCode = eventCodes.rewardFeedbackEnd
@@ -26,8 +26,12 @@ const rewardFeedback = (duration, trialDetails) => {
       }
       document.getElementById('jspsych-content').innerHTML = stimulus
 
+      trialDetails.subtrial_type = 'reward_feedback'
+
       setTimeout(() => {
-        done(addData(trialDetails))
+        done(addData(blockSettings,
+                trialDetails,
+                opts))
       }, duration);
     },
     on_load: () => {

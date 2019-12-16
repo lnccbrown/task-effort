@@ -79,7 +79,8 @@ const choice = (duration, blockSettings, opts) => {
               "effort": 0,
               "value": 0,
               "high_effort": 0,
-              "get_reward": 0
+              "get_reward": 0,
+              "subtrial_type": 'choice'
             }
             done(returnObj)
         }
@@ -93,7 +94,8 @@ const choice = (duration, blockSettings, opts) => {
             "effort": effort[0],
             "value": value[0],
             "high_effort": high_effort[0],
-            "get_reward": get_reward[0]
+            "get_reward": get_reward[0],
+            "subtrial_type": 'choice'
           }
           done(returnObj)
         } else if (info.key === keys["P"]) { // 0 key

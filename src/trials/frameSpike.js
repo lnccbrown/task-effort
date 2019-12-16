@@ -3,6 +3,7 @@ import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
+import { addData } from '../lib/taskUtils'
 import { drawSpike, drawFrame } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
@@ -11,7 +12,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const frameSpike = (duration, blockSettings, opts) => {
+const frameSpike = (duration, blockSettings, opts, trialDetails) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
   const startCode = eventCodes.frameSpikeStart
@@ -64,7 +65,9 @@ const frameSpike = (duration, blockSettings, opts) => {
       canvasDraw()
       setTimeout(
         () => {
-          done()
+          done(addData(trialDetails,
+              blockSettings,
+              opts))
         },
         duration)
       },

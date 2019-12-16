@@ -5,7 +5,7 @@ import { addData } from '../lib/taskUtils'
 import { jsPsych } from 'jspsych-react'
 import { lang } from '../config/main'
 
-const cumulativeReward = (duration, blockSettings, blockDetails, trialDetails, opts) => {
+const cumulativeReward = (duration, blockSettings, blockDetails, opts, trialDetails) => {
 
   const startCode = eventCodes.cumulativeRewardsStart
   const endCode = eventCodes.cumulativeRewardsEnd
@@ -32,6 +32,8 @@ const cumulativeReward = (duration, blockSettings, blockDetails, trialDetails, o
           }
         }
       }
+
+      trialDetails.subtrial_type = 'cumulative_rewards'
 
       let stimulus = `<div class="effort-container"><h1>${lang.cumulative_rew.total}${(cumulative_reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
       document.getElementById('jspsych-content').innerHTML = stimulus
