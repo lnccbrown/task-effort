@@ -15,6 +15,8 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     trial_earnings: 0,
     start_time: Date.now()
   }
+
+
   // timeline
   let timeline = [
     // show condition
@@ -26,9 +28,9 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(200),
     pressBalloon(25000, blockSettings.keys, blockSettings.is_practice),
     fixation(500),
-    rewardFeedback(800),
+    rewardFeedback(800, trialDetails),
     fixation(500),
-    cumulativeReward(800, blockSettings.is_practice),
+    cumulativeReward(800, blockSettings.is_practice, trialDetails),
     // end the trial
     trialEnd(trialDetails, 500)
   ]

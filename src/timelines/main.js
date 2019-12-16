@@ -3,6 +3,7 @@ import preamble from './preamble'
 import experimentStart from '../trials/experimentStart'
 import experimentEnd from '../trials/experimentEnd'
 import taskBlock from './taskBlock'
+import showPayment from '../trials/showPayment'
 import userId from '../trials/userId'
 import { MTURK, lang } from '../config/main'
 import { practiceBlock1, practiceBlock2, practiceBlock3 } from '../config/practice'
@@ -14,19 +15,20 @@ const primaryTimeline = [
         experimentStart(),
         userId(),
         preamble,
-        bluePracticeInstructions(),
-        buildCountdown(lang.countdown.practice1, 3),
-        taskBlock(practiceBlock1),
-        greenPracticeInstructions(),
-        buildCountdown(lang.countdown.practice2, 3),
-        taskBlock(practiceBlock2),
-        realPracticeInstructions(),
-        buildCountdown(lang.countdown.practice3, 3),
-        taskBlock(practiceBlock3),
-        quizTimeline(practiceBlock1),
-        postPracticeInstructions(),
-        buildCountdown(lang.countdown.expt1, 3),
+        // bluePracticeInstructions(),
+        // buildCountdown(lang.countdown.practice1, 3),
+        // taskBlock(practiceBlock1),
+        // greenPracticeInstructions(),
+        // buildCountdown(lang.countdown.practice2, 3),
+        // taskBlock(practiceBlock2),
+        // realPracticeInstructions(),
+        // buildCountdown(lang.countdown.practice3, 3),
+        // taskBlock(practiceBlock3),
+        // quizTimeline(practiceBlock1),
+        // postPracticeInstructions(),
+        // buildCountdown(lang.countdown.expt1, 3),
         taskBlock(exptBlock1),
+        showPayment(5000),
         experimentEnd(5000)
         ]
 
