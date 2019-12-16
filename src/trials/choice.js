@@ -11,11 +11,18 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const choice = (duration, value, effort, high_effort, valid_keys, get_reward) => {
+const choice = (duration, blockSettings, opts) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
   const startCode = eventCodes.choiceStart
   const endCode = eventCodes.choiceEnd
+
+  let value = blockSettings.is_practice ? blockSettings.value : opts.value
+  let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
+  let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
+  let valid_keys = blockSettings.keys
+  let get_reward = blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward
+
 
   return {
     type: 'call_function',

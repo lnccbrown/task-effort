@@ -38,10 +38,11 @@ const addData = (trialDetails, blockSettings) => {
 		timestamp: Date.now(),
 		trial_earnings: trialDetails.trial_earnings, // reward feedback
 		trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
-		effort: trialDetails.effort, // how many pumps
-		points: trialDetails.value, // how many points 
-		get_reward: trialDetails.get_reward, // true or false
-		high_effort: trialDetails.high_effort, // true or false
+		effort: blockSettings.effort, // how many pumps
+		points: blockSettings.value, // how many points
+		get_reward: blockSettings.get_reward, // true or false
+		high_effort: blockSettings.high_effort, // true or false
+		keys: blockSettings.keys
 
 		// rt: rt
 	}

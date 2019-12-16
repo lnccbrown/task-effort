@@ -27,7 +27,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     rewardProbability(500, blockSettings, opts),
     frameSpike(700, blockSettings, opts),
     costBenefits(1500, blockSettings, trialDetails, opts),
-    choice(5000, blockSettings.is_practice ? blockSettings.value : opts.value, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, blockSettings.keys, blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward),
+    choice(5000, blockSettings, opts),
     fixation(200),
     pressBalloon(25000, blockSettings.keys, blockSettings.is_practice),
     fixation(500),
