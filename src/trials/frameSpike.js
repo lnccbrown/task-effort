@@ -11,11 +11,14 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const frameSpike = (duration, effort, high_effort) => {
+const frameSpike = (duration, blockSettings, opts) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
   const startCode = eventCodes.frameSpikeStart
   const endCode = eventCodes.frameSpikeEnd
+
+  let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
+  let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
 
   return {
     type: 'call_function',
