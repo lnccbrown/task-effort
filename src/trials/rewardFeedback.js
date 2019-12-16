@@ -1,9 +1,10 @@
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { removeCursor } from '../lib/utils'
+import { addData } from '../lib/taskUtils'
 import { jsPsych } from 'jspsych-react'
 
-const rewardFeedback = (duration) => {
+const rewardFeedback = (duration, trialDetails) => {
 
   const startCode = eventCodes.rewardFeedbackStart
   const endCode = eventCodes.rewardFeedbackEnd
@@ -16,17 +17,17 @@ const rewardFeedback = (duration) => {
       let rewards = jsPsych.data.get().select('value').values
       let last = rewards[rewards.length - 1]
       let stimulus
-      if (last)
-      {
+      if (last) {
         stimulus = `<div class="effort-container"><h1>+${(last.reward).toFixed(2)}</h1>` + photodiodeGhostBox() + `</div>`
-      }
-      else
-      {
+        trialDetails.trial_earnings = last.reward
+      } else {
         stimulus = `<div class="effort-container"><h1>+${0}</h1>` + photodiodeGhostBox() + `</div>`
+        trialDetails.trial_earnings = 0
       }
       document.getElementById('jspsych-content').innerHTML = stimulus
+
       setTimeout(() => {
-        done()
+        done(addData(trialDetails))
       }, duration);
     },
     on_load: () => {

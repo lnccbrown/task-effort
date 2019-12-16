@@ -31,8 +31,24 @@ const generateStartingOpts = (blockSettings) => {
 	}
 }
 
+// save data
+const addData = (trialDetails, blockSettings) => {
+	console.log(trialDetails)
+
+	let data = {
+		timestamp: Date.now(),
+		trial_earnings: trialDetails.trial_earnings, // reward feedback
+		trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
+		effort: trialDetails.effort, // how many pumps
+		get_reward: trialDetails.get_reward, // true or false
+		high_effort: trialDetails.high_effort, // true or false
+		// rt: rt
+	}
+	return data
+}
 
 
 export {
-	generateStartingOpts
+	generateStartingOpts,
+	addData
 }

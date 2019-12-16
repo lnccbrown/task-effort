@@ -28,7 +28,7 @@ const primaryTimeline = [
         // postPracticeInstructions(),
         // buildCountdown(lang.countdown.expt1, 3),
         taskBlock(exptBlock1),
-        showPayment(5000),
+        // showPayment(5000),
         experimentEnd(5000)
         ]
 

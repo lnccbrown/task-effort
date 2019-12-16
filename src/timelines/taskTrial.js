@@ -13,6 +13,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
   let trialDetails = {
     trial_earnings: 0,
+    trial_cumulative_earnings: 0,
     start_time: Date.now()
   }
 
@@ -30,7 +31,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500),
     rewardFeedback(800, trialDetails),
     fixation(500),
-    cumulativeReward(800, blockSettings.is_practice, trialDetails),
+    cumulativeReward(800, blockSettings, blockDetails, trialDetails),
     // end the trial
     trialEnd(trialDetails, 500)
   ]

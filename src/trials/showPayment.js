@@ -21,7 +21,9 @@ const showPayment = (duration) => {
       },
       on_start: (trial) => {
         let total_earnings = 0
-        debugger
+        let prev_data = jsPsych.data.get()
+        let rews = jsPsych.data.get().select('value').values
+
         // let bonusTrial = jsPsych.data.get().filterCustom((t) => t.value && t.value.earnings_bonus > 0)
         // if (bonusTrial.count() > 0) {
         //   bonus = bonusTrial.values()[0].value.earnings_bonus
