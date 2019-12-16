@@ -31,17 +31,17 @@ const generateStartingOpts = (blockSettings) => {
 }
 
 // save data
-const addData = (trialDetails, blockSettings) => {
+const addData = (trialDetails, blockSettings, opts) => {
 	console.log(trialDetails)
 
 	let data = {
 		timestamp: Date.now(),
 		trial_earnings: trialDetails.trial_earnings, // reward feedback
 		trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
-		effort: blockSettings.effort, // how many pumps
-		points: blockSettings.value, // how many points
-		get_reward: blockSettings.get_reward, // true or false
-		high_effort: blockSettings.high_effort, // true or false
+		effort: blockSettings.is_practice ? blockSettings.effort : opts.effort, // how many pumps
+		points: blockSettings.is_practice ? blockSettings.value : opts.value, // how many points
+		get_reward: blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward, // true or false
+		high_effort: blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, // true or false
 		keys: blockSettings.keys
 
 		// rt: rt

@@ -5,7 +5,7 @@ import { addData } from '../lib/taskUtils'
 import { jsPsych } from 'jspsych-react'
 import { lang } from '../config/main'
 
-const cumulativeReward = (duration, blockSettings, blockDetails, trialDetails) => {
+const cumulativeReward = (duration, blockSettings, blockDetails, trialDetails, opts) => {
 
   const startCode = eventCodes.cumulativeRewardsStart
   const endCode = eventCodes.cumulativeRewardsEnd
@@ -37,7 +37,8 @@ const cumulativeReward = (duration, blockSettings, blockDetails, trialDetails) =
       document.getElementById('jspsych-content').innerHTML = stimulus
       setTimeout(() => {
         done(addData(trialDetails,
-                      blockSettings
+                      blockSettings,
+                      opts
                     ))
       }, duration);
 

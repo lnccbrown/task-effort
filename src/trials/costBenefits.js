@@ -73,7 +73,9 @@ const costBenefits = (duration, blockSettings, trialDetails, opts) => {
       canvasDraw()
       setTimeout(
         () => {
-          done(addData(trialDetails))
+          done(addData(trialDetails,
+            blockSettings,
+            opts))
         },
         duration)
     },
