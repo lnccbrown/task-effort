@@ -44,6 +44,7 @@ const addData = (trialDetails, blockSettings, opts) => {
 		keys: blockSettings.keys,
 		subtrial_type: trialDetails.subtrial_type
 	}
+
 	return data
 }
 
