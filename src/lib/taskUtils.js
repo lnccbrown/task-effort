@@ -25,7 +25,6 @@ const generateStartingOpts = (blockSettings) => {
 				}
 			}
 		}
-		console.log(opts)
 
 		return _.shuffle(opts)
 	}

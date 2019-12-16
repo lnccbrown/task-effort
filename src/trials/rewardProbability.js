@@ -23,6 +23,7 @@ const rewardProbability = (duration, probability) => {
     on_finish: (data) => {
       pdSpotEncode(endCode)
       data.code = [startCode, endCode]
+      data.rew_prob = probability
     }
   }
 }

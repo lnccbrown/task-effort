@@ -12,7 +12,6 @@ const experimentEnd = (duration) => {
     trial_duration: duration,
     on_load: () => {
       addCursor('experiment')
-      debugger
     }
   }
 }
