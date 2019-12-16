@@ -3,9 +3,11 @@ import { baseStimulus } from '../lib/markup/stimuli'
 import { removeCursor } from '../lib/utils'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
-const rewardProbability = (duration, probability) => {
+const rewardProbability = (duration, blockSettings, opts) => {
   const startCode = eventCodes.rewardProbabilityStart
   const endCode = eventCodes.rewardProbabilityEnd
+
+  let probability = blockSettings.is_practice ? opts : opts.prob
 
   return {
     type: 'html_keyboard_response',

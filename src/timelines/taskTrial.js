@@ -24,7 +24,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
   let timeline = [
     // show condition
     fixation(500), // need ITI of ~500 btwn trials
-    rewardProbability(500, blockSettings.is_practice ? opts : opts.prob),
+    rewardProbability(500, blockSettings, opts),
     frameSpike(700, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort),
     costBenefits(1500, blockSettings, trialDetails, opts),
     choice(5000, blockSettings.is_practice ? blockSettings.value : opts.value, blockSettings.is_practice ? blockSettings.effort : opts.effort, blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, blockSettings.keys, blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward),
