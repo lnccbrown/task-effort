@@ -29,7 +29,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     costBenefits(1500, blockSettings, trialDetails, opts),
     choice(5000, blockSettings, opts),
     fixation(200),
-    pressBalloon(25000, blockSettings.keys, blockSettings.is_practice),
+    pressBalloon(25000, blockSettings),
     fixation(500),
     rewardFeedback(800, trialDetails),
     fixation(500),

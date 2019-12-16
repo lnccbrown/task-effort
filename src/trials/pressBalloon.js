@@ -11,10 +11,13 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 // const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration, valid_keys, is_practice) => {
+const pressBalloon = (duration, blockSettings) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
   const startCode = eventCodes.pressBalloonStart
   const endCode = eventCodes.pressBalloonEnd
+
+  let valid_keys = blockSettings.keys
+  let is_practice = blockSettings.is_practice
 
   return {
     type: 'call_function',
