@@ -129,12 +129,12 @@ const handleEventSend = (code) => {
   //         setUpPort()
   //         .then(() => handleEventSend(code))
   //       } else if (opt == 2) {
-  //         SKIP_SENDING_DEV = true
+          SKIP_SENDING_DEV = true
   //       }
   //     })
   //
   // } else if (!SKIP_SENDING_DEV) {
-    sendToPort(triggerPort, code)
+  //   sendToPort(triggerPort, code)
   // }
 }
 
