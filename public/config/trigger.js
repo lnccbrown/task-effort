@@ -21,6 +21,7 @@ const eventCodes = {
 	rewardFeedbackEnd: 71,
 	showPaymentStart: 80,
 	showPaymendEnd: 81,
+	trialFinish: 3,
 	test_connect: 4,
 	open_task: 5
 }
