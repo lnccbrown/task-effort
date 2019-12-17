@@ -7,7 +7,7 @@ This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) 
 
 1. Clone this repo onto your computer
 ```
-git clone https://github.com/brown-ccv/task-effort.git
+git clone https://github.com/lnccbrown/task-effort.git
 ```
 2. Navigate to the task-effort directory and then install the dependencies
 ```
@@ -44,7 +44,7 @@ npm run electron-dev
 1. Clone the repo and create a new feature branch off `develop`.
 
 ```shell
-git clone https://github.com/brown-ccv/task-effort.git
+git clone https://github.com/lnccbrown/task-effort.git
 git checkout -b your-feature-branch
 ```
 
