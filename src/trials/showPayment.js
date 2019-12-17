@@ -27,13 +27,14 @@ const showPayment = (duration) => {
         const total_cumulative = last.trial_cumulative_earnings
         total_earnings += (total_cumulative / 20) // $1 for every 20 pts
 
-        trial.stimulus = baseStimulus(`<h1>${lang.payment.earned}<br>${formatDollars(total_earnings)}</h1>`, true) +
+        trial.stimulus = baseStimulus(`<h1>${lang.payment.earned}<br>${formatDollars(total_earnings)}<br></br>${lang.payment.experimenter}</h1>`, true) +
                        photodiodeGhostBox()
       },
       on_finish: (data) => {
         pdSpotEncode(endCode)
         data.code = [startCode, endCode]
         data.total_earnings = total_earnings
+        data.subtrial_type = "show_payment"
       }
     }
   }
