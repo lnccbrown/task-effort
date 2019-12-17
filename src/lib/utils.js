@@ -17,6 +17,9 @@ const addCursor = (elementId) => {
   element.classList.remove("nocursor");
 }
 
+// response time
+const rt = (start) => Date.now() - start
+
 // add a random number between 0 and offset to the base number
 const jitter = (base, offset) => (
   base + Math.floor(Math.random() * Math.floor(offset))
@@ -86,6 +89,7 @@ export {
   sleep,
   removeCursor,
   addCursor,
+  rt,
   jitter,
   jitter50,
   randomTrue,

@@ -11,8 +11,12 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`
 // const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration, valid_keys, is_practice) => {
+const pressBalloon = (duration, blockSettings) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
+
+  let valid_keys = blockSettings.keys
+  let is_practice = blockSettings.is_practice
+
   const startCode = eventCodes.pressBalloonStart
   const endCode = eventCodes.pressBalloonEnd
 
@@ -24,8 +28,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
       document.getElementById('jspsych-content').innerHTML = stimulus
       let values = jsPsych.data.get().select('value').values
       let last = values[values.length - 1]
-      if (last.key)
-      {
+      if (last.key) {
         // set up canvas
         let canvas = document.querySelector('#jspsych-canvas');
         let ctx = canvas.getContext('2d');
@@ -39,9 +42,8 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
 
         if (choice.high_effort) {
           inflateBy = canvasSettings.inflateByHE
-        }
-        else {
-            inflateBy = canvasSettings.inflateByNHE
+        } else {
+          inflateBy = canvasSettings.inflateByNHE
         }
 
         const canvasDraw = () => {
@@ -49,12 +51,11 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           var targetDist = 2 * inflateBy * (choice.effort - 1);
           spikeHeight = choice.effort ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight) : 0;
-          if (choice.key === keys['Q']){
+          if (choice.key === keys['Q']) {
             // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
             drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, radius)
-          }
-          else{
+          } else {
             // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
             drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, radius)
@@ -81,10 +82,10 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
               points = Math.round(points * 100) / 100;
           }
           else if (!choice.get_reward) {
-              points = 0;
+            points = 0;
           }
           else {
-              points = choice.value;
+            points = choice.value;
           }
 
           return points;
@@ -98,7 +99,8 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           reward = computeReward()
           data ={
             "reward": reward,
-            "is_practice": is_practice
+            "is_practice": is_practice,
+            "subtrial_type": 'inflate_balloon',
           }
         };
         function popTimeout() {
@@ -106,15 +108,15 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           // pop balloon
           popped = true;
           // this.deleteCircle();
-          if (choice.high_effort){
+          if (choice.high_effort) {
             reward = computeReward()
-          }
-          else{
+          } else {
             reward = 0
           }
-          data ={
+          data = {
             "reward": reward,
-            "is_practice": is_practice
+            "is_practice": is_practice,
+            "subtrial_type": 'inflate_balloon',
           }
         };
         function hitSpike() {
@@ -127,7 +129,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
           }
           return crash;
         }
-        function inflate(choice){
+        function inflate(choice) {
           // if (popped){
           //   return
           // }
@@ -205,8 +207,7 @@ const pressBalloon = (duration, valid_keys, is_practice) => {
             persist: true,
             allow_held_key: false
         });
-      }
-      else{
+      } else {
         done(0)
       }
 

@@ -3,6 +3,7 @@ import preamble from './preamble'
 import experimentStart from '../trials/experimentStart'
 import experimentEnd from '../trials/experimentEnd'
 import taskBlock from './taskBlock'
+import showPayment from '../trials/showPayment'
 import userId from '../trials/userId'
 import { MTURK, lang } from '../config/main'
 import { practiceBlock1, practiceBlock2, practiceBlock3 } from '../config/practice'
@@ -27,6 +28,7 @@ const primaryTimeline = [
         postPracticeInstructions(),
         buildCountdown(lang.countdown.expt1, 3),
         taskBlock(exptBlock1),
+        showPayment(5000),
         experimentEnd(5000)
         ]
 

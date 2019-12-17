@@ -13,6 +13,14 @@ exptBlock1.effort = [100, 120, 150]
 exptBlock1.keys = ['q', 'p']
 exptBlock1.get_reward = [true, true, true, false]
 
+// debug settings where there are only 2 trials in main task block
+// exptBlock1.probs = ["100%"]
+// exptBlock1.counterbalance = true
+// exptBlock1.value = [3]
+// exptBlock1.effort = [20]
+// exptBlock1.keys = ['q', 'p']
+// exptBlock1.get_reward = [true]
+
 
 
 export {

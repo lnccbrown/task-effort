@@ -1,5 +1,4 @@
 // utilities specific to this app/task
-
 import _ from 'lodash'
 
 // initialize starting conditions for each trial within a block
@@ -10,7 +9,7 @@ const generateStartingOpts = (blockSettings) => {
 			// Repeat each starting condition the same number of times
 			return _.range(blockSettings.repeats_per_condition).map( () => c )
 		})
-	
+
 		return _.shuffle(_.flatten(startingOptions))
 	}
 	else
@@ -26,12 +25,31 @@ const generateStartingOpts = (blockSettings) => {
 				}
 			}
 		}
+
 		return _.shuffle(opts)
 	}
 }
 
+// save data
+const addData = (trialDetails, blockSettings, opts) => {
+
+	let data = {
+		timestamp: Date.now(),
+		trial_earnings: trialDetails.trial_earnings, // reward feedback
+		trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
+		effort: blockSettings.is_practice ? blockSettings.effort : opts.effort, // how many pumps
+		points: blockSettings.is_practice ? blockSettings.value : opts.value, // how many points
+		get_reward: blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward, // true or false
+		high_effort: blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort, // true or false
+		keys: blockSettings.keys,
+		subtrial_type: trialDetails.subtrial_type
+	}
+
+	return data
+}
 
 
 export {
-	generateStartingOpts
+	generateStartingOpts,
+	addData
 }
