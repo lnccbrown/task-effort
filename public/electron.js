@@ -12,12 +12,12 @@ const log = require('electron-log');
 
 const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 // Event Trigger
-const { eventCodes, manufacturer, vendorId, productId } = require('./config/trigger')
+const { eventCodes, comName } = require('./config/trigger')
 const { isPort, getPort, sendToPort } = require('event-marker')
 
-// Override product ID if environment variable set
-const activeProductId = process.env.EVENT_MARKER_PRODUCT_ID || productId
-log.info("Active product ID", activeProductId)
+// Override comName if environment variable set
+const activeComName = process.env.COMNAME || comName
+log.info("Trigger Box comName", activeComName)
 
 // Data Saving
 const { dataDir } = require('./config/saveData')
@@ -83,7 +83,7 @@ let portAvailable
 let SKIP_SENDING_DEV = false
 
 const setUpPort = async () => {
-  p = await getPort(vendorId, activeProductId)
+  p = await getPort(activeComName)
   if (p) {
     triggerPort = p
     portAvailable = true
@@ -112,30 +112,30 @@ const setUpPort = async () => {
 }
 
 const handleEventSend = (code) => {
-  if (!portAvailable && !SKIP_SENDING_DEV) {
-    let message = "Event Marker not connected"
-    log.warn(message)
-
-    let buttons = ["Quit", "Retry"]
-    if (process.env.ELECTRON_START_URL) {
-      buttons.push("Continue Anyway")
-    }
-    dialog.showMessageBox(mainWindow, {type: "error", message: message, title: "Task Error", buttons: buttons, defaultId: 0})
-      .then((resp) => {
-        let opt = resp.response
-        if (opt == 0) { // quit
-          app.exit()
-        } else if (opt == 1) { // retry
-          setUpPort()
-          .then(() => handleEventSend(code))
-        } else if (opt == 2) {
+  // if (!portAvailable && !SKIP_SENDING_DEV) {
+  //   let message = "Event Marker not connected"
+  //   log.warn(message)
+  //
+  //   let buttons = ["Quit", "Retry"]
+  //   if (process.env.ELECTRON_START_URL) {
+  //     buttons.push("Continue Anyway")
+  //   }
+  //   dialog.showMessageBox(mainWindow, {type: "error", message: message, title: "Task Error", buttons: buttons, defaultId: 0})
+  //     .then((resp) => {
+  //       let opt = resp.response
+  //       if (opt == 0) { // quit
+  //         app.exit()
+  //       } else if (opt == 1) { // retry
+  //         setUpPort()
+  //         .then(() => handleEventSend(code))
+  //       } else if (opt == 2) {
           SKIP_SENDING_DEV = true
-        }
-      })
-
-  } else if (!SKIP_SENDING_DEV) {
-    sendToPort(triggerPort, code)
-  }
+  //       }
+  //     })
+  //
+  // } else if (!SKIP_SENDING_DEV) {
+  //   sendToPort(triggerPort, code)
+  // }
 }
 
 // EVENT TRIGGER
@@ -190,23 +190,6 @@ ipc.on('data', (event, args) => {
 
 // EXPERIMENT END
 ipc.on('end', (event, args) => {
-  // finish writing file
-  stream.write(']')
-  stream.end()
-  stream = false
-
-  // copy file to config location
-  const desktop = app.getPath('desktop')
-  const name = app.getName()
-  const today = new Date(Date.now())
-  const date = today.toISOString().slice(0,10)
-  const copyPath = path.join(desktop, dataDir, `${patientID}`, date, name)
-  fs.mkdir(copyPath, { recursive: true }, (err) => {
-    log.error(err)
-    fs.copyFileSync(filePath, path.join(copyPath, fileName))
-
-  })
-
   // quit app
   app.quit()
 })
@@ -261,3 +244,23 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// EXPERIMENT END
+app.on('will-quit', () => {
+  // finish writing file
+  stream.write(']')
+  stream.end()
+  stream = false
+
+  // copy file to config location
+  const desktop = app.getPath('desktop')
+  const name = app.getName()
+  const today = new Date(Date.now())
+  const date = today.toISOString().slice(0,10)
+  const copyPath = path.join(desktop, dataDir, `${patientID}`, date, name)
+  fs.mkdir(copyPath, { recursive: true }, (err) => {
+    log.error(err)
+    fs.copyFileSync(filePath, path.join(copyPath, fileName))
+
+  })
+})

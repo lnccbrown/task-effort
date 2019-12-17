@@ -8,8 +8,9 @@ const showCondition = (condition, duration, timeBeforeUpdate) => {
   return {
     type: 'html_keyboard_response',
     stimulus: '',
+    prompt:  lang.prompt.continue.press,
     response_ends_trial: false,
-    trial_duration: duration,
+    //trial_duration: duration,
     on_start: (trial) => {
       trial.stimulus = baseStimulus(condition)
                       + photodiodeGhostBox()

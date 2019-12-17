@@ -1,23 +1,24 @@
 import { eventCodes, MTURK } from '../config/main'
-import { earningsDisplay } from '../lib/markup/earnings'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 
-const beadEnd = (trialDetails, duration) => {
-    const code = eventCodes.show_earnings
+const trialEnd = (trialDetails, duration) => {
+    const endCode = eventCodes.trialFinish
 
     return {
       type: 'html_keyboard_response',
       stimulus: '',
       response_ends_trial: false,
       trial_duration: duration,
-      on_load: () => pdSpotEncode(code),
+      on_load: () => {
+      },
       on_start: (trial) => {
-        let earnings = Math.random()
-        trial.stimulus = earningsDisplay(earnings)
         if (!MTURK) trial.stimulus += photodiodeGhostBox()
       },
-      on_finish: (data) => data.code = code
+      on_finish: (data) => {
+        pdSpotEncode(endCode)
+        data.code = endCode
+      }
     }
-}
+  }
 
-export default beadEnd
+export default trialEnd
