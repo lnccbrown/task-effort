@@ -101,6 +101,8 @@ const pressBalloon = (duration, blockSettings) => {
             "reward": reward,
             "is_practice": is_practice,
             "subtrial_type": 'inflate_balloon',
+            "rt": rts,
+            "pumps": countPumps
           }
         };
         function popTimeout() {
@@ -117,6 +119,8 @@ const pressBalloon = (duration, blockSettings) => {
             "reward": reward,
             "is_practice": is_practice,
             "subtrial_type": 'inflate_balloon',
+            "rt": rts,
+            "pumps": countPumps
           }
         };
         function hitSpike() {
@@ -129,12 +133,14 @@ const pressBalloon = (duration, blockSettings) => {
           }
           return crash;
         }
+
+        let rts = []
+
         function inflate(choice) {
           // if (popped){
           //   return
           // }
 
-          let rts = []
           // Record RT relative to when trial started
           var timeWhenPressed = (new Date()).getTime();
           var rt = timeWhenPressed - timeWhenStarted
