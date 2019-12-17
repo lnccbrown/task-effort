@@ -67,7 +67,7 @@ const defaultBlockSettings = {
 	high_effort: [],
 	get_reward:[],
 	counterbalance: false,
-	keys: keys,
+	keys: [],
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
 	photodiode_active: false,

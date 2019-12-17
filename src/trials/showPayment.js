@@ -10,8 +10,7 @@ const showPayment = (duration, blockSettings) => {
   const endCode = eventCodes.showPaymentEnd
 
   let total_earnings = 0 // initialize idk
-  let experimenterKey = blockSettings.keys['experimenter']
-  console.log(experimenterKey)
+  let experimenterKey = blockSettings.keys[2] // 0 is q, 1 is p, 2 is m
 
   if (!AT_HOME || MTURK) {
       return {
