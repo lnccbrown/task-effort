@@ -5,16 +5,19 @@ import { baseStimulus } from '../lib/markup/stimuli'
 import { formatDollars, addCursor } from '../lib/utils'
 
 
-const showPayment = (duration) => {
+const showPayment = (duration, blockSettings) => {
   const startCode = eventCodes.showPaymentStart
   const endCode = eventCodes.showPaymentEnd
 
   let total_earnings = 0 // initialize idk
+  let experimenterKey = blockSettings.keys[2] // 0 is q, 1 is p, 2 is m
+  console.log(experimenterKey)
 
   if (!AT_HOME || MTURK) {
       return {
       type: 'html_keyboard_response',
       stimulus: '',
+      choices: experimenterKey,
       response_ends_trial: true,
       // trial_duration: duration,
       on_load: () => {

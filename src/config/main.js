@@ -42,7 +42,8 @@ const canvasSettings = {
 const keys = {
 	"P": 80,
 	"Q": 81,
-	"space": 32
+	"space": 32,
+	"experimenter": 'm' // key experimenter presses to quit payment screen
 }
 
 // is this mechanical turk?

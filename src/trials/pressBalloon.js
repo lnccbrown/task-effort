@@ -90,6 +90,7 @@ const pressBalloon = (duration, blockSettings) => {
 
           return points;
         }
+
         function pop() {
           clearInterval(timer);
           // pop balloon
@@ -102,9 +103,13 @@ const pressBalloon = (duration, blockSettings) => {
             "is_practice": is_practice,
             "subtrial_type": 'inflate_balloon',
             "rt": rts,
-            "pumps": countPumps
+            "pumps": countPumps,
+            "timeWhenPopped": (new Date()).getTime(),
+            "firstPress": rts[0],
+            "lastPress": rts[rts.length - 1],
           }
         };
+
         function popTimeout() {
           clearInterval(timer);
           // pop balloon
@@ -120,7 +125,9 @@ const pressBalloon = (duration, blockSettings) => {
             "is_practice": is_practice,
             "subtrial_type": 'inflate_balloon',
             "rt": rts,
-            "pumps": countPumps
+            "pumps": countPumps,
+            "firstPress": rts[0],
+            "lastPress": rts[rts.length - 1],
           }
         };
         function hitSpike() {
