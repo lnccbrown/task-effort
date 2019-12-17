@@ -9,14 +9,14 @@ const showPayment = (duration) => {
   const startCode = eventCodes.showPaymentStart
   const endCode = eventCodes.showPaymentEnd
 
-  const total_earnings = 0 // initialize idk
+  let total_earnings = 0 // initialize idk
 
   if (!AT_HOME || MTURK) {
       return {
       type: 'html_keyboard_response',
       stimulus: '',
-      response_ends_trial: false,
-      trial_duration: duration,
+      response_ends_trial: true,
+      // trial_duration: duration,
       on_load: () => {
         pdSpotEncode(startCode)
         addCursor('experiment')
@@ -25,7 +25,7 @@ const showPayment = (duration) => {
         const value = jsPsych.data.get().select('value').values
         const last = value[value.length - 1]
         const total_cumulative = last.trial_cumulative_earnings
-        const total_earnings = total_cumulative / 20 // $1 for every 20 pts
+        total_earnings += (total_cumulative / 20) // $1 for every 20 pts
 
         trial.stimulus = baseStimulus(`<h1>${lang.payment.earned}<br>${formatDollars(total_earnings)}</h1>`, true) +
                        photodiodeGhostBox()
@@ -40,7 +40,7 @@ const showPayment = (duration) => {
   else {
     return {
     type: 'html_keyboard_response',
-    trial_duration: 1,
+    // trial_duration: 1,
     on_load: () => addCursor('experiment')
     }
   }
