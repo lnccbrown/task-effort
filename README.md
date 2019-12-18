@@ -22,7 +22,6 @@ npm run build
 For Mac and Linux:
 ```
 npm run dev
-
 ```
 
 For Windows:
