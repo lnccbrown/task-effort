@@ -1,10 +1,13 @@
 // import trials
+import { lang } from '../config/main'
 import breakScreen from '../trials/breakScreen'
+import buildCountdown from '../trials/countdown'
 
 const breakTrial = () => {
 
   let timeline = [
-    breakScreen()
+    breakScreen(),
+    buildCountdown(lang.countdown.post_break_resume, 3)
   ]
 
     return {
