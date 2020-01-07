@@ -1,5 +1,6 @@
 // import trials
-import break from '../trials/break'
+import { jsPsych } from 'jspsych-react'
+import breakScreen from '../trials/breakScreen'
 
 const breakTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
@@ -7,14 +8,12 @@ const breakTrial = (blockSettings, blockDetails, opts) => {
     start_time: Date.now()
   }
 
-  // timeline
-  let timeline = [
-    break()
-  ]
-    return {
-  		type: 'html_keyboard_response',
-  		timeline: timeline
-  	}
+  let timeline = breakScreen()
+
+  return {
+		type: 'html_keyboard_response',
+		timeline: timeline
+	}
 }
 
 export default breakTrial
