@@ -9,8 +9,6 @@ const breakScreen = () => {
     </div>
     `, true)
 
-  console.log('!! BREAK !!')
-
   return {
     type: 'html_keyboard_response',
     stimulus: stimulus,
