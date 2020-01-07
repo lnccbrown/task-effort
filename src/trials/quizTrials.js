@@ -22,7 +22,6 @@ const quizPrompts = [
 
 // Quiz Trial
 const quiz = (blockSettings) => {
-  console.log(blockSettings.quiz)
 
   const preamble = `<div class="quiz_container">
                     <h3>${lang.quiz.respond_correctly}</h3>
