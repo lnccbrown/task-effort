@@ -1,5 +1,5 @@
 import taskTrial from './taskTrial'
-import breakTrial from '../trials/breakTrial'
+import breakTrial from './taskTrial'
 import { generateStartingOpts } from '../lib/taskUtils'
 
 const taskBlock = (blockSettings) => {
