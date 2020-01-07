@@ -1,9 +1,12 @@
 # Effort Task
-
-This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [Neuro Task Starter](https://www.github.com/brown-ccv/neuro-task-starter).
+<p float="left">
+  <img src="/assets/icons/win/icon.ico" width="200" />
+</p>
 
 [![Actions Status](https://github.com/lnccbrown/task-effort/workflows/CI%20Tests/badge.svg)](https://github.com/lnccbrown/task-effort/actions)
 [![Actions Status](https://github.com/lnccbrown/task-effort/workflows/Build%20at%20home%20version%20%28Windows%29/badge.svg)](https://github.com/lnccbrown/task-effort/actions)  
+
+This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [Neuro Task Starter](https://www.github.com/brown-ccv/neuro-task-starter).
 
 ## Getting Started
 
