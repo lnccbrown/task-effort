@@ -3,7 +3,9 @@ import breakScreen from '../trials/breakScreen'
 
 const breakTrial = () => {
 
-  let timeline = breakScreen()
+  let timeline = [
+    breakScreen()
+  ]
 
     return {
   		type: 'html_keyboard_response',

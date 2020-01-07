@@ -19,7 +19,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     high_effort: [],
     start_time: Date.now()
   }
-
+  
   // timeline
   let timeline = [
     // show condition

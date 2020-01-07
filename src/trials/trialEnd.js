@@ -15,6 +15,7 @@ const trialEnd = (trialDetails, duration) => {
         if (!MTURK) trial.stimulus += photodiodeGhostBox()
       },
       on_finish: (data) => {
+        console.log('trial blah')
         pdSpotEncode(endCode)
         data.code = endCode
       }
