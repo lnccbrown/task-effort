@@ -14,16 +14,21 @@ const taskBlock = (blockSettings) => {
 
 	// timeline = loop through trials
 	let timeline = startingOpts.map( (opt) => taskTrial(blockSettings, blockDetails, opt))
+	// console.log('timeline -- without spliced in breaks')
+	// console.log(timeline)
+	// console.log(timeline.length)
 
 	if (blockSettings.num_breaks > 0) {
-		let breakInterval = Math.floor(startingOpts.length / (blockSettings.num_breaks + 1))
-		let iBreak;
-		for (iBreak in blockSettings.num_breaks) {
+		let breakInterval = Math.floor(timeline.length / (blockSettings.num_breaks + 1))
+		// console.log('breakInterval ' + breakInterval)
+		// console.log('numBreaks ' + blockSettings.num_breaks)
+		for (let iBreak = 1; iBreak < blockSettings.num_breaks + 1; iBreak++) {
 			timeline.splice(iBreak*breakInterval, 0, breakTrial)
 	  }
 	}
-	debugger
-	console.log(timeline)
+
+	// console.log('finalized timeline')
+	// console.log(timeline)
 
   return {
 		type: 'html_keyboard_response',
