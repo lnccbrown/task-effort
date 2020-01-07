@@ -14,9 +14,6 @@ const taskBlock = (blockSettings) => {
 
 	// timeline = loop through trials
 	let timeline = startingOpts.map( (opt) => taskTrial(blockSettings, blockDetails, opt))
-	// console.log('timeline -- without spliced in breaks')
-	// console.log(timeline)
-	// console.log(timeline.length)
 
 	if (blockSettings.num_breaks > 0) {
 		let breakInterval = Math.floor(timeline.length / (blockSettings.num_breaks + 1))
