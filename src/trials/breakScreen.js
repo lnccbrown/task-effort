@@ -1,6 +1,5 @@
 import { lang } from '../config/main'
 import { baseStimulus } from '../lib/markup/stimuli'
-// import { photodiodeGhostBox } from '../lib/markup/photodiode'
 
 const breakScreen = () => {
   let stimulus = baseStimulus(`
