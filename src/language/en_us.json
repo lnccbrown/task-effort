@@ -73,6 +73,10 @@
   "cumulative_rew": {
     "total": "Total:<br>"
   },
+  "break": {
+    "prompt": "You may now take a break.",
+    "done": "Press any key to end your break and to resume the task."
+  },
   "payment": {
     "earned": "You have earned",
     "experimenter": "Please inform the experimenter."

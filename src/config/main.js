@@ -5,6 +5,7 @@
 import { jsPsych } from 'jspsych-react'
 import _ from 'lodash'
 import { eventCodes } from './trigger'
+
 const canvasSize = 600
 const x25 = canvasSize * 0.25
 const x20 = canvasSize * 0.2
@@ -71,12 +72,13 @@ const defaultBlockSettings = {
 	repeats_per_condition: 1, // number of times every condition is repeated
 	is_practice: false,
 	photodiode_active: false,
+	num_breaks: 0
 }
 
-// high effort timeout
+// high effort timeout (in seconds)
 const high_effort_time = 25
 
-// how long to countdown
+// how long to countdown (in seconds)
 const countdownWait = 3
 
 export {
