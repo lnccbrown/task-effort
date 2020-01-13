@@ -112,30 +112,30 @@ const setUpPort = async () => {
 }
 
 const handleEventSend = (code) => {
-  // if (!portAvailable && !SKIP_SENDING_DEV) {
-  //   let message = "Event Marker not connected"
-  //   log.warn(message)
-  //
-  //   let buttons = ["Quit", "Retry"]
-  //   if (process.env.ELECTRON_START_URL) {
-  //     buttons.push("Continue Anyway")
-  //   }
-  //   dialog.showMessageBox(mainWindow, {type: "error", message: message, title: "Task Error", buttons: buttons, defaultId: 0})
-  //     .then((resp) => {
-  //       let opt = resp.response
-  //       if (opt == 0) { // quit
-  //         app.exit()
-  //       } else if (opt == 1) { // retry
-  //         setUpPort()
-  //         .then(() => handleEventSend(code))
-  //       } else if (opt == 2) {
+  if (!portAvailable && !SKIP_SENDING_DEV) {
+    let message = "Event Marker not connected"
+    log.warn(message)
+
+    let buttons = ["Quit", "Retry"]
+    if (process.env.ELECTRON_START_URL) {
+      buttons.push("Continue Anyway")
+    }
+    dialog.showMessageBox(mainWindow, {type: "error", message: message, title: "Task Error", buttons: buttons, defaultId: 0})
+      .then((resp) => {
+        let opt = resp.response
+        if (opt == 0) { // quit
+          app.exit()
+        } else if (opt == 1) { // retry
+          setUpPort()
+          .then(() => handleEventSend(code))
+        } else if (opt == 2) {
           SKIP_SENDING_DEV = true
-  //       }
-  //     })
-  //
-  // } else if (!SKIP_SENDING_DEV) {
-  //   sendToPort(triggerPort, code)
-  // }
+        }
+      })
+
+  } else if (!SKIP_SENDING_DEV) {
+    sendToPort(triggerPort, code)
+  }
 }
 
 // EVENT TRIGGER
