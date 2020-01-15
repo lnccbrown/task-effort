@@ -111,11 +111,10 @@ const setUpPort = async () => {
   }
 }
 
-const handleEventSend = (code) => {
+const handleEventSend = async (code) => {
   if (!portAvailable && !SKIP_SENDING_DEV) {
     let message = "Event Marker not connected"
     log.warn(message)
-
     let buttons = ["Quit", "Retry"]
     if (process.env.ELECTRON_START_URL) {
       buttons.push("Continue Anyway")
@@ -132,9 +131,8 @@ const handleEventSend = (code) => {
           SKIP_SENDING_DEV = true
         }
       })
-
   } else if (!SKIP_SENDING_DEV) {
-    sendToPort(triggerPort, code)
+    await sendToPort(triggerPort, code)
   }
 }
 
