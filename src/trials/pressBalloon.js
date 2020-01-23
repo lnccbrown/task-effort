@@ -189,10 +189,10 @@ const pressBalloon = (duration, blockSettings) => {
             if (choice.key === keys['P']) {
               drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
             }
-            if (countPumps > choice.effort + 10) {
-              pop()
-              return
-            }
+            // if (countPumps > choice.effort + 10) {
+            //   pop()
+            //   return
+            // }
           }
         }
         function after_response(info) {
