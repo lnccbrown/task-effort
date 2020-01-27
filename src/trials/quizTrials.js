@@ -12,12 +12,13 @@ const quizOptions = (blockSettings) => {
 }
 
 const quizPrompts = [
-  `${lang.quiz.prompt.green_balloon_high_effort}`,
-  `${lang.quiz.prompt.reward_certainty}`,
-  `${lang.quiz.prompt.green_balloon_bonus}`,
-  `${lang.quiz.prompt.bonus}`,
-  `${lang.quiz.prompt.rew_feedback}`,
-  `${lang.quiz.prompt.cumulative_rew}`
+  `${lang.quiz.prompt.probability}`,
+  `${lang.quiz.prompt.two_balloons}`,
+  `${lang.quiz.prompt.choice}`,
+  `${lang.quiz.prompt.blue_balloon_points}`,
+  `${lang.quiz.prompt.green_effort_variable}`,
+  `${lang.quiz.prompt.pump_time}`,
+  `${lang.quiz.prompt.green_bonus}`,
 ]
 
 // Quiz Trial
@@ -80,7 +81,7 @@ const quiz = (blockSettings) => {
 const passedQuiz = (blockSettings, prevData) => {
   const correctAnswer = [
     `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.no}`,
+    `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.yes}`,

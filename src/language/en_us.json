@@ -52,12 +52,13 @@
     "incorrect_response": "You have answered incorrectly!",
     "retake": "You didn't answer the questions correctly, please retake the quiz.",
     "prompt": {
-      "green_balloon_high_effort": "The green balloon requires more pumps.",
-      "reward_certainty": "You will always get the points once you reach the pin.",
-      "green_balloon_bonus": "For the green balloon, you can keep pressing once you reach the pin to get bonus points.",
-      "bonus": "Your accumulated points will be converted into bonus $.",
-      "rew_feedback": "The first number you will be shown after pumping a balloon (for example, <b>+5</b>) is the number of points you just earned for pumping that balloon.",
-      "cumulative_rew": "You will be shown the <b>total number of points you have cumulatively earned</b> at the end of each trial."
+      "probability": "You will be shown the probability of earning points for a round.",
+      "two_balloons": "You will be shown a blue balloon and a green balloon on the screen.",
+      "choice": "Your job is to choose which balloon to pump up.",
+      "blue_balloon_points": "The blue balloon will ALWAYS require 20 pumps to reach the spike and can give 1 point.",
+      "green_effort_variable": "The green balloon will VARY in pumps required and can give bonus points.",
+      "pump_time": "You have 25 seconds to pump the green balloon in order to receive all points possible.",
+      "green_bonus": "You can get bonus points on the green balloon for pumping it up past the spike."
     },
     "answer_opts": {
       "yes": "YES",
