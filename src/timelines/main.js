@@ -24,7 +24,7 @@ const primaryTimeline = [
         realPracticeInstructions(),
         buildCountdown(lang.countdown.practice3, 3),
         taskBlock(practiceBlock3),
-        quizTimeline(practiceBlock1),
+        quizTimeline(),
         postPracticeInstructions(),
         buildCountdown(lang.countdown.expt1, 3),
         taskBlock(exptBlock1),
