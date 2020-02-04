@@ -1,9 +1,10 @@
 import { lang,  MTURK } from '../config/main'
 import { jsPsych } from 'jspsych-react'
+import { baseStimulus } from '../lib/markup/stimuli'
 import { addCursor } from '../lib/utils'
 
 // quiz helper functions
-const quizOptions = (blockSettings) => {
+const quizOptions = () => {
   const arr = [
     `${lang.quiz.answer_opts.yes}`,
     `${lang.quiz.answer_opts.no}`
@@ -19,10 +20,11 @@ const quizPrompts = [
   `${lang.quiz.prompt.green_effort_variable}`,
   `${lang.quiz.prompt.pump_time}`,
   `${lang.quiz.prompt.green_bonus}`,
+  `${lang.quiz.retake}`,
 ]
 
 // Quiz Trial
-const quiz = (blockSettings) => {
+const quiz = () => {
 
   const preamble = `<div class="quiz_container">
                     <h3>${lang.quiz.respond_correctly}</h3>
@@ -31,27 +33,31 @@ const quiz = (blockSettings) => {
   let questions = [
     {
       prompt: quizPrompts[0],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
       required: true
     },{
       prompt: quizPrompts[1],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
       required: true
     },{
       prompt: quizPrompts[2],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
       required: true
     },{
       prompt: quizPrompts[3],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
       required: true
     },{
       prompt: quizPrompts[4],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
       required: true
     },{
       prompt: quizPrompts[5],
-      options: quizOptions(blockSettings),
+      options: quizOptions(),
+      required: true
+    },{
+      prompt: quizPrompts[6],
+      options: quizOptions(),
       required: true
     }
   ]
@@ -67,7 +73,7 @@ const quiz = (blockSettings) => {
       // TODO Unique Id
       data.uniqueId = 'uniqueId'
       data.prompt = quizPrompts
-      data.ans_choices = quizOptions(blockSettings)
+      data.ans_choices = quizOptions()
       let answer = JSON.parse(data.responses)
       data.answer = []
       let len = (MTURK) ? quizPrompts.length + 1 : quizPrompts.length
@@ -78,57 +84,87 @@ const quiz = (blockSettings) => {
   })
 }
 
-const passedQuiz = (blockSettings, prevData) => {
-  const correctAnswer = [
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.yes}`
+const retakeFeedback = (data) => {
+
+  let feedback = [
+    lang.quiz.incorrect_response + '<br>' +
+    lang.quiz.review
   ]
 
-  if (MTURK) correctAnswer.push("true")
-
-  const reducer = (accumulator, currentValue) => (
-    accumulator && (currentValue === correctAnswer.shift())
+  return (
+    {
+      type: 'html_keyboard_response',
+      stimulus: '',
+      response_ends_trial: true,
+      on_load: () => {
+        addCursor('experiment')
+      },
+      on_start: (trial) => {
+        trial.stimulus = baseStimulus(`<h1>${feedback}</h1>`, true)
+      }
+    }
   )
-
-  const passed_quiz = (prevData.answer.reduce(reducer, true))
-
-  return !(passed_quiz)
 }
 
-// const quizCheck = (blockSettings) => {
-//   return(
-//     {
-//       type: "html_keyboard_response",
-//       timeline: () => {
-//         const transition = {
-//           stimulus: [
-//           `<h2>${lang.quiz.answer.incorrect}</h2>` +
-//           `<p>${lang.quiz.direction.retake}</p>`
-//           ],
-//           prompt: lang.prompt.continue.press,
-//           data: { 'passed_quiz': false }
-//         }
-//         return generateWaitSet(transition, 1000)
-//       },
-//       conditional_function: () => !blockSettings.quiz.first_attempt
-//     }
-//   )
-// }
 
-// loop function is if button pressed was a draw button (https://www.jspsych.org/overview/timeline/#looping-timelines)
-let quizTimeline = (blockSettings) => {
+const reshowRules = () => {
+
+  let rules = [
+    quizPrompts[0] + '<br></br>' +
+    quizPrompts[1] + '<br></br>' +
+    quizPrompts[2] + '<br></br>' +
+    quizPrompts[3] + '<br></br>' +
+    quizPrompts[4] + '<br></br>' +
+    quizPrompts[5] + '<br></br>' +
+    quizPrompts[6] + '<br></br>' +
+    quizPrompts[7]
+  ]
+
+  return (
+    {
+      type: 'html_keyboard_response',
+      stimulus: '',
+      response_ends_trial: true,
+      on_load: () => {
+        addCursor('experiment')
+      },
+      on_start: (trial) => {
+        trial.stimulus = baseStimulus(`<p>${rules}</p>`, true)
+      }
+    }
+  )
+}
+
+
+const retakeLoop = () => {
   return {
-    timeline: [ quiz(blockSettings) ],
-    type: 'html_keyboard_response',
+    timeline: [
+      retakeFeedback(),
+      reshowRules(),
+      quiz()
+    ],
     loop_function: (data) => {
       const prevData = jsPsych.data.getLastTrialData().values()[0]
-      return (passedQuiz(blockSettings, prevData)) ? true : false
+      const prevAnswers = prevData.answer
+
+      if (prevAnswers.includes(`${lang.quiz.answer_opts.no}`)) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
+
+
+// loop function
+// (https://www.jspsych.org/overview/timeline/#looping-timelines)
+let quizTimeline = () => {
+  return {
+    timeline: [ quiz(), retakeLoop() ],
+    type: 'html_keyboard_response'
+  }
+}
+
 
 export default quizTimeline
