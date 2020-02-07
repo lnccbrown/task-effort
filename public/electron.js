@@ -90,10 +90,10 @@ const setUpPort = async () => {
 
     triggerPort.on('error', (err) => {
       log.error(err)
-      let buttons = ["OK", "Continue Anyway"]
-      // if (process.env.ELECTRON_START_URL) {
-      //   buttons.push("Continue Anyway")
-      // }
+      let buttons = ["OK"]
+      if (process.env.ELECTRON_START_URL) {
+        buttons.push("Continue Anyway")
+      }
       dialog.showMessageBox(mainWindow, {type: "error", message: "Error communicating with event marker.", title: "Task Error", buttons: buttons, defaultId: 0})
         .then((opt) => {
           if (opt.response == 0) {
@@ -115,10 +115,10 @@ const handleEventSend = async (code) => {
   if (!portAvailable && !SKIP_SENDING_DEV) {
     let message = "Event Marker not connected"
     log.warn(message)
-    let buttons = ["Quit", "Retry"]
-    if (process.env.ELECTRON_START_URL) {
-      buttons.push("Continue Anyway")
-    }
+    let buttons = ["Quit", "Retry", "Continue Anyway"]
+    // if (process.env.ELECTRON_START_URL) {
+    //   buttons.push("Continue Anyway")
+    // }
     dialog.showMessageBox(mainWindow, {type: "error", message: message, title: "Task Error", buttons: buttons, defaultId: 0})
       .then((resp) => {
         let opt = resp.response
