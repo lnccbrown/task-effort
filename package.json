@@ -50,9 +50,9 @@
     "electron-dev": "cross-env ELECTRON_START_URL=\"http://localhost:3000\" electron .",
     "dev": "concurrently --kill-others \"npm:start\" \"sleep 5 && npm run electron-dev\"",
     "dev:home": "REACT_APP_AT_HOME=\"true\" npm run dev",
-    "dev:clinic": "REACT_APP_AT_HOME=\"false\" npm run dev",
+    "dev:clinic": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "build:win:home": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
-    "build:win:clinic": "cross-env REACT_APP_AT_HOME=\"false\" npm run build",
+    "build:win:clinic": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
     "build:home": "REACT_APP_AT_HOME=\"true\" npm run build"
   },
   "eslintConfig": {
