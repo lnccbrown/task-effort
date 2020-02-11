@@ -59,7 +59,9 @@
       "bonus_blue": "You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
       "bonus_green": "You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
       "total_shown": "You will be shown your total number of points after each round.",
-      "points_to_money": "You will receive real money from your total number of points at the end of the task.",
+      "points_to_money": "You will receive real money from your total number of points at the end of the task."
+    },
+    "rules": {
       "shown_probability": "1. You will be shown the probability of earning points for a round.",
       "shown_blue_green_on_screen": "2. You will be shown a <span class='text-blue'><b>BLUE</b></span> balloon and a <span class='text-green'><b>GREEN</b></span> balloon on the screen.",
       "job": "3. Your job is to choose which balloon to pump up.",
@@ -71,8 +73,8 @@
     "answer_opts": {
       "true": "TRUE",
       "false": "FALSE",
-      "blue": "BLUE",
-      "green": "GREEN"
+      "blue": "<span class='text-blue'><b>BLUE</b></span>",
+      "green": "<span class='text-green'><b>GREEN</b></span>"
     }
   },
   "countdown": {

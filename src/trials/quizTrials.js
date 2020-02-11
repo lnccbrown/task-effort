@@ -28,13 +28,13 @@ const quizPrompts = [
 ]
 
 const quizRules = [
-  `${lang.quiz.prompt.shown_probability}`,
-  `${lang.quiz.prompt.shown_blue_green_on_screen}`,
-  `${lang.quiz.prompt.job}`,
-  `${lang.quiz.prompt.blue_req_20}`,
-  `${lang.quiz.prompt.green_vary_bonus}`,
-  `${lang.quiz.prompt.twenty_five_secs_green}`,
-  `${lang.quiz.prompt.bonus_green_spike}`,
+  `${lang.quiz.rules.shown_probability}`,
+  `${lang.quiz.rules.shown_blue_green_on_screen}`,
+  `${lang.quiz.rules.job}`,
+  `${lang.quiz.rules.blue_req_20}`,
+  `${lang.quiz.rules.green_vary_bonus}`,
+  `${lang.quiz.rules.twenty_five_secs_green}`,
+  `${lang.quiz.rules.bonus_green_spike}`,
   `${lang.quiz.any_questions}`,
   `${lang.quiz.retake}`
 ]
@@ -156,7 +156,34 @@ const retakeLoop = () => {
       reshowRules(),
       quiz()
     ],
-    conditonal_function: (data) => {
+    loop_function: (data) => {
+      const prevData = jsPsych.data.getLastTrialData().values()[0]
+      const prevAnswers = prevData.answer
+
+      const correctAnswers = [
+          `${lang.quiz.answer_opts.green}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`
+        ]
+
+      if (JSON.stringify(prevAnswers.slice(0,6)) !== JSON.stringify(correctAnswers)) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+}
+
+const checkRetake = () => {
+  return {
+    timeline: [
+      retakeLoop(),
+    ],
+    conditional_function: (data) => {
       const prevData = jsPsych.data.getLastTrialData().values()[0]
       const prevAnswers = prevData.answer
 
@@ -183,7 +210,7 @@ const retakeLoop = () => {
 // (https://www.jspsych.org/overview/timeline/#looping-timelines)
 let quizTimeline = () => {
   return {
-    timeline: [ quiz(), retakeLoop() ],
+    timeline: [ quiz(), checkRetake() ],
     type: 'html_keyboard_response'
   }
 }
