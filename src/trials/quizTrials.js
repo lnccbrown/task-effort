@@ -6,34 +6,51 @@ import { addCursor } from '../lib/utils'
 // quiz helper functions
 const quizOptions = () => {
   const arr = [
-    `${lang.quiz.answer_opts.yes}`,
-    `${lang.quiz.answer_opts.no}`
+    `${lang.quiz.answer_opts.true}`,
+    `${lang.quiz.answer_opts.false}`
     ]
   return arr
 }
 
+const blueOrGreen = [
+  `${lang.quiz.answer_opts.blue}`,
+  `${lang.quiz.answer_opts.green}`
+]
+
 const quizPrompts = [
-  `${lang.quiz.prompt.probability}`,
-  `${lang.quiz.prompt.two_balloons}`,
-  `${lang.quiz.prompt.choice}`,
-  `${lang.quiz.prompt.blue_balloon_points}`,
-  `${lang.quiz.prompt.green_effort_variable}`,
-  `${lang.quiz.prompt.pump_time}`,
-  `${lang.quiz.prompt.green_bonus}`,
+  `${lang.quiz.prompt.more_pumps}`,
+  `${lang.quiz.prompt.reward_certainty_reach_pin}`,
+  `${lang.quiz.prompt.bonus_blue}`,
+  `${lang.quiz.prompt.bonus_green}`,
+  `${lang.quiz.prompt.total_shown}`,
+  `${lang.quiz.prompt.points_to_money}`,
   `${lang.quiz.retake}`,
 ]
+
+const quizRules = [
+  `${lang.quiz.rules.shown_probability}`,
+  `${lang.quiz.rules.shown_blue_green_on_screen}`,
+  `${lang.quiz.rules.job}`,
+  `${lang.quiz.rules.blue_req_20}`,
+  `${lang.quiz.rules.green_vary_bonus}`,
+  `${lang.quiz.rules.twenty_five_secs_green}`,
+  `${lang.quiz.rules.bonus_green_spike}`,
+  `${lang.quiz.any_questions}`,
+  `${lang.quiz.retake}`
+]
+
 
 // Quiz Trial
 const quiz = () => {
 
   const preamble = `<div class="quiz_container">
-                    <h3>${lang.quiz.respond_correctly}</h3>
+                    <h3>${lang.quiz.confirm_understanding}</h3>
                     </div>`
 
   let questions = [
     {
       prompt: quizPrompts[0],
-      options: quizOptions(),
+      options: blueOrGreen,
       required: true
     },{
       prompt: quizPrompts[1],
@@ -55,10 +72,6 @@ const quiz = () => {
       prompt: quizPrompts[5],
       options: quizOptions(),
       required: true
-    },{
-      prompt: quizPrompts[6],
-      options: quizOptions(),
-      required: true
     }
   ]
 
@@ -70,7 +83,6 @@ const quiz = () => {
       addCursor('experiment')
     },
     on_finish: function(data) {
-      // TODO Unique Id
       data.uniqueId = 'uniqueId'
       data.prompt = quizPrompts
       data.ans_choices = quizOptions()
@@ -110,14 +122,15 @@ const retakeFeedback = (data) => {
 const reshowRules = () => {
 
   let rules = [
-    quizPrompts[0] + '<br></br>' +
-    quizPrompts[1] + '<br></br>' +
-    quizPrompts[2] + '<br></br>' +
-    quizPrompts[3] + '<br></br>' +
-    quizPrompts[4] + '<br></br>' +
-    quizPrompts[5] + '<br></br>' +
-    quizPrompts[6] + '<br></br>' +
-    quizPrompts[7]
+    quizRules[0] + '<br></br>' +
+    quizRules[1] + '<br></br>' +
+    quizRules[2] + '<br></br>' +
+    quizRules[3] + '<br></br>' +
+    quizRules[4] + '<br></br>' +
+    quizRules[5] + '<br></br>' +
+    quizRules[6] + '<br></br>' +
+    quizRules[7] + '<br></br>' +
+    quizRules[8]
   ]
 
   return (
@@ -147,7 +160,43 @@ const retakeLoop = () => {
       const prevData = jsPsych.data.getLastTrialData().values()[0]
       const prevAnswers = prevData.answer
 
-      if (prevAnswers.includes(`${lang.quiz.answer_opts.no}`)) {
+      const correctAnswers = [
+          `${lang.quiz.answer_opts.green}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`
+        ]
+
+      if (JSON.stringify(prevAnswers.slice(0,6)) !== JSON.stringify(correctAnswers)) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+}
+
+const checkRetake = () => {
+  return {
+    timeline: [
+      retakeLoop(),
+    ],
+    conditional_function: (data) => {
+      const prevData = jsPsych.data.getLastTrialData().values()[0]
+      const prevAnswers = prevData.answer
+
+      const correctAnswers = [
+          `${lang.quiz.answer_opts.green}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`
+        ]
+
+      if (JSON.stringify(prevAnswers.slice(0,6)) !== JSON.stringify(correctAnswers)) {
         return true
       } else {
         return false
@@ -161,7 +210,7 @@ const retakeLoop = () => {
 // (https://www.jspsych.org/overview/timeline/#looping-timelines)
 let quizTimeline = () => {
   return {
-    timeline: [ quiz(), retakeLoop() ],
+    timeline: [ quiz(), checkRetake() ],
     type: 'html_keyboard_response'
   }
 }
