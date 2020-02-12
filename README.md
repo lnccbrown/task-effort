@@ -9,9 +9,14 @@
 
 This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [Neuro Task Starter](https://www.github.com/brown-ccv/neuro-task-starter).
 
-## TO RUN THE TASK
+## TO RUN THE TASK - BEHAVIORAL ONLY
 Go to the releases tab (https://github.com/lnccbrown/task-effort/releases) and download the recent installer for your machine.
 
+## TO RUN THE TASK - EEG
+Follow the instructions above for behavioral version (i.e., download relevant installer).
+
+In addition, follow instructions on the repo Wiki to set the port name:
+https://github.com/lnccbrown/task-effort/wiki/Task-Effort-Running-Notes-(EEG)
 
 ## THE FOLLOWING INSTRUCTIONS ARE FOR MAKING CONTRIBUTIONS TO TASK CODE
 
