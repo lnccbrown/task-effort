@@ -63,7 +63,7 @@ git checkout -b your-feature-branch
 ```
 
 2. Make your changes and commit using [commitizen](https://pypi.org/project/commitizen/)
-3. Submit a [pull request](https://help.github.com/en/articles/creating-a-pull-request) to the `develop` branch. Add @mcmcgrath13 or @fernandogelin as a reviewer.
+3. Submit a [pull request](https://help.github.com/en/articles/creating-a-pull-request) to the `develop` branch. Add @wasita as a reviewer.
 
 ## Project Organization
 
