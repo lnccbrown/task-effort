@@ -1,6 +1,25 @@
 import { canvasSettings } from '../config/main'
 
-function drawText(ctx, points, pumpsRequired, cx, cy, high_effort){
+function drawText(ctx, lang, cx, cy, langColor){
+    var color;
+    var lang;
+    if (langColor == 'undefined') {
+        color = '#FFFFFF' // force white
+    } else {
+      color = langColor;
+    }
+    ctx.font = '40px Helvetica';
+    ctx.fillStyle = color;
+    var lineHeight = canvasSettings.lineHeight;
+    ctx.lineHeight = lineHeight;
+    let text = lang // should be %
+    // let text2 = `${pumpsRequired} pumps`
+    ctx.fillText(text, cx + lineHeight, cy);
+    // ctx.fillText(text2, cx - lineHeight, cy + (lineHeight * 2));
+}
+
+// Text for how many pumps are required for each balloon
+function drawEffort(ctx, points, pumpsRequired, cx, cy, high_effort){
     var color;
     if (high_effort) {
         color = '#7FFF00' // green
@@ -81,6 +100,7 @@ function drawBalloon(ctx, pumpsRequired, high_effort, cx, cy, radius){
 
 export{
     drawText,
+    drawEffort,
     drawSpike,
     drawFrame,
     drawBalloon
