@@ -225,7 +225,6 @@ const pressBalloon = (duration, blockSettings, opts) => {
         done(0)
       }
 
-
     },
     on_load: () => {
       removeCursor('experiment')
