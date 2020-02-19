@@ -24,7 +24,6 @@ const choice = (duration, blockSettings, opts) => {
   let valid_keys = blockSettings.keys
   let get_reward = blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward
 
-
   return {
     type: 'call_function',
     async: true,
