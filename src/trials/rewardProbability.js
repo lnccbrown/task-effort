@@ -10,11 +10,11 @@ const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
     Your browser does not support HTML5 canvas
   </canvas>`
-// const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
+const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
 const rewardProbability = (duration, blockSettings, opts, trialDetails) => {
 
-  let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
+  let stimulus = `<div class="effort-container">` + canvasHTML + fixationHTML + photodiodeGhostBox() + `</div>`
 
   const startCode = eventCodes.rewardProbabilityStart
   const endCode = eventCodes.rewardProbabilityEnd
@@ -30,15 +30,7 @@ const rewardProbability = (duration, blockSettings, opts, trialDetails) => {
         // set up canvas
         let canvas = document.querySelector('#jspsych-canvas');
         let ctx = canvas.getContext('2d');
-
-        let style = canvas.style;
-        style.marginLeft = "auto";
-        style.marginRight = "auto";
-        let parentStyle = canvas.parentElement.style;
-        parentStyle.textAlign = "center";
-        parentStyle.width = "100%";
-
-
+        
         const rewProbDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);

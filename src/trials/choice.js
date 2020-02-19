@@ -1,9 +1,9 @@
+import { jsPsych } from 'jspsych-react'
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
-import { drawBalloon, drawSpike, drawFrame } from '../lib/drawUtils'
-import { jsPsych } from 'jspsych-react'
+import { drawBalloon, drawSpike, drawFrame, drawText } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -17,6 +17,7 @@ const choice = (duration, blockSettings, opts) => {
   const startCode = eventCodes.choiceStart
   const endCode = eventCodes.choiceEnd
 
+  let probability = blockSettings.is_practice ? opts : opts.prob
   let value = blockSettings.is_practice ? blockSettings.value : opts.value
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
   let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
@@ -56,6 +57,8 @@ const choice = (duration, blockSettings, opts) => {
           // distance of the spike from the top
           spikeHeight[i] = effort[i] ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight) : 0;
         }
+
+        drawText(ctx, `${probability}`, canvasSettings.rewProbXpos, canvasSettings.rewProbYpos, 'undefined')
 
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
