@@ -4,7 +4,7 @@ import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
 import { addData } from '../lib/taskUtils'
-import { drawSpike, drawFrame, drawText} from '../lib/drawUtils'
+import { drawSpike, drawText} from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -57,10 +57,10 @@ const frameSpike = (duration, blockSettings, opts, trialDetails) => {
 
         drawText(ctx, `${probability}`, canvasSettings.rewProbXpos, canvasSettings.rewProbYpos, 'undefined')
 
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
 
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
       }
 
