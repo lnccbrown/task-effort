@@ -33,7 +33,7 @@ const canvasSettings = {
 	spikeXpos: [x25, x75],
 	spikeYpos: x17,
 	textXpos: [x20, x70],
-	textYpos: x67,
+	textYpos: x90,
 	rewProbXpos: x41,
 	rewProbYpos: x90,
 	lineHeight: x2,

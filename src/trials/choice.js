@@ -3,7 +3,7 @@ import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
-import { drawBalloon, drawSpike, drawFrame, drawText } from '../lib/drawUtils'
+import { drawBalloon, drawSpike, drawFrame, drawText, drawEffort } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -23,7 +23,6 @@ const choice = (duration, blockSettings, opts) => {
   let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
   let valid_keys = blockSettings.keys
   let get_reward = blockSettings.is_practice ? blockSettings.get_reward : opts.get_reward
-
 
   return {
     type: 'call_function',
@@ -62,10 +61,12 @@ const choice = (duration, blockSettings, opts) => {
 
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+        drawEffort(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
         drawBalloon(ctx, effort[0], high_effort[0], canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, canvasSettings.balloonRadius)
 
         drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+        drawEffort(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
         drawBalloon(ctx, effort[1], high_effort[1], canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, canvasSettings.balloonRadius)
       }
 

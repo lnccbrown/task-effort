@@ -1,17 +1,17 @@
+import { jsPsych } from 'jspsych-react'
 import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings, high_effort_time } from '../config/main'
 import { removeCursor } from '../lib/utils'
-import { drawBalloon, drawSpike } from '../lib/drawUtils'
-import { jsPsych } from 'jspsych-react'
+import { drawBalloon, drawSpike, drawEffort } from '../lib/drawUtils'
+
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
     Your browser does not support HTML5 canvas
   </canvas>`
-// const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`
 
-const pressBalloon = (duration, blockSettings) => {
+const pressBalloon = (duration, blockSettings, opts) => {
   let stimulus = `<div class="effort-container">` + canvasHTML + photodiodeGhostBox() + `</div>`
 
   let valid_keys = blockSettings.keys
@@ -19,6 +19,10 @@ const pressBalloon = (duration, blockSettings) => {
 
   const startCode = eventCodes.pressBalloonStart
   const endCode = eventCodes.pressBalloonEnd
+
+  let value = blockSettings.is_practice ? blockSettings.value : opts.value
+  let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
+  let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
 
   return {
     type: 'call_function',
@@ -54,10 +58,12 @@ const pressBalloon = (duration, blockSettings) => {
           if (choice.key === keys['Q']) {
             // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
             drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+            drawEffort(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[0], canvasSettings.balloonYpos, radius)
           } else {
             // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
             drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight, canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
+            drawEffort(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
             drawBalloon(ctx, choice.effort, choice.high_effort, canvasSettings.balloonXpos[1], canvasSettings.balloonYpos, radius)
           }
         }
@@ -218,7 +224,6 @@ const pressBalloon = (duration, blockSettings) => {
       } else {
         done(0)
       }
-
 
     },
     on_load: () => {
