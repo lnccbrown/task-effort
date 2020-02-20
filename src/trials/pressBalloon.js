@@ -3,7 +3,7 @@ import { eventCodes } from '../config/main'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { keys, canvasSize, canvasSettings, high_effort_time } from '../config/main'
 import { removeCursor } from '../lib/utils'
-import { drawBalloon, drawSpike, drawEffort } from '../lib/drawUtils'
+import { drawBalloon, drawSpike, drawEffort, drawText } from '../lib/drawUtils'
 
 
 const CANVAS_SIZE = canvasSize
@@ -20,6 +20,7 @@ const pressBalloon = (duration, blockSettings, opts) => {
   const startCode = eventCodes.pressBalloonStart
   const endCode = eventCodes.pressBalloonEnd
 
+  let probability = blockSettings.is_practice ? opts : opts.prob
   let value = blockSettings.is_practice ? blockSettings.value : opts.value
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
   let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
@@ -53,6 +54,8 @@ const pressBalloon = (duration, blockSettings, opts) => {
         const canvasDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawText(ctx, `${probability}`, canvasSettings.rewProbXpos, canvasSettings.rewProbYpos, 'undefined')
+
           var targetDist = 2 * inflateBy * (choice.effort - 1);
           spikeHeight = choice.effort ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight) : 0;
           if (choice.key === keys['Q']) {
