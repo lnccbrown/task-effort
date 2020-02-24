@@ -33,21 +33,24 @@ const primaryTimeline = [
         ]
 
 const mturkTimeline = [
-        experimentStart(),
-        userId(),
-        preamble,
-        buildCountdown(lang.countdown.practice1, 3),
-        bluePracticeInstructions(),
-        taskBlock(practiceBlock1),
-        greenPracticeInstructions(),
-        taskBlock(practiceBlock2),
-        realPracticeInstructions(),
-        taskBlock(practiceBlock3),
-        quizTimeline(practiceBlock1),
-        postPracticeInstructions(),
-        buildCountdown(lang.countdown.expt1, 3),
-        taskBlock(exptBlock1),
-        experimentEnd(5000)
+      experimentStart(),
+      userId(),
+      preamble,
+      bluePracticeInstructions(),
+      buildCountdown(lang.countdown.practice1, 3),
+      taskBlock(practiceBlock1),
+      greenPracticeInstructions(),
+      buildCountdown(lang.countdown.practice2, 3),
+      taskBlock(practiceBlock2),
+      realPracticeInstructions(),
+      buildCountdown(lang.countdown.practice3, 3),
+      taskBlock(practiceBlock3),
+      quizTimeline(),
+      postPracticeInstructions(),
+      buildCountdown(lang.countdown.expt1, 3),
+      taskBlock(exptBlock1),
+      showPayment(5000, exptBlock1),
+      experimentEnd(5000)
         ]
 
 export const tl = (MTURK) ? mturkTimeline : primaryTimeline

@@ -14,7 +14,9 @@ const x75 = canvasSize * 0.75
 const x8 = canvasSize * 0.0833
 const x58 = canvasSize * 0.5833
 const x42 = canvasSize * 0.4166
+const x41 = canvasSize * 0.41
 const x17 = canvasSize * 0.1667
+const x90 = canvasSize * 0.9
 const x70 = canvasSize * 0.7
 const x67 = canvasSize * 0.6667
 const x2 = canvasSize * 0.01667
@@ -31,7 +33,9 @@ const canvasSettings = {
 	spikeXpos: [x25, x75],
 	spikeYpos: x17,
 	textXpos: [x20, x70],
-	textYpos: x67,
+	textYpos: x90,
+	rewProbXpos: x41,
+	rewProbYpos: x90,
 	lineHeight: x2,
 	balloonRadius: x2,
 	balloonBaseHeight: x8 + x75 - x68 - x2, // Balloon base height

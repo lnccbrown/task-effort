@@ -4,7 +4,7 @@ import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
 import { addData } from '../lib/taskUtils'
-import { drawText, drawSpike, drawFrame } from '../lib/drawUtils'
+import { drawEffort, drawSpike, drawText } from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -19,6 +19,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
   const startCode = eventCodes.costBenefitsStart
   const endCode = eventCodes.costBenefitsEnd
 
+  let probability = blockSettings.is_practice ? opts : opts.prob
   let value = blockSettings.is_practice ? blockSettings.value : opts.value
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
   let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
@@ -53,19 +54,22 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
           var targetDist = 2 * inflateBy * (effort[i] - 1);
           var balloonBaseHeight = canvasSettings.balloonBaseHeight + (2*canvasSettings.balloonRadius);
           // distance of the spike from the top
-          spikeHeight[i] = effort[i]?(canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
+          spikeHeight[i] = effort[i] ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight):0;
         }
 
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawText(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
+        drawText(ctx, `${probability}`, canvasSettings.rewProbXpos, canvasSettings.rewProbYpos, 'undefined')
+
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+        drawEffort(ctx, value[0], effort[0], canvasSettings.textXpos[0], canvasSettings.textYpos, high_effort[0])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
 
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawText(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+        drawEffort(ctx, value[1], effort[1], canvasSettings.textXpos[1], canvasSettings.textYpos, high_effort[1])
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
 
       }
 
+      trialDetails.probability = probability;
       trialDetails.effort = effort;
       trialDetails.high_effort = high_effort;
       trialDetails.value = value;

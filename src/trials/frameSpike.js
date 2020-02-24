@@ -4,7 +4,7 @@ import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
 import { removeCursor } from '../lib/utils'
 import { addData } from '../lib/taskUtils'
-import { drawSpike, drawFrame } from '../lib/drawUtils'
+import { drawSpike, drawText} from '../lib/drawUtils'
 
 const CANVAS_SIZE = canvasSize
 const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="jspsych-canvas">
@@ -18,6 +18,7 @@ const frameSpike = (duration, blockSettings, opts, trialDetails) => {
   const startCode = eventCodes.frameSpikeStart
   const endCode = eventCodes.frameSpikeEnd
 
+  let probability = blockSettings.is_practice ? opts : opts.prob
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
   let high_effort = blockSettings.is_practice ? blockSettings.high_effort : opts.high_effort
 
@@ -53,14 +54,18 @@ const frameSpike = (duration, blockSettings, opts, trialDetails) => {
           // distance of the spike from the top
           spikeHeight[i] = effort[i] ? (canvasSettings.frameDimensions[1] - balloonBaseHeight - targetDist - canvasSettings.spiketopHeight) : 0;
         }
-        // var spikeRefHeight = canvasSettings.spikeRefHeight;
-        // var spikeHeight = [effort[0]?spikeRefHeight - effort[0]:0, effort[1]?spikeRefHeight - effort[1]:0];
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+
+        drawText(ctx, `${probability}`, canvasSettings.rewProbXpos, canvasSettings.rewProbYpos, 'undefined')
+
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[0], canvasSettings.spikeXpos[0], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
 
-        drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
         drawSpike(ctx, canvasSettings.spikeWidth, spikeHeight[1], canvasSettings.spikeXpos[1], canvasSettings.spikeYpos, canvasSettings.frameLinecolor, canvasSettings.frameLinecolor, false)
       }
+
+      trialDetails.probability = probability
+      trialDetails.subtrial_type = 'frame_and_spike'
 
       canvasDraw()
       setTimeout(
