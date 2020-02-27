@@ -2,8 +2,8 @@ import { canvasSettings } from '../config/main'
 
 function drawText(ctx, lang, cx, cy, langColor){
     var color;
-    var lang;
-    if (langColor == 'undefined') {
+    // var lang;
+    if (langColor === 'undefined') {
         color = '#FFFFFF' // force white
     } else {
       color = langColor;
