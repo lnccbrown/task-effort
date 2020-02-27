@@ -19,7 +19,7 @@
     "message": "Instructions"
   },
   "userid": {
-    "set": "Please enter user ID."
+    "set": "Please enter the <i>Subject ID</i>. <br>The file will automatically be named <i>Subject ID</i>_Effort."
   },
   "eventMarker" : {
     "found": "<span class='text-green'>Hold the USB event marker in front of the camera.</span>",

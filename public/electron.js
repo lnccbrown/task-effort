@@ -75,7 +75,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
-}
+} // end of createWindow
 
 // TRIGGER PORT HELPERS
 let triggerPort
@@ -163,7 +163,7 @@ ipc.on('data', (event, args) => {
   if (args.patient_id && fileName === '') {
     const dir = app.getPath('userData')
     patientID = args.patient_id
-    fileName = `pid_${patientID}_${Date.now()}.json`
+    fileName = `${patientID}_${Effort}.json`
     filePath = path.resolve(dir, fileName)
     startTrial = args.trial_index
     log.warn(filePath)
