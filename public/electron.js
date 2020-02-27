@@ -33,6 +33,22 @@ function createWindow () {
   else {
     log.info('Task "clinic" version.')
   }
+
+
+  // app.whenReady().then(() => {
+  //   let displays = screen.getAllDisplays()
+  //   let externalDisplay = displays.find((display) => {
+  //     return display.bounds.x !== 0 || display.bounds.y !== 0
+  //   })
+  //
+  //   if (externalDisplay) {
+  //     mainWindow = new BrowserWindow({
+  //       x: externalDisplay.bounds.x + 50,
+  //       y: externalDisplay.bounds.y + 50
+  //     })
+  //
+  //   }
+
   // Create the browser window.
   if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
     mainWindow = new BrowserWindow({
@@ -55,6 +71,12 @@ function createWindow () {
       }
     })
   }
+  // })
+
+
+
+
+
 
   // and load the index.html of the app.
   const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -159,7 +181,7 @@ let startTrial = -1
 // listener for new data
 ipc.on('data', (event, args) => {
 
-  // initialize file - we got a patinet_id to save the data to
+  // initialize file - we got a patient_id to save the data to
   if (args.patient_id && fileName === '') {
     const dir = app.getPath('userData')
     patientID = args.patient_id
@@ -252,10 +274,11 @@ app.on('will-quit', () => {
 
   // copy file to config location
   const desktop = app.getPath('desktop')
-  const name = app.getName()
+  // const name = app.getName()
   const today = new Date(Date.now())
-  const date = today.toISOString().slice(0,10)
-  const copyPath = path.join(desktop, dataDir, `${patientID}`, date, name)
+  // const date = today.toISOString().slice(0,10) // currently don't need date
+      // fileName = `${patientID}_${Effort}.json`
+  const copyPath = path.join(desktop, dataDir, `${patientID}_${Effort}`)
   fs.mkdir(copyPath, { recursive: true }, (err) => {
     log.error(err)
     fs.copyFileSync(filePath, path.join(copyPath, fileName))
