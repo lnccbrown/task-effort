@@ -40,11 +40,16 @@ function createWindow () {
     return display.bounds.x !== 0 || display.bounds.y !== 0
   })
   console.log(displays)
+  console.log(externalDisplay)
 
     if (externalDisplay) {
       mainWindow = new BrowserWindow({
-        x: externalDisplay.bounds.x + 50,
-        y: externalDisplay.bounds.y + 50
+        width: externalDisplay.bounds.width,
+        height: externalDisplay.bounds.height,
+        webPreferences: {
+        nodeIntegration: true,
+        webSecurity: false
+      }
       })
     } else {
 
@@ -72,9 +77,6 @@ function createWindow () {
     }
   }
 
-
-
-console.log(mainWindow.getParentWindow())
 
 
 
