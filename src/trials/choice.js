@@ -17,6 +17,7 @@ const choice = (duration, blockSettings, opts) => {
   const startCode = eventCodes.choiceStart
   const endCode = eventCodes.choiceEnd
 
+  duration = blockSettings.is_practice ? 5000000 : duration // make practice choices have no timeout
   let probability = blockSettings.is_practice ? opts : opts.prob
   let value = blockSettings.is_practice ? blockSettings.value : opts.value
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort
