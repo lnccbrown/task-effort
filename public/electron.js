@@ -187,6 +187,7 @@ ipc.on('data', (event, args) => {
   if (args.patient_id && fileName === '') {
     const dir = app.getPath('userData')
     patientID = args.patient_id
+    Effort = 'Effort'
     fileName = `${patientID}_${Effort}.json`
     filePath = path.resolve(dir, fileName)
     startTrial = args.trial_index
