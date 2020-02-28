@@ -114,6 +114,10 @@ html, body, #root, .App {
   font-size: 24pt;
 }
 
+.text-smoll {
+  font-size: 12pt;
+}
+
 .earnings h1 {
   font-size: 3rem;
   font-weight: bold;

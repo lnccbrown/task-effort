@@ -34,21 +34,6 @@ function createWindow () {
     log.info('Task "clinic" version.')
   }
 
-
-  // app.whenReady().then(() => {
-  //   let displays = screen.getAllDisplays()
-  //   let externalDisplay = displays.find((display) => {
-  //     return display.bounds.x !== 0 || display.bounds.y !== 0
-  //   })
-  //
-  //   if (externalDisplay) {
-  //     mainWindow = new BrowserWindow({
-  //       x: externalDisplay.bounds.x + 50,
-  //       y: externalDisplay.bounds.y + 50
-  //     })
-  //
-  //   }
-
   // Create the browser window.
   if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
     mainWindow = new BrowserWindow({
@@ -71,10 +56,9 @@ function createWindow () {
       }
     })
   }
-  // })
 
 
-
+console.log(mainWindow.getParentWindow())
 
 
 
