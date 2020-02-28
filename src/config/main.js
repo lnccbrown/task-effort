@@ -18,7 +18,6 @@ const x41 = canvasSize * 0.41
 const x17 = canvasSize * 0.1667
 const x90 = canvasSize * 0.9
 const x70 = canvasSize * 0.7
-const x67 = canvasSize * 0.6667
 const x2 = canvasSize * 0.01667
 const x68 = canvasSize * 0.683333
 const canvasSettings = {

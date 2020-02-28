@@ -49,6 +49,7 @@ const realPracticeScreenOne = baseStimulus(`
     <div class='instructions'>
     <p>${lang.instructions.green_balloon_variable_points_pumps}</p>
     <p>${lang.instructions.blue_balloon_constant_points_pumps}</p>
+    <p>${lang.instructions.wait_pump}</p>
     </div>
     `, true)
 

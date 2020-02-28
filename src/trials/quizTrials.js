@@ -19,7 +19,7 @@ const blueOrGreen = [
 
 const quizPrompts = [
   `${lang.quiz.prompt.more_pumps}`,
-  `${lang.quiz.prompt.reward_certainty_reach_pin}`,
+  `${lang.quiz.prompt.reward_certainty_reach_spike}`,
   `${lang.quiz.prompt.bonus_blue}`,
   `${lang.quiz.prompt.bonus_green}`,
   `${lang.quiz.prompt.total_shown}`,

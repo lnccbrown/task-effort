@@ -33,28 +33,50 @@ function createWindow () {
   else {
     log.info('Task "clinic" version.')
   }
-  // Create the browser window.
-  if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
-    mainWindow = new BrowserWindow({
-      width: 1500,
-      height: 900,
-      icon: './favicon.ico',
-      webPreferences: {
-        nodeIntegration: true,
-        webSecurity: false
-      }
-    })
-  } else {
-    mainWindow = new BrowserWindow({
-      fullscreen: true,
-      icon: './favicon.ico',
-      frame: false,
-      webPreferences: {
-        nodeIntegration: true,
-        webSecurity: true
-      }
-    })
+
+  // const screen = require('electron')
+  let displays = require('electron').screen.getAllDisplays()
+  let externalDisplay = displays.find((display) => {
+    return display.bounds.x !== 0 || display.bounds.y !== 0
+  })
+  console.log(displays)
+
+    if (externalDisplay) {
+      mainWindow = new BrowserWindow({
+        x: externalDisplay.bounds.x + 50,
+        y: externalDisplay.bounds.y + 50
+      })
+    } else {
+
+    // Create the browser window.
+    if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
+      mainWindow = new BrowserWindow({
+        width: 1500,
+        height: 900,
+        icon: './favicon.ico',
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: false
+        }
+      })
+    } else {
+      mainWindow = new BrowserWindow({
+        fullscreen: true,
+        icon: './favicon.ico',
+        frame: false,
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: true
+        }
+      })
+    }
   }
+
+
+
+console.log(mainWindow.getParentWindow())
+
+
 
   // and load the index.html of the app.
   const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -75,7 +97,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
-}
+} // end of createWindow
 
 // TRIGGER PORT HELPERS
 let triggerPort
@@ -159,11 +181,11 @@ let startTrial = -1
 // listener for new data
 ipc.on('data', (event, args) => {
 
-  // initialize file - we got a patinet_id to save the data to
+  // initialize file - we got a patient_id to save the data to
   if (args.patient_id && fileName === '') {
     const dir = app.getPath('userData')
     patientID = args.patient_id
-    fileName = `pid_${patientID}_${Date.now()}.json`
+    fileName = `${patientID}_${Effort}.json`
     filePath = path.resolve(dir, fileName)
     startTrial = args.trial_index
     log.warn(filePath)
@@ -252,10 +274,11 @@ app.on('will-quit', () => {
 
   // copy file to config location
   const desktop = app.getPath('desktop')
-  const name = app.getName()
+  // const name = app.getName()
   const today = new Date(Date.now())
-  const date = today.toISOString().slice(0,10)
-  const copyPath = path.join(desktop, dataDir, `${patientID}`, date, name)
+  // const date = today.toISOString().slice(0,10) // currently don't need date
+      // fileName = `${patientID}_${Effort}.json`
+  const copyPath = path.join(desktop, dataDir, `${patientID}_${Effort}`)
   fs.mkdir(copyPath, { recursive: true }, (err) => {
     log.error(err)
     fs.copyFileSync(filePath, path.join(copyPath, fileName))
