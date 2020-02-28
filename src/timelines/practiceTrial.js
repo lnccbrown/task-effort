@@ -23,7 +23,7 @@ const practiceTrial = (blockSettings, blockDetails, opts) => {
   }
 
   // timeline
-  let timeline = [
+  let practiceTimeline = [
     // show condition
     fixation(300),
     rewardProbability(300, blockSettings, opts, trialDetails),
@@ -40,7 +40,7 @@ const practiceTrial = (blockSettings, blockDetails, opts) => {
   ]
     return {
   		type: 'html_keyboard_response',
-  		timeline: timeline
+  		timeline: practiceTimeline
   	}
 }
 

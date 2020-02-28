@@ -12,7 +12,9 @@
     "focus": "Make sure the photodiode is aligned and the EEG recording has begun before continuing.",
     "fullscreen": "Press 'cmd + ctrl + F' to toggle Fullscreen.",
     "zoom": "Zoom in to enlarge the screen.",
-    "setting_up": "Setting up task..."
+    "setting_up": "Setting up task...",
+    "begin_recording": "To the Experimenter:<br>You may start the EEG recording now.",
+    "confirm_recording": "Press any key to confirm the recording has begun."
   },
   "welcome": {
     "large_window": "Please make this window as large as possible.",
