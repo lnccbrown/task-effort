@@ -6,7 +6,7 @@ import $ from 'jquery'
 const isElectron = !MTURK
 let ipcRenderer = false;
 if (isElectron) {
-  const electron = window.require('electron');
+  const electron = require('electron').window;
   ipcRenderer  = electron.ipcRenderer;
 }
 

@@ -31,7 +31,8 @@
     "react-dom": "^16.8.6",
     "react-scripts": "^3.3.0",
     "sass": "^1.24.4",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "update-electron-app": "^1.5.0"
   },
   "scripts": {
     "start": "cross-env BROWSER=\"none\" NODE_PATH=\"./src\" react-scripts start",
