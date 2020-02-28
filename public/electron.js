@@ -34,28 +34,44 @@ function createWindow () {
     log.info('Task "clinic" version.')
   }
 
-  // Create the browser window.
-  if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
-    mainWindow = new BrowserWindow({
-      width: 1500,
-      height: 900,
-      icon: './favicon.ico',
-      webPreferences: {
-        nodeIntegration: true,
-        webSecurity: false
-      }
-    })
-  } else {
-    mainWindow = new BrowserWindow({
-      fullscreen: true,
-      icon: './favicon.ico',
-      frame: false,
-      webPreferences: {
-        nodeIntegration: true,
-        webSecurity: true
-      }
-    })
+  // const screen = require('electron')
+  let displays = require('electron').screen.getAllDisplays()
+  let externalDisplay = displays.find((display) => {
+    return display.bounds.x !== 0 || display.bounds.y !== 0
+  })
+  console.log(displays)
+
+    if (externalDisplay) {
+      mainWindow = new BrowserWindow({
+        x: externalDisplay.bounds.x + 50,
+        y: externalDisplay.bounds.y + 50
+      })
+    } else {
+
+    // Create the browser window.
+    if (process.env.ELECTRON_START_URL) { // in dev mode, disable web security to allow local file loading
+      mainWindow = new BrowserWindow({
+        width: 1500,
+        height: 900,
+        icon: './favicon.ico',
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: false
+        }
+      })
+    } else {
+      mainWindow = new BrowserWindow({
+        fullscreen: true,
+        icon: './favicon.ico',
+        frame: false,
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: true
+        }
+      })
+    }
   }
+
 
 
 console.log(mainWindow.getParentWindow())
