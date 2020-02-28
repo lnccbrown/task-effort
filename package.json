@@ -6,7 +6,7 @@
     "email": "ccv-bot@brown.edu",
     "url": "ccv.brown.edu"
   },
-  "version": "1.0.8",
+  "version": "1.0.9-alpha",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",
