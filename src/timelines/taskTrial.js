@@ -31,9 +31,9 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     choice(5000, blockSettings, opts),
     pressBalloon(25000, blockSettings, opts),
     fixation(500),
-    rewardFeedback(800, blockSettings, opts, trialDetails),
+    rewardFeedback(1000, blockSettings, opts, trialDetails),
     fixation(500),
-    cumulativeReward(800, blockSettings, blockDetails, opts, trialDetails),
+    cumulativeReward(1000, blockSettings, blockDetails, opts, trialDetails),
     // end the trial
     trialEnd(trialDetails, 500)
   ]
