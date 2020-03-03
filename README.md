@@ -28,6 +28,25 @@ Ctrl+W (for PC/Windows)
 Cmd+Q (for Mac)
 ```
 
+## TO REUSE A SUBJECT ID NUMBER
+If you want to overwrite a subject's data file:
+
+1) Go to your desktop to where the Effort-Data folder is. Delete the .json data file corresponding to the SubjectID you want to reuse.
+
+2) Go to the corresponding locations (dependent on operating system):
+```
+Mac OS: ~/Library/Application Support/<Your App Name (taken from the name property in package.json)>
+Windows: C:\Users\<you>\AppData\Local\<Your App Name>
+Linux: ~/.config/<Your App Name>
+```
+And delete the .json data file corresponding to the SubjectID you want to overwrite or reuse.
+
+Once you have deleted both of these .json files, you should be able to use a SubjectID you have used in the past.
+
+
+
+
+
 ## THE FOLLOWING INSTRUCTIONS ARE FOR MAKING CONTRIBUTIONS TO TASK CODE
 
 ## Getting Started
