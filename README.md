@@ -36,7 +36,7 @@ If you want to overwrite a subject's data file:
 2) Go to the corresponding locations (dependent on operating system):
 ```
 Mac OS: ~/Library/Application Support/<Your App Name (taken from the name property in package.json)>
-Windows: C:\Users\<you>\AppData\Local\<Your App Name>
+Windows: C:\Users\<you>\AppData\Roaming\<Your App Name>
 Linux: ~/.config/<Your App Name>
 ```
 And delete the .json data file corresponding to the SubjectID you want to overwrite or reuse.
