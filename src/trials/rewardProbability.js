@@ -1,5 +1,4 @@
 import { eventCodes } from '../config/main'
-import { baseStimulus } from '../lib/markup/stimuli'
 import { removeCursor } from '../lib/utils'
 import { photodiodeGhostBox, pdSpotEncode } from '../lib/markup/photodiode'
 import { canvasSize, canvasSettings } from '../config/main'
@@ -30,7 +29,7 @@ const rewardProbability = (duration, blockSettings, opts, trialDetails) => {
         // set up canvas
         let canvas = document.querySelector('#jspsych-canvas');
         let ctx = canvas.getContext('2d');
-        
+
         const rewProbDraw = () => {
           // transparent background
           ctx.clearRect(0, 0, canvas.width, canvas.height);
