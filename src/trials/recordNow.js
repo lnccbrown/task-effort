@@ -18,8 +18,7 @@ const recordNow = () => {
       <div class='instructions'>
       <h1>${lang.prompt.begin_recording}<br>
       ${lang.prompt.name_eeg_file}<br>
-      ${userId}
-      ${lang.prompt.effort_suffix}</h1>
+      ${userId}${lang.prompt.effort_suffix}</h1>
       </div>
       `, true)
     }
