@@ -27,6 +27,7 @@ Ctrl+W (for PC/Windows)
 ```
 Cmd+Q (for Mac)
 ```
+Partial data will be saved.
 
 ## TO REUSE A SUBJECT ID NUMBER
 If you want to overwrite a subject's data file:
@@ -39,7 +40,10 @@ Mac OS: ~/Library/Application Support/<Your App Name (taken from the name proper
 Windows: C:\Users\<you>\AppData\Roaming\<Your App Name>
 Linux: ~/.config/<Your App Name>
 ```
-And delete the .json data file corresponding to the SubjectID you want to overwrite or reuse.
+In order to find this directory on a PC, you may need to <a href="https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10"><u>enable viewing hidden folders and files</u></a>. Alternatively, you can right-click on the app shortcut on the desktop, and select 'Open File Location.'
+
+
+Once you have succesfully navigated to the corresponding location, delete the .json data file corresponding to the SubjectID you want to overwrite or reuse.
 
 Once you have deleted both of these .json files, you should be able to use a SubjectID you have used in the past.
 
