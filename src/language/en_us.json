@@ -13,7 +13,9 @@
     "fullscreen": "Press 'cmd + ctrl + F' to toggle Fullscreen.",
     "zoom": "Zoom in to enlarge the screen.",
     "setting_up": "Setting up task...",
-    "begin_recording": "To the Experimenter:<br>You may start the EEG recording now.",
+    "begin_recording": "To the Experimenter:<br></br>You may start the EEG recording now.",
+    "name_eeg_file": "Please name the EEG file: ",
+    "effort_suffix": "_Effort",
     "confirm_recording": "Press any key to confirm the recording has begun."
   },
   "welcome": {
