@@ -6,7 +6,6 @@ import { practiceBlock1 } from "../config/practice";
 
 console.log("at_home", AT_HOME);
 console.log("env at home", process.env.REACT_APP_AT_HOME);
-console.log("check this is running the correct branch in browser");
 const preamble = {
   type: "html_keyboard_response",
   stimulus: "",
