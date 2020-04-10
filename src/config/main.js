@@ -53,7 +53,7 @@ const keys = {
 // is this mechanical turk?
 const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
-let IS_ELECTRON = true;
+let IS_ELECTRON = false;
 
 try {
   window.require("electron");

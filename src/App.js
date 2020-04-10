@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { getTurkUniqueId, sleep } from "./lib/utils";
 import { addToFirebase, createFirebaseDocument } from "./firebase.js";
+require("dotenv").config();
 
 let ipcRenderer = false;
 let psiturk = false;
