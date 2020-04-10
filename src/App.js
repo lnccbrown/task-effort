@@ -60,7 +60,7 @@ class App extends React.Component {
                 };
                 completePsiturk();
               } else {
-                jsPsych.data.get().localSave("csv", "task-effort.csv");
+                // jsPsych.data.get().localSave("csv", "task-effort.csv");
               }
             },
           }}
