@@ -39,8 +39,11 @@ class App extends React.Component {
                   console.log(data.patient_id);
                   createFirebaseDocument(data.patient_id);
                   addToFirebase(data);
+                  console.log("successfully saved data from trial_index 1");
                 }
                 if (data.trial_index > 1) {
+                  // debugger;
+                  console.log(data);
                   addToFirebase(data);
                 }
               }
