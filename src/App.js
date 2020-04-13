@@ -21,7 +21,7 @@ if (IS_ELECTRON) {
   /* eslint-enable */
 }
 
-const firebase = true;
+const firebase = true; // TO DO - make process env work for this
 
 class App extends React.Component {
   render() {
