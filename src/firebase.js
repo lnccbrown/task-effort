@@ -31,7 +31,6 @@ const createFirebaseDocumentRandom = () => {
 };
 
 const addToFirebase = (data) => {
-  console.log(data);
   const patientId = data.patient_id;
   db.collection(collectionName)
     .doc(patientId)
