@@ -171,3 +171,129 @@ The `lib/` directory contains utility functions and markup that is used in the t
 #### `trials`
 
 `jspsych` uses `trials` as its base unit of an experiment. These trials do things such as display some stimulus or request a response.
+## Environment Variables
+
+The following are environment variables used by the app:
+
+* `ELECTRON_START_URL` [string]: URL (e.g. `http://localhost:3000`) where the front end of the app is being hosted - also used in `electron.js` to indicate the app is running in dev mode
+* `EVENT_MARKER_PRODUCT_ID` [string]: The product ID of the event marker (e.g. `0487`).  If not set, it will use the `productID` set in `public/config/trigger.js`.
+* `REACT_APP_AT_HOME` [boolean]: whether the app is being used in home mode (true) or clinic mode (false)
+* `REACT_APP_PATIENT_ID` [string]: The default patient id to show when requesting a patient ID in `userID`.  If not set, no default is shown (blank input box).
+
+## Usage with PsiTurk
+
+While this set up is optimized for Electron, we added functionality that will make use with PsiTurk easy. The application will detect if it's being used in a Turk environment and will:  
+
+- Save the data to the default PsiTurk SQLite database.  
+- Switch the language to Turk specific, if `src/language/<locale>.mturk.json` exists.  
+- Use the Turk specific timeline if different than the primary timeline.  
+
+**Prebuilt version**
+When GitHub Actions is run, a psiturk build will be created automatically, and can be downloaded from its artifacts (skip next step if using).
+
+**Build instructions**
+To set up your PsiTurk project, we provide a script that does the conversion.
+PsiTurk is a Python package used to manage HITs in Mechanical Turk. Before using the provided script, install [PsiTurk](https://psiturk.org/).
+
+You'll need to follow these steps (the path to the PsiTurk project should be a directory you wish to be created):
+- Build the application: `npm run build`  
+- Move to the `psiturkit` directory: `cd psiturkit`
+- If it's the first time you're running the script:  
+  `./psiturk-it -p <PATH_TO_NEW_PSITURK_PROJECT>`  
+
+- To update an existing PsiTurk project (the path to the PsiTurk project should already exist from the previous steps):  
+  `./psiturk-it -u -p <PATH_TO_NEW_PSITURK_PROJECT>`
+
+**Running psiturk**
+After that, just navigate to your newly created PsiTurk project directory.
+```shell
+shell> psiturk #start psiturk
+psiturk> server on #start server
+psiturk> debug #debug mode
+```
+
+## Best Practices
+
+### Write good commit messages
+
+[Commitizen](https://pypi.org/project/commitizen/) is a great tool for writing angular commits - this will create a standardized commit format which makes for easier change logging and more sane messages.
+
+### Use git flow (ish)
+
+Your `master` branch should be where official releases are made (whenever code is used in real life tasks) and `develop` should be the working copy.  Use branches for any new features or fixes and then use pull requests to merge those into `develop`. Merge `develop` into `master` when using the task and make sure to tag a release. This will ensure you can always go back to exactly the code that was working with a specific subject/session.
+
+### Keep your code style consistent
+
+* `let` instead of `var`
+* fat arrow functions (`const myFunc = (var) => doSomething(var)`) instead of es5/6 functions (`function myFunc(var) { doSomething(var) }`)
+* camel case for variable, and function names (`doSomething`) instead of snake case (`do_something`)
+* but snake case inside json is fine
+* a `tab` === two spaces
+* file exports at the bottom of the file in one chunk instead of exporting the function declaration
+* when in doubt, leave future you a comment (you'll never regret it)
+
+## Troubleshooting
+
+When developing electron apps there are two processes: `main`, and `renderer`.  In this case `main` corresponds to `electron-starter.js` and its console is wherever you called `npm run dev` or `electron .` from. `renderer` corresponds to the React App - this is everything else. The react app's console is in the electron/browser window and can be seen by using dev tools to inspect the window.  When running `npm run dev`, it should open by default.
+
+### Potential Issues
+
+#### Package not found or other error related to `npm`
+
+Try deleting your `node_modules` folder and the `package-lock.json` then running `npm install` then `npm run rebuild`.
+
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run dev`
+
+Runs `npm start` and `npm run electron-dev` concurrently.  This may not play nicely with windows.  If it doesn't, run `npm start` and `npm run electron-dev` from different terminal windows.
+
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm build`
+
+Creates a production build of the app (renderer).  This must be done before running `package:platform` or the psiturk build instructions.
+
+### `npm run package:platform`
+
+It correctly bundles creates electron packages for the given platform.  It then creates an installer for that platform.  The output can be found in `/dist`
+platforms: windows, mac, linux.
+
+
+#### Prerequisites
+
+If not running this command on a windows machine, must have `mono` and `wine` installed.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+### Run Electron
+
+#### `npm run electron`
+
+Run the built app.
+
+#### `npm run electron-dev`
+
+Run the current state of the code (un-built).
