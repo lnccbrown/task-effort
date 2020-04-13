@@ -1,19 +1,22 @@
 import { eventCodes, IS_ELECTRON, AT_HOME } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
+import { removeCursor } from "../lib/utils";
 
 const trialEnd = (duration) => {
-  // debugger;
-  const endCode = eventCodes.trialFinish;
-
+  const startCode = eventCodes.trialFinishStart;
+  const endCode = eventCodes.trialFinishEnd;
   return {
     type: "html_keyboard_response",
     stimulus: "",
     response_ends_trial: false,
     trial_duration: duration,
-    on_load: () => {},
-    on_start: (trial) => {
-      debugger;
+    on_load: () => {
+      removeCursor("experiment");
+    },
+    on_start: (trial, data) => {
       if (IS_ELECTRON && !AT_HOME) trial.stimulus += photodiodeGhostBox();
+      pdSpotEncode(startCode);
+      data.code = startCode;
     },
     on_finish: (data) => {
       pdSpotEncode(endCode);
