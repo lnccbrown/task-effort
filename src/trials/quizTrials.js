@@ -1,5 +1,5 @@
 import { jsPsych } from "jspsych-react";
-import { lang, MTURK } from "../config/main";
+import { lang } from "../config/main";
 import { baseStimulus } from "../lib/markup/stimuli";
 import { addCursor } from "../lib/utils";
 
@@ -91,7 +91,7 @@ const quiz = () => {
       data.ans_choices = quizOptions();
       let answer = JSON.parse(data.responses);
       data.answer = [];
-      let len = MTURK ? quizPrompts.length + 1 : quizPrompts.length;
+      let len = quizPrompts.length - 1; // - 1 bc last quizPrompts is not part of quiz
       for (let i = 0; i < len; i++) {
         data.answer.push(answer["Q" + i]);
       }
@@ -152,7 +152,7 @@ const reshowRules = () => {
 const retakeLoop = () => {
   return {
     timeline: [retakeFeedback(), reshowRules(), quiz()],
-    loop_function: (data) => {
+    loop_function: () => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
 
@@ -180,7 +180,7 @@ const retakeLoop = () => {
 const checkRetake = () => {
   return {
     timeline: [retakeLoop()],
-    conditional_function: (data) => {
+    conditional_function: () => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
 

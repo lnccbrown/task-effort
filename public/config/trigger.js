@@ -21,7 +21,7 @@ const eventCodes = {
   rewardFeedbackEnd: 71, // trial reward feedback offset
   showPaymentStart: 80, // end of task earnings screen onset
   showPaymentEnd: 81, // end of task earnings screen offset
-  trialFinishStart: 90, // marks when trial starts (fixation onset)
+  trialFinishStart: 90, // marks when trial starts (fixation onset) -- currently NOT in use
   trialFinishEnd: 91, // marks when trial ends (reward feedback offset)
   test_connect: 4,
   open_task: 5, // when the app is opened, send this code

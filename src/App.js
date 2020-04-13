@@ -36,14 +36,10 @@ class App extends React.Component {
             on_data_update: (data) => {
               if (firebase) {
                 if (data.trial_index === 1) {
-                  console.log(data.patient_id);
                   createFirebaseDocument(data.patient_id);
                   addToFirebase(data);
-                  console.log("successfully saved data from trial_index 1");
                 }
                 if (data.trial_index > 1) {
-                  // debugger;
-                  console.log(data);
                   addToFirebase(data);
                 }
               }
