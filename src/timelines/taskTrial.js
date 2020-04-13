@@ -1,13 +1,13 @@
 // import trials
-import fixation from '../trials/fixation'
-import rewardProbability from '../trials/rewardProbability'
-import frameSpike from '../trials/frameSpike'
-import choice from '../trials/choice'
-import costBenefits from '../trials/costBenefits'
-import pressBalloon from '../trials/pressBalloon'
-import rewardFeedback from '../trials/rewardFeedback'
-import cumulativeReward from '../trials/cumulativeReward'
-import trialEnd from '../trials/trialEnd'
+import fixation from "../trials/fixation";
+import rewardProbability from "../trials/rewardProbability";
+import frameSpike from "../trials/frameSpike";
+import choice from "../trials/choice";
+import costBenefits from "../trials/costBenefits";
+import pressBalloon from "../trials/pressBalloon";
+import rewardFeedback from "../trials/rewardFeedback";
+import cumulativeReward from "../trials/cumulativeReward";
+import trialEnd from "../trials/trialEnd";
 
 const taskTrial = (blockSettings, blockDetails, opts) => {
   // initialize trial details
@@ -18,8 +18,8 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     effort: [],
     high_effort: [],
     probability: [],
-    start_time: Date.now()
-  }
+    start_time: Date.now(),
+  };
 
   // timeline
   let timeline = [
@@ -35,12 +35,12 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500),
     cumulativeReward(1000, blockSettings, blockDetails, opts, trialDetails),
     // end the trial
-    trialEnd(trialDetails, 500)
-  ]
-    return {
-  		type: 'html_keyboard_response',
-  		timeline: timeline
-  	}
-}
+    trialEnd(trialDetails, 500),
+  ];
+  return {
+    type: "html_keyboard_response",
+    timeline: timeline,
+  };
+};
 
-export default taskTrial
+export default taskTrial;

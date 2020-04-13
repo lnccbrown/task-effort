@@ -32,12 +32,10 @@ const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
       document.getElementById("jspsych-content").innerHTML = stimulus;
 
       trialDetails.subtrial_type = "reward_feedback";
-
-      console.log(opts);
-      console.log(trialDetails);
+      trialDetails.trial_cumulative_earnings += trialDetails.trialDetails;
 
       setTimeout(() => {
-        done(addData(blockSettings, trialDetails, opts));
+        done(addData(trialDetails, blockSettings, opts));
       }, duration);
     },
     on_load: () => {
