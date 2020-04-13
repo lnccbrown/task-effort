@@ -1,19 +1,22 @@
-import { lang } from '../config/main'
-import { baseStimulus } from '../lib/markup/stimuli'
+import { lang } from "../config/main";
+import { baseStimulus } from "../lib/markup/stimuli";
 
 const breakScreen = () => {
-  let stimulus = baseStimulus(`
+  let stimulus = baseStimulus(
+    `
     <div class='instructions'>
     <h1>${lang.break.prompt}
     </div>
-    `, true)
+    `,
+    true
+  );
 
   return {
-    type: 'html_keyboard_response',
+    type: "html_keyboard_response",
     stimulus: stimulus,
-    prompt:  lang.break.done,
-    response_ends_trial: true
-  }
-}
+    prompt: lang.break.done,
+    response_ends_trial: true,
+  };
+};
 
-export default breakScreen
+export default breakScreen;

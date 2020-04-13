@@ -1,8 +1,8 @@
+import { jsPsych } from "jspsych-react";
 import { eventCodes } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
 import { addData } from "../lib/taskUtils";
-import { jsPsych } from "jspsych-react";
 
 const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
   const startCode = eventCodes.rewardFeedbackStart;

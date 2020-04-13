@@ -1,7 +1,6 @@
-import { eventCodes } from "../config/main";
-import { removeCursor } from "../lib/utils";
+import { eventCodes, canvasSize, canvasSettings } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
-import { canvasSize, canvasSettings } from "../config/main";
+import { removeCursor } from "../lib/utils";
 import { drawText } from "../lib/drawUtils";
 import { addData } from "../lib/taskUtils";
 

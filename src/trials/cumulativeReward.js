@@ -1,9 +1,8 @@
-import { eventCodes } from "../config/main";
+import { eventCodes, lang } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
 import { addData } from "../lib/taskUtils";
 import { jsPsych } from "jspsych-react";
-import { lang } from "../config/main";
 
 const cumulativeReward = (
   duration,

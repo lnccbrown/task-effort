@@ -35,7 +35,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     fixation(500),
     cumulativeReward(1000, blockSettings, blockDetails, opts, trialDetails),
     // end the trial
-    trialEnd(trialDetails, 500),
+    trialEnd(500),
   ];
   return {
     type: "html_keyboard_response",

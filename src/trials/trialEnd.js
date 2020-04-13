@@ -1,7 +1,8 @@
 import { eventCodes, IS_ELECTRON, AT_HOME } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 
-const trialEnd = (trialDetails, duration) => {
+const trialEnd = (duration) => {
+  // debugger;
   const endCode = eventCodes.trialFinish;
 
   return {
@@ -11,6 +12,7 @@ const trialEnd = (trialDetails, duration) => {
     trial_duration: duration,
     on_load: () => {},
     on_start: (trial) => {
+      debugger;
       if (IS_ELECTRON && !AT_HOME) trial.stimulus += photodiodeGhostBox();
     },
     on_finish: (data) => {
