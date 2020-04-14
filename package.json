@@ -1,17 +1,17 @@
 {
   "name": "task-effort",
-  "description": "all-in-one app with jsPsych + React + Electron + psiturk ",
+  "description": "all-in-one app with jsPsych + React + Electron + psiturk",
   "author": {
-    "name": "Wasita Mahaphanit & Brown CCV (Rashi Dashar)",
+    "name": "Wasita Mahaphanit & Rashi Dashar (Brown CCV)",
     "email": "wasita@brown.edu",
     "url": "lnccbrown.com"
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",
   "homepage": ".",
-  "repository": "https://github.com/brown-ccv/neuro-task-starter",
+  "repository": "https://github.com/lnccbrown/task-effort",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
     "acorn": "^7.1.0",
