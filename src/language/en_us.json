@@ -25,7 +25,7 @@
   "userid": {
     "set": "Please enter the <i>Subject ID</i>. <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_Effort.)</span>"
   },
-  "eventMarker" : {
+  "eventMarker": {
     "found": "<span class='text-green'>Hold the USB event marker in front of the camera.</span>",
     "not_found": "<span class='text-danger'>Note: no USB event marker found.</span>"
   },

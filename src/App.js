@@ -1,3 +1,4 @@
+// import React from "react";
 import React from "react";
 import { Experiment, jsPsych } from "jspsych-react";
 import { tl } from "./timelines/main";
@@ -6,6 +7,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { getTurkUniqueId, sleep } from "./lib/utils";
+import { addToFirebase, createFirebaseDocument } from "./firebase.js";
+require("dotenv").config();
 
 let ipcRenderer = false;
 let psiturk = false;
@@ -19,6 +22,8 @@ if (IS_ELECTRON) {
   /* eslint-enable */
 }
 
+const firebase = true; // TO DO - make process env work for this
+
 class App extends React.Component {
   render() {
     console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
@@ -30,6 +35,15 @@ class App extends React.Component {
           settings={{
             timeline: tl,
             on_data_update: (data) => {
+              if (firebase) {
+                if (data.trial_index === 1) {
+                  createFirebaseDocument(data.patient_id);
+                  addToFirebase(data);
+                }
+                if (data.trial_index > 1) {
+                  addToFirebase(data);
+                }
+              }
               if (ipcRenderer) {
                 ipcRenderer.send("data", data);
               } else if (psiturk) {
@@ -47,7 +61,7 @@ class App extends React.Component {
                 };
                 completePsiturk();
               } else {
-                jsPsych.data.get().localSave("csv", "task-effort.csv");
+                // jsPsych.data.get().localSave("csv", "task-effort.csv");
               }
             },
           }}
