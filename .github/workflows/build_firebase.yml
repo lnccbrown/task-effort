@@ -28,15 +28,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      # - name: Set package version and name
-      #   uses: brown-ccv/gh-actions/get-package-info@master
-      #   id: package_info
 
       # Install, build, deploy
       - name: npm install
         run: npm install
-      - name: npm build:prod
-      - run: npm run build:prod
+      - name: npm build
+        run: npm run build
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
