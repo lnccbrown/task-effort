@@ -34,7 +34,7 @@ jobs:
         run: npm install
       - name: npm build
         run: npm run build
-        uses: w9jds/firebase-action@master
+      - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
