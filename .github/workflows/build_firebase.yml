@@ -23,7 +23,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       # Set up js package
-      - uses: actions/checkout@v200
+      - uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
