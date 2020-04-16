@@ -26,8 +26,8 @@ const firebase = true; // TO DO - make process env work for this
 
 class App extends React.Component {
   render() {
-    console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
-    console.log("Turk:", MTURK);
+    // console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
+    // console.log("Turk:", MTURK);
 
     return (
       <div className="App">
