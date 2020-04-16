@@ -1,0 +1,25 @@
+[debug] [2020-04-16T20:54:23.575Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:54:23.576Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2020-04-16T20:54:23.577Z] CLI Version:   8.0.3
+[debug] [2020-04-16T20:54:23.577Z] Platform:      darwin
+[debug] [2020-04-16T20:54:23.577Z] Node Version:  v13.6.0
+[debug] [2020-04-16T20:54:23.578Z] Time:          Thu Apr 16 2020 16:54:23 GMT-0400 (Eastern Daylight Time)
+[debug] [2020-04-16T20:54:23.578Z] ----------------------------------------------------------------------
+[debug] [2020-04-16T20:54:23.578Z] 
+[debug] [2020-04-16T20:54:23.586Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-04-16T20:54:23.586Z] > authorizing via signed-in user
+[debug] [2020-04-16T20:54:23.587Z] [iam] checking project task-effort for permissions ["firebase.projects.get"]
+[debug] [2020-04-16T20:54:23.589Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/task-effort:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-04-16T20:54:23.862Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:54:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=152","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-04-16T20:54:23.863Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/task-effort  
+ 
+[debug] [2020-04-16T20:54:24.102Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:54:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Serving from '/Users/wasita/Documents/GitHub/task-effort'...
+[info] 
+[debug] [2020-04-16T20:54:24.104Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/task-effort/webApps/-/config  
+ 
+[debug] [2020-04-16T20:54:24.462Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 16 Apr 2020 20:54:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"quic=\":443\"; ma=2592000; v=\"46,43\",h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting: Serving hosting files from: build
+[info] ✔  hosting: Local server: http://localhost:5000
