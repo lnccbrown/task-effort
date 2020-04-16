@@ -8,7 +8,7 @@
   },
   "hosting": {
     "public": "build",
-    "ignore": ["firebase.json", "**/.*"],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/src/**", "**/public/**"],
     "rewrites": [{
       "source": "build",
       "destination": "/index.html"
