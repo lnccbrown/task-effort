@@ -63,14 +63,14 @@ const startKeypressListener = () => {
   return keyboardListener;
 };
 
+// if use images in task, uncomment this
+// and make sure there are images in the src/assets/images folder!
+// otherwise the build will fail
 // // import images
 // const importAll = (r) => {
 //   return r.keys().map(r);
 // };
 
-// if use images in task, uncomment this
-// and make sure there are images in the src/assets/images folder!
-// otherwise the build will fail
 // const images = importAll(
 //   requireContext("../assets/images", false, /\.(png|jpe?g|svg)$/)
 // );
