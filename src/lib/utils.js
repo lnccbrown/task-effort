@@ -1,5 +1,4 @@
 import { jsPsych } from "jspsych-react";
-import requireContext from "require-context.macro";
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,10 +63,10 @@ const startKeypressListener = () => {
   return keyboardListener;
 };
 
-// import images
-const importAll = (r) => {
-  return r.keys().map(r);
-};
+// // import images
+// const importAll = (r) => {
+//   return r.keys().map(r);
+// };
 
 // if use images in task, uncomment this
 // and make sure there are images in the src/assets/images folder!
