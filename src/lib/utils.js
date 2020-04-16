@@ -69,9 +69,12 @@ const importAll = (r) => {
   return r.keys().map(r);
 };
 
-const images = importAll(
-  requireContext("../assets/images", false, /\.(png|jpe?g|svg)$/)
-);
+// if use images in task, uncomment this
+// and make sure there are images in the src/assets/images folder!
+// otherwise the build will fail
+// const images = importAll(
+//   requireContext("../assets/images", false, /\.(png|jpe?g|svg)$/)
+// );
 
 const getTurkUniqueId = () => {
   const turkInfo = jsPsych.turk.turkInfo();
