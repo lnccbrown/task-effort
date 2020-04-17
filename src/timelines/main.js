@@ -1,6 +1,7 @@
 import buildCountdown from "../trials/countdown";
 import preamble from "./preamble";
 import experimentStart from "../trials/experimentStart";
+import qualtrics from "../trials/qualtrics";
 import experimentEnd from "../trials/experimentEnd";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
@@ -39,6 +40,7 @@ const primaryTimeline = [
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
+  qualtrics(),
   showPayment(5000, exptBlock1),
   experimentEnd(5000),
 ];

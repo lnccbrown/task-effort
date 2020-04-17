@@ -2,7 +2,7 @@ import { lang, MTURK } from "../config/main";
 import { getUserId, getTurkUniqueId } from "../lib/utils";
 import { baseStimulus } from "../lib/markup/stimuli";
 
-const userId = (blockSettings) => {
+const userId = () => {
   if (MTURK) {
     return {
       type: "html_keyboard_response",

@@ -1,4 +1,3 @@
-// import React from "react";
 import React from "react";
 import { Experiment } from "jspsych-react";
 import { tl } from "./timelines/main";
