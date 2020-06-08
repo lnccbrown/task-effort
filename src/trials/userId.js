@@ -2,7 +2,7 @@ import { lang, ONLINE, MTURK, PROLIFIC } from "../config/main";
 import { getUserId, getTurkUniqueId } from "../lib/utils";
 import { baseStimulus } from "../lib/markup/stimuli";
 
-const userId = (blockSettings) => {
+const userId = () => {
   if (ONLINE) {
     if (MTURK) {
       return {
