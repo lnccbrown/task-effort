@@ -64,7 +64,7 @@ const showPayment = (duration, blockSettings) => {
           baseStimulus(
             `<h1>${lang.payment.earned}<br>${formatDollars(
               total_earnings
-            )}<br></br>${lang.payment.proceed}</h1>`,
+            )}<br>${lang.payment.bonus}<br></br>${lang.payment.proceed}</h1>`,
             true
           ) + photodiodeGhostBox();
       },

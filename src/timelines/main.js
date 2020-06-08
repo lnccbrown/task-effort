@@ -19,6 +19,7 @@ import {
   greenPracticeInstructions,
   realPracticeInstructions,
   postPracticeInstructions,
+  qualtricsIntro,
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
 
@@ -48,23 +49,24 @@ const primaryTimeline = [
 const onlineTimeline = [
   experimentStart(),
   userId(),
-  // preamble,
-  // bluePracticeInstructions(),
-  // buildCountdown(lang.countdown.practice1, 3),
-  // taskBlock(practiceBlock1),
-  // greenPracticeInstructions(),
-  // buildCountdown(lang.countdown.practice2, 3),
-  // taskBlock(practiceBlock2),
-  // realPracticeInstructions(),
-  // buildCountdown(lang.countdown.practice3, 3),
-  // taskBlock(practiceBlock3),
-  // quizTimeline(),
-  // postPracticeInstructions(),
-  // buildCountdown(lang.countdown.expt1, 3),
+  preamble,
+  bluePracticeInstructions(),
+  buildCountdown(lang.countdown.practice1, 3),
+  taskBlock(practiceBlock1),
+  greenPracticeInstructions(),
+  buildCountdown(lang.countdown.practice2, 3),
+  taskBlock(practiceBlock2),
+  realPracticeInstructions(),
+  buildCountdown(lang.countdown.practice3, 3),
+  taskBlock(practiceBlock3),
+  quizTimeline(),
+  postPracticeInstructions(),
+  buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
+  qualtricsIntro(),
   qualtrics(),
-  experimentEnd(5000),
+  // experimentEnd(5000),
 ];
 
 export const tl = ONLINE ? onlineTimeline : primaryTimeline;

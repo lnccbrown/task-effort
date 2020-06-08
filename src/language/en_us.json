@@ -99,8 +99,12 @@
     "prompt": "You may now take a break.",
     "done": "Press any key to end your break and to resume the task."
   },
+  "questionnaires": {
+    "intro": "Now that you have completed the computerized task, we will ask you to please complete several surveys.<br>Upon successfully completing the surveys, you will be brought back to Prolific."
+  },
   "payment": {
     "earned": "You have earned",
+    "bonus": "as a bonus payment.",
     "experimenter": "Please inform the experimenter.",
     "proceed": "Please press the 'm' key to proceed."
   }
