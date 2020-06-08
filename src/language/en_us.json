@@ -56,6 +56,7 @@
   },
   "quiz": {
     "confirm_understanding": "To make sure you understand the task instructions, we will ask you some questions about how to perform the task.",
+    "quiz_attempts": "You will have <b>5</b> attempts at answering the quiz. Once you reach this limit, you will have to return the HIT.",
     "incorrect_response": "You have answered incorrectly!",
     "review": "Press any key to review the rules of the task.",
     "retake": "<b>Press any key to retake the quiz.</b>",
