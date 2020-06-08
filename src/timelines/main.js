@@ -63,6 +63,7 @@ const onlineTimeline = [
   // buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
+  qualtrics(),
   experimentEnd(5000),
 ];
 

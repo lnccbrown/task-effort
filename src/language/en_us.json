@@ -101,6 +101,7 @@
   },
   "payment": {
     "earned": "You have earned",
-    "experimenter": "Please inform the experimenter."
+    "experimenter": "Please inform the experimenter.",
+    "proceed": "Please press the 'm' key to proceed."
   }
 }
