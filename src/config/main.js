@@ -52,7 +52,7 @@ const keys = {
 
 // is this online? i.e. not in-lab?
 const ONLINE = true;
-console.log("ONLINE +" + ONLINE);
+// console.log("ONLINE " + ONLINE);
 
 // is this mechanical turk?
 const MTURK = !jsPsych.turk.turkInfo().outsideTurk;

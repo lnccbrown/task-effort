@@ -203,9 +203,9 @@ const checkRetake = (blockSettings) => {
         JSON.stringify(prevAnswers.slice(0, 6)) !==
         JSON.stringify(correctAnswers)
       ) {
-        return true;
         blockSettings.quiz_attempts += 1;
         console.log(blockSettings.quiz_attempts);
+        return true;
       } else {
         console.log(blockSettings.quiz_attempts);
         return false;
@@ -218,7 +218,7 @@ const checkRetake = (blockSettings) => {
 // (https://www.jspsych.org/overview/timeline/#looping-timelines)
 let quizTimeline = (blockSettings) => {
   if (blockSettings !== undefined) {
-    console.log(blockSettings.quiz_attempts);
+    // console.log(blockSettings.quiz_attempts);
     return {
       timeline: [quiz(blockSettings), checkRetake(blockSettings)],
       type: "html_keyboard_response",
