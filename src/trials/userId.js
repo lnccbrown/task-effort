@@ -2,7 +2,7 @@ import { lang, ONLINE, MTURK, PROLIFIC } from "../config/main";
 import { getUserId, getTurkUniqueId } from "../lib/utils";
 import { baseStimulus } from "../lib/markup/stimuli";
 
-const userId = () => {
+const userId = (blockSettings) => {
   if (ONLINE) {
     if (MTURK) {
       return {
@@ -40,5 +40,16 @@ const userId = () => {
     };
   }
 };
+
+// const checkRedo = () => {
+
+// }
+
+// const userIdPrompt = () => {
+//   return {
+//     timeline: [userId(), checkRedo()],
+//     type: "html_keyboard_response",
+//   };
+// };
 
 export default userId;

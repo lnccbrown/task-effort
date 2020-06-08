@@ -23,7 +23,7 @@ import {
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
 
-const primaryTimeline = [
+const inLabTimeline = [
   experimentStart(),
   userId(),
   preamble,
@@ -36,7 +36,7 @@ const primaryTimeline = [
   realPracticeInstructions(),
   buildCountdown(lang.countdown.practice3, 3),
   taskBlock(practiceBlock3),
-  quizTimeline(),
+  quizTimeline(practiceBlock3),
   recordNow(),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
@@ -49,17 +49,17 @@ const primaryTimeline = [
 const onlineTimeline = [
   experimentStart(),
   userId(),
-  preamble,
-  bluePracticeInstructions(),
-  buildCountdown(lang.countdown.practice1, 3),
-  taskBlock(practiceBlock1),
-  greenPracticeInstructions(),
-  buildCountdown(lang.countdown.practice2, 3),
-  taskBlock(practiceBlock2),
-  realPracticeInstructions(),
-  buildCountdown(lang.countdown.practice3, 3),
-  taskBlock(practiceBlock3),
-  quizTimeline(),
+  // preamble,
+  // bluePracticeInstructions(),
+  // buildCountdown(lang.countdown.practice1, 3),
+  // taskBlock(practiceBlock1),
+  // greenPracticeInstructions(),
+  // buildCountdown(lang.countdown.practice2, 3),
+  // taskBlock(practiceBlock2),
+  // realPracticeInstructions(),
+  // buildCountdown(lang.countdown.practice3, 3),
+  // taskBlock(practiceBlock3),
+  quizTimeline(practiceBlock3),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
@@ -69,4 +69,4 @@ const onlineTimeline = [
   // experimentEnd(5000),
 ];
 
-export const tl = ONLINE ? onlineTimeline : primaryTimeline;
+export const tl = ONLINE ? onlineTimeline : inLabTimeline;
