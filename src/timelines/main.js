@@ -7,7 +7,7 @@ import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
 import userId from "../trials/userId";
 import recordNow from "../trials/recordNow";
-import { MTURK, lang } from "../config/main";
+import { ONLINE, lang } from "../config/main";
 import {
   practiceBlock1,
   practiceBlock2,
@@ -45,25 +45,25 @@ const primaryTimeline = [
   experimentEnd(5000),
 ];
 
-const mturkTimeline = [
+const onlineTimeline = [
   experimentStart(),
   userId(),
-  preamble,
-  bluePracticeInstructions(),
-  buildCountdown(lang.countdown.practice1, 3),
-  taskBlock(practiceBlock1),
-  greenPracticeInstructions(),
-  buildCountdown(lang.countdown.practice2, 3),
-  taskBlock(practiceBlock2),
-  realPracticeInstructions(),
-  buildCountdown(lang.countdown.practice3, 3),
-  taskBlock(practiceBlock3),
-  quizTimeline(),
-  postPracticeInstructions(),
-  buildCountdown(lang.countdown.expt1, 3),
+  // preamble,
+  // bluePracticeInstructions(),
+  // buildCountdown(lang.countdown.practice1, 3),
+  // taskBlock(practiceBlock1),
+  // greenPracticeInstructions(),
+  // buildCountdown(lang.countdown.practice2, 3),
+  // taskBlock(practiceBlock2),
+  // realPracticeInstructions(),
+  // buildCountdown(lang.countdown.practice3, 3),
+  // taskBlock(practiceBlock3),
+  // quizTimeline(),
+  // postPracticeInstructions(),
+  // buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
   experimentEnd(5000),
 ];
 
-export const tl = MTURK ? mturkTimeline : primaryTimeline;
+export const tl = ONLINE ? onlineTimeline : primaryTimeline;
