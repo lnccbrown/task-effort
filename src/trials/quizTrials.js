@@ -35,7 +35,7 @@ const quizRules = [
   `${lang.quiz.rules.green_vary_bonus}`,
   `${lang.quiz.rules.twenty_five_secs_green}`,
   `${lang.quiz.rules.bonus_green_spike}`,
-  `${lang.quiz.any_questions}`,
+  // `${lang.quiz.any_questions}`,
   `${lang.quiz.retake}`,
 ];
 
