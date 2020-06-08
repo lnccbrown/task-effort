@@ -23,7 +23,8 @@
     "message": "Instructions"
   },
   "userid": {
-    "set": "Please enter the <i>Subject ID</i>. <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_Effort.)</span>"
+    "set": "Please enter the <i>Subject ID</i>. <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_Effort.)</span>",
+    "set_prolific": "Please enter your Prolific ID into the box below:<br><span class='text-smoll'>Warning: You cannot leave this box empty!</span>"
   },
   "eventMarker": {
     "found": "<span class='text-green'>Hold the USB event marker in front of the camera.</span>",
@@ -55,6 +56,7 @@
   },
   "quiz": {
     "confirm_understanding": "To make sure you understand the task instructions, we will ask you some questions about how to perform the task.",
+    "quiz_attempts": "You will have <b>5</b> attempts at answering the quiz. Once you reach this limit, you will have to return the HIT.",
     "incorrect_response": "You have answered incorrectly!",
     "review": "Press any key to review the rules of the task.",
     "retake": "<b>Press any key to retake the quiz.</b>",
@@ -98,8 +100,13 @@
     "prompt": "You may now take a break.",
     "done": "Press any key to end your break and to resume the task."
   },
+  "questionnaires": {
+    "intro": "Now that you have completed the computerized task, we will ask you to please complete several surveys.<br>Upon successfully completing the surveys, you will be brought back to Prolific."
+  },
   "payment": {
     "earned": "You have earned",
-    "experimenter": "Please inform the experimenter."
+    "bonus": "as a bonus payment.",
+    "experimenter": "Please inform the experimenter.",
+    "proceed": "Please press the 'm' key to proceed."
   }
 }

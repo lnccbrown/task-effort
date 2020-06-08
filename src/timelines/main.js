@@ -1,12 +1,13 @@
 import buildCountdown from "../trials/countdown";
 import preamble from "./preamble";
 import experimentStart from "../trials/experimentStart";
+import qualtrics from "../trials/qualtrics";
 import experimentEnd from "../trials/experimentEnd";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
 import userId from "../trials/userId";
 import recordNow from "../trials/recordNow";
-import { MTURK, lang } from "../config/main";
+import { ONLINE, lang } from "../config/main";
 import {
   practiceBlock1,
   practiceBlock2,
@@ -18,10 +19,11 @@ import {
   greenPracticeInstructions,
   realPracticeInstructions,
   postPracticeInstructions,
+  qualtricsIntro,
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
 
-const primaryTimeline = [
+const inLabTimeline = [
   experimentStart(),
   userId(),
   preamble,
@@ -34,16 +36,17 @@ const primaryTimeline = [
   realPracticeInstructions(),
   buildCountdown(lang.countdown.practice3, 3),
   taskBlock(practiceBlock3),
-  quizTimeline(),
+  quizTimeline(practiceBlock3),
   recordNow(),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
+  qualtrics(),
   showPayment(5000, exptBlock1),
   experimentEnd(5000),
 ];
 
-const mturkTimeline = [
+const onlineTimeline = [
   experimentStart(),
   userId(),
   preamble,
@@ -56,12 +59,14 @@ const mturkTimeline = [
   realPracticeInstructions(),
   buildCountdown(lang.countdown.practice3, 3),
   taskBlock(practiceBlock3),
-  quizTimeline(),
+  quizTimeline(practiceBlock3),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
-  experimentEnd(5000),
+  qualtricsIntro(),
+  qualtrics(),
+  // experimentEnd(5000),
 ];
 
-export const tl = MTURK ? mturkTimeline : primaryTimeline;
+export const tl = ONLINE ? onlineTimeline : inLabTimeline;

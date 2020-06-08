@@ -35,12 +35,12 @@ const quizRules = [
   `${lang.quiz.rules.green_vary_bonus}`,
   `${lang.quiz.rules.twenty_five_secs_green}`,
   `${lang.quiz.rules.bonus_green_spike}`,
-  `${lang.quiz.any_questions}`,
+  // `${lang.quiz.any_questions}`,
   `${lang.quiz.retake}`,
 ];
 
 // Quiz Trial
-const quiz = () => {
+const quiz = (blockSettings) => {
   const preamble = `<div class="quiz_container">
                     <h3>${lang.quiz.confirm_understanding}</h3>
                     </div>`;
@@ -99,7 +99,7 @@ const quiz = () => {
   };
 };
 
-const retakeFeedback = (data) => {
+const retakeFeedback = (blockSettings) => {
   let feedback = [lang.quiz.incorrect_response + "<br>" + lang.quiz.review];
 
   return {
@@ -115,7 +115,7 @@ const retakeFeedback = (data) => {
   };
 };
 
-const reshowRules = () => {
+const reshowRules = (blockSettings) => {
   let rules = [
     quizRules[0] +
       "<br></br>" +
@@ -131,9 +131,9 @@ const reshowRules = () => {
       "<br></br>" +
       quizRules[6] +
       "<br></br>" +
-      quizRules[7] +
-      "<br></br>" +
-      quizRules[8],
+      quizRules[7],
+    // "<br></br>" +
+    // quizRules[8],
   ];
 
   return {
@@ -149,9 +149,13 @@ const reshowRules = () => {
   };
 };
 
-const retakeLoop = () => {
+const retakeLoop = (blockSettings) => {
   return {
-    timeline: [retakeFeedback(), reshowRules(), quiz()],
+    timeline: [
+      retakeFeedback(blockSettings),
+      reshowRules(blockSettings),
+      quiz(blockSettings),
+    ],
     loop_function: () => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
@@ -169,6 +173,8 @@ const retakeLoop = () => {
         JSON.stringify(prevAnswers.slice(0, 6)) !==
         JSON.stringify(correctAnswers)
       ) {
+        blockSettings.quiz_attempts += 1;
+        console.log(blockSettings.quiz_attempts);
         return true;
       } else {
         return false;
@@ -177,9 +183,9 @@ const retakeLoop = () => {
   };
 };
 
-const checkRetake = () => {
+const checkRetake = (blockSettings) => {
   return {
-    timeline: [retakeLoop()],
+    timeline: [retakeLoop(blockSettings)],
     conditional_function: () => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
@@ -198,7 +204,10 @@ const checkRetake = () => {
         JSON.stringify(correctAnswers)
       ) {
         return true;
+        blockSettings.quiz_attempts += 1;
+        console.log(blockSettings.quiz_attempts);
       } else {
+        console.log(blockSettings.quiz_attempts);
         return false;
       }
     },
@@ -207,11 +216,19 @@ const checkRetake = () => {
 
 // loop function
 // (https://www.jspsych.org/overview/timeline/#looping-timelines)
-let quizTimeline = () => {
-  return {
-    timeline: [quiz(), checkRetake()],
-    type: "html_keyboard_response",
-  };
+let quizTimeline = (blockSettings) => {
+  if (blockSettings !== undefined) {
+    console.log(blockSettings.quiz_attempts);
+    return {
+      timeline: [quiz(blockSettings), checkRetake(blockSettings)],
+      type: "html_keyboard_response",
+    };
+  } else {
+    return {
+      timeline: [quiz(), checkRetake()],
+      type: "html_keyboard_response",
+    };
+  }
 };
 
 export default quizTimeline;

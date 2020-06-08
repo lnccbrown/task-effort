@@ -50,8 +50,14 @@ const keys = {
   experimenter: "m", // key experimenter presses to quit payment screen
 };
 
+// is this online? i.e. not in-lab?
+const ONLINE = true;
+console.log("ONLINE +" + ONLINE);
+
 // is this mechanical turk?
 const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
+const PROLIFIC = !MTURK;
+
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
 let IS_ELECTRON = true;
 
@@ -98,7 +104,9 @@ export {
   lang,
   countdownWait,
   eventCodes,
+  ONLINE,
   MTURK,
+  PROLIFIC,
   AT_HOME,
   IS_ELECTRON,
   PHOTODIODE_ON,
