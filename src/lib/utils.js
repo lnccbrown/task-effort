@@ -81,6 +81,18 @@ const getTurkUniqueId = () => {
   return uniqueId;
 };
 
+const getProlificId = () => {
+  const windowInfo = window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
+      vars[key] = value;
+    }
+  );
+  console.log(windowInfo);
+  const uniqueId = `${windowInfo.workerId}:${windowInfo.assignmentId}`;
+  return uniqueId;
+};
+
 const getUserId = (data) => {
   const patientId = JSON.parse(data.responses)["Q0"];
   jsPsych.data.addProperties({ patient_id: patientId, timestamp: Date.now() });
@@ -102,4 +114,5 @@ export {
   startKeypressListener,
   getUserId,
   getTurkUniqueId,
+  getProlificId,
 };
