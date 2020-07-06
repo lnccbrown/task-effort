@@ -1,7 +1,7 @@
 import { jsPsych } from "jspsych-react";
 
 const redirectToProlific = (completion_url, duration) => {
-  console.log(`${completion_url}`);
+  //   console.log(`${completion_url}`);
   let url = `${completion_url}`;
 
   function redirect(url) {
