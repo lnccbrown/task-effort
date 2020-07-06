@@ -87,10 +87,10 @@ const getProlificId = (data) => {
 
   // function to parse URL and only get value of desired variables
   function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split("=");
+    let query = window.location.search.substring(1);
+    let vars = query.split("&");
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split("=");
       if (decodeURIComponent(pair[0]) === variable) {
         return decodeURIComponent(pair[1]);
       }
@@ -103,6 +103,7 @@ const getProlificId = (data) => {
 
   console.log(prolificId);
   const uniqueId = `${prolificId}`;
+  console.log(uniqueId);
   jsPsych.data.addProperties({ uniqueId: uniqueId, timestamp: Date.now() });
 };
 
