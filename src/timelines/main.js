@@ -5,6 +5,7 @@ import qualtrics from "../trials/qualtrics";
 import experimentEnd from "../trials/experimentEnd";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
+import redirectToProlific from "../trials/redirectToProlific";
 import userId from "../trials/userId";
 import recordNow from "../trials/recordNow";
 import { ONLINE, lang } from "../config/main";
@@ -19,7 +20,6 @@ import {
   greenPracticeInstructions,
   realPracticeInstructions,
   postPracticeInstructions,
-  qualtricsIntro,
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
 
@@ -64,9 +64,8 @@ const onlineTimeline = [
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
-  qualtricsIntro(),
-  qualtrics(),
-  // experimentEnd(5000),
+  buildCountdown(lang.countdown.redirect_to_prolific, 5),
+  redirectToProlific(lang.prolific.completion_code_url, 250),
 ];
 
 export const tl = ONLINE ? onlineTimeline : inLabTimeline;

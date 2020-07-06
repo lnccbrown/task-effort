@@ -91,7 +91,8 @@
     "practice2": "You will begin <b>Practice Trial 2/3</b> in",
     "practice3": "You will begin <b>Practice Trial 3/3</b> in",
     "expt1": "You will begin <b>Main Block </b> in",
-    "post_break_resume": "You will resume the task in"
+    "post_break_resume": "You will resume the task in",
+    "redirect_to_prolific": "The experiment has ended.<br></br>You will now be redirected to the Prolific website to be considered as having completed the study.<br></br>Please wait ..."
   },
   "cumulative_rew": {
     "total": "Total:<br>"
@@ -108,5 +109,8 @@
     "bonus": "as a bonus payment.",
     "experimenter": "Please inform the experimenter.",
     "proceed": "Please press the 'm' key to proceed."
+  },
+  "prolific": {
+    "completion_code_url": "https://app.prolific.co/submissions/complete?cc=110E75FD"
   }
 }
