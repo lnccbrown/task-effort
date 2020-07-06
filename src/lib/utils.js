@@ -82,6 +82,7 @@ const getTurkUniqueId = () => {
 };
 
 const getProlificId = () => {
+  vars = {};
   const windowInfo = window.location.href.replace(
     /[?&]+([^=&]+)=([^&]*)/gi,
     function (m, key, value) {
@@ -89,6 +90,7 @@ const getProlificId = () => {
     }
   );
   console.log(windowInfo);
+  debugger;
   const uniqueId = `${windowInfo.workerId}:${windowInfo.assignmentId}`;
   return uniqueId;
 };
