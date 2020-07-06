@@ -36,7 +36,7 @@ class App extends React.Component {
             on_data_update: (data) => {
               if (firebase) {
                 if (data.trial_index === 1) {
-                  createFirebaseDocument(data.patient_id);
+                  createFirebaseDocument(data.uniqueId);
                   addToFirebase(data);
                 }
                 if (data.trial_index > 1) {

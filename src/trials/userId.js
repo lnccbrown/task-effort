@@ -18,14 +18,14 @@ const userId = () => {
     } else if (PROLIFIC) {
       return {
         type: "html_keyboard_response",
-        stimulus: baseStimulus(`<h1>${lang.userid.set}</h1>`, true),
+        stimulus: baseStimulus(`<h1>${lang.userid.get_prolific}</h1>`, true),
         response_ends_trial: false,
-        trial_duration: 800,
+        trial_duration: 1000,
         on_finish: (data) => {
-          const uniqueId = getProlificId();
-          console.log(uniqueId);
+          getProlificId(data);
+          // console.log(uniqueId);
         },
-
+        // previously: manual input of ID
         // type: "survey_text",
         // questions: [
         //   {
@@ -49,16 +49,5 @@ const userId = () => {
     };
   }
 };
-
-// const checkRedo = () => {
-
-// }
-
-// const userIdPrompt = () => {
-//   return {
-//     timeline: [userId(), checkRedo()],
-//     type: "html_keyboard_response",
-//   };
-// };
 
 export default userId;

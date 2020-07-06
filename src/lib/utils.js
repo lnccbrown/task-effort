@@ -81,18 +81,29 @@ const getTurkUniqueId = () => {
   return uniqueId;
 };
 
-const getProlificId = () => {
-  vars = {};
-  const windowInfo = window.location.href.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi,
-    function (m, key, value) {
-      vars[key] = value;
+const getProlificId = (data) => {
+  const currWindowURL = window.location.href;
+  console.log(currWindowURL); // url
+
+  // function to parse URL and only get value of desired variables
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (decodeURIComponent(pair[0]) === variable) {
+        return decodeURIComponent(pair[1]);
+      }
     }
-  );
-  console.log(windowInfo);
-  debugger;
-  const uniqueId = `${windowInfo.workerId}:${windowInfo.assignmentId}`;
-  return uniqueId;
+  }
+
+  const prolificId = getQueryVariable("PROLIFIC_PID");
+  // const sessionId = getQueryVariable("SESSION_ID");
+  // const studyId = getQueryVariable("STUDY_ID");
+
+  console.log(prolificId);
+  const uniqueId = `${prolificId}`;
+  jsPsych.data.addProperties({ uniqueId: uniqueId, timestamp: Date.now() });
 };
 
 const getUserId = (data) => {
