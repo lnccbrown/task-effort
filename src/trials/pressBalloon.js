@@ -163,7 +163,12 @@ const pressBalloon = (duration, blockSettings, opts) => {
         function computeReward() {
           if (choice.high_effort && choice.get_reward) {
             points = choice.value * (countPumps / choice.effort);
+            // console.log("choice.value", choice.value);
+            // console.log("countPumps", countPumps);
+            // console.log("choice.effort", choice.effort);
+            // console.log("points", points);
             points = Math.round(points * 100) / 100;
+            // console.log("round(points*100)/100", points);
           } else if (!choice.get_reward) {
             points = 0;
           } else {
@@ -180,6 +185,7 @@ const pressBalloon = (duration, blockSettings, opts) => {
           // this.deleteCircle();
 
           reward = computeReward();
+          // console.log("reward", reward);
           data = {
             reward: reward,
             is_practice: is_practice,
