@@ -16,7 +16,8 @@
     "begin_recording": "To the Experimenter:<br></br>You may start the EEG recording now.",
     "name_eeg_file": "Please name the EEG file: ",
     "effort_suffix": "_Effort",
-    "confirm_recording": "Press any key to confirm the recording has begun."
+    "confirm_recording": "Press any key to confirm the recording has begun.",
+    "relax_reminder": "Reminder:<br></br>Keep your face, head, and shoulders as relaxed as possible as muscle activity interferes with our signals. Thank you!<br></br>You may continue to the task."
   },
   "welcome": {
     "large_window": "Please make this window as large as possible.",
@@ -42,7 +43,7 @@
     "blue_balloon_points": "<span class='text-blue'><b>BLUE</b></span> balloons will <u>pop</u> after you <span class='text-blue'><b>pump 20 times</b></span> and you <span class='text-blue'><b><u>may</u> win 1 point</b></span>.",
     "green_balloon_points": "<span class='text-green'><b>GREEN</b></span> balloons <span class='text-green'><b>may win you more points</b></span>, but will <span class='text-green'><b>require more pumps</b></span>.",
     "green_balloon_pop_time": "<span class='text-green'><b>GREEN</b></span> balloons will always pop after <span class='text-green'><b>25 seconds</b></span>.",
-    "green_balloon_pump_bonus": "If you continue to pump the <span class='text-green'><b>GREEN</b></span> balloon after it hits the spike within the <span class='text-green'><b>25 seconds</b></span> time limit, the bigger the balloon will get and the more <u>bonus</u> points you will earn.<br></br>If you choose the <span class='text-green'><b>GREEN</b></span> balloon and then it does not reach the spike in time, you still earn points based on the number of pumps you make. <br></br>(Example: If the total possible points you can earn for a balloon is 2 points and you pump the balloon halfway to the spike, you will earn 1 point.)<br></br>",
+    "green_balloon_pump_bonus": "If you continue to pump the <span class='text-green'><b>GREEN</b></span> balloon after it hits the spike within the <span class='text-green'><b>25 seconds</b></span> time limit, the bigger the balloon will get and the more <u>bonus</u> points you will earn.<br></br>If you pump the <span class='text-green'><b>GREEN</b></span> balloon and it does not reach the spike within the <span class='text-green'><b>25 seconds</b></span> time limit, you will earn <b>some</b> of the pumps for pumping the balloon. <br></br>(Example: If the total possible points you can earn for a balloon is 2 points and you pump the balloon halfway to the spike, you will earn 1 point.)<br></br>",
     "green_balloon_variable_points_pumps": "For the <span class='text-green'><b>GREEN</b></span> balloon, the number of pumps needed and the number of points you could win <span class='text-green'><b><u>can change on each round</u></b></span>.",
     "blue_balloon_constant_points_pumps": "For the <span class='text-blue'><b>BLUE</b></span> balloon, the potential win <span class='text-blue'><b><u>will always stay the same</u></b></span> (<span class='text-blue'><b>1 point</b></span>),<br>and it will always require <span class='text-blue'><b>20 pumps</b></span>.",
     "reward_prob_variable": "For some rounds, the chances that you will win points for either balloon are 50%<br>(even after popping the balloon).",

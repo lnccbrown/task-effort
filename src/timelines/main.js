@@ -7,6 +7,7 @@ import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
 import redirectToProlific from "../trials/redirectToProlific";
 import userId from "../trials/userId";
+import relaxReminder from "../trials/relaxReminder";
 import recordNow from "../trials/recordNow";
 import { ONLINE, lang } from "../config/main";
 import {
@@ -37,6 +38,7 @@ const inLabTimeline = [
   buildCountdown(lang.countdown.practice3, 3),
   taskBlock(practiceBlock3),
   quizTimeline(practiceBlock3),
+  relaxReminder(),
   recordNow(),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),

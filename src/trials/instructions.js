@@ -8,6 +8,7 @@ const welcomeScreenOne = baseStimulus(
     <h1>${lang.instructions.welcome}</h1>
     <br></br>
     <p>${lang.instructions.choose_btwn_two_balloons}</p>
+    <p>${lang.instructions.your_job}</p>
     </div>
     `,
   true

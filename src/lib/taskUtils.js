@@ -62,7 +62,7 @@ const addData = (trialDetails, blockSettings, opts) => {
     keys: blockSettings.keys,
     subtrial_type: trialDetails.subtrial_type,
   };
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
