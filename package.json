@@ -4,7 +4,7 @@
   "author": {
     "name": "Wasita Mahaphanit & Rashi Dashar (Brown CCV)",
     "email": "wasita@brown.edu",
-    "url": "lnccbrown.com"
+    "url": "https://lnccbrown.com"
   },
   "version": "1.1.1",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "popper.js": "^1.16.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-iframe": "^1.8.0",
     "react-scripts": "^3.3.0",
     "sass": "^1.24.4",
     "typescript": "^3.6.4",

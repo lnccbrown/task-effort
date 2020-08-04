@@ -1,8 +1,7 @@
-// import React from "react";
 import React from "react";
-import { Experiment, jsPsych } from "jspsych-react";
+import { Experiment } from "jspsych-react";
 import { tl } from "./timelines/main";
-import { MTURK, IS_ELECTRON } from "./config/main";
+import { MTURK, IS_ELECTRON, FIREBASE } from "./config/main";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -22,12 +21,10 @@ if (IS_ELECTRON) {
   /* eslint-enable */
 }
 
-const firebase = true; // TO DO - make process env work for this
-
 class App extends React.Component {
   render() {
-    console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
-    console.log("Turk:", MTURK);
+    // console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
+    // console.log("Turk:", MTURK);
 
     return (
       <div className="App">
@@ -35,9 +32,9 @@ class App extends React.Component {
           settings={{
             timeline: tl,
             on_data_update: (data) => {
-              if (firebase) {
+              if (FIREBASE) {
                 if (data.trial_index === 1) {
-                  createFirebaseDocument(data.patient_id);
+                  createFirebaseDocument(data.uniqueId);
                   addToFirebase(data);
                 }
                 if (data.trial_index > 1) {

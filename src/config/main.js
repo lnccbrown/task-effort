@@ -50,15 +50,30 @@ const keys = {
   experimenter: "m", // key experimenter presses to quit payment screen
 };
 
-// is this mechanical turk?
-const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
+// all the possible environments for the task:
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
+const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
 let IS_ELECTRON = true;
+let ONLINE = false;
+let FIREBASE = false; // currently set manually, as dotenv doesn't support booleans
+let PROLIFIC = false;
 
 try {
   window.require("electron");
 } catch {
   IS_ELECTRON = false;
+
+  // if !AT_HOME and not in-lab/in-clinic EEG electron version,
+  // then assume it's online in the browser
+  // with MTurk or Prolific
+  ONLINE = !AT_HOME && !IS_ELECTRON ? true : false;
+  console.log("ONLINE:", ONLINE);
+  if (ONLINE) {
+    PROLIFIC = !MTURK;
+    if (PROLIFIC) {
+      FIREBASE = true;
+    }
+  }
 }
 
 // set whether photodiode visible or not
@@ -98,9 +113,12 @@ export {
   lang,
   countdownWait,
   eventCodes,
+  ONLINE,
   MTURK,
+  PROLIFIC,
   AT_HOME,
   IS_ELECTRON,
+  FIREBASE,
   PHOTODIODE_ON,
   canvasSize,
   canvasSettings,

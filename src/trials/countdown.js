@@ -16,7 +16,7 @@ const buildCountdown = (text, time) => {
   return {
     type: "html_keyboard_response",
     stimulus: "",
-    trial_duration: 1000,
+    trial_duration: 1000, // this says each val in timeline lasts for 1000 ms
     response_ends_trial: false,
     timeline: timeline,
     on_load: () => {

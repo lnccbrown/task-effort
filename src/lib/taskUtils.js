@@ -50,6 +50,7 @@ const addData = (trialDetails, blockSettings, opts) => {
     timestamp: Date.now(),
     trial_earnings: trialDetails.trial_earnings, // reward feedback
     trial_cumulative_earnings: trialDetails.trial_cumulative_earnings,
+    reward_probability: trialDetails.probability,
     effort: blockSettings.is_practice ? blockSettings.effort : opts.effort, // how many pumps
     points: blockSettings.is_practice ? blockSettings.value : opts.value, // how many points
     get_reward: blockSettings.is_practice

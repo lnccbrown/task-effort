@@ -16,9 +16,9 @@ const config = {
 const db = firebase.initializeApp(config).firestore();
 
 // Add data to db
-const createFirebaseDocument = (patientId) => {
-  db.collection(collectionName).doc(patientId).set({
-    patientId,
+const createFirebaseDocument = (uniqueId) => {
+  db.collection(collectionName).doc(uniqueId).set({
+    uniqueId,
     dateCreated: new Date(),
   });
 };
@@ -31,9 +31,9 @@ const createFirebaseDocumentRandom = () => {
 };
 
 const addToFirebase = (data) => {
-  const patientId = data.patient_id;
+  const uniqueId = data.uniqueId;
   db.collection(collectionName)
-    .doc(patientId)
+    .doc(uniqueId)
     .collection("data")
     .doc(`trial_${data.trial_index}`)
     .set(data);

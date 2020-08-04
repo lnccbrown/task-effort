@@ -112,6 +112,15 @@ const readyScreen = baseStimulus(
   true
 );
 
+const qualtricsIntroScreenOne = baseStimulus(
+  `
+    <div class='instructions'>
+    <p>${lang.questionnaires.intro}</p>
+    </div>
+    `,
+  true
+);
+
 // First few instructions screens
 const prePracticeInstructions = () => {
   let instructionsArray = [welcomeScreenOne, welcomeScreenTwo];
@@ -192,10 +201,25 @@ const postPracticeInstructions = () => {
   };
 };
 
+// Instructions before Qualtrics questionnaires
+const qualtricsIntro = () => {
+  let instructionsArray = [qualtricsIntroScreenOne];
+
+  return {
+    type: "instructions",
+    show_clickable_nav: true,
+    pages: instructionsArray,
+    on_load: () => {
+      addCursor("experiment");
+    },
+  };
+};
+
 export {
   prePracticeInstructions,
   bluePracticeInstructions,
   greenPracticeInstructions,
   realPracticeInstructions,
   postPracticeInstructions,
+  qualtricsIntro,
 };

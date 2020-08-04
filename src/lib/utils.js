@@ -1,5 +1,4 @@
 import { jsPsych } from "jspsych-react";
-import requireContext from "require-context.macro";
 
 const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,19 +63,48 @@ const startKeypressListener = () => {
   return keyboardListener;
 };
 
-// import images
-const importAll = (r) => {
-  return r.keys().map(r);
-};
+// if use images in task, uncomment this
+// and make sure there are images in the src/assets/images folder!
+// otherwise the build will fail
+// // import images
+// const importAll = (r) => {
+//   return r.keys().map(r);
+// };
 
-const images = importAll(
-  requireContext("../assets/images", false, /\.(png|jpe?g|svg)$/)
-);
+// const images = importAll(
+//   requireContext("../assets/images", false, /\.(png|jpe?g|svg)$/)
+// );
 
 const getTurkUniqueId = () => {
   const turkInfo = jsPsych.turk.turkInfo();
   const uniqueId = `${turkInfo.workerId}:${turkInfo.assignmentId}`;
   return uniqueId;
+};
+
+const getProlificId = (data) => {
+  const currWindowURL = window.location.href;
+  console.log(currWindowURL); // url
+
+  // function to parse URL and only get value of desired variables
+  function getQueryVariable(variable) {
+    let query = window.location.search.substring(1);
+    let vars = query.split("&");
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split("=");
+      if (decodeURIComponent(pair[0]) === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+  }
+
+  const prolificId = getQueryVariable("PROLIFIC_PID");
+  // const sessionId = getQueryVariable("SESSION_ID");
+  // const studyId = getQueryVariable("STUDY_ID");
+
+  console.log(prolificId);
+  const uniqueId = `${prolificId}`;
+  console.log(uniqueId);
+  jsPsych.data.addProperties({ uniqueId: uniqueId, timestamp: Date.now() });
 };
 
 const getUserId = (data) => {
@@ -96,8 +124,9 @@ export {
   deepCopy,
   formatDollars,
   generateWaitSet,
-  images,
+  // images,
   startKeypressListener,
   getUserId,
   getTurkUniqueId,
+  getProlificId,
 };

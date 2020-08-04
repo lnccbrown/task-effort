@@ -4,8 +4,6 @@ import welcome from "../trials/welcome";
 import startCode from "../trials/startCode";
 import { practiceBlock1 } from "../config/practice";
 
-console.log("at_home", AT_HOME);
-
 const preamble = {
   type: "html_keyboard_response",
   stimulus: "",
