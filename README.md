@@ -36,9 +36,9 @@ If you want to overwrite a subject's data file:
 
 2) Go to the corresponding locations (dependent on operating system):
 ```
-Mac OS: ~/Library/Application Support/<Your App Name (taken from the name property in package.json)>
-Windows: C:\Users\<you>\AppData\Roaming\<Your App Name>
-Linux: ~/.config/<Your App Name>
+Mac OS: ~/Library/Application Support/task-effort
+Windows: C:\Users\<you>\AppData\Roaming\task-effort
+Linux: ~/.config/task-effort
 ```
 In order to find this directory on a PC, you may need to <a href="https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10"><u>enable viewing hidden folders and files</u></a>. Alternatively, you can right-click on the app shortcut on the desktop, and select 'Open File Location.'
 
