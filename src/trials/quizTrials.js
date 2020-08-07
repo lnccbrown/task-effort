@@ -35,7 +35,7 @@ const quizRules = [
   `${lang.quiz.rules.green_vary_bonus}`,
   `${lang.quiz.rules.twenty_five_secs_green}`,
   `${lang.quiz.rules.bonus_green_spike}`,
-  // `${lang.quiz.any_questions}`,
+  `${lang.quiz.any_questions}`,
   `${lang.quiz.retake}`,
 ];
 
@@ -131,9 +131,9 @@ const reshowRules = (blockSettings) => {
       "<br></br>" +
       quizRules[6] +
       "<br></br>" +
-      quizRules[7],
-    // "<br></br>" +
-    // quizRules[8],
+      quizRules[7] +
+      "<br></br>" +
+      quizRules[8],
   ];
 
   return {

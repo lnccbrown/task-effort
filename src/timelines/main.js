@@ -1,15 +1,14 @@
 import buildCountdown from "../trials/countdown";
 import preamble from "./preamble";
 import experimentStart from "../trials/experimentStart";
-import qualtrics from "../trials/qualtrics";
 import experimentEnd from "../trials/experimentEnd";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
-import redirectToProlific from "../trials/redirectToProlific";
+// import redirectToProlific from "../trials/redirectToProlific";
 import userId from "../trials/userId";
 import relaxReminder from "../trials/relaxReminder";
 import recordNow from "../trials/recordNow";
-import { ONLINE, lang } from "../config/main";
+import { ONLINE, lang, MTURK } from "../config/main";
 import {
   practiceBlock1,
   practiceBlock2,
@@ -43,31 +42,51 @@ const inLabTimeline = [
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   taskBlock(exptBlock1),
-  qualtrics(),
   showPayment(5000, exptBlock1),
   experimentEnd(5000),
 ];
 
-const onlineTimeline = [
-  experimentStart(),
-  userId(),
-  preamble,
-  bluePracticeInstructions(),
-  buildCountdown(lang.countdown.practice1, 3),
-  taskBlock(practiceBlock1),
-  greenPracticeInstructions(),
-  buildCountdown(lang.countdown.practice2, 3),
-  taskBlock(practiceBlock2),
-  realPracticeInstructions(),
-  buildCountdown(lang.countdown.practice3, 3),
-  taskBlock(practiceBlock3),
-  quizTimeline(practiceBlock3),
-  postPracticeInstructions(),
-  buildCountdown(lang.countdown.expt1, 3),
-  taskBlock(exptBlock1),
-  showPayment(5000, exptBlock1),
-  buildCountdown(lang.countdown.redirect_to_prolific, 5),
-  redirectToProlific(lang.prolific.completion_code_url, 250),
-];
+const onlineTimeline = MTURK
+  ? [
+      experimentStart(),
+      userId(),
+      preamble,
+      bluePracticeInstructions(),
+      buildCountdown(lang.countdown.practice1, 3),
+      taskBlock(practiceBlock1),
+      greenPracticeInstructions(),
+      buildCountdown(lang.countdown.practice2, 3),
+      taskBlock(practiceBlock2),
+      realPracticeInstructions(),
+      buildCountdown(lang.countdown.practice3, 3),
+      taskBlock(practiceBlock3),
+      quizTimeline(practiceBlock3),
+      postPracticeInstructions(),
+      buildCountdown(lang.countdown.expt1, 3),
+      taskBlock(exptBlock1),
+      showPayment(5000, exptBlock1),
+      experimentEnd(2000),
+    ]
+  : // PROLIFIC VERSION OF THE TASK BELOW:
+    [
+      experimentStart(),
+      userId(),
+      preamble,
+      bluePracticeInstructions(),
+      buildCountdown(lang.countdown.practice1, 3),
+      taskBlock(practiceBlock1),
+      greenPracticeInstructions(),
+      buildCountdown(lang.countdown.practice2, 3),
+      taskBlock(practiceBlock2),
+      realPracticeInstructions(),
+      buildCountdown(lang.countdown.practice3, 3),
+      taskBlock(practiceBlock3),
+      quizTimeline(practiceBlock3),
+      postPracticeInstructions(),
+      buildCountdown(lang.countdown.expt1, 3),
+      taskBlock(exptBlock1),
+      showPayment(5000, exptBlock1),
+      buildCountdown(lang.countdown.redirect_to_prolific, 5),
+    ];
 
 export const tl = ONLINE ? onlineTimeline : inLabTimeline;
