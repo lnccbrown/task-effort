@@ -2,6 +2,8 @@ name: Add App Installers to Release
 
 on:
   push:
+    branches:
+      - main
     tags:
       - "*"
 
