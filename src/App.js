@@ -1,5 +1,5 @@
 import React from "react";
-import { Experiment } from "jspsych-react";
+import { Experiment, jsPsych } from "jspsych-react";
 import { tl } from "./timelines/main";
 import { MTURK, IS_ELECTRON, FIREBASE, PROLIFIC, AT_HOME } from "./config/main";
 import "./App.css";
