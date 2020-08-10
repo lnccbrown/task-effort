@@ -43,6 +43,8 @@ jobs:
         run: npm test
         env:
           CI: true
+          REACT_APP_FIREBASE: true
+          REACT_APP_AT_HOME: true
 
       # deploy
       - name: deploy to firebase
