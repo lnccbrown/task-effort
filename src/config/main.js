@@ -55,7 +55,7 @@ const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
 const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
 let IS_ELECTRON = true;
 let ONLINE = false;
-let FIREBASE = false; // currently set manually, as dotenv doesn't support booleans
+let FIREBASE = process.env.REACT_APP_FIREBASE === "true";
 let PROLIFIC = false;
 
 try {
@@ -75,6 +75,12 @@ try {
     }
   }
 }
+
+console.log("PROLIFIC:", PROLIFIC);
+console.log("FIREBASE:", FIREBASE);
+console.log("MTURK:", MTURK);
+console.log("IS_ELECTRON:", IS_ELECTRON);
+console.log("AT_HOME:", AT_HOME);
 
 // set whether photodiode visible or not
 const PHOTODIODE_ON = false;

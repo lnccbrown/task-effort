@@ -58,7 +58,9 @@
     "dev:clinic": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "build:win:home": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
     "build:win:clinic": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
-    "build:home": "REACT_APP_AT_HOME=\"true\" npm run build"
+    "build:home": "REACT_APP_AT_HOME=\"true\" npm run build",
+    "build:turk": "REACT_APP_FIREBASE=\"false\" npm run build",
+    "build:firebase": "REACT_APP_FIREBASE=\"true\" REACT_APP_AT_HOME=\"false\" npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
