@@ -75,12 +75,6 @@ try {
   }
 }
 
-console.log("PROLIFIC:", PROLIFIC);
-console.log("FIREBASE:", FIREBASE);
-console.log("MTURK:", MTURK);
-console.log("IS_ELECTRON:", IS_ELECTRON);
-console.log("AT_HOME:", AT_HOME);
-
 // set whether photodiode visible or not
 const PHOTODIODE_ON = false;
 
