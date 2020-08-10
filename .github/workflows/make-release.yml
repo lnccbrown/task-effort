@@ -91,6 +91,7 @@ jobs:
           CI: true
           REACT_APP_AT_HOME: false
           REACT_APP_FIREBASE: false
+          REACT_APP_TURK: true
       - name: Create Psiturk Build
         if: startsWith(matrix.os, 'ubuntu')
         run: |

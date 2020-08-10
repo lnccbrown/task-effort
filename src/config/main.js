@@ -2,7 +2,6 @@
 // This is the main configuration file where universal and default settings should be placed.
 // These settings can then be imported anywhere in the app as they are exported at the botom of the file.
 
-import { jsPsych } from "jspsych-react";
 import _ from "lodash";
 import { eventCodes } from "./trigger";
 
@@ -52,7 +51,7 @@ const keys = {
 
 // all the possible environments for the task:
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
-const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
+const MTURK = process.env.REACT_APP_TURK === "true";
 let IS_ELECTRON = true;
 let ONLINE = false;
 let FIREBASE = process.env.REACT_APP_FIREBASE === "true";

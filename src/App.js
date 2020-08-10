@@ -1,5 +1,5 @@
 import React from "react";
-import { Experiment, jsPsych } from "jspsych-react";
+import { Experiment } from "jspsych-react";
 import { tl } from "./timelines/main";
 import { MTURK, IS_ELECTRON, FIREBASE, PROLIFIC, AT_HOME } from "./config/main";
 import "./App.css";
@@ -23,7 +23,6 @@ if (IS_ELECTRON) {
 
 class App extends React.Component {
   render() {
-    console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
     console.log("MTurk:", MTURK);
     console.log("Firebase:", FIREBASE);
     console.log("Prolific:", PROLIFIC);
