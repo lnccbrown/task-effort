@@ -38,7 +38,7 @@
     "update-electron-app": "^1.5.0"
   },
   "scripts": {
-    "start": "BROWSER=none NODE_PATH=./src react-scripts start",
+    "start": "cross-env BROWSER=none NODE_PATH=./src react-scripts start",
     "start:browser": "react-scripts start",
     "test": "react-scripts test",
     "prebuild": "electron-rebuild",
@@ -52,7 +52,7 @@
     "rebuild": "electron-rebuild",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "dev": "concurrently --kill-others \"npm:start\" \"sleep 5 && npm run electron-dev\"",
     "dev:home": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "dev:clinic": "REACT_APP_AT_HOME=\"true\" npm run dev",
