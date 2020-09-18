@@ -150,7 +150,8 @@ const pressBalloon = (duration, blockSettings, opts) => {
           var now = new Date().getTime();
           var percTimePassed =
             (now - timeWhenStarted) / 1000 / high_effort_time;
-
+          // previously, was checking for at least 1 pump before starting
+          // popTimeout timer basically... which isn't ideal, like so:
           //           if ((percTimePassed >= 1) & (countPumps > 0)) {
           if (percTimePassed >= 1) {
             if (!choice.high_effort) {
