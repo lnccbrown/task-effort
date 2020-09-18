@@ -151,7 +151,8 @@ const pressBalloon = (duration, blockSettings, opts) => {
           var percTimePassed =
             (now - timeWhenStarted) / 1000 / high_effort_time;
 
-          if ((percTimePassed >= 1) & (countPumps > 0)) {
+          //           if ((percTimePassed >= 1) & (countPumps > 0)) {
+          if (percTimePassed >= 1) {
             if (!choice.high_effort) {
               points = 0;
             }
