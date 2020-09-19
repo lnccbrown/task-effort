@@ -244,12 +244,15 @@ const pressBalloon = (duration, blockSettings, opts) => {
 
           // Record RT relative to when trial started
           var timeWhenPressed = new Date().getTime();
+          console.log("timeWhenPressed", timeWhenPressed);
           var rt = timeWhenPressed - timeWhenStarted;
           rts.push(rt);
+          console.log("rt", rt);
 
           // record time if this is the first pump
           if (countPumps === 0) {
             timeWhenStarted = new Date().getTime();
+            console.log("timeWhenStarted", timeWhenStarted);
           }
           countPumps++;
           radius += inflateBy;
