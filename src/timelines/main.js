@@ -70,10 +70,11 @@ const onlineTimeline = MTURK
     ]
   : // PROLIFIC VERSION OF THE TASK BELOW:
     [
-      experimentStart(),
-      userId(),
-      preamble,
-      bluePracticeInstructions(),
+      // commented out for now/quick debugging:
+      // experimentStart(),
+      // userId(),
+      // preamble,
+      // bluePracticeInstructions(),
       buildCountdown(lang.countdown.practice1, 3),
       taskBlock(practiceBlock1),
       greenPracticeInstructions(),
