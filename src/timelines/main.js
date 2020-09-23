@@ -4,7 +4,7 @@ import experimentStart from "../trials/experimentStart";
 import experimentEnd from "../trials/experimentEnd";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
-// import redirectToProlific from "../trials/redirectToProlific";
+import redirectToProlific from "../trials/redirectToProlific";
 import userId from "../trials/userId";
 import relaxReminder from "../trials/relaxReminder";
 import recordNow from "../trials/recordNow";
@@ -89,6 +89,7 @@ const onlineTimeline = MTURK
       taskBlock(exptBlock1),
       showPayment(5000, exptBlock1),
       buildCountdown(lang.countdown.redirect_to_prolific, 5),
+      redirectToProlific(),
     ];
 
 export const tl = ONLINE ? onlineTimeline : inLabTimeline;
