@@ -24,11 +24,10 @@ import {
 import quizTimeline from "../trials/quizTrials";
 
 const inLabTimeline = [
-  // commented out for debugging:
-  // experimentStart(),
-  // userId(),
-  // preamble,
-  // bluePracticeInstructions(),
+  experimentStart(),
+  userId(),
+  preamble,
+  bluePracticeInstructions(),
   buildCountdown(lang.countdown.practice1, 3),
   taskBlock(practiceBlock1),
   greenPracticeInstructions(),
@@ -74,8 +73,8 @@ const onlineTimeline = MTURK
       // commented out for now/quick debugging:
       // experimentStart(),
       userId(),
-      // preamble,
-      // bluePracticeInstructions(),
+      preamble,
+      bluePracticeInstructions(),
       buildCountdown(lang.countdown.practice1, 3),
       taskBlock(practiceBlock1),
       greenPracticeInstructions(),
