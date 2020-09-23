@@ -46,6 +46,7 @@ const inLabTimeline = [
   experimentEnd(5000),
 ];
 
+// online just means not using electron aka in-browser
 const onlineTimeline = MTURK
   ? [
       experimentStart(),

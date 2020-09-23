@@ -26,6 +26,7 @@ const showPayment = (duration, blockSettings) => {
         const value = jsPsych.data.get().select("value").values;
         const last = value[value.length - 1];
         const total_cumulative = last.trial_cumulative_earnings;
+
         total_earnings += total_cumulative / 20; // $1 for every 20 pts
 
         trial.stimulus =
@@ -58,6 +59,9 @@ const showPayment = (duration, blockSettings) => {
         const value = jsPsych.data.get().select("value").values;
         const last = value[value.length - 1];
         const total_cumulative = last.trial_cumulative_earnings;
+        // NOTE TO FUTURE SELF: likely to be changing payment scheme for online
+        // version, divisor likely to change from 20 to 450
+        // to match prev mturk samples
         total_earnings += total_cumulative / 20; // $1 for every 20 pts
 
         trial.stimulus =

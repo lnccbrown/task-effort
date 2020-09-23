@@ -1,7 +1,14 @@
 import React from "react";
 import { Experiment } from "jspsych-react";
 import { tl } from "./timelines/main";
-import { MTURK, IS_ELECTRON, FIREBASE, PROLIFIC, AT_HOME } from "./config/main";
+import {
+  ONLINE,
+  MTURK,
+  IS_ELECTRON,
+  FIREBASE,
+  PROLIFIC,
+  AT_HOME,
+} from "./config/main";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -23,7 +30,7 @@ if (IS_ELECTRON) {
 
 class App extends React.Component {
   render() {
-    console.log("Outside Turk:", jsPsych.turk.turkInfo().outsideTurk);
+    console.log("Online:", ONLINE);
     console.log("MTurk:", MTURK);
     console.log("Firebase:", FIREBASE);
     console.log("Prolific:", PROLIFIC);
@@ -45,6 +52,7 @@ class App extends React.Component {
                   addToFirebase(data);
                 }
               }
+              // electron
               if (ipcRenderer) {
                 ipcRenderer.send("data", data);
               } else if (psiturk) {

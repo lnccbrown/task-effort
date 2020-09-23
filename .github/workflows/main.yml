@@ -84,6 +84,12 @@ jobs:
       - name: Install PsiTurk
         if: startsWith(matrix.os, 'ubuntu')
         run: pip install psiturk
+      - name: PsiTurk Build
+        if: startswith(matrix.os, 'ubuntu')
+        run: npm run build:turk
+        env:
+          CI: true
+          REACT_APP_AT_HOME: true
       - name: Create Psiturk Build
         if: startsWith(matrix.os, 'ubuntu')
         run: |

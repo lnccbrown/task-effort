@@ -2,7 +2,7 @@
 // This is the main configuration file where universal and default settings should be placed.
 // These settings can then be imported anywhere in the app as they are exported at the botom of the file.
 
-import { jsPsych } from "jspsych-react";
+// import { jsPsych } from "jspsych-react";
 import _ from "lodash";
 import { eventCodes } from "./trigger";
 
@@ -52,27 +52,31 @@ const keys = {
 
 // all the possible environments for the task:
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
-const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
+const MTURK = process.env.REACT_APP_TURK === "true";
+// const MTURK = !jsPsych.turk.turkInfo().outsideTurk;
 let IS_ELECTRON = true;
 let ONLINE = false;
-let FIREBASE = false; // currently set manually, as dotenv doesn't support booleans
+let FIREBASE = process.env.REACT_APP_FIREBASE === "true";
 let PROLIFIC = false;
 
 try {
   window.require("electron");
 } catch {
   IS_ELECTRON = false;
+}
 
-  // if !AT_HOME and not in-lab/in-clinic EEG electron version,
-  // then assume it's online in the browser
-  // with MTurk or Prolific
-  ONLINE = !AT_HOME && !IS_ELECTRON ? true : false;
-  console.log("ONLINE:", ONLINE);
-  if (ONLINE) {
-    PROLIFIC = !MTURK;
-    if (PROLIFIC) {
-      FIREBASE = true;
-    }
+// if AT_HOME and not in-lab/in-clinic EEG electron version,
+// then assume it's online in the browser
+// with MTurk or Prolific
+ONLINE = AT_HOME && !IS_ELECTRON ? true : false;
+console.log("ONLINE:", ONLINE);
+
+// note: it _is_ possible to do both firebase & mturk if desired
+// but for now assumine if not mturk then it's prolific and firebase:
+if (ONLINE) {
+  PROLIFIC = !MTURK;
+  if (PROLIFIC) {
+    FIREBASE = true;
   }
 }
 
@@ -81,6 +85,7 @@ const PHOTODIODE_ON = false;
 
 // get language file
 const lang = require("../language/en_us.json");
+// note: prolific lang is lumped in with en_us.json
 if (MTURK) {
   // if this is mturk, merge in the mturk specific language
   const mlang = require("../language/en_us.mturk.json");

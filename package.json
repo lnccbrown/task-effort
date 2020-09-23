@@ -6,7 +6,7 @@
     "email": "wasita@brown.edu",
     "url": "https://lnccbrown.com"
   },
-  "version": "1.2.2",
+  "version": "1.2.3-alpha",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",
@@ -38,7 +38,7 @@
     "update-electron-app": "^1.5.0"
   },
   "scripts": {
-    "start": "BROWSER=none NODE_PATH=./src react-scripts start",
+    "start": "cross-env BROWSER=none NODE_PATH=./src react-scripts start",
     "start:browser": "react-scripts start",
     "test": "react-scripts test",
     "prebuild": "electron-rebuild",
@@ -52,13 +52,15 @@
     "rebuild": "electron-rebuild",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "dev": "concurrently --kill-others \"npm:start\" \"sleep 5 && npm run electron-dev\"",
     "dev:home": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "dev:clinic": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "build:win:home": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
     "build:win:clinic": "cross-env REACT_APP_AT_HOME=\"true\" npm run build",
-    "build:home": "REACT_APP_AT_HOME=\"true\" npm run build"
+    "build:home": "REACT_APP_AT_HOME=\"true\" npm run build",
+    "build:turk": "REACT_APP_FIREBASE=\"false\" REACT_APP_AT_HOME=\"true\" REACT_APP_TURK=\"true\" npm run build",
+    "build:firebase": "REACT_APP_FIREBASE=\"true\" REACT_APP_AT_HOME=\"true\" npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"

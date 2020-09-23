@@ -38,11 +38,13 @@ jobs:
       - name: npm install
         run: npm install
       - name: npm build
-        run: npm run build
+        run: npm run build:firebase
       - name: npm test
         run: npm test
         env:
           CI: true
+          REACT_APP_FIREBASE: true
+          REACT_APP_AT_HOME: true
 
       # deploy
       - name: deploy to firebase
