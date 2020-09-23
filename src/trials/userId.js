@@ -6,7 +6,12 @@ const userId = () => {
   if (MTURK) {
     return {
       type: "html_keyboard_response",
-      stimulus: baseStimulus(`<h1>${lang.userid.set}</h1>`, true),
+      stimulus: baseStimulus(
+        `<div class='instructions'>
+        <h1 style='font-size:1.75vw;'>${lang.userid.set}</h1>
+        </div>`,
+        true
+      ),
       response_ends_trial: false,
       trial_duration: 800,
       on_finish: (data) => {
@@ -17,7 +22,12 @@ const userId = () => {
   } else if (PROLIFIC) {
     return {
       type: "html_keyboard_response",
-      stimulus: baseStimulus(`<h1>${lang.userid.get_prolific}</h1>`, true),
+      stimulus: baseStimulus(
+        `<div class='instructions'>
+        <h1 style='font-size:1.75vw;'>${lang.userid.get_prolific}</h1>
+        </div>`,
+        true
+      ),
       response_ends_trial: false,
       trial_duration: 1000,
       on_finish: (data) => {
@@ -39,7 +49,14 @@ const userId = () => {
     return {
       type: "survey_text",
       questions: [
-        { prompt: baseStimulus(`<h1>${lang.userid.set}</h1>`, true) },
+        {
+          prompt: baseStimulus(
+            `<div class='instructions'>
+            <h1 style='font-size:1.75vw; margin-bottom: -30vh;'>${lang.userid.set}</h1>
+            </div>`,
+            true
+          ),
+        },
       ],
       on_finish: (data) => {
         getUserId(data);

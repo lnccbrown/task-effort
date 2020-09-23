@@ -150,8 +150,12 @@ const pressBalloon = (duration, blockSettings, opts) => {
           var now = new Date().getTime();
           var percTimePassed =
             (now - timeWhenStarted) / 1000 / high_effort_time;
+          // console.log("percTimePassed", percTimePassed);
 
-          if ((percTimePassed >= 1) & (countPumps > 0)) {
+          // previously, was checking for at least 1 pump before starting
+          // popTimeout timer basically... which isn't ideal, like so:
+          //           if ((percTimePassed >= 1) & (countPumps > 0)) {
+          if (percTimePassed >= 1) {
             if (!choice.high_effort) {
               points = 0;
             }
@@ -186,6 +190,7 @@ const pressBalloon = (duration, blockSettings, opts) => {
 
           reward = computeReward();
           // console.log("reward", reward);
+          // console.log("reward", reward);
           data = {
             reward: reward,
             is_practice: is_practice,
@@ -208,15 +213,23 @@ const pressBalloon = (duration, blockSettings, opts) => {
           } else {
             reward = 0;
           }
+
+          // if rts is empty (i.e. they didn't press/pump, only chose a balloon)
+          // set rts[0] to empty
+          const noPresses = rts.length === 0 ? true : false;
+          console.log("noPresses", noPresses);
+
           data = {
             reward: reward,
             is_practice: is_practice,
             subtrial_type: "inflate_balloon",
             rt: rts,
             pumps: countPumps,
-            firstPress: rts[0],
-            lastPress: rts[rts.length - 1],
+            firstPress: noPresses ? rts : rts[0],
+            lastPress: noPresses ? rts : rts[rts.length - 1],
           };
+
+          console.log("data", data);
         }
         function hitSpike() {
           var balloonBase = canvasSettings.balloonBaseHeight;
