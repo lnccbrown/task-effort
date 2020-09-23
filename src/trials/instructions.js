@@ -5,10 +5,10 @@ import { addCursor } from "../lib/utils";
 const welcomeScreenOne = baseStimulus(
   `
     <div class='instructions'>
-    <h1>${lang.instructions.welcome}</h1>
-    <br></br>
-    <p>${lang.instructions.choose_btwn_two_balloons}</p>
-    <p>${lang.instructions.your_job}</p>
+    <h1 style='font-size:2.5vw;'>${lang.instructions.welcome}</h1>
+    <br>
+    ${lang.instructions.choose_btwn_two_balloons}</p>
+    ${lang.instructions.your_job}</p>
     </div>
     `,
   true
@@ -17,9 +17,9 @@ const welcomeScreenOne = baseStimulus(
 const welcomeScreenTwo = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.pop_balloon_earn_money}</p>
-    <p>${lang.instructions.points_to_bonus_conversion}</p>
-    <p>${lang.instructions.cumulative_rewards}</p>
+    <p style='font-size:1.75vw;'>'${lang.instructions.pop_balloon_earn_money}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.points_to_bonus_conversion}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.cumulative_rewards}</p>
     </div>
     `,
   true
@@ -28,9 +28,9 @@ const welcomeScreenTwo = baseStimulus(
 const bluePracticeScreen = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.two_balloons}</p>
-    <p>${lang.instructions.blue_balloon_points}</p>
-    <p>${lang.instructions.blue_practice_pump}</p>
+    <pstyle='font-size:1.75vw;'>${lang.instructions.two_balloons}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.blue_balloon_points}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.blue_practice_pump}</p>
     </div>
     `,
   true
@@ -39,8 +39,8 @@ const bluePracticeScreen = baseStimulus(
 const greenPracticeScreenOne = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.green_balloon_points}</p>
-    <p>${lang.instructions.green_balloon_pop_time}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.green_balloon_points}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.green_balloon_pop_time}</p>
     </div>
     `,
   true
@@ -49,7 +49,7 @@ const greenPracticeScreenOne = baseStimulus(
 const greenPracticeScreenTwo = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.green_balloon_pump_bonus}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.green_balloon_pump_bonus}</p>
     </div>
     `,
   true
@@ -58,7 +58,7 @@ const greenPracticeScreenTwo = baseStimulus(
 const greenPracticeScreenThree = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.green_practice_pump}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.green_practice_pump}</p>
     </div>
     `,
   true
@@ -67,9 +67,9 @@ const greenPracticeScreenThree = baseStimulus(
 const realPracticeScreenOne = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.green_balloon_variable_points_pumps}</p>
-    <p>${lang.instructions.blue_balloon_constant_points_pumps}</p>
-    <p>${lang.instructions.wait_pump}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.green_balloon_variable_points_pumps}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.blue_balloon_constant_points_pumps}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.wait_pump}</p>
     </div>
     `,
   true
@@ -78,8 +78,8 @@ const realPracticeScreenOne = baseStimulus(
 const realPracticeScreenTwo = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.reward_prob_variable}</p>
-    <p>${lang.instructions.reward_prob_certain}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_variable}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_certain}</p>
     </div>
     `,
   true
@@ -88,7 +88,7 @@ const realPracticeScreenTwo = baseStimulus(
 const realPracticeScreenThree = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.reward_prob_display_event}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_display_event}</p>
     </div>
     `,
   true
@@ -97,8 +97,8 @@ const realPracticeScreenThree = baseStimulus(
 const realPracticeScreenFour = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.pump_keys}</p>
-    <p>${lang.instructions.choice_locked_in}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.pump_keys}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.choice_locked_in}</p>
     </div>
     `,
   true
@@ -107,7 +107,7 @@ const realPracticeScreenFour = baseStimulus(
 const readyScreen = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.instructions.ready}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.ready}</p>
     </div>
     `,
   true
@@ -116,7 +116,7 @@ const readyScreen = baseStimulus(
 const qualtricsIntroScreenOne = baseStimulus(
   `
     <div class='instructions'>
-    <p>${lang.questionnaires.intro}</p>
+    <p style='font-size:1.75vw;'>${lang.questionnaires.intro}</p>
     </div>
     `,
   true
