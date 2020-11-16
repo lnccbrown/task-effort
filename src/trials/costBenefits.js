@@ -20,7 +20,6 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
     `</div>`;
 
   const startCode = eventCodes.costBenefitsStart;
-  const endCode = eventCodes.costBenefitsEnd;
 
   let probability = blockSettings.is_practice ? opts : opts.prob;
   let value = blockSettings.is_practice ? blockSettings.value : opts.value;
@@ -131,8 +130,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };

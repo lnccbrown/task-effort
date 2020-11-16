@@ -6,7 +6,6 @@ import { addData } from "../lib/taskUtils";
 
 const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
   const startCode = eventCodes.rewardFeedbackStart;
-  const endCode = eventCodes.rewardFeedbackEnd;
 
   return {
     type: "call_function",
@@ -43,8 +42,7 @@ const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };
