@@ -1,9 +1,9 @@
-import { eventCodes, IS_ELECTRON, AT_HOME } from "../config/main";
-import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
+import { IS_ELECTRON, AT_HOME } from "../config/main";
+import { photodiodeGhostBox } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
 
 const trialEnd = (duration) => {
-  const endCode = eventCodes.trialFinishEnd;
+  // const endCode = eventCodes.trialFinishEnd;
   return {
     type: "html_keyboard_response",
     stimulus: "",
@@ -16,8 +16,8 @@ const trialEnd = (duration) => {
       if (IS_ELECTRON && !AT_HOME) trial.stimulus += photodiodeGhostBox();
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = endCode;
+      // pdSpotEncode(endCode);
+      // data.code = endCode;
     },
   };
 };

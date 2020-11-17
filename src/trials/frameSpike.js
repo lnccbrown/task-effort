@@ -20,7 +20,6 @@ const frameSpike = (duration, blockSettings, opts, trialDetails) => {
     `</div>`;
 
   const startCode = eventCodes.frameSpikeStart;
-  const endCode = eventCodes.frameSpikeEnd;
 
   let probability = blockSettings.is_practice ? opts : opts.prob;
   let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort;
@@ -111,8 +110,7 @@ const frameSpike = (duration, blockSettings, opts, trialDetails) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };

@@ -73,8 +73,7 @@ const showPayment = (duration, blockSettings) => {
           ) + photodiodeGhostBox();
       },
       on_finish: (data) => {
-        pdSpotEncode(endCode);
-        data.code = [startCode, endCode];
+        data.code = startCode;
         data.total_earnings = total_earnings;
         data.subtrial_type = "show_payment";
       },

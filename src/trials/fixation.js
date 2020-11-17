@@ -8,7 +8,6 @@ const fixation = (duration) => {
   let stimulus = fixationHTML + photodiodeGhostBox();
 
   const startCode = eventCodes.fixationStart;
-  const endCode = eventCodes.fixationEnd;
 
   return {
     type: "html_keyboard_response",
@@ -21,8 +20,7 @@ const fixation = (duration) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };

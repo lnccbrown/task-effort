@@ -12,7 +12,6 @@ const cumulativeReward = (
   trialDetails
 ) => {
   const startCode = eventCodes.cumulativeRewardsStart;
-  const endCode = eventCodes.cumulativeRewardsEnd;
 
   return {
     type: "call_function",
@@ -55,8 +54,7 @@ const cumulativeReward = (
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };

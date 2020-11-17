@@ -19,7 +19,6 @@ const rewardProbability = (duration, blockSettings, opts, trialDetails) => {
     `</div>`;
 
   const startCode = eventCodes.rewardProbabilityStart;
-  const endCode = eventCodes.rewardProbabilityEnd;
 
   let probability = blockSettings.is_practice ? opts : opts.prob;
 
@@ -59,8 +58,7 @@ const rewardProbability = (duration, blockSettings, opts, trialDetails) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.encode = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };

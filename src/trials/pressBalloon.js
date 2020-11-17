@@ -26,7 +26,6 @@ const pressBalloon = (duration, blockSettings, opts) => {
   let is_practice = blockSettings.is_practice;
 
   const startCode = eventCodes.pressBalloonStart;
-  const endCode = eventCodes.pressBalloonEnd;
 
   let probability = blockSettings.is_practice ? opts : opts.prob;
   let value = blockSettings.is_practice ? blockSettings.value : opts.value;
@@ -395,8 +394,7 @@ const pressBalloon = (duration, blockSettings, opts) => {
       pdSpotEncode(startCode);
     },
     on_finish: (data) => {
-      pdSpotEncode(endCode);
-      data.code = [startCode, endCode];
+      data.code = startCode;
     },
   };
 };
