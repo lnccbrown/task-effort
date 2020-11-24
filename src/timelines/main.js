@@ -2,6 +2,7 @@ import buildCountdown from "../trials/countdown";
 import preamble from "./preamble";
 import experimentStart from "../trials/experimentStart";
 import experimentEnd from "../trials/experimentEnd";
+import practiceAndMainBlockDivider from "../trials/practiceAndMainBlockDivider";
 import taskBlock from "./taskBlock";
 import showPayment from "../trials/showPayment";
 import redirectToProlific from "../trials/redirectToProlific";
@@ -41,6 +42,7 @@ const inLabTimeline = [
   recordNow(),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
+  practiceAndMainBlockDivider(500),
   taskBlock(exptBlock1),
   showPayment(5000, exptBlock1),
   experimentEnd(5000),

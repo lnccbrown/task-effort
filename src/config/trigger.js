@@ -1,6 +1,6 @@
 // NOTE - these event codes must match what is in public/config/trigger.js
 const eventCodes = {
-  practiceBlockOver: 250,
+  practiceAndMainBlockDivider: 250,
   fixationStart: 1, // this is fixation dot onset
   // fixationEnd: 2, // this is fixation dot offset
   rewardProbabilityStart: 10, // reward probability (50% or 100%) onset
