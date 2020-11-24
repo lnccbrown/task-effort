@@ -1,7 +1,8 @@
 {
   "task": {
     "name": "Effort Task",
-    "end": "This experiment has ended."
+    "end": "This experiment has ended.",
+    "version": "v1.3.2"
   },
   "prompt": {
     "continue": {

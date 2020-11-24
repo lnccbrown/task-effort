@@ -4,8 +4,7 @@ import { baseStimulus } from "../lib/markup/stimuli";
 
 const experimentStart = () => {
   let stimulus =
-    baseStimulus(`<h1>${lang.task.name}</h1>`, true) + photodiodeGhostBox();
-
+    baseStimulus(`<h1>${lang.task.name}<br>${lang.task.version}</h1>`, true) + photodiodeGhostBox()
   return {
     type: "html_button_response",
     stimulus: stimulus,
