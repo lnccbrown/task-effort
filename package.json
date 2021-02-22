@@ -1,12 +1,12 @@
 {
-  "name": "effort-v1.3.2",
+  "name": "effort-v1.3.3",
   "description": "all-in-one app with jsPsych + React + Electron + psiTurk",
   "author": {
     "name": "Wasita Mahaphanit (Brown) & Rashi Dhar (Brown CCV)",
     "email": "wasita@brown.edu",
     "url": "https://lnccbrown.com"
   },
-  "version": "1.3.2",
+  "version": "1.3.3",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",

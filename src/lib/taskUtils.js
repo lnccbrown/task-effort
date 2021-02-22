@@ -1,5 +1,6 @@
 // utilities specific to this app/task
 import _ from "lodash";
+import { ONLINE } from "../config/main";
 
 // initialize starting conditions for each trial within a block
 const generateStartingOpts = (blockSettings) => {
@@ -39,8 +40,18 @@ const generateStartingOpts = (blockSettings) => {
         }
       }
     }
+    opts = _.shuffle(opts)
 
-    return _.shuffle(opts);
+    // if get_subset is set to true,
+    // means that it's partial counterbalance, 
+    // as we won't fully represent all
+    // trial type combos and thus throw out random 25% of trials
+    if (ONLINE) {
+      if (blockSettings.get_subset) {
+        opts = _.slice(opts, 0, 54)
+      }
+    }
+  return opts
   }
 };
 

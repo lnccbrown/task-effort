@@ -8,6 +8,7 @@ let exptBlock1 = deepCopy(defaultBlockSettings);
 
 exptBlock1.probs = ["100%", "100%", "50%", "50%"];
 exptBlock1.counterbalance = true;
+exptBlock1.get_subset = true;
 exptBlock1.value = [3, 5, 7];
 exptBlock1.effort = [50, 100, 200]; // default vals were: 100, 120, 150
 exptBlock1.keys = ["q", "p", "m"];
