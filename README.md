@@ -18,11 +18,6 @@ Follow the instructions above for behavioral version (i.e., download relevant in
 In addition, follow instructions on the repo Wiki to set the port name:
 https://github.com/lnccbrown/task-effort/wiki/Task-Effort-Running-Notes-(EEG)
 
-
-# //IS THIS THING ON??
-
-
-
 ## TO QUIT THE TASK
 If you want to quit in the middle of the task, you can use these keyboard shortcuts:
 ```
