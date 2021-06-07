@@ -5,15 +5,15 @@ import buildCountdown from '../trials/countdown'
 
 const breakTrial = (iBreak) => {
 
-  let timeline = [
-    breakScreen(iBreak),
-    buildCountdown(lang.countdown.post_break_resume, 3)
-  ]
+    let timeline = [
+        breakScreen(iBreak),
+        buildCountdown(lang.countdown.post_break_resume, 3)
+    ]
 
     return {
-  		type: 'html_keyboard_response',
-  		timeline: timeline
-  	}
+        type: 'html_keyboard_response',
+        timeline: timeline
+    }
 }
 
 export default breakTrial
