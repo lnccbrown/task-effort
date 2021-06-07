@@ -2,12 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\config",
     "\\src\\language",
     "\\src\\lib",
     "\\src\\lib\\markup",
     "\\src\\timelines",
     "\\src\\trials"
   ],
-  "SelectedNode": "\\src\\timelines\\breakTrial.js",
+  "SelectedNode": "\\src\\trials\\breakScreen.js",
   "PreviewInSolutionExplorer": false
 }

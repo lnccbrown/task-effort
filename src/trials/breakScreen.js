@@ -1,11 +1,11 @@
 import { lang } from "../config/main";
 import { baseStimulus } from "../lib/markup/stimuli";
 
-const breakScreen = () => {
+const breakScreen = (iBreak) => {
   let stimulus = baseStimulus(
     `
     <div class='instructions'>
-    <h1>${lang.break.prompt}
+    <h1>${lang.break.prompt}${iBreak} out of 3
     </div>
     `,
     true
