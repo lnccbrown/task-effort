@@ -1,9 +1,9 @@
 // import trials
 import fixation from "../trials/fixation";
 import rewardProbability from "../trials/rewardProbability";
-import frameSpike from "../trials/frameSpike";
+//import frameSpike from "../trials/frameSpike";
 import choice from "../trials/choice";
-import costBenefits from "../trials/costBenefits";
+// import costBenefits from "../trials/costBenefits";
 import pressBalloon from "../trials/pressBalloon";
 import rewardFeedback from "../trials/rewardFeedback";
 import cumulativeReward from "../trials/cumulativeReward";
