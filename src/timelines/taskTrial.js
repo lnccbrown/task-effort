@@ -26,9 +26,9 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     // show condition
     fixation(300),
     rewardProbability(1000, blockSettings, opts, trialDetails),
-    frameSpike(700, blockSettings, opts, trialDetails),
-    costBenefits(1500, blockSettings, opts, trialDetails),
-    choice(5000, blockSettings, opts),
+    // frameSpike(700, blockSettings, opts, trialDetails),
+    // costBenefits(1500, blockSettings, opts, trialDetails),
+    choice(6000, blockSettings, opts, trialDetails),
     pressBalloon(25000, blockSettings, opts),
     fixation(500),
     rewardFeedback(1000, blockSettings, opts, trialDetails),
