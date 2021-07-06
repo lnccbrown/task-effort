@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.firebase",
+    "\\.github",
+    "\\assets",
+    "\\public",
+    "\\public\\config",
+    "\\src",
+    "\\src\\language",
+    "\\src\\timelines",
+    "\\src\\trials"
+  ],
+  "SelectedNode": "\\src\\timelines\\main.js",
+  "PreviewInSolutionExplorer": false
+}
