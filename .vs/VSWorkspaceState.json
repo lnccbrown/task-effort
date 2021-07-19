@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\config",
     "\\src\\language",
@@ -9,6 +10,6 @@
     "\\src\\timelines",
     "\\src\\trials"
   ],
-  "SelectedNode": "\\src\\trials\\breakScreen.js",
+  "SelectedNode": "\\src\\config\\main.js",
   "PreviewInSolutionExplorer": false
 }

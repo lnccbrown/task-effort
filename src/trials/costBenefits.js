@@ -1,5 +1,6 @@
 // imports
-import { eventCodes, canvasSize, canvasSettings } from "../config/main";
+import { jsPsych } from "jspsych-react";
+import { eventCodes, keys, canvasSize, canvasSettings } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
 import { addData } from "../lib/taskUtils";
@@ -27,6 +28,10 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
   let high_effort = blockSettings.is_practice
     ? blockSettings.high_effort
     : opts.high_effort;
+  let valid_keys = blockSettings.keys;
+  let get_reward = blockSettings.is_practice
+    ? blockSettings.get_reward
+    : opts.get_reward;
 
   return {
     type: "call_function",
@@ -38,7 +43,8 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
 
       // set up canvas
       let canvas = document.querySelector("#jspsych-canvas");
-      let ctx = canvas.getContext("2d");
+        let ctx = canvas.getContext("2d");
+        let timeWhenStarted = new Date().getTime();
 
       const canvasDraw = () => {
         // transparent background
@@ -114,11 +120,46 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
         );
       };
 
-      trialDetails.probability = probability;
-      trialDetails.effort = effort;
-      trialDetails.high_effort = high_effort;
-      trialDetails.value = value;
-      trialDetails.subtrial_type = "cost_benefits";
+      /*canvasDraw();
+      function after_response(info) {
+        //clearInterval(timer);
+        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+        if (info.key === keys["Q"]) {
+          // 1 key
+          var returnObj = {
+           key: info.key,
+           effort: effort[0],
+           value: value[0],
+           high_effort: high_effort[0],
+           get_reward: get_reward[0],
+           subtrial_type: "choice",
+          };
+          done(returnObj);
+        } else if (info.key === keys["P"]) {
+          // 0 key
+          returnObj = {
+           key: info.key,
+           effort: effort[1],
+           value: value[1],
+           high_effort: high_effort[1],
+           get_reward: get_reward[1],
+          };
+          done(returnObj);
+        }
+      }
+        trialDetails.probability = probability;
+        trialDetails.effort = effort;
+        trialDetails.high_effort = high_effort;
+        trialDetails.value = value;
+        trialDetails.subtrial_type = "cost_benefits";
+
+      var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: after_response,
+        valid_responses: valid_keys,
+        rt_method: "date",
+        persist: true,
+        allow_held_key: false,
+      });*/
 
       canvasDraw();
       setTimeout(() => {

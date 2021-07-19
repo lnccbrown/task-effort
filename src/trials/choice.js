@@ -10,7 +10,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`;
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`;
 
-const choice = (duration, blockSettings, opts) => {
+const choice = (duration, blockSettings, opts, trialDetails) => {
   let stimulus =
     `<div class="effort-container">` +
     canvasHTML +
@@ -133,7 +133,7 @@ const choice = (duration, blockSettings, opts) => {
           canvasSettings.balloonYpos,
           canvasSettings.balloonRadius
         );
-      };
+       };
 
       canvasDraw();
       var timer = setInterval(function () {
@@ -180,6 +180,11 @@ const choice = (duration, blockSettings, opts) => {
           done(returnObj);
         }
       }
+        trialDetails.probability = probability;
+        trialDetails.effort = effort;
+        trialDetails.high_effort = high_effort;
+        trialDetails.value = value;
+        trialDetails.subtrial_type = "cost_benefits";
 
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
