@@ -159,7 +159,10 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
         if (info.key === keys["Q"]) {
           // 1 key
+          var timeWhenPressed = new Date().getTime();
+          var rt = timeWhenPressed - timeWhenStarted;
           var returnObj = {
+            rt:rt,
             key: info.key,
             effort: effort[0],
             value: value[0],
@@ -169,8 +172,11 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
           };
           done(returnObj);
         } else if (info.key === keys["P"]) {
-          // 0 key
-          returnObj = {
+            // 0 key
+            var timeWhenPressed = new Date().getTime();
+            var rt = timeWhenPressed - timeWhenStarted;
+            var returnObj = {
+            rt: rt,
             key: info.key,
             effort: effort[1],
             value: value[1],

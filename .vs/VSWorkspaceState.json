@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
     "\\public",
     "\\src",
     "\\src\\config",
@@ -10,6 +11,6 @@
     "\\src\\timelines",
     "\\src\\trials"
   ],
-  "SelectedNode": "\\public\\favicon.ico",
+  "SelectedNode": "\\src\\trials\\costBenefits.js",
   "PreviewInSolutionExplorer": false
 }
