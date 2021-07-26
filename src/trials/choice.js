@@ -172,16 +172,17 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
           };
           done(returnObj);
         } else if (info.key === keys["P"]) {
-            // 0 key
-            var timeWhenPressed = new Date().getTime();
-            var rt = timeWhenPressed - timeWhenStarted;
-            var returnObj = {
-            rt: rt,
+          // 0 key
+          var timeWhenPressed = new Date().getTime();
+          var rt = timeWhenPressed - timeWhenStarted;
+          var returnObj = {
+            rt:rt,
             key: info.key,
             effort: effort[1],
             value: value[1],
             high_effort: high_effort[1],
             get_reward: get_reward[1],
+            subtrial_type: "choice",
           };
           done(returnObj);
         }
@@ -190,7 +191,7 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
         trialDetails.effort = effort;
         trialDetails.high_effort = high_effort;
         trialDetails.value = value;
-        trialDetails.subtrial_type = "cost_benefits";
+        trialDetails.subtrial_type = "choice";
 
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,

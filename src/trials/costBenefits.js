@@ -22,173 +22,174 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
 
     const startCode = eventCodes.costBenefitsStart;
 
-    let probability = blockSettings.is_practice ? opts : opts.prob;
-    let value = blockSettings.is_practice ? blockSettings.value : opts.value;
-    let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort;
-    let high_effort = blockSettings.is_practice
-        ? blockSettings.high_effort
-        : opts.high_effort;
-    let valid_keys = blockSettings.keys;
-    let get_reward = blockSettings.is_practice
-        ? blockSettings.get_reward
-        : opts.get_reward;
+  let probability = blockSettings.is_practice ? opts : opts.prob;
+  let value = blockSettings.is_practice ? blockSettings.value : opts.value;
+  let effort = blockSettings.is_practice ? blockSettings.effort : opts.effort;
+  let high_effort = blockSettings.is_practice
+    ? blockSettings.high_effort
+    : opts.high_effort;
+  let valid_keys = blockSettings.keys;
+  let get_reward = blockSettings.is_practice
+    ? blockSettings.get_reward
+    : opts.get_reward;
 
-    return {
-        type: "call_function",
-        async: true,
-        func: (done) => {
-            // add stimulus to the DOM
-            document.getElementById("jspsych-content").innerHTML = stimulus;
-            // $('#jspsych-content').addClass('task-container')
+  return {
+    type: "call_function",
+    async: true,
+    func: (done) => {
+      // add stimulus to the DOM
+      document.getElementById("jspsych-content").innerHTML = stimulus;
+      // $('#jspsych-content').addClass('task-container')
 
-            // set up canvas
-            let canvas = document.querySelector("#jspsych-canvas");
-            let ctx = canvas.getContext("2d");
-            let timeWhenStarted = new Date().getTime();
+      // set up canvas
+      let canvas = document.querySelector("#jspsych-canvas");
+      let ctx = canvas.getContext("2d");
+      let timeWhenStarted = new Date().getTime();
 
-            const canvasDraw = () => {
-                // transparent background
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                var inflateBy;
-                var spikeHeight = [0, 0];
-                for (let i = 0; i < 2; i++) {
-                    if (high_effort[i]) {
-                        inflateBy = canvasSettings.inflateByHE;
-                    } else {
-                        inflateBy = canvasSettings.inflateByNHE;
-                    }
-
-                    // how far should the spike be
-                    var targetDist = 2 * inflateBy * (effort[i] - 1);
-                    var balloonBaseHeight =
-                        canvasSettings.balloonBaseHeight + 2 * canvasSettings.balloonRadius;
-                    // distance of the spike from the top
-                    spikeHeight[i] = effort[i]
-                        ? canvasSettings.frameDimensions[1] -
-                        balloonBaseHeight -
-                        targetDist -
-                        canvasSettings.spiketopHeight
-                        : 0;
+        const canvasDraw = () => {
+            // transparent background
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var inflateBy;
+            var spikeHeight = [0, 0];
+            for (let i = 0; i < 2; i++) {
+                if (high_effort[i]) {
+                    inflateBy = canvasSettings.inflateByHE;
+                } else {
+                    inflateBy = canvasSettings.inflateByNHE;
                 }
 
-                drawText(
-                    ctx,
-                    `${probability}`,
-                    canvasSettings.rewProbXpos,
-                    canvasSettings.rewProbYpos,
-                    "undefined"
-                );
-
-                // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-                drawEffort(
-                    ctx,
-                    value[0],
-                    effort[0],
-                    canvasSettings.textXpos[0],
-                    canvasSettings.textYpos,
-                    high_effort[0]
-                );
-                drawSpike(
-                    ctx,
-                    canvasSettings.spikeWidth,
-                    spikeHeight[0],
-                    canvasSettings.spikeXpos[0],
-                    canvasSettings.spikeYpos,
-                    canvasSettings.frameLinecolor,
-                    canvasSettings.frameLinecolor,
-                    false
-                );
-
-                // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-                drawEffort(
-                    ctx,
-                    value[1],
-                    effort[1],
-                    canvasSettings.textXpos[1],
-                    canvasSettings.textYpos,
-                    high_effort[1]
-                );
-                drawSpike(
-                    ctx,
-                    canvasSettings.spikeWidth,
-                    spikeHeight[1],
-                    canvasSettings.spikeXpos[1],
-                    canvasSettings.spikeYpos,
-                    canvasSettings.frameLinecolor,
-                    canvasSettings.frameLinecolor,
-                    false
-                );
-            };
-
-            canvasDraw();
-            setTimeout(() => {
-                done(addData(trialDetails, blockSettings, opts));
-            }, duration);
-        }
-          var timer = setInterval(function () {
-            var now = new Date().getTime();
-            var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
-
-            if (percTimePassed >= 1) {
-                jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-                clearInterval(timer);
-                var returnObj = {
-                    key: 0,
-                    effort: 0,
-                    value: 0,
-                    high_effort: 0,
-                    get_reward: 0,
-                    subtrial_type: "choice",
-                };
-                done(returnObj);
+                // how far should the spike be
+                var targetDist = 2 * inflateBy * (effort[i] - 1);
+                var balloonBaseHeight =
+                    canvasSettings.balloonBaseHeight + 2 * canvasSettings.balloonRadius;
+                // distance of the spike from the top
+                spikeHeight[i] = effort[i]
+                    ? canvasSettings.frameDimensions[1] -
+                    balloonBaseHeight -
+                    targetDist -
+                    canvasSettings.spiketopHeight
+                    : 0;
             }
-          }, 50);
-        function after_response(info) {
-        clearInterval(timer);
-        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-        if (info.key === keys["Q"]) {
-            // 1 key
-            var timeWhenPressed = new Date().getTime();
-            var rt = timeWhenPressed - timeWhenStarted;
+
+            drawText(
+                ctx,
+                `${probability}`,
+                canvasSettings.rewProbXpos,
+                canvasSettings.rewProbYpos,
+                "undefined"
+            );
+
+            // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+            drawEffort(
+                ctx,
+                value[0],
+                effort[0],
+                canvasSettings.textXpos[0],
+                canvasSettings.textYpos,
+                high_effort[0]
+            );
+            drawSpike(
+                ctx,
+                canvasSettings.spikeWidth,
+                spikeHeight[0],
+                canvasSettings.spikeXpos[0],
+                canvasSettings.spikeYpos,
+                canvasSettings.frameLinecolor,
+                canvasSettings.frameLinecolor,
+                false
+            );
+
+            // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+            drawEffort(
+                ctx,
+                value[1],
+                effort[1],
+                canvasSettings.textXpos[1],
+                canvasSettings.textYpos,
+                high_effort[1]
+            );
+            drawSpike(
+                ctx,
+                canvasSettings.spikeWidth,
+                spikeHeight[1],
+                canvasSettings.spikeXpos[1],
+                canvasSettings.spikeYpos,
+                canvasSettings.frameLinecolor,
+                canvasSettings.frameLinecolor,
+                false
+            );
+        };
+        trialDetails.probability = probability;
+        trialDetails.effort = effort;
+        trialDetails.high_effort = high_effort;
+        trialDetails.value = value;
+        trialDetails.subtrial_type = "costBenefits";
+
+        canvasDraw();
+        setTimeout(() => {
+          //done(addData(trialDetails, blockSettings, opts));
+        }, duration);
+      /*var timer = setInterval(function () {
+        var now = new Date().getTime();
+        var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
+
+        if (percTimePassed >= 1) {
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+            clearInterval(timer);
             var returnObj = {
-                rt: rt,
-                key: info.key,
-                effort: effort[0],
-                value: value[0],
-                high_effort: high_effort[0],
-                get_reward: get_reward[0],
-                subtrial_type: "choice",
+                key: 0,
+                effort: 0,
+                value: 0,
+                high_effort: 0,
+                get_reward: 0,
+                subtrial_type: "costBenefits",
             };
             done(returnObj);
+        }
+      }, 50);*/
+      function after_response(info) {
+        //clearInterval(timer);
+        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+        if (info.key === keys["Q"]) {
+          // 1 key
+          var timeWhenPressed = new Date().getTime();
+          var rt = timeWhenPressed - timeWhenStarted;
+          var returnObj = {
+            rt:rt,
+            key: info.key,
+            effort: effort[0],
+            value: value[0],
+            high_effort: high_effort[0],
+            get_reward: get_reward[0],
+            subtrial_type: "costBenefits",
+          };
+          done(returnObj);
         } else if (info.key === keys["P"]) {
             // 0 key
             var timeWhenPressed = new Date().getTime();
             var rt = timeWhenPressed - timeWhenStarted;
             var returnObj = {
-                rt: rt,
-                key: info.key,
-                effort: effort[1],
-                value: value[1],
-                high_effort: high_effort[1],
-                get_reward: get_reward[1],
+              rt: rt,
+              key: info.key,
+              effort: effort[1],
+              value: value[1],
+              high_effort: high_effort[1],
+              get_reward: get_reward[1],
+              subtrial_type: "costBenefits"
             };
             done(returnObj);
         }
-    }
-    trialDetails.probability = probability;
-    trialDetails.effort = effort;
-    trialDetails.high_effort = high_effort;
-    trialDetails.value = value;
-    trialDetails.subtrial_type = "cost_benefits";
+      }
 
-    var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
+      var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
         valid_responses: valid_keys,
         rt_method: "date",
         persist: true,
         allow_held_key: false,
-    });
-}   
+      }); 
+        
+    },        
     on_load: () => {
       removeCursor("experiment");
       pdSpotEncode(startCode);

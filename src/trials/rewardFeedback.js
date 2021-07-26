@@ -15,7 +15,9 @@ const rewardFeedback = (duration, blockSettings, opts, trialDetails) => {
       let rewards = jsPsych.data.get().select("value").values;
       let last = rewards[rewards.length - 1];
       let stimulus;
-      if (last) {
+        console.log("last:", last);
+        console.log("rewards:", rewards);
+        if (last) {
         stimulus =
           `<div class="effort-container"><h1>+${last.reward.toFixed(2)}</h1>` +
           photodiodeGhostBox() +
