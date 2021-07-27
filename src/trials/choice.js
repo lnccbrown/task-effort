@@ -173,9 +173,9 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
           done(returnObj);
         } else if (info.key === keys["P"]) {
           // 0 key
-          var timeWhenPressed = new Date().getTime();
-          var rt = timeWhenPressed - timeWhenStarted;
-          var returnObj = {
+          timeWhenPressed = new Date().getTime();
+          rt = timeWhenPressed - timeWhenStarted;
+          returnObj = {
             rt:rt,
             key: info.key,
             effort: effort[1],

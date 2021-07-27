@@ -32,11 +32,16 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
   let get_reward = blockSettings.is_practice
     ? blockSettings.get_reward
     : opts.get_reward;
-
   return {
     type: "call_function",
     async: true,
     func: (done) => {
+      trialDetails.probability = probability;
+      trialDetails.effort = effort;
+      trialDetails.high_effort = high_effort;
+      trialDetails.value = value;
+      trialDetails.subtrial_type = "costBenefits";
+      addData(trialDetails, blockSettings, opts);
       // add stimulus to the DOM
       document.getElementById("jspsych-content").innerHTML = stimulus;
       // $('#jspsych-content').addClass('task-container')
@@ -119,17 +124,8 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
                 false
             );
         };
-        trialDetails.probability = probability;
-        trialDetails.effort = effort;
-        trialDetails.high_effort = high_effort;
-        trialDetails.value = value;
-        trialDetails.subtrial_type = "costBenefits";
-
         canvasDraw();
-        setTimeout(() => {
-          //done(addData(trialDetails, blockSettings, opts));
-        }, duration);
-      /*var timer = setInterval(function () {
+      var timer = setInterval(function () {
         var now = new Date().getTime();
         var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
 
@@ -146,9 +142,9 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
             };
             done(returnObj);
         }
-      }, 50);*/
+      }, 50);
       function after_response(info) {
-        //clearInterval(timer);
+        clearInterval(timer);
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
         if (info.key === keys["Q"]) {
           // 1 key
@@ -166,9 +162,9 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
           done(returnObj);
         } else if (info.key === keys["P"]) {
             // 0 key
-            var timeWhenPressed = new Date().getTime();
-            var rt = timeWhenPressed - timeWhenStarted;
-            var returnObj = {
+            timeWhenPressed = new Date().getTime();
+            rt = timeWhenPressed - timeWhenStarted;
+            returnObj = {
               rt: rt,
               key: info.key,
               effort: effort[1],
