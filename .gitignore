@@ -22,3 +22,6 @@ yarn-debug.log*
 yarn-error.log*
 
 psiturkit/*_turk
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/Effort-Task-3/v16/.suo
