@@ -153,7 +153,7 @@ const choice = (duration, blockSettings, opts, trialDetails) => {
           };
           done(returnObj);
         }
-      }, 50);
+      }, 20);
       function after_response(info) {
         clearInterval(timer);
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);

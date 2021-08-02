@@ -6,7 +6,6 @@ import frameSpike from "../trials/frameSpike";
 import choice from "../trials/choice";
 import costBenefits from "../trials/costBenefits";
 import { ONLINE } from "../config/main";
-import { addData } from "../lib/taskUtils";
 import pressBalloon from "../trials/pressBalloon";
 import rewardFeedback from "../trials/rewardFeedback";
 import cumulativeReward from "../trials/cumulativeReward";
@@ -47,7 +46,7 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
             rewardProbability(1000, blockSettings, opts, trialDetails),
             frameSpike(700, blockSettings, opts, trialDetails),
             costBenefits(1500, blockSettings, opts, trialDetails),
-            choice(5000, blockSettings, opts, trialDetails),
+            choice(6000, blockSettings, opts, trialDetails),
             pressBalloon(25000, blockSettings, opts),
             fixation(500),
             rewardFeedback(1000, blockSettings, opts, trialDetails),
