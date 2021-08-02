@@ -188,7 +188,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
               clearInterval(timer2);
               done(returnObj);
             }
-          }, 50);
+          }, 20);
         }
       }
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
