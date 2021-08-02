@@ -3,7 +3,6 @@ import { jsPsych } from "jspsych-react";
 import { eventCodes, keys, canvasSize, canvasSettings } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
-import { addData } from "../lib/taskUtils";
 import { drawEffort, drawSpike, drawText } from "../lib/drawUtils";
 
 const CANVAS_SIZE = canvasSize;
@@ -41,7 +40,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
       trialDetails.high_effort = high_effort;
       trialDetails.value = value;
       trialDetails.subtrial_type = "costBenefits";
-      addData(trialDetails, blockSettings, opts);
+      //addData(trialDetails, blockSettings, opts);
       // add stimulus to the DOM
       document.getElementById("jspsych-content").innerHTML = stimulus;
       // $('#jspsych-content').addClass('task-container')
@@ -142,7 +141,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
             };
             done(returnObj);
         }
-      }, 50);
+      }, 20);
       function after_response(info) {
         clearInterval(timer);
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
@@ -151,7 +150,7 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
           var timeWhenPressed = new Date().getTime();
           var rt = timeWhenPressed - timeWhenStarted;
           var returnObj = {
-            rt:rt,
+            rt: rt,
             key: info.key,
             effort: effort[0],
             value: value[0],
@@ -159,24 +158,39 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
             get_reward: get_reward[0],
             subtrial_type: "costBenefits",
           };
-          done(returnObj);
-        } else if (info.key === keys["P"]) {
-            // 0 key
-            timeWhenPressed = new Date().getTime();
-            rt = timeWhenPressed - timeWhenStarted;
-            returnObj = {
-              rt: rt,
-              key: info.key,
-              effort: effort[1],
-              value: value[1],
-              high_effort: high_effort[1],
-              get_reward: get_reward[1],
-              subtrial_type: "costBenefits"
-            };
-            done(returnObj);
+          var timer1 = setInterval(function () {
+            var now = new Date().getTime();
+            var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
+
+            if (percTimePassed >= 1) {
+              clearInterval(timer1);
+              done(returnObj);
+            }
+          }, 20);
+        }
+        else if (info.key === keys["P"]) {
+          // 0 key
+          timeWhenPressed = new Date().getTime();
+          rt = timeWhenPressed - timeWhenStarted;
+          returnObj = {
+            rt: rt,
+            key: info.key,
+            effort: effort[1],
+            value: value[1],
+            high_effort: high_effort[1],
+            get_reward: get_reward[1],
+            subtrial_type: "costBenefits",
+          };
+          var timer2 = setInterval(function () {
+            var now = new Date().getTime();
+            var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
+            if (percTimePassed >= 1) {
+              clearInterval(timer2);
+              done(returnObj);
+            }
+          }, 20);
         }
       }
-
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
         valid_responses: valid_keys,
