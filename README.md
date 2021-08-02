@@ -1,4 +1,4 @@
-# Effort Task - PAULO
+# Effort Task
 
 <p float="left">
   <img src="/assets/icons/win/icon.ico" width="200" />
