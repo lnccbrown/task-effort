@@ -10,7 +10,7 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
   </canvas>`;
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`;
 
-const choice = (duration, blockSettings, opts) => {
+const choice = (duration, blockSettings, opts, trialDetails) => {
   let stimulus =
     `<div class="effort-container">` +
     canvasHTML +
@@ -133,7 +133,7 @@ const choice = (duration, blockSettings, opts) => {
           canvasSettings.balloonYpos,
           canvasSettings.balloonRadius
         );
-      };
+       };
 
       canvasDraw();
       var timer = setInterval(function () {
@@ -159,7 +159,10 @@ const choice = (duration, blockSettings, opts) => {
         jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
         if (info.key === keys["Q"]) {
           // 1 key
+          var timeWhenPressed = new Date().getTime();
+          var rt = timeWhenPressed - timeWhenStarted;
           var returnObj = {
+            rt:rt,
             key: info.key,
             effort: effort[0],
             value: value[0],
@@ -170,16 +173,25 @@ const choice = (duration, blockSettings, opts) => {
           done(returnObj);
         } else if (info.key === keys["P"]) {
           // 0 key
+          timeWhenPressed = new Date().getTime();
+          rt = timeWhenPressed - timeWhenStarted;
           returnObj = {
+            rt:rt,
             key: info.key,
             effort: effort[1],
             value: value[1],
             high_effort: high_effort[1],
             get_reward: get_reward[1],
+            subtrial_type: "choice",
           };
           done(returnObj);
         }
       }
+        trialDetails.probability = probability;
+        trialDetails.effort = effort;
+        trialDetails.high_effort = high_effort;
+        trialDetails.value = value;
+        trialDetails.subtrial_type = "choice";
 
       var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,

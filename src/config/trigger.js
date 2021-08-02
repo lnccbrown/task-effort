@@ -7,7 +7,7 @@ const eventCodes = {
   // rewardProbabilityEnd: 11, // reward probability (50% of 100%) offset
   frameSpikeStart: 20, // frame and spike onset
   // frameSpikeEnd: 21, // frame and spike offset
-  costBenefitsStart: 30, // points and effort values for both options onset
+   costBenefitsStart: 30, // points and effort values for both options onset
   // costBenefitsEnd: 31, // points and effort values for both options offset
   choiceStart: 40, // frame + spike + balloons, when participant can choose blue or green
   // choiceEnd: 41, // frame + spike + balloons offset, once participant has made a choice

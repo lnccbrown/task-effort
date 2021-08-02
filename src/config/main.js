@@ -69,6 +69,7 @@ try {
 // then assume it's online in the browser
 // with MTurk or Prolific
 ONLINE = AT_HOME && !IS_ELECTRON ? true : false;
+//ONLINE = true;
 console.log("ONLINE:", ONLINE);
 
 // note: it _is_ possible to do both firebase & mturk if desired

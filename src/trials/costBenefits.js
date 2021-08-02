@@ -1,5 +1,6 @@
 // imports
-import { eventCodes, canvasSize, canvasSettings } from "../config/main";
+import { jsPsych } from "jspsych-react";
+import { eventCodes, keys, canvasSize, canvasSettings } from "../config/main";
 import { photodiodeGhostBox, pdSpotEncode } from "../lib/markup/photodiode";
 import { removeCursor } from "../lib/utils";
 import { addData } from "../lib/taskUtils";
@@ -12,14 +13,14 @@ const canvasHTML = `<canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="j
 const fixationHTML = `<div id="fixation-dot" class="color-white"> </div>`;
 
 const costBenefits = (duration, blockSettings, opts, trialDetails) => {
-  let stimulus =
-    `<div class="effort-container">` +
-    canvasHTML +
-    fixationHTML +
-    photodiodeGhostBox() +
-    `</div>`;
+    let stimulus =
+        `<div class="effort-container">` +
+        canvasHTML +
+        fixationHTML +
+        photodiodeGhostBox() +
+        `</div>`;
 
-  const startCode = eventCodes.costBenefitsStart;
+    const startCode = eventCodes.costBenefitsStart;
 
   let probability = blockSettings.is_practice ? opts : opts.prob;
   let value = blockSettings.is_practice ? blockSettings.value : opts.value;
@@ -27,11 +28,20 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
   let high_effort = blockSettings.is_practice
     ? blockSettings.high_effort
     : opts.high_effort;
-
+  let valid_keys = blockSettings.keys;
+  let get_reward = blockSettings.is_practice
+    ? blockSettings.get_reward
+    : opts.get_reward;
   return {
     type: "call_function",
     async: true,
     func: (done) => {
+      trialDetails.probability = probability;
+      trialDetails.effort = effort;
+      trialDetails.high_effort = high_effort;
+      trialDetails.value = value;
+      trialDetails.subtrial_type = "costBenefits";
+      addData(trialDetails, blockSettings, opts);
       // add stimulus to the DOM
       document.getElementById("jspsych-content").innerHTML = stimulus;
       // $('#jspsych-content').addClass('task-container')
@@ -39,92 +49,143 @@ const costBenefits = (duration, blockSettings, opts, trialDetails) => {
       // set up canvas
       let canvas = document.querySelector("#jspsych-canvas");
       let ctx = canvas.getContext("2d");
+      let timeWhenStarted = new Date().getTime();
 
-      const canvasDraw = () => {
-        // transparent background
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        var inflateBy;
-        var spikeHeight = [0, 0];
-        for (let i = 0; i < 2; i++) {
-          if (high_effort[i]) {
-            inflateBy = canvasSettings.inflateByHE;
-          } else {
-            inflateBy = canvasSettings.inflateByNHE;
-          }
+        const canvasDraw = () => {
+            // transparent background
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var inflateBy;
+            var spikeHeight = [0, 0];
+            for (let i = 0; i < 2; i++) {
+                if (high_effort[i]) {
+                    inflateBy = canvasSettings.inflateByHE;
+                } else {
+                    inflateBy = canvasSettings.inflateByNHE;
+                }
 
-          // how far should the spike be
-          var targetDist = 2 * inflateBy * (effort[i] - 1);
-          var balloonBaseHeight =
-            canvasSettings.balloonBaseHeight + 2 * canvasSettings.balloonRadius;
-          // distance of the spike from the top
-          spikeHeight[i] = effort[i]
-            ? canvasSettings.frameDimensions[1] -
-              balloonBaseHeight -
-              targetDist -
-              canvasSettings.spiketopHeight
-            : 0;
+                // how far should the spike be
+                var targetDist = 2 * inflateBy * (effort[i] - 1);
+                var balloonBaseHeight =
+                    canvasSettings.balloonBaseHeight + 2 * canvasSettings.balloonRadius;
+                // distance of the spike from the top
+                spikeHeight[i] = effort[i]
+                    ? canvasSettings.frameDimensions[1] -
+                    balloonBaseHeight -
+                    targetDist -
+                    canvasSettings.spiketopHeight
+                    : 0;
+            }
+
+            drawText(
+                ctx,
+                `${probability}`,
+                canvasSettings.rewProbXpos,
+                canvasSettings.rewProbYpos,
+                "undefined"
+            );
+
+            // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+            drawEffort(
+                ctx,
+                value[0],
+                effort[0],
+                canvasSettings.textXpos[0],
+                canvasSettings.textYpos,
+                high_effort[0]
+            );
+            drawSpike(
+                ctx,
+                canvasSettings.spikeWidth,
+                spikeHeight[0],
+                canvasSettings.spikeXpos[0],
+                canvasSettings.spikeYpos,
+                canvasSettings.frameLinecolor,
+                canvasSettings.frameLinecolor,
+                false
+            );
+
+            // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
+            drawEffort(
+                ctx,
+                value[1],
+                effort[1],
+                canvasSettings.textXpos[1],
+                canvasSettings.textYpos,
+                high_effort[1]
+            );
+            drawSpike(
+                ctx,
+                canvasSettings.spikeWidth,
+                spikeHeight[1],
+                canvasSettings.spikeXpos[1],
+                canvasSettings.spikeYpos,
+                canvasSettings.frameLinecolor,
+                canvasSettings.frameLinecolor,
+                false
+            );
+        };
+        canvasDraw();
+      var timer = setInterval(function () {
+        var now = new Date().getTime();
+        var percTimePassed = (now - timeWhenStarted) / 1000 / (duration / 1000);
+
+        if (percTimePassed >= 1) {
+            jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+            clearInterval(timer);
+            var returnObj = {
+                key: 0,
+                effort: 0,
+                value: 0,
+                high_effort: 0,
+                get_reward: 0,
+                subtrial_type: "costBenefits",
+            };
+            done(returnObj);
         }
+      }, 50);
+      function after_response(info) {
+        clearInterval(timer);
+        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+        if (info.key === keys["Q"]) {
+          // 1 key
+          var timeWhenPressed = new Date().getTime();
+          var rt = timeWhenPressed - timeWhenStarted;
+          var returnObj = {
+            rt:rt,
+            key: info.key,
+            effort: effort[0],
+            value: value[0],
+            high_effort: high_effort[0],
+            get_reward: get_reward[0],
+            subtrial_type: "costBenefits",
+          };
+          done(returnObj);
+        } else if (info.key === keys["P"]) {
+            // 0 key
+            timeWhenPressed = new Date().getTime();
+            rt = timeWhenPressed - timeWhenStarted;
+            returnObj = {
+              rt: rt,
+              key: info.key,
+              effort: effort[1],
+              value: value[1],
+              high_effort: high_effort[1],
+              get_reward: get_reward[1],
+              subtrial_type: "costBenefits"
+            };
+            done(returnObj);
+        }
+      }
 
-        drawText(
-          ctx,
-          `${probability}`,
-          canvasSettings.rewProbXpos,
-          canvasSettings.rewProbYpos,
-          "undefined"
-        );
-
-        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[0], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawEffort(
-          ctx,
-          value[0],
-          effort[0],
-          canvasSettings.textXpos[0],
-          canvasSettings.textYpos,
-          high_effort[0]
-        );
-        drawSpike(
-          ctx,
-          canvasSettings.spikeWidth,
-          spikeHeight[0],
-          canvasSettings.spikeXpos[0],
-          canvasSettings.spikeYpos,
-          canvasSettings.frameLinecolor,
-          canvasSettings.frameLinecolor,
-          false
-        );
-
-        // drawFrame(ctx, canvasSettings.frameDimensions[0], canvasSettings.frameDimensions[1], canvasSettings.frameXpos[1], canvasSettings.frameYpos, canvasSettings.frameLinecolor, false)
-        drawEffort(
-          ctx,
-          value[1],
-          effort[1],
-          canvasSettings.textXpos[1],
-          canvasSettings.textYpos,
-          high_effort[1]
-        );
-        drawSpike(
-          ctx,
-          canvasSettings.spikeWidth,
-          spikeHeight[1],
-          canvasSettings.spikeXpos[1],
-          canvasSettings.spikeYpos,
-          canvasSettings.frameLinecolor,
-          canvasSettings.frameLinecolor,
-          false
-        );
-      };
-
-      trialDetails.probability = probability;
-      trialDetails.effort = effort;
-      trialDetails.high_effort = high_effort;
-      trialDetails.value = value;
-      trialDetails.subtrial_type = "cost_benefits";
-
-      canvasDraw();
-      setTimeout(() => {
-        done(addData(trialDetails, blockSettings, opts));
-      }, duration);
-    },
+      var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: after_response,
+        valid_responses: valid_keys,
+        rt_method: "date",
+        persist: true,
+        allow_held_key: false,
+      }); 
+        
+    },        
     on_load: () => {
       removeCursor("experiment");
       pdSpotEncode(startCode);
