@@ -2,7 +2,7 @@
 
 import fixation from "../trials/fixation";
 import rewardProbability from "../trials/rewardProbability";
-import frameSpike from "../trials/frameSpike";
+//import frameSpike from "../trials/frameSpike";
 import choice from "../trials/choice";
 import costBenefits from "../trials/costBenefits";
 import { ONLINE } from "../config/main";
