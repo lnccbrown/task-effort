@@ -3,6 +3,7 @@
   <img src="/assets/icons/win/icon.ico" width="200" />
 </p>
 
+
 [![Actions Status](https://github.com/lnccbrown/task-effort/workflows/CI%20Tests/badge.svg)](https://github.com/lnccbrown/task-effort/actions)
 [![Actions Status](https://github.com/lnccbrown/task-effort/workflows/Build%20at%20home%20version%20%28Windows%29/badge.svg)](https://github.com/lnccbrown/task-effort/actions)  
 ![Add App Installers to Release](https://github.com/lnccbrown/task-effort/workflows/Add%20App%20Installers%20to%20Release/badge.svg?branch=master)
