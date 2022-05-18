@@ -55,7 +55,7 @@ const quiz = (blockSettings) => {
       prompt: quizPrompts[1],
       options: quizOptions(),
       required: true,
-    },
+    }, 
     {
       prompt: quizPrompts[2],
       options: quizOptions(),

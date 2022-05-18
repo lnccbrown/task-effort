@@ -30,12 +30,12 @@ practiceBlock2.get_reward = [true, true];
 let practiceBlock3 = deepCopy(defaultBlockSettings);
 
 practiceBlock3.is_practice = true;
-practiceBlock3.probs = ["50%"];
+practiceBlock3.probs = ["100%"];
 practiceBlock3.value = [1, 5];
 practiceBlock3.effort = [20, 200];
 practiceBlock3.high_effort = [false, true];
 practiceBlock3.keys = ["q", "p"];
-practiceBlock3.get_reward = [false, true];
+practiceBlock3.get_reward = [true, true];
 practiceBlock3.quiz_attempts = 1;
 practiceBlock3.max_attempts = 5;
 

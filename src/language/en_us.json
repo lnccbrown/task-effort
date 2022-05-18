@@ -47,10 +47,6 @@
     "green_balloon_pump_bonus": "If you continue to pump the <span class='text-green'><b>GREEN</b></span> balloon after it hits the spike within the <span class='text-green'><b>25 seconds</b></span> time limit, the bigger the balloon will get and the more <u>bonus</u> points you will earn.<br></br>If you pump the <span class='text-green'><b>GREEN</b></span> balloon and it does not reach the spike within the <span class='text-green'><b>25 seconds</b></span> time limit, you will earn <b>some</b> of the points for pumping the balloon. <br></br>(Example: If the total possible points you can earn for a balloon is 2 points and you pump the balloon halfway to the spike, you will earn 1 point.)<br></br>",
     "green_balloon_variable_points_pumps": "For the <span class='text-green'><b>GREEN</b></span> balloon, the number of pumps needed and the number of points you could win <span class='text-green'><b><u>can change on each round</u></b></span>. The number of pumps and points are listed below the <span class='text-green'><b>GREEN</b></span> balloon.",
     "blue_balloon_constant_points_pumps": "For the <span class='text-blue'><b>BLUE</b></span> balloon, the potential win <span class='text-blue'><b><u>will always stay the same</u></b></span> (<span class='text-blue'><b>1 point</b></span>),<br>and it will always require <span class='text-blue'><b>20 pumps</b></span>.",
-    "reward_prob_variable": "For some rounds, the chances that you will win points for either balloon are <b> 50% </b> <br> <u>(even after popping the balloon). </u>",
-    "reward_prob_certain": "In other rounds the chances of winning will be <b>100%</b>.",
-    "prob_display_location": "<b>The probability at which you will receive points for a trial will appear at the <u>bottom</u> of the screen.</b>",
-    "reward_prob_display_event": "The chances of winning points on that round, and the number of points possible to win, will be shown to you while you choose which balloon to inflate.",
     "pump_keys": "Press the    <span class='text-large'><b>Q</b></span>    key to pump the balloon on the left.<br>Press the <span class='text-large'><b>P</b></span>   key to pump the balloon on the right.",
     "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
     "ready": "The experiment will start now.<br>Press next when ready!",
@@ -68,7 +64,6 @@
     "any_questions": "Do you have any questions?",
     "prompt": {
       "more_pumps": "1. Which balloon requires more pumps? <span class='text-blue'><b>BLUE</b></span> or <span class='text-green'><b>GREEN</b></span>?",
-      "reward_certainty_reach_spike": "2. True or False: You will <u>ALWAYS</u> get points once you reach the spike.",
       "bonus_blue": "3. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
       "bonus_green": "4. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
       "total_shown": "5. True or False: You will be shown your total number of points after each round.",
@@ -76,7 +71,6 @@
     },
     "rules": {
       "preface": "Summary of Instructions/Rules:",
-      "shown_probability": "1. You will be shown the probability of earning points for a round.",
       "shown_blue_green_on_screen": "2. You will be shown a <span class='text-blue'><b>BLUE</b></span> balloon and a <span class='text-green'><b>GREEN</b></span> balloon on the screen.",
       "job": "3. Your job is to choose which balloon to pump up.",
       "blue_req_20": "4. The <span class='text-blue'><b>BLUE</b></span> balloon will ALWAYS require 20 pumps to reach the spike and can give 1 point.",
