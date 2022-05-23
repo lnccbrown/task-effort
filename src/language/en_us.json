@@ -64,10 +64,10 @@
     "any_questions": "Do you have any questions?",
     "prompt": {
       "more_pumps": "1. Which balloon requires more pumps? <span class='text-blue'><b>BLUE</b></span> or <span class='text-green'><b>GREEN</b></span>?",
-      "bonus_blue": "3. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
-      "bonus_green": "4. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
-      "total_shown": "5. True or False: You will be shown your total number of points after each round.",
-      "points_to_money": "6. True or False: You will receive real money from your total number of points at the end of the task."
+      "bonus_blue": "2. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
+      "bonus_green": "3. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
+      "total_shown": "4. True or False: You will be shown your total number of points after each round.",
+      "points_to_money": "5. True or False: You will receive real money from your total number of points at the end of the task."
     },
     "rules": {
       "preface": "Summary of Instructions/Rules:",

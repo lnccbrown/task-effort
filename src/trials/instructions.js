@@ -162,7 +162,7 @@ const greenPracticeInstructions = () => {
 // where both balloons are possible choices
 const realPracticeInstructions = () => {
   let realPracticeInstructionsArray = [
-    realPracticeScreenOne,,
+    realPracticeScreenOne,
     realPracticeScreenThree,
     realPracticeScreenFour,
   ];
