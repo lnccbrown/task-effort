@@ -57,6 +57,14 @@ const userId = () => {
             true
           ),
         },
+        {
+          prompt: baseStimulus(
+            `<div class='instructions'>
+            <h1 style='font-size:1.75vw; margin-bottom: -30vh;'>${lang.userid.sessionNum}</h1>
+            </div>`,
+            true
+          ),
+        },
       ],
       on_finish: (data) => {
         getUserId(data);

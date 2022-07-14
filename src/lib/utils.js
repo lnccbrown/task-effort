@@ -111,6 +111,10 @@ const getUserId = (data) => {
   const patientId = JSON.parse(data.responses)["Q0"];
   jsPsych.data.addProperties({ patient_id: patientId, timestamp: Date.now() });
   console.log("ID", patientId);
+
+  const sessionNum = JSON.parse(data.responses)["Q1"];
+  jsPsych.data.addProperties({ sessionNum: sessionNum, timestamp: Date.now() });
+  console.log("session", sessionNum);
 };
 
 export {
