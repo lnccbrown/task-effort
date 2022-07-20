@@ -23,10 +23,12 @@ import {
   postPracticeInstructions,
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
+import checkSessTimeline from "../trials/checkSess";
 
 const inLabTimeline = [
   experimentStart(),
   userId(),
+  checkSessTimeline(),
   preamble,
   bluePracticeInstructions(),
   buildCountdown(lang.countdown.practice1, 3),
