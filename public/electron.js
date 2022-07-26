@@ -12,12 +12,12 @@ const log = require("electron-log");
 
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
 // Event Trigger
-const { eventCodes, comName } = require("./config/trigger");
-const { isPort, getPort, sendToPort } = require("event-marker");
+//const { eventCodes, comName } = require("./config/trigger");
+//const { isPort, getPort, sendToPort } = require("event-marker");
 
 // Override comName if environment variable set
-const activeComName = process.env.COMNAME || comName;
-log.info("Trigger Box comName", activeComName);
+//const activeComName = process.env.COMNAME || comName;
+//log.info("Trigger Box comName", activeComName);
 
 // Data Saving
 const { dataDir } = require("./config/saveData");
@@ -269,9 +269,9 @@ process.on("uncaughtException", (error) => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
   createWindow();
-  if (!AT_HOME) {
-    setUpPort().then(() => handleEventSend(eventCodes.test_connect));
-  }
+  //if (!AT_HOME) {
+    //setUpPort().then(() => handleEventSend(eventCodes.test_connect));
+  //}
 });
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
