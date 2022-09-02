@@ -108,9 +108,22 @@ const getProlificId = (data) => {
 };
 
 const getUserId = (data) => {
-  const patientId = JSON.parse(data.responses)["Q0"];
-  jsPsych.data.addProperties({ patient_id: patientId, timestamp: Date.now() });
-  console.log("ID", patientId);
+    // IAN: Try to check that session number is correct (0 or 1). If it is not,
+    //      we don't add Properties to data, and thus don't create a new listener.
+  if (
+    // IAN: 
+    JSON.parse(data.responses)["Q1"] == 1 || JSON.parse(data.responses)["Q1"] == 2
+  ) {
+    const patientId = JSON.parse(data.responses)["Q0"];
+    jsPsych.data.addProperties({ patient_id: patientId, timestamp: Date.now() });
+    console.log("ID", patientId);
+
+    const sessionNum = JSON.parse(data.responses)["Q1"];
+    jsPsych.data.addProperties({ sessionNum: sessionNum, timestamp: Date.now() });
+    console.log("session", sessionNum);
+  }
+
+  
 };
 
 export {

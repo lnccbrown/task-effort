@@ -12,12 +12,12 @@ const log = require("electron-log");
 
 const AT_HOME = process.env.REACT_APP_AT_HOME === "true";
 // Event Trigger
-const { eventCodes, comName } = require("./config/trigger");
-const { isPort, getPort, sendToPort } = require("event-marker");
+//const { eventCodes, comName } = require("./config/trigger");
+//const { isPort, getPort, sendToPort } = require("event-marker");
 
 // Override comName if environment variable set
-const activeComName = process.env.COMNAME || comName;
-log.info("Trigger Box comName", activeComName);
+//const activeComName = process.env.COMNAME || comName;
+//log.info("Trigger Box comName", activeComName);
 
 // Data Saving
 const { dataDir } = require("./config/saveData");
@@ -99,97 +99,98 @@ function createWindow() {
   });
 } // end of createWindow
 
-// TRIGGER PORT HELPERS
-let triggerPort;
-let portAvailable;
-let SKIP_SENDING_DEV = false;
+// // TRIGGER PORT HELPERS
+// let triggerPort;
+// let portAvailable;
+// let SKIP_SENDING_DEV = false;
 
-const setUpPort = async () => {
-  p = await getPort(activeComName);
-  if (p) {
-    triggerPort = p;
-    portAvailable = true;
+// const setUpPort = async () => {
+//   p = await getPort(activeComName);
+//   if (p) {
+//     triggerPort = p;
+//     portAvailable = true;
 
-    triggerPort.on("error", (err) => {
-      log.error(err);
-      let buttons = ["OK", "Continue Anyway"];
-      // if (process.env.ELECTRON_START_URL) {
-      //   buttons.push("Continue Anyway")
-      // }
-      dialog
-        .showMessageBox(mainWindow, {
-          type: "error",
-          message: "Error communicating with event marker.",
-          title: "Task Error",
-          buttons: buttons,
-          defaultId: 0,
-        })
-        .then((opt) => {
-          if (opt.response == 0) {
-            app.exit();
-          } else {
-            SKIP_SENDING_DEV = true;
-            portAvailable = false;
-            triggerPort = false;
-          }
-        });
-    });
-  } else {
-    triggerPort = false;
-    portAvailable = false;
-  }
-};
+//     triggerPort.on("error", (err) => {
+//       log.error(err);
+//       let buttons = ["OK", "Continue Anyway"];
+//       // if (process.env.ELECTRON_START_URL) {
+//       //   buttons.push("Continue Anyway")
+//       // }
+//       dialog
+//         .showMessageBox(mainWindow, {
+//           type: "error",
+//           message: "Error communicating with event marker.",
+//           title: "Task Error",
+//           buttons: buttons,
+//           defaultId: 0,
+//         })
+//         .then((opt) => {
+//           if (opt.response == 0) {
+//             app.exit();
+//           } else {
+//             SKIP_SENDING_DEV = true;
+//             portAvailable = false;
+//             triggerPort = false;
+//           }
+//         });
+//     });
+//   } else {
+//     triggerPort = false;
+//     portAvailable = false;
+//   }
+// };
 
-const handleEventSend = async (code) => {
-  if (!portAvailable && !SKIP_SENDING_DEV) {
-    let message = "Event Marker not connected";
-    log.warn(message);
-    let buttons = ["Quit", "Retry", "Continue Anyway"];
-    // if (process.env.ELECTRON_START_URL) {
-    //   buttons.push("Continue Anyway")
-    // }
-    dialog
-      .showMessageBox(mainWindow, {
-        type: "error",
-        message: message,
-        title: "Task Error",
-        buttons: buttons,
-        defaultId: 0,
-      })
-      .then((resp) => {
-        let opt = resp.response;
-        if (opt == 0) {
-          // quit
-          app.exit();
-        } else if (opt == 1) {
-          // retry
-          setUpPort().then(() => handleEventSend(code));
-        } else if (opt == 2) {
-          SKIP_SENDING_DEV = true;
-        }
-      });
-  } else if (!SKIP_SENDING_DEV) {
-    await sendToPort(triggerPort, code);
-  }
-};
+// const handleEventSend = async (code) => {
+//   if (!portAvailable && !SKIP_SENDING_DEV) {
+//     let message = "Event Marker not connected";
+//     log.warn(message);
+//     let buttons = ["Quit", "Retry", "Continue Anyway"];
+//     // if (process.env.ELECTRON_START_URL) {
+//     //   buttons.push("Continue Anyway")
+//     // }
+//     dialog
+//       .showMessageBox(mainWindow, {
+//         type: "error",
+//         message: message,
+//         title: "Task Error",
+//         buttons: buttons,
+//         defaultId: 0,
+//       })
+//       .then((resp) => {
+//         let opt = resp.response;
+//         if (opt == 0) {
+//           // quit
+//           app.exit();
+//         } else if (opt == 1) {
+//           // retry
+//           setUpPort().then(() => handleEventSend(code));
+//         } else if (opt == 2) {
+//           SKIP_SENDING_DEV = true;
+//         }
+//       });
+//   } else if (!SKIP_SENDING_DEV) {
+//     await sendToPort(triggerPort, code);
+//   }
+// };
 
-// EVENT TRIGGER
+// // EVENT TRIGGER
 
-ipc.on("trigger", (event, args) => {
-  let code = args;
-  if (code != undefined) {
-    log.info(`Event: ${_.invert(eventCodes)[code]}, code: ${code}`);
-    if (!AT_HOME) {
-      handleEventSend(code);
-    }
-  }
-});
+// ipc.on("trigger", (event, args) => {
+//   let code = args;
+//   if (code != undefined) {
+//     log.info(`Event: ${_.invert(eventCodes)[code]}, code: ${code}`);
+//     if (!AT_HOME) {
+//       handleEventSend(code);
+//     }
+//   }
+// });
 
 // INCREMENTAL FILE SAVING
 let stream = false;
 let fileName = "";
 let filePath = "";
 let patientID = "";
+let sessionNum = "";
 let images = [];
 let startTrial = -1;
 
@@ -199,8 +200,9 @@ ipc.on("data", (event, args) => {
   if (args.patient_id && fileName === "") {
     const dir = app.getPath("userData");
     patientID = args.patient_id;
+    sessionNum = args.sessionNum;
     Effort = "Effort";
-    fileName = `${patientID}_${Effort}.json`;
+    fileName = `${patientID}_${sessionNum}_${Effort}.json`;
     filePath = path.resolve(dir, fileName);
     startTrial = args.trial_index;
     log.warn(filePath);
@@ -267,9 +269,9 @@ process.on("uncaughtException", (error) => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
   createWindow();
-  if (!AT_HOME) {
-    setUpPort().then(() => handleEventSend(eventCodes.test_connect));
-  }
+  //if (!AT_HOME) {
+    //setUpPort().then(() => handleEventSend(eventCodes.test_connect));
+  //}
 });
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
@@ -300,7 +302,7 @@ app.on("will-quit", () => {
   const today = new Date(Date.now());
   // const date = today.toISOString().slice(0,10) // currently don't need date
   // fileName = `${patientID}_${Effort}.json`
-  const copyPath = path.join(desktop, dataDir, `${patientID}_${Effort}`);
+  const copyPath = path.join(desktop, dataDir, `${patientID}_${sessionNum}_${Effort}`);
   fs.mkdir(copyPath, { recursive: true }, (err) => {
     log.error(err);
     fs.copyFileSync(filePath, path.join(copyPath, fileName));

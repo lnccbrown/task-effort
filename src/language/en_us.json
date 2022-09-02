@@ -2,7 +2,7 @@
   "task": {
     "name": "Effort Task",
     "end": "This experiment has ended.",
-    "version": "v1.3.4"
+    "version": "v1.3.4.2"
   },
   "prompt": {
     "continue": {
@@ -25,7 +25,8 @@
     "message": "Instructions"
   },
   "userid": {
-    "set": "Please enter the <i>Subject ID</i>. <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_Effort.)</span>",
+    "set": "Please enter the <i>Subject ID</i>. <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_<i>Session</i>_Effort.)</span>",
+    "sessionNum": "Please enter the <i>Session #</i> (Enter ONLY 1 or 2). <br><span class='text-smoll'>(The file will automatically be named <i>Subject ID</i>_<i>Session</i>_Effort.)</span>",
     "get_prolific": "Collecting your Prolific ID...",
     "set_prolific": "Please enter your Prolific ID into the box below:<br><span class='text-smoll'>Warning: You cannot leave this box empty!</span>"
   },

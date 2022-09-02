@@ -23,10 +23,12 @@ import {
   postPracticeInstructions,
 } from "../trials/instructions";
 import quizTimeline from "../trials/quizTrials";
+import checkSessTimeline from "../trials/checkSess";
 
 const inLabTimeline = [
   experimentStart(),
   userId(),
+  checkSessTimeline(),
   preamble,
   bluePracticeInstructions(),
   buildCountdown(lang.countdown.practice1, 3),
@@ -38,8 +40,8 @@ const inLabTimeline = [
   buildCountdown(lang.countdown.practice3, 3),
   taskBlock(practiceBlock3),
   quizTimeline(practiceBlock3),
-  relaxReminder(),
-  recordNow(),
+  //relaxReminder(),
+  //recordNow(),
   postPracticeInstructions(),
   buildCountdown(lang.countdown.expt1, 3),
   practiceAndMainBlockDivider(500),
