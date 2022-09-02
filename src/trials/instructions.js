@@ -75,21 +75,9 @@ const realPracticeScreenOne = baseStimulus(
   true
 );
 
-const realPracticeScreenTwo = baseStimulus(
-  `
-    <div class='instructions'>
-    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_variable}</p>
-    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_certain}</p>
-    <p style='font-size:1.75vw;'>${lang.instructions.prob_display_location}</p>
-    </div>
-    `,
-  true
-);
-
 const realPracticeScreenThree = baseStimulus(
   `
     <div class='instructions'>
-    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_display_event}</p>
     <p style='font-size:1.75vw;'>${lang.instructions.missed_choice}</p>
     </div>
     `,
@@ -175,7 +163,6 @@ const greenPracticeInstructions = () => {
 const realPracticeInstructions = () => {
   let realPracticeInstructionsArray = [
     realPracticeScreenOne,
-    realPracticeScreenTwo,
     realPracticeScreenThree,
     realPracticeScreenFour,
   ];

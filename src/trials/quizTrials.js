@@ -19,7 +19,6 @@ const blueOrGreen = [
 
 const quizPrompts = [
   `${lang.quiz.prompt.more_pumps}`,
-  `${lang.quiz.prompt.reward_certainty_reach_spike}`,
   `${lang.quiz.prompt.bonus_blue}`,
   `${lang.quiz.prompt.bonus_green}`,
   `${lang.quiz.prompt.total_shown}`,
@@ -28,7 +27,6 @@ const quizPrompts = [
 ];
 
 const quizRules = [
-  `${lang.quiz.rules.shown_probability}`,
   `${lang.quiz.rules.shown_blue_green_on_screen}`,
   `${lang.quiz.rules.job}`,
   `${lang.quiz.rules.blue_req_20}`,
@@ -68,11 +66,6 @@ const quiz = (blockSettings) => {
     },
     {
       prompt: quizPrompts[4],
-      options: quizOptions(),
-      required: true,
-    },
-    {
-      prompt: quizPrompts[5],
       options: quizOptions(),
       required: true,
     },
@@ -163,7 +156,6 @@ const retakeLoop = (blockSettings) => {
       const correctAnswers = [
         `${lang.quiz.answer_opts.green}`,
         `${lang.quiz.answer_opts.false}`,
-        `${lang.quiz.answer_opts.false}`,
         `${lang.quiz.answer_opts.true}`,
         `${lang.quiz.answer_opts.true}`,
         `${lang.quiz.answer_opts.true}`,
@@ -191,8 +183,7 @@ const checkRetake = (blockSettings) => {
       const prevAnswers = prevData.answer;
 
       const correctAnswers = [
-        `${lang.quiz.answer_opts.green}`,
-        `${lang.quiz.answer_opts.false}`,
+        `${lang.quiz.answer_opts.green}`,  
         `${lang.quiz.answer_opts.false}`,
         `${lang.quiz.answer_opts.true}`,
         `${lang.quiz.answer_opts.true}`,
