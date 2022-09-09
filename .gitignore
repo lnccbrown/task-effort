@@ -25,3 +25,8 @@ psiturkit/*_turk
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
 .vs/Effort-Task-3/v16/.suo
+.vs/Effort-Task-3/v16/.suo
+*.sqlite
+.vs/Effort-Task-3/v16/.suo
+*.json
+*.sqlite
