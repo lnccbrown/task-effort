@@ -30,3 +30,4 @@ psiturkit/*_turk
 .vs/Effort-Task-3/v16/.suo
 *.json
 *.sqlite
+package-lock.json
