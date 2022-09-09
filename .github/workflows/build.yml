@@ -15,6 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         eeg: [true, false]
         os: [ubuntu-latest, macOS-latest, windows-2019]
