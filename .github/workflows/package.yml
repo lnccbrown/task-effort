@@ -1,0 +1,89 @@
+name: package
+
+on:
+  workflow_dispatch:
+    inputs:
+      eeg:
+        description: Build with or without eeg
+        required: true
+        default: false
+        type: boolean
+      os:
+        description: Which OS to target - 'win', 'mac', 'linux', 'all'
+        required: true
+        default: 'win'
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{
+          (github.event.inputs.os == 'all' && fromJSON('["ubuntu-latest", "macOS-latest", "windows-latest"]')) ||
+           (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
+           (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
+           (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
+
+    steps:
+      # Rewrite "git:" repo urls to use "https:" instead, since GitHub Actions blocks port 9418 (as of Jan 2022).
+      - name: Rewrite "git:" repo urls to use "https:" instead.
+        run: git config --global url."https://github.com/".insteadOf "git://github.com/"
+
+      # Set up js package
+      - uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      # install, test, build package
+      - name: npm install
+        run: npm install
+      - name: npm build
+        run: npm run build
+        env:
+          REACT_APP_AT_HOME: ${{ github.event.inputs.eeg }}
+
+      - name: npm test
+        run: npm test
+        env:
+          CI: true
+          REACT_APP_AT_HOME: ${{ github.event.inputs.eeg }}
+
+
+      # Build electron app package installers
+      - name: package electron - windows
+        if: startsWith(matrix.os, 'windows')
+        run: npm run package:windows
+      - name: package electron - linux
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run package:linux
+      - name: package electron - mac
+        if: startsWith(matrix.os, 'mac')
+        run: npm run package:mac
+
+      # Upload installers to github release
+      - name: Upload app to release - windows
+        if: startsWith(matrix.os, 'windows')
+        uses: actions/upload-artifact@master
+        with:
+          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload app to release - linux
+        if: startsWith(matrix.os, 'ubuntu')
+        uses: actions/upload-artifact@master
+        with:
+          files: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload app to release - mac
+        if: startsWith(matrix.os, 'mac')
+        uses: actions/upload-artifact@master
+        with:
+          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
