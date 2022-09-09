@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         eeg: [true, false]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
         exclude: 
           # exclude eeg builds for mac and linux
           - os: ubuntu-latest
