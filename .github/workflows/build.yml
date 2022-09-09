@@ -19,11 +19,11 @@ jobs:
         eeg: [true, false]
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude: 
-          # exclude clinic video on ubuntu-latest 
+          # exclude eeg builds for mac and linux
           - os: ubuntu-latest
-            setting: clinic
+            eeg: true
           - os: macOS-latest
-            setting: clinic
+            eeg: true
             
     steps:
       # Rewrite "git:" repo urls to use "https:" instead, since GitHub Actions blocks port 9418 (as of Jan 2022).
