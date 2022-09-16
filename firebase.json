@@ -15,9 +15,11 @@
       "**/src/**",
       "**/public/**"
     ],
-    "rewrites": [{
-      "source": "build",
-      "destination": "/index.html"
-    }]
+    "rewrites": [
+      {
+        "source": "build",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
