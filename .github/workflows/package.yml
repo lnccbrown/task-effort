@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         os: ${{
-          (github.event.inputs.os == 'all' && fromJSON('["ubuntu-latest", "macOS-latest", "windows-latest"]')) ||
-           (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
+          (github.event.inputs.os == 'all' && fromJSON('["ubuntu-latest", "macOS-latest", "windows-2019"]')) ||
+           (github.event.inputs.os == 'win' && fromJSON('["windows-2019"]')) ||
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
 
