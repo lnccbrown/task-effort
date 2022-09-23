@@ -13,7 +13,10 @@ const config = {
   measurementId: process.env.REACT_APP_measurementId,
 };
 // Get a Firestore instance
-const db = firebase.initializeApp(config).firestore();
+const db = () => {
+  console.log(config)
+  firebase.initializeApp(config).firestore();
+}
 
 // Add data to db
 const createFirebaseDocument = (uniqueId) => {
