@@ -72,22 +72,25 @@ jobs:
       # Upload installers to github release
       - name: Upload app to release - windows
         if: startsWith(matrix.os, 'windows')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          name: ${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload app to release - linux
         if: startsWith(matrix.os, 'ubuntu')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          name: ${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload app to release - mac
         if: startsWith(matrix.os, 'mac')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+          name: ${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
