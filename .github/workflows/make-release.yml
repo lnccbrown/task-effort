@@ -34,7 +34,9 @@ jobs:
           node-version: 14.x
 
       - name: Set package version and name
-        uses: brown-ccv/gh-actions/get-package-info@main
+        run: |
+          echo "::set-output name=package_version::$(node -e "console.log(require('./package.json').version);")"
+          echo "::set-output name=package_name::$(node -e "console.log(require('./package.json').name);")"
         id: package_info
 
       # install and build package
