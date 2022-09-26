@@ -16,7 +16,7 @@ exptBlock1.get_reward = [true, true, true, false];
 exptBlock1.num_breaks = 3;
 
 // overwrite values for RemoveProbability experiments
-if(process.env.REACT_APP_exptOverload === "remove-probability"){
+if(process.env.REACT_APP_settingsOverload === "remove-probability"){
     exptBlock1.probs = ["100%", "100%"];
     exptBlock1.get_subset = false;
     exptBlock1.get_reward = [true, true];
