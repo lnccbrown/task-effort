@@ -12,28 +12,39 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        eeg: [true, false]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
+        exclude: 
+          # exclude eeg builds for mac and linux
+          - os: ubuntu-latest
+            eeg: true
+          - os: macOS-latest
+            eeg: true
 
     steps:
-      # Set up js package
+      # Rewrite "git:" repo urls to use "https:" instead, since GitHub Actions blocks port 9418 (as of Jan 2022).
+      - name: Rewrite "git:" repo urls to use "https:" instead.
+        run: git config --global url."https://github.com/".insteadOf "git://github.com/"
+      
       - uses: actions/checkout@v1
-      - name: Use Node.js
+
+      - name: Set up Node 14
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
+
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info
 
-      # install, test, build package
+      # install and build package
       - name: npm install
         run: npm install
+
       - name: npm build
         run: npm run build
-      - name: npm test
-        run: npm test
         env:
-          CI: true
+          REACT_APP_AT_HOME: ${{ matrix.eeg }}
 
       # Build electron app package installers
       - name: package electron - windows
@@ -45,6 +56,8 @@ jobs:
       - name: package electron - mac
         if: startsWith(matrix.os, 'mac')
         run: npm run package:mac
+
+      # Mac builds need special care to work  
       - name: npm rebuild - mac
         if: startsWith(matrix.os, 'mac')
         run: npm rebuild
@@ -76,36 +89,38 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Build PsiTurk - linux only
-      - name: Set up Python 3.7
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-      - name: Install PsiTurk
-        if: startsWith(matrix.os, 'ubuntu')
-        run: pip install psiturk
-      - name: PsiTurk Build
-        if: startsWith(matrix.os, 'ubuntu')
-        run: npm run build:turk
-        env:
-          CI: true
-          REACT_APP_AT_HOME: true
-          REACT_APP_FIREBASE: false
-          REACT_APP_TURK: true
-      - name: Create Psiturk Build
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          cd psiturkit
-          ./psiturk-it -p ${{ steps.package_info.outputs.package_name }}-psiturk
-          cd ..
-          tar -cvzf ${{ steps.package_info.outputs.package_name }}-psiturk.tar.gz psiturkit/${{ steps.package_info.outputs.package_name }}-psiturk
-      - name: Upload PsiTurk build to release
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
-        with:
-          files: ${{ steps.package_info.outputs.package_name }}-psiturk.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Set up Python 3.7
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   uses: actions/setup-python@v1
+      #   with:
+      #     python-version: 3.7
+      # - name: Install PsiTurk
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: pip install psiturk
+      # - name: PsiTurk Build
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: npm run build:turk
+      #   env:
+      #     CI: true
+      #     REACT_APP_AT_HOME: true
+      #     REACT_APP_FIREBASE: false
+      #     REACT_APP_TURK: true
+      # - name: Create Psiturk Build
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: |
+      #     cd psiturkit
+      #     ./psiturk-it -p ${{ steps.package_info.outputs.package_name }}-psiturk
+      #     cd ..
+      #     tar -cvzf ${{ steps.package_info.outputs.package_name }}-psiturk.tar.gz psiturkit/${{ steps.package_info.outputs.package_name }}-psiturk
+      # - name: Upload PsiTurk build to release
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: ${{ steps.package_info.outputs.package_name }}-psiturk.tar.gz
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      
       # Update github pages - linux only
       # - name: Deploy to GH Pages
       #   if: startsWith(matrix.os, 'ubuntu')

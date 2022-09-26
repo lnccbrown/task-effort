@@ -12,7 +12,7 @@ jobs:
        # Rewrite "git:" repo urls to use "https:" instead, since GitHub Actions blocks port 9418 (as of Jan 2022).
       - name: Rewrite "git:" repo urls to use "https:" instead.
         run: git config --global url."https://github.com/".insteadOf "git://github.com/"
-      - name: Setup node 16
+      - name: Setup node 14
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
