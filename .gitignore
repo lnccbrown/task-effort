@@ -14,7 +14,6 @@
 
 # misc
 .DS_Store
-.env*
 .env
 *.vs
 npm-debug.log*

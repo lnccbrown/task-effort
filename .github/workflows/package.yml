@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         os: ${{
-          (github.event.inputs.os == 'all' && fromJSON('["ubuntu-latest", "macOS-latest", "windows-latest"]')) ||
-           (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
+          (github.event.inputs.os == 'all' && fromJSON('["ubuntu-latest", "macOS-latest", "windows-2019"]')) ||
+           (github.event.inputs.os == 'win' && fromJSON('["windows-2019"]')) ||
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
 
@@ -32,27 +32,27 @@ jobs:
       - name: Rewrite "git:" repo urls to use "https:" instead.
         run: git config --global url."https://github.com/".insteadOf "git://github.com/"
 
-      # Set up js package
+
       - uses: actions/checkout@v1
-      - name: Use Node.js
+
+      - name: Set up Node 14
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
+          
+      - name: Set package version and name
+        run: |
+          echo "::set-output name=package_version::$(node -e "console.log(require('./package.json').version);")"
+          echo "::set-output name=package_name::$(node -e "console.log(require('./package.json').name);")"
+        id: package_info
 
-      # install, test, build package
+      # install and build 
       - name: npm install
         run: npm install
       - name: npm build
         run: npm run build
         env:
           REACT_APP_AT_HOME: ${{ github.event.inputs.eeg }}
-
-      - name: npm test
-        run: npm test
-        env:
-          CI: true
-          REACT_APP_AT_HOME: ${{ github.event.inputs.eeg }}
-
 
       # Build electron app package installers
       - name: package electron - windows
@@ -65,25 +65,41 @@ jobs:
         if: startsWith(matrix.os, 'mac')
         run: npm run package:mac
 
+      # Mac builds need special care to work  
+      - name: npm rebuild - mac
+        if: startsWith(matrix.os, 'mac')
+        run: npm rebuild
+      - name: Mac installer
+        if: startsWith(matrix.os, 'mac')
+        run: npm run installer:mac
+
       # Upload installers to github release
       - name: Upload app to release - windows
         if: startsWith(matrix.os, 'windows')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          name: ${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List dist dir - windows
+        if: startsWith(matrix.os, 'windows')
+        run: ls dist/installers
+
       - name: Upload app to release - linux
         if: startsWith(matrix.os, 'ubuntu')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          name: ${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload app to release - mac
         if: startsWith(matrix.os, 'mac')
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          files: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+          name: ${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
