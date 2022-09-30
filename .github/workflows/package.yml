@@ -74,9 +74,6 @@ jobs:
         run: npm run installer:mac
 
       # Upload installers to github release
-      - name: List dist dir - windows
-        if: startsWith(matrix.os, 'windows')
-        run: ls -la dist/installers
       - name: Upload app to release - windows
         if: startsWith(matrix.os, 'windows')
         uses: actions/upload-artifact@v3
@@ -85,6 +82,11 @@ jobs:
           path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List dist dir - windows
+        if: startsWith(matrix.os, 'windows')
+        run: ls dist/installers
+
       - name: Upload app to release - linux
         if: startsWith(matrix.os, 'ubuntu')
         uses: actions/upload-artifact@v3
