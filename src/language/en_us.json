@@ -70,9 +70,13 @@
       "more_pumps": "1. Which balloon requires more pumps? <span class='text-blue'><b>BLUE</b></span> or <span class='text-green'><b>GREEN</b></span>?",
       "reward_certainty_reach_spike": "2. True or False: You will <u>ALWAYS</u> get points once you reach the spike.",
       "bonus_blue": "3. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
+      "bonus_blue_np": "2. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
       "bonus_green": "4. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
+      "bonus_green_np":"3. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
       "total_shown": "5. True or False: You will be shown your total number of points after each round.",
-      "points_to_money": "6. True or False: You will receive real money from your total number of points at the end of the task."
+      "total_shown_np":"4. True or False: You will be shown your total number of points after each round.",
+      "points_to_money": "6. True or False: You will receive real money from your total number of points at the end of the task.",
+      "points_to_money_np":"5. True or False: You will receive real money from your total number of points at the end of the task."
     },
     "rules": {
       "preface": "Summary of Instructions/Rules:",

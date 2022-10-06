@@ -54,6 +54,7 @@
     "electron": "electron .",
     "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "dev": "concurrently --kill-others \"npm:start\" \"delay 5 && npm run electron-dev\"",
+    "dev:prob": "dotenv -e env/.env.home-lncc npm run dev" ,
     "dev:home": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "dev:clinic": "REACT_APP_AT_HOME=\"true\" npm run dev",
     "dev:firebase": "dotenv -e env/.env.firebase npm run dev",

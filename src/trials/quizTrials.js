@@ -17,27 +17,72 @@ const blueOrGreen = [
   `${lang.quiz.answer_opts.green}`,
 ];
 
-const quizPrompts = [
-  `${lang.quiz.prompt.more_pumps}`,
-  `${lang.quiz.prompt.reward_certainty_reach_spike}`,
-  `${lang.quiz.prompt.bonus_blue}`,
-  `${lang.quiz.prompt.bonus_green}`,
-  `${lang.quiz.prompt.total_shown}`,
-  `${lang.quiz.prompt.points_to_money}`,
-  `${lang.quiz.retake}`,
-];
+//If conditionals for no-prob
+let quizPrompts = []
+let quizRules = []
+if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+  quizPrompts = [
+    `${lang.quiz.prompt.more_pumps}`,
+    `${lang.quiz.prompt.bonus_blue}`,
+    `${lang.quiz.prompt.bonus_green}`,
+    `${lang.quiz.prompt.total_shown}`,
+    `${lang.quiz.prompt.points_to_money}`,
+    `${lang.quiz.retake}`
+  ];
+  quizRules = [
+    `${lang.quiz.rules.shown_blue_green_on_screen}`,
+    `${lang.quiz.rules.job}`,
+    `${lang.quiz.rules.blue_req_20}`,
+    `${lang.quiz.rules.green_vary_bonus}`,
+    `${lang.quiz.rules.twenty_five_secs_green}`,
+    `${lang.quiz.rules.bonus_green_spike}`,
+    `${lang.quiz.any_questions}`,
+    `${lang.quiz.retake}`
+  ];
+}
+else{
+  quizPrompts = [
+    `${lang.quiz.prompt.more_pumps}`,
+    `${lang.quiz.prompt.reward_certainty_reach_spike}`,
+    `${lang.quiz.prompt.bonus_blue_np}`,
+    `${lang.quiz.prompt.bonus_green_np}`,
+    `${lang.quiz.prompt.total_shown_np}`,
+    `${lang.quiz.prompt.points_to_money_np}`,
+    `${lang.quiz.retake}`,
+  ];
+  quizRules = [
+    `${lang.quiz.rules.shown_probability}`,
+    `${lang.quiz.rules.shown_blue_green_on_screen}`,
+    `${lang.quiz.rules.job}`,
+    `${lang.quiz.rules.blue_req_20}`,
+    `${lang.quiz.rules.green_vary_bonus}`,
+    `${lang.quiz.rules.twenty_five_secs_green}`,
+    `${lang.quiz.rules.bonus_green_spike}`,
+    `${lang.quiz.any_questions}`,
+    `${lang.quiz.retake}`,
+  ];
+}
+// const quizPrompts = [
+//   `${lang.quiz.prompt.more_pumps}`,
+//   `${lang.quiz.prompt.reward_certainty_reach_spike}`,
+//   `${lang.quiz.prompt.bonus_blue}`,
+//   `${lang.quiz.prompt.bonus_green}`,
+//   `${lang.quiz.prompt.total_shown}`,
+//   `${lang.quiz.prompt.points_to_money}`,
+//   `${lang.quiz.retake}`,
+// ];
 
-const quizRules = [
-  `${lang.quiz.rules.shown_probability}`,
-  `${lang.quiz.rules.shown_blue_green_on_screen}`,
-  `${lang.quiz.rules.job}`,
-  `${lang.quiz.rules.blue_req_20}`,
-  `${lang.quiz.rules.green_vary_bonus}`,
-  `${lang.quiz.rules.twenty_five_secs_green}`,
-  `${lang.quiz.rules.bonus_green_spike}`,
-  `${lang.quiz.any_questions}`,
-  `${lang.quiz.retake}`,
-];
+// const quizRules = [
+//   `${lang.quiz.rules.shown_probability}`,
+//   `${lang.quiz.rules.shown_blue_green_on_screen}`,
+//   `${lang.quiz.rules.job}`,
+//   `${lang.quiz.rules.blue_req_20}`,
+//   `${lang.quiz.rules.green_vary_bonus}`,
+//   `${lang.quiz.rules.twenty_five_secs_green}`,
+//   `${lang.quiz.rules.bonus_green_spike}`,
+//   `${lang.quiz.any_questions}`,
+//   `${lang.quiz.retake}`,
+// ];
 
 // Quiz Trial
 const quiz = (blockSettings) => {
@@ -49,7 +94,7 @@ const quiz = (blockSettings) => {
     {
       prompt: quizPrompts[0],
       options: blueOrGreen,
-      required: true,
+      required: true, 
     },
     {
       prompt: quizPrompts[1],
@@ -71,6 +116,7 @@ const quiz = (blockSettings) => {
       options: quizOptions(),
       required: true,
     },
+    ///how do we if in here
     {
       prompt: quizPrompts[5],
       options: quizOptions(),
