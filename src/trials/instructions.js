@@ -75,8 +75,6 @@ const realPracticeScreenOne = baseStimulus(
   true
 );
 
-
-
 const realPracticeScreenTwo = baseStimulus(
   `
     <div class='instructions'>
@@ -177,12 +175,13 @@ const greenPracticeInstructions = () => {
 
 // Conditionals here to not display a realPracticeScreenTwo on remove-probability
 const realPracticeInstructions = () => {
-  let realPracticeInstructionsArray = 
-   [realPracticeScreenOne,
+  let realPracticeInstructionsArray = [
+    realPracticeScreenOne,
     realPracticeScreenTwo,
     realPracticeScreenThree,
-    realPracticeScreenFour]
-  if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+    realPracticeScreenFour,
+  ];
+  if (process.env.REACT_APP_settingsOverload === "remove-probability") {
     realPracticeInstructionsArray.splice(1, 1);
   }
 
@@ -195,10 +194,6 @@ const realPracticeInstructions = () => {
     },
   };
 };
-;
-
-
-
 // Instructions after practice trials
 const postPracticeInstructions = () => {
   let postPracticeInstructionsArray = [readyScreen];
