@@ -123,6 +123,10 @@ const quiz = (blockSettings) => {
       required: true,
     },
   ];
+  //quizprompt[5] doesn't exist when there's no probability
+  if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+    questions.splice(5, 1);
+  }
 
   return {
     type: "survey_multi_choice",
@@ -206,7 +210,7 @@ const retakeLoop = (blockSettings) => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
 
-      const correctAnswers = [
+      let correctAnswers = [
         `${lang.quiz.answer_opts.green}`,
         `${lang.quiz.answer_opts.false}`,
         `${lang.quiz.answer_opts.false}`,
@@ -214,6 +218,11 @@ const retakeLoop = (blockSettings) => {
         `${lang.quiz.answer_opts.true}`,
         `${lang.quiz.answer_opts.true}`,
       ];
+
+      //Remove the 2nd element if no-prob
+      if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+        correctAnswers.splice(2, 1);
+      }
 
       if (
         JSON.stringify(prevAnswers.slice(0, 6)) !==
@@ -236,7 +245,7 @@ const checkRetake = (blockSettings) => {
       const prevData = jsPsych.data.getLastTrialData().values()[0];
       const prevAnswers = prevData.answer;
 
-      const correctAnswers = [
+      let correctAnswers = [
         `${lang.quiz.answer_opts.green}`,
         `${lang.quiz.answer_opts.false}`,
         `${lang.quiz.answer_opts.false}`,
@@ -244,6 +253,19 @@ const checkRetake = (blockSettings) => {
         `${lang.quiz.answer_opts.true}`,
         `${lang.quiz.answer_opts.true}`,
       ];
+
+      //different correctAnswers if no-prob
+      if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+        correctAnswers = [
+          `${lang.quiz.answer_opts.green}`,  
+          `${lang.quiz.answer_opts.false}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`,
+          `${lang.quiz.answer_opts.true}`,
+        ]
+      }
+
+
 
       if (
         JSON.stringify(prevAnswers.slice(0, 6)) !==
