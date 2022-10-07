@@ -40,14 +40,15 @@ if(process.env.REACT_APP_settingsOverload === "remove-probability"){
     `${lang.quiz.retake}`
   ];
 }
+    
 else{
   quizPrompts = [
     `${lang.quiz.prompt.more_pumps}`,
     `${lang.quiz.prompt.reward_certainty_reach_spike}`,
-    `${lang.quiz.prompt.bonus_blue_np}`,
-    `${lang.quiz.prompt.bonus_green_np}`,
-    `${lang.quiz.prompt.total_shown_np}`,
-    `${lang.quiz.prompt.points_to_money_np}`,
+    `${lang.quiz.prompt.bonus_blue}`,
+    `${lang.quiz.prompt.bonus_green}`,
+    `${lang.quiz.prompt.total_shown}`,
+    `${lang.quiz.prompt.points_to_money}`,
     `${lang.quiz.retake}`,
   ];
   quizRules = [
