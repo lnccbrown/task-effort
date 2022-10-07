@@ -22,68 +22,47 @@ let quizPrompts = []
 let quizRules = []
 if(process.env.REACT_APP_settingsOverload === "remove-probability"){
   quizPrompts = [
-    `${lang.quiz.prompt.more_pumps_np}`,
-    `${lang.quiz.prompt.bonus_blue_np}`,
-    `${lang.quiz.prompt.bonus_green_np}`,
-    `${lang.quiz.prompt.total_shown_np}`,
-    `${lang.quiz.prompt.points_to_money_np}`,
-    `${lang.quiz.retake}`
+    `1. ${lang.quiz.prompt.more_pumps}`,
+    `2. ${lang.quiz.prompt.bonus_blue_np}`,
+    `3. ${lang.quiz.prompt.bonus_green_np}`,
+    `4. ${lang.quiz.prompt.total_shown_np}`,
+    `5. ${lang.quiz.prompt.points_to_money_np}`,
+    `6. ${lang.quiz.retake}`
   ];
   quizRules = [
-    `${lang.quiz.rules.shown_blue_green_on_screen}`,
-    `${lang.quiz.rules.job}`,
-    `${lang.quiz.rules.blue_req_20}`,
-    `${lang.quiz.rules.green_vary_bonus}`,
-    `${lang.quiz.rules.twenty_five_secs_green}`,
-    `${lang.quiz.rules.bonus_green_spike}`,
-    `${lang.quiz.any_questions}`,
-    `${lang.quiz.retake}`
+    `1. ${lang.quiz.rules.shown_blue_green_on_screen}`,
+    `2. ${lang.quiz.rules.job}`,
+    `3. ${lang.quiz.rules.blue_req_20}`,
+    `4. ${lang.quiz.rules.green_vary_bonus}`,
+    `5. ${lang.quiz.rules.twenty_five_secs_green}`,
+    `6. ${lang.quiz.rules.bonus_green_spike}`,
+    `7. ${lang.quiz.any_questions}`,
+    `8. ${lang.quiz.retake}`
   ];
 }
     
 else{
   quizPrompts = [
-    `${lang.quiz.prompt.more_pumps}`,
-    `${lang.quiz.prompt.reward_certainty_reach_spike}`,
-    `${lang.quiz.prompt.bonus_blue}`,
-    `${lang.quiz.prompt.bonus_green}`,
-    `${lang.quiz.prompt.total_shown}`,
-    `${lang.quiz.prompt.points_to_money}`,
+    `1. ${lang.quiz.prompt.more_pumps}`,
+    `2. ${lang.quiz.prompt.reward_certainty_reach_spike}`,
+    `3. ${lang.quiz.prompt.bonus_blue}`,
+    `4. ${lang.quiz.prompt.bonus_green}`,
+    `5. ${lang.quiz.prompt.total_shown}`,
+    `6. ${lang.quiz.prompt.points_to_money}`,
     `${lang.quiz.retake}`,
   ];
   quizRules = [
-    `${lang.quiz.rules.shown_probability}`,
-    `${lang.quiz.rules.shown_blue_green_on_screen}`,
-    `${lang.quiz.rules.job}`,
-    `${lang.quiz.rules.blue_req_20}`,
-    `${lang.quiz.rules.green_vary_bonus}`,
-    `${lang.quiz.rules.twenty_five_secs_green}`,
-    `${lang.quiz.rules.bonus_green_spike}`,
-    `${lang.quiz.any_questions}`,
+    `1. ${lang.quiz.rules.shown_probability}`,
+    `2. ${lang.quiz.rules.shown_blue_green_on_screen}`,
+    `3. ${lang.quiz.rules.job}`,
+    `4. ${lang.quiz.rules.blue_req_20}`,
+    `5. ${lang.quiz.rules.green_vary_bonus}`,
+    `6. ${lang.quiz.rules.twenty_five_secs_green}`,
+    `7. ${lang.quiz.rules.bonus_green_spike}`,
+    `8. ${lang.quiz.any_questions}`,
     `${lang.quiz.retake}`,
   ];
 }
-// const quizPrompts = [
-//   `${lang.quiz.prompt.more_pumps}`,
-//   `${lang.quiz.prompt.reward_certainty_reach_spike}`,
-//   `${lang.quiz.prompt.bonus_blue}`,
-//   `${lang.quiz.prompt.bonus_green}`,
-//   `${lang.quiz.prompt.total_shown}`,
-//   `${lang.quiz.prompt.points_to_money}`,
-//   `${lang.quiz.retake}`,
-// ];
-
-// const quizRules = [
-//   `${lang.quiz.rules.shown_probability}`,
-//   `${lang.quiz.rules.shown_blue_green_on_screen}`,
-//   `${lang.quiz.rules.job}`,
-//   `${lang.quiz.rules.blue_req_20}`,
-//   `${lang.quiz.rules.green_vary_bonus}`,
-//   `${lang.quiz.rules.twenty_five_secs_green}`,
-//   `${lang.quiz.rules.bonus_green_spike}`,
-//   `${lang.quiz.any_questions}`,
-//   `${lang.quiz.retake}`,
-// ];
 
 // Quiz Trial
 const quiz = (blockSettings) => {
@@ -96,41 +75,28 @@ const quiz = (blockSettings) => {
       prompt: quizPrompts[0],
       options: blueOrGreen,
       required: true, 
-    },
-    {
-      prompt: quizPrompts[1],
-      options: quizOptions(),
-      required: true,
-    },
-    {
-      prompt: quizPrompts[2],
-      options: quizOptions(),
-      required: true,
-    },
-    {
-      prompt: quizPrompts[3],
-      options: quizOptions(),
-      required: true,
-    },
-    {
-      prompt: quizPrompts[4],
-      options: quizOptions(),
-      required: true,
-    },
-    ///how do we if in here
-    {
-      prompt: quizPrompts[5],
-      options: quizOptions(),
-      required: true,
-    },
-  ];
-  //quizprompt[5] doesn't exist when there's no probability
-  if(process.env.REACT_APP_settingsOverload === "remove-probability"){
-    questions.splice(5, 1);
+    }
+  ]
+
+  for (let i=1; i < quizPrompts.length - 1; i++){
+    questions.push(
+      {
+        prompt: quizPrompts[i],
+        options: quizOptions(),
+        required: true
+      }
+    )
   }
+
+  //TODO: Why does the 'Continue' button disappear when questions is longer than 5? What is referencing questions.length
+  // questions.push({
+  //   prompt:`${lang.quiz.retake}`},
+  //   lang.prompt.continue.button
+  //   )
 
   return {
     type: "survey_multi_choice",
+    show_clickable_nav: true,
     preamble: preamble,
     questions: questions,
     on_load: () => {
@@ -167,25 +133,26 @@ const retakeFeedback = (blockSettings) => {
 };
 
 const reshowRules = (blockSettings) => {
-  let rules = [
-    quizRules[0] +
-      "<br></br>" +
-      quizRules[1] +
-      "<br></br>" +
-      quizRules[2] +
-      "<br></br>" +
-      quizRules[3] +
-      "<br></br>" +
-      quizRules[4] +
-      "<br></br>" +
-      quizRules[5] +
-      "<br></br>" +
-      quizRules[6] +
-      "<br></br>" +
-      quizRules[7] +
-      "<br></br>" +
-      quizRules[8],
-  ];
+  let rules = quizRules.join("<br></br>")
+  // let rules = [
+  //   quizRules[0] +
+  //     "<br></br>" +
+  //     quizRules[1] +
+  //     "<br></br>" +
+  //     quizRules[2] +
+  //     "<br></br>" +
+  //     quizRules[3] +
+  //     "<br></br>" +
+  //     quizRules[4] +
+  //     "<br></br>" +
+  //     quizRules[5] +
+  //     "<br></br>" +
+  //     quizRules[6] +
+  //     "<br></br>" +
+  //     quizRules[7] +
+  //     "<br></br>" +
+  //     quizRules[8],
+  // ];
 
   return {
     type: "html_keyboard_response",

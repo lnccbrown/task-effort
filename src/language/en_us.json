@@ -67,26 +67,26 @@
     "retake": "<b>Press any key to retake the quiz.</b>",
     "any_questions": "Do you have any questions?",
     "prompt": {
-      "more_pumps": "1. Which balloon requires more pumps? <span class='text-blue'><b>BLUE</b></span> or <span class='text-green'><b>GREEN</b></span>?",
-      "reward_certainty_reach_spike": "2. True or False: You will <u>ALWAYS</u> get points once you reach the spike.",
-      "bonus_blue": "3. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
-      "bonus_blue_np": "2. True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
-      "bonus_green": "4. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
-      "bonus_green_np":"3. True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
-      "total_shown": "5. True or False: You will be shown your total number of points after each round.",
-      "total_shown_np":"4. True or False: You will be shown your total number of points after each round.",
-      "points_to_money": "6. True or False: You will receive real money from your total number of points at the end of the task.",
-      "points_to_money_np":"5. True or False: You will receive real money from your total number of points at the end of the task."
+      "more_pumps": "Which balloon requires more pumps? <span class='text-blue'><b>BLUE</b></span> or <span class='text-green'><b>GREEN</b></span>?",
+      "reward_certainty_reach_spike": "True or False: You will <u>ALWAYS</u> get points once you reach the spike.",
+      "bonus_blue": "True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
+      "bonus_blue_np": "True or False: You can get bonus points on the <span class='text-blue'><b>BLUE</b></span> balloon.",
+      "bonus_green": "True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
+      "bonus_green_np":"True or False: You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon.",
+      "total_shown": "True or False: You will be shown your total number of points after each round.",
+      "total_shown_np":"True or False: You will be shown your total number of points after each round.",
+      "points_to_money": "True or False: You will receive real money from your total number of points at the end of the task.",
+      "points_to_money_np":"True or False: You will receive real money from your total number of points at the end of the task."
     },
     "rules": {
       "preface": "Summary of Instructions/Rules:",
-      "shown_probability": "1. You will be shown the probability of earning points for a round.",
-      "shown_blue_green_on_screen": "2. You will be shown a <span class='text-blue'><b>BLUE</b></span> balloon and a <span class='text-green'><b>GREEN</b></span> balloon on the screen.",
-      "job": "3. Your job is to choose which balloon to pump up.",
-      "blue_req_20": "4. The <span class='text-blue'><b>BLUE</b></span> balloon will ALWAYS require 20 pumps to reach the spike and can give 1 point.",
-      "green_vary_bonus": "5. The <span class='text-green'><b>GREEN</b></span> balloon will <u>VARY</u> in pumps required and can give bonus points.",
-      "twenty_five_secs_green": "6. You have 25 seconds to pump the <span class='text-green'><b>GREEN</b></span> balloon in order to receive all points possible.",
-      "bonus_green_spike": "7. You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon for pumping it up past the spike."
+      "shown_probability": "You will be shown the probability of earning points for a round.",
+      "shown_blue_green_on_screen": "You will be shown a <span class='text-blue'><b>BLUE</b></span> balloon and a <span class='text-green'><b>GREEN</b></span> balloon on the screen.",
+      "job": "Your job is to choose which balloon to pump up.",
+      "blue_req_20": "The <span class='text-blue'><b>BLUE</b></span> balloon will ALWAYS require 20 pumps to reach the spike and can give 1 point.",
+      "green_vary_bonus": "The <span class='text-green'><b>GREEN</b></span> balloon will <u>VARY</u> in pumps required and can give bonus points.",
+      "twenty_five_secs_green": "You have 25 seconds to pump the <span class='text-green'><b>GREEN</b></span> balloon in order to receive all points possible.",
+      "bonus_green_spike": "You can get bonus points on the <span class='text-green'><b>GREEN</b></span> balloon for pumping it up past the spike."
     },
     "answer_opts": {
       "true": "TRUE",

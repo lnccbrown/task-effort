@@ -23,6 +23,7 @@ practiceBlock2.is_practice = true;
 practiceBlock2.probs = ["100%"];
 practiceBlock2.value = [0, 5];
 practiceBlock2.effort = [0, 200];
+//TODO: change back to F,T  
 practiceBlock2.high_effort = [false, true];
 practiceBlock2.keys = ["p"];
 practiceBlock2.get_reward = [true, true];
