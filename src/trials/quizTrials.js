@@ -22,11 +22,11 @@ let quizPrompts = []
 let quizRules = []
 if(process.env.REACT_APP_settingsOverload === "remove-probability"){
   quizPrompts = [
-    `${lang.quiz.prompt.more_pumps}`,
-    `${lang.quiz.prompt.bonus_blue}`,
-    `${lang.quiz.prompt.bonus_green}`,
-    `${lang.quiz.prompt.total_shown}`,
-    `${lang.quiz.prompt.points_to_money}`,
+    `${lang.quiz.prompt.more_pumps_np}`,
+    `${lang.quiz.prompt.bonus_blue_np}`,
+    `${lang.quiz.prompt.bonus_green_np}`,
+    `${lang.quiz.prompt.total_shown_np}`,
+    `${lang.quiz.prompt.points_to_money_np}`,
     `${lang.quiz.retake}`
   ];
   quizRules = [
