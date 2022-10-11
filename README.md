@@ -63,6 +63,8 @@ If your lab plans on deploying this task to your onw Firebase, but you do not ex
 
 ![Forking the repo](fork.png?raw=true "Forking the Repo"). When forking the repository you may be asked to install GitHub Desktop App. This is a convenient way to do it, so follow those instructions.
 
+2. If your fork is out of sync, you can syn it following [these instructions](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
+
 2. Create a Firebase project
 
 3. Install the Firebase Command Line Tools . Instructions [here](https://firebase.google.com/docs/cli)
