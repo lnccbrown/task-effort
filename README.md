@@ -59,9 +59,14 @@ Once you have deleted both of these .json files, you should be able to use a Sub
 
 If your lab plans on deploying this task to your onw Firebase, but you do not expect to develop further changes and only deploy changes as developed by Brown, follow the following instructions
 
-1. Fork the repository https://github.com/lnccbrown/task-effort.git. Forking only the main branch should is sufficient
+1. Fork the repository https://github.com/lnccbrown/task-effort.git. 
+
 
 ![Forking the repo](fork.png?raw=true "Forking the Repo"). When forking the repository you may be asked to install GitHub Desktop App. This is a convenient way to do it, so follow those instructions.
+
+* Forking only the main branch is sufficient
+* When forking it will ask you how you'll be using this fork. Select, for my own purposes
+
 
 2. If your fork is out of sync, you can syn it following [these instructions](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
 
@@ -78,6 +83,8 @@ In Github Desktop App, select Branch -> New. Type your lab name, and select to s
 5. Open the repository, and make sure you are in your lab's branch
 
 6. Fill-in the details for your Firebase project in the `env/.env.firebase-<lab>` file
+
+You can follow the instructions detailed [here](https://brown-ccv.github.io/honeycomb-docs/docs/firebase#3-copying-web-app-credentials)
 
 7. Commit and push your changes.
 
