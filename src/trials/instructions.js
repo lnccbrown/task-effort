@@ -172,6 +172,8 @@ const greenPracticeInstructions = () => {
 
 // Instruction screens re: 1 real practice trials
 // where both balloons are possible choices
+
+// Conditionals here to not display a realPracticeScreenTwo on remove-probability
 const realPracticeInstructions = () => {
   let realPracticeInstructionsArray = [
     realPracticeScreenOne,
@@ -179,6 +181,9 @@ const realPracticeInstructions = () => {
     realPracticeScreenThree,
     realPracticeScreenFour,
   ];
+  if (process.env.REACT_APP_settingsOverload === "remove-probability") {
+    realPracticeInstructionsArray.splice(1, 1);
+  }
 
   return {
     type: "instructions",
@@ -189,7 +194,6 @@ const realPracticeInstructions = () => {
     },
   };
 };
-
 // Instructions after practice trials
 const postPracticeInstructions = () => {
   let postPracticeInstructionsArray = [readyScreen];

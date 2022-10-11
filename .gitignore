@@ -30,3 +30,5 @@ psiturkit/*_turk
 *.json
 *.sqlite
 package-lock.json
+.vs
+.vscode

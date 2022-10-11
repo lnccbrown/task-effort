@@ -8,6 +8,7 @@ import { deepCopy } from "../lib/utils";
 let practiceBlock1 = deepCopy(defaultBlockSettings);
 
 practiceBlock1.is_practice = true;
+
 practiceBlock1.probs = ["100%"];
 practiceBlock1.value = [1, 0];
 practiceBlock1.effort = [20, 0];
@@ -22,6 +23,7 @@ practiceBlock2.is_practice = true;
 practiceBlock2.probs = ["100%"];
 practiceBlock2.value = [0, 5];
 practiceBlock2.effort = [0, 200];
+//TODO: change back to F,T  
 practiceBlock2.high_effort = [false, true];
 practiceBlock2.keys = ["p"];
 practiceBlock2.get_reward = [true, true];
@@ -38,6 +40,14 @@ practiceBlock3.keys = ["q", "p"];
 practiceBlock3.get_reward = [false, true];
 practiceBlock3.quiz_attempts = 1;
 practiceBlock3.max_attempts = 5;
+
+// overwrite values for RemoveProbability experiments
+if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+    practiceBlock3.probs = ["100%"];
+    practiceBlock3.get_reward = [true, true];
+}
+
+
 
 // export the settings
 export { practiceBlock1, practiceBlock2, practiceBlock3 };

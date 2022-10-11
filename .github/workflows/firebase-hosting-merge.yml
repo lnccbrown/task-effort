@@ -8,10 +8,14 @@ name: firebase-deploy-merge-demand
       - main
   workflow_dispatch:
     inputs:
+      firebase-env:
+        description: Sufix of firebase environment file - 'firebase-lncc', 'firebase-tricamlab'
+        required: false
+        default: 'firebase-lncc'
       firebase-channel:
         description: Which firebase-channel to deploy to - 'live', 'qa',
         required: false
-        default: 'live'
+        default: 'qa'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -25,7 +29,14 @@ jobs:
         with:
           node-version: 14.x
       - run: 'npm install' 
-      - run: 'npm run build:firebase'
+
+      - name: Load .env file for build settings
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: ${{ github.event.inputs.firebase-env || 'firebase-lncc' }}
+
+      - run: 'npm run build'
       # Deployment starting failing for node 14 - see https://github.com/firebase/firebase-tools/issues/5010
       - name: Setup node 16
         uses: actions/setup-node@v1
