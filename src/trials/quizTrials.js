@@ -87,13 +87,6 @@ const quiz = (blockSettings) => {
       }
     )
   }
-
-  //TODO: Why does the 'Continue' button disappear when questions is longer than 5? What is referencing questions.length
-  // questions.push({
-  //   prompt:`${lang.quiz.retake}`},
-  //   lang.prompt.continue.button
-  //   )
-
   return {
     type: "survey_multi_choice",
     show_clickable_nav: true,
@@ -134,26 +127,6 @@ const retakeFeedback = (blockSettings) => {
 
 const reshowRules = (blockSettings) => {
   let rules = quizRules.join("<br></br>")
-  // let rules = [
-  //   quizRules[0] +
-  //     "<br></br>" +
-  //     quizRules[1] +
-  //     "<br></br>" +
-  //     quizRules[2] +
-  //     "<br></br>" +
-  //     quizRules[3] +
-  //     "<br></br>" +
-  //     quizRules[4] +
-  //     "<br></br>" +
-  //     quizRules[5] +
-  //     "<br></br>" +
-  //     quizRules[6] +
-  //     "<br></br>" +
-  //     quizRules[7] +
-  //     "<br></br>" +
-  //     quizRules[8],
-  // ];
-
   return {
     type: "html_keyboard_response",
     stimulus: "",
