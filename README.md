@@ -86,6 +86,8 @@ In Github Desktop App, select Branch -> New. Type your lab name, and select to s
 
 You can follow the instructions detailed [here](https://brown-ccv.github.io/honeycomb-docs/docs/firebase#3-copying-web-app-credentials)
 
+7. Change the project-id inside the `.firebaserc` file to correspond to your firebase project
+
 7. Commit and push your changes.
 
 8. Use Firebase CLI to create a service account
