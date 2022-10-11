@@ -39,6 +39,11 @@ const taskTrial = (blockSettings, blockDetails, opts) => {
     // end the trial
     trialEnd(500),
     ];
+  
+  //remove rewardProb if no prob
+  if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+    timeline.splice(1, 1);
+  }
     
         let timeline_inlab = [
             // show condition
