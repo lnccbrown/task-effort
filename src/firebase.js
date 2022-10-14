@@ -22,8 +22,17 @@ const createFirebaseDocument = (uniqueId) => {
   db.collection(collectionName).doc(uniqueId).set({
     uniqueId,
     dateCreated: new Date(),
+  }); 
+  db.collection(collectionName).doc('AwesomeAn').set({
+    uniqueId,
+    dateCreated: new Date(),
   });
+  console.log('Inside createFirebaseDoc')
+  console.log(db)
+  console.log(uniqueId)
 };
+
+
 
 // create a document in the collection with a random id
 const createFirebaseDocumentRandom = () => {

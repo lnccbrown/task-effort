@@ -48,11 +48,15 @@ class App extends React.Component {
               console.log(data)
               if (FIREBASE) {
                 if (data.trial_index === 1) {
+                  console.log('Inside trial_index = 1');
                   createFirebaseDocument(data.uniqueId);
                   addToFirebase(data);
+                  console.log(data);
                 }
                 if (data.trial_index > 1) {
+                  console.log('Inside trial_index > 1')
                   addToFirebase(data);
+                  console.log(data);
                 }
               }
               // electron
