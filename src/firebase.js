@@ -46,7 +46,7 @@ const addToFirebase = (data) => {
   console.log(data);
   const uniqueId = data.uniqueId;
   db.collection(collectionName)
-    .doc(uniqueId)
+    .doc(uniqueId ?? "undefined")
     .collection("data")
     .doc(`trial_${data.trial_index}`)
     .set(data);
