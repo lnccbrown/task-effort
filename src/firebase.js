@@ -45,11 +45,18 @@ const addToFirebase = (data) => {
   console.log('Saving to firebase');
   console.log(data);
   const uniqueId = data.uniqueId;
+
+  console.log(`${collectionName}/${uniqueId ?? "undefined"}/data/trial_${data.trial_index}`)
   db.collection(collectionName)
     .doc(uniqueId ?? "undefined")
     .collection("data")
     .doc(`trial_${data.trial_index}`)
-    .set(data);
+    .set(data)
+    .then(() => console.log("DATA SAVED SUCCESSFULLY")
+    .catch((error) => {
+      console.log("THERE WAS AN ERROR SAVING TO FIREBASE")
+      console.log(error)
+    }));
 };
 
 // Export types that exists in Firestore
