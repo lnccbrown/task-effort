@@ -44,6 +44,8 @@ class App extends React.Component {
           settings={{
             timeline: tl,
             on_data_update: (data) => {
+              console.log('Inside on_data_update');
+              console.log(data)
               if (FIREBASE) {
                 if (data.trial_index === 1) {
                   createFirebaseDocument(data.uniqueId);

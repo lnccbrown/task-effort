@@ -33,6 +33,8 @@ const createFirebaseDocumentRandom = () => {
 };
 
 const addToFirebase = (data) => {
+  console.log('Saving to firebase');
+  console.log(data);
   const uniqueId = data.uniqueId;
   db.collection(collectionName)
     .doc(uniqueId)
