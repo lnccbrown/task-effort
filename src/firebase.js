@@ -23,10 +23,6 @@ const createFirebaseDocument = (uniqueId) => {
     uniqueId,
     dateCreated: new Date(),
   }); 
-  db.collection(collectionName).doc('AwesomeAn').set({
-    uniqueId,
-    dateCreated: new Date(),
-  });
 };
 
 
