@@ -20,6 +20,11 @@ console.log(config)
 const db = firebase.initializeApp(config).firestore();
 console.log(db)
 
+db.collection(collectionName).doc("000").collection("data").doc("trial_1").get().then((d) => {
+  console.log("GOT DATA")
+  console.log(d)
+})
+
 // Add data to db
 const createFirebaseDocument = (uniqueId) => {
   db.collection(collectionName).doc(uniqueId).set({
