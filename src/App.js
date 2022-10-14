@@ -46,6 +46,8 @@ class App extends React.Component {
             on_data_update: (data) => {
               console.log('Inside on_data_update');
               console.log(data)
+              console.log("JUST BEFORE IF FIREBASE")
+              console.log(FIREBASE)
               if (FIREBASE) {
                 console.log('Is Firebase here?')
                 if (data.trial_index === 1) {
