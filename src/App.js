@@ -30,6 +30,13 @@ if (IS_ELECTRON) {
 
 class App extends React.Component {
   render() {
+    console.log("Online:", ONLINE);
+    console.log("MTurk:", MTURK);
+    console.log("Firebase:", FIREBASE);
+    console.log("Prolific:", PROLIFIC);
+    console.log("Electron:", IS_ELECTRON);
+    console.log("At Home:", AT_HOME);
+    console.log("Settings Overload:", process.env.REACT_APP_settingsOverload )
     return (
       <div className="App">
         <Experiment
