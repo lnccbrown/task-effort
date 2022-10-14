@@ -13,17 +13,9 @@ const config = {
   appId: process.env.REACT_APP_appId,
   measurementId: process.env.REACT_APP_measurementId,
 };
-console.log("PRINTING CONFIG")
-console.log(config)
 
 // Get a Firestore instance
 const db = firebase.initializeApp(config).firestore();
-console.log(db)
-
-db.collection(collectionName).doc("000").collection("data").doc("trial_1").get().then((d) => {
-  console.log("GOT DATA")
-  console.log(d)
-})
 
 // Add data to db
 const createFirebaseDocument = (uniqueId) => {
@@ -35,9 +27,6 @@ const createFirebaseDocument = (uniqueId) => {
     uniqueId,
     dateCreated: new Date(),
   });
-  console.log('Inside createFirebaseDoc')
-  console.log(db)
-  console.log(uniqueId)
 };
 
 
@@ -50,21 +39,13 @@ const createFirebaseDocumentRandom = () => {
 };
 
 const addToFirebase = (data) => {
-  console.log('Saving to firebase');
-  console.log(data);
   const uniqueId = data.uniqueId;
 
-  console.log(`${collectionName}/${uniqueId ?? "undefined"}/data/trial_${data.trial_index}`)
   db.collection(collectionName)
     .doc(uniqueId ?? "undefined")
     .collection("data")
     .doc(`trial_${data.trial_index}`)
     .set(data)
-    .then(() => console.log("DATA SAVED SUCCESSFULLY")
-    .catch((error) => {
-      console.log("THERE WAS AN ERROR SAVING TO FIREBASE")
-      console.log(error)
-    }));
 };
 
 // Export types that exists in Firestore
