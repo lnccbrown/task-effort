@@ -86,15 +86,29 @@ const realPracticeScreenTwo = baseStimulus(
   true
 );
 
-const realPracticeScreenThree = baseStimulus(
+let realPracticeScreenThree = []
+if(process.env.REACT_APP_settingsOverload === "remove-probability"){
+realPracticeScreenThree = baseStimulus(
   `
     <div class='instructions'>
-    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_display_event}</p>
+    <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_display_event_np}</p>
     <p style='font-size:1.75vw;'>${lang.instructions.missed_choice}</p>
     </div>
     `,
   true
 );
+}
+else{
+  realPracticeScreenThree = baseStimulus(
+    `
+      <div class='instructions'>
+      <p style='font-size:1.75vw;'>${lang.instructions.reward_prob_display_event}</p>
+      <p style='font-size:1.75vw;'>${lang.instructions.missed_choice}</p>
+      </div>
+      `,
+    true
+  );
+}
 
 const realPracticeScreenFour = baseStimulus(
   `

@@ -51,6 +51,7 @@
     "reward_prob_certain": "In other rounds the chances of winning will be <b>100%</b>.",
     "prob_display_location": "<b>The probability at which you will receive points for a trial will appear at the <u>bottom</u> of the screen.</b>",
     "reward_prob_display_event": "The chances of winning points on that round, and the number of points possible to win, will be shown to you while you choose which balloon to inflate.",
+    "reward_prob_display_event_np": "The number of points possible to win, will be shown to you while you choose which balloon to inflate.",
     "pump_keys": "Press the    <span class='text-large'><b>Q</b></span>    key to pump the balloon on the left.<br>Press the <span class='text-large'><b>P</b></span>   key to pump the balloon on the right.",
     "choice_locked_in": "Once you have chosen a balloon, you can only pump that balloon.",
     "ready": "The experiment will start now.<br>Press next when ready!",
