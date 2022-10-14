@@ -47,6 +47,7 @@ class App extends React.Component {
               console.log('Inside on_data_update');
               console.log(data)
               if (FIREBASE) {
+                console.log('Is Firebase here?')
                 if (data.trial_index === 1) {
                   console.log('Inside trial_index = 1');
                   createFirebaseDocument(data.uniqueId);
