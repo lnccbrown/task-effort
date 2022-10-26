@@ -4,24 +4,24 @@
   <img src="/assets/icons/win/icon.ico" width="200" />
 </p>
 
-[![Actions Status](https://github.com/lnccbrown/task-effort/workflows/CI%20Tests/badge.svg)](https://github.com/lnccbrown/task-effort/actions)
-[![Actions Status](https://github.com/lnccbrown/task-effort/workflows/Build%20at%20home%20version%20%28Windows%29/badge.svg)](https://github.com/lnccbrown/task-effort/actions)  
-![Add App Installers to Release](https://github.com/lnccbrown/task-effort/workflows/Add%20App%20Installers%20to%20Release/badge.svg?branch=master)
+[![Actions Status](https://github.com/lnccbrown/task-effort/workflows/build/badge.svg)](https://github.com/lnccbrown/task-effort/actions)
 
-This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [Neuro Task Starter](https://www.github.com/brown-ccv/neuro-task-starter).
+This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [HoneyComb V1](https://brown-ccv.github.io/honeycomb-docs/docs/1.1.0).
 
-## TO RUN THE TASK - BEHAVIORAL ONLY
+## Desktop Task
 
-Go to the releases tab (https://github.com/lnccbrown/task-effort/releases) and download the recent installer for your machine.
+### Behavioral Only
 
-## TO RUN THE TASK - EEG
+Go to the releases tab (https://github.com/lnccbrown/task-effort/releases) and download the "home" versions of the installer for your machine.
 
-Follow the instructions above for behavioral version (i.e., download relevant installer).
+### EEG
+
+Go to the releases tab (https://github.com/lnccbrown/task-effort/releases) and download the "clinic" versions of the installer for your machine.
 
 In addition, follow instructions on the repo Wiki to set the port name:
 https://github.com/lnccbrown/task-effort/wiki/Task-Effort-Running-Notes-(EEG)
 
-## TO QUIT THE TASK
+### Quitting the task
 
 If you want to quit in the middle of the task, you can use these keyboard shortcuts:
 
@@ -35,7 +35,7 @@ Cmd+Q (for Mac)
 
 Partial data will be saved.
 
-## TO REUSE A SUBJECT ID NUMBER
+### Reusing participant ID
 
 If you want to overwrite a subject's data file:
 
@@ -55,7 +55,15 @@ Once you have succesfully navigated to the corresponding location, delete the .j
 
 Once you have deleted both of these .json files, you should be able to use a SubjectID you have used in the past.
 
-## THE FOLLOWING INSTRUCTIONS ARE FOR MAKING CONTRIBUTIONS TO TASK CODE
+## Firebase
+
+This task is deployed via GitHub Actions to Firebase. During development (on this repository), when you open a PR, a preview link of the app is deployed to Firebase. When you merge to `main` branch, the main URL gets updated
+
+### Information for labs other than LNCC
+If your lab plans on deploying this task to your own Firebase, but you do not expect to develop further changes and only deploy changes as developed by LNCC, follow [these instructions in the Wiki](https://github.com/lnccbrown/task-effort/wiki/Deploying-a-fork-to-Firebase)
+
+
+# Developer only Instructions
 
 ## Getting Started
 
