@@ -37,7 +37,6 @@ class App extends React.Component {
     console.log("Electron:", IS_ELECTRON);
     console.log("At Home:", AT_HOME);
     console.log("Settings Overload:", process.env.REACT_APP_settingsOverload )
-
     return (
       <div className="App">
         <Experiment
