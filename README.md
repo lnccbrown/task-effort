@@ -8,7 +8,7 @@
 
 This repo contains the Effort task. It is a [jspsych](https://www.jspsych.org/) task built with React and Electron. This task uses the [HoneyComb V1](https://brown-ccv.github.io/honeycomb-docs/docs/1.1.0).
 
-## Running Desktop Task
+## Desktop Task
 
 ### Behavioral Only
 
@@ -21,7 +21,7 @@ Go to the releases tab (https://github.com/lnccbrown/task-effort/releases) and d
 In addition, follow instructions on the repo Wiki to set the port name:
 https://github.com/lnccbrown/task-effort/wiki/Task-Effort-Running-Notes-(EEG)
 
-## Quitting the task
+### Quitting the task
 
 If you want to quit in the middle of the task, you can use these keyboard shortcuts:
 
@@ -35,7 +35,7 @@ Cmd+Q (for Mac)
 
 Partial data will be saved.
 
-## Reusing participant ID
+### Reusing participant ID
 
 If you want to overwrite a subject's data file:
 
@@ -55,64 +55,12 @@ Once you have succesfully navigated to the corresponding location, delete the .j
 
 Once you have deleted both of these .json files, you should be able to use a SubjectID you have used in the past.
 
-# Deploying identical task to your own Firebase project
+## Firebase
 
-If your lab plans on deploying this task to your onw Firebase, but you do not expect to develop further changes and only deploy changes as developed by Brown, follow the following instructions
+This task is deployed via GitHub Actions to Firebase. During development (on this repository), when you open a PR, a preview link of the app is deployed to Firebase. When you merge to `main` branch, the main URL gets updated
 
-1. Fork the repository https://github.com/lnccbrown/task-effort.git. 
-
-
-![Forking the repo](fork.png?raw=true "Forking the Repo"). When forking the repository you may be asked to install GitHub Desktop App. This is a convenient way to do it, so follow those instructions.
-
-* Forking only the main branch is sufficient
-* When forking it will ask you how you'll be using this fork. Select, for my own purposes
-
-
-2. If your fork is out of sync, you can syn it following [these instructions](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork)
-
-2. Create a Firebase project
-
-3. Install the Firebase Command Line Tools . Instructions [here](https://firebase.google.com/docs/cli)
-
-4. Make a new branch to host your Firebase details
-
-In Github Desktop App, select Branch -> New. Type your lab name, and select to start it from `main`
-
-![Create new branch for your lab](create-branch.png?raw=true "Create new branch for your lab  ")
-
-5. Open the repository, and make sure you are in your lab's branch
-
-6. Fill-in the details for your Firebase project in the `env/.env.firebase-<lab>` file
-
-You can follow the instructions detailed [here](https://brown-ccv.github.io/honeycomb-docs/docs/firebase#3-copying-web-app-credentials)
-
-7. Change the project-id inside the `.firebaserc` file to correspond to your firebase project
-
-7. Commit and push your changes.
-
-8. Use Firebase CLI to create a service account
-
-With the terminal open in your branch, type 
-
-```
-firebase login
-```
-
-Then type:
-
-```
-firebase init hosting:github
-```
-
-This will alter existing actions. You will need to discard those changes. However, this will create a service account as a secret in your github project that will be used for deployment. To confirm, in GitHub visit Settings -> Secrets
-
-9. Deploy
-
-Go to the actions Tab.
-
-Hit firebase-deploy-merge-demand
-
-Choose your lab's branch. If you are testing choose `qa` channel. If you want to go live, choose `live` channel.
+### Information for labs other than LNCC
+If your lab plans on deploying this task to your own Firebase, but you do not expect to develop further changes and only deploy changes as developed by LNCC, follow [these instructions in the Wiki](https://github.com/lnccbrown/task-effort/wiki/Deploying-a-fork-to-Firebase)
 
 
 # Developer only Instructions
